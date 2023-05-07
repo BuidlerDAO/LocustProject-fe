@@ -4,7 +4,7 @@ import { HTMLAttributes, ReactNode } from 'react';
 import { tv } from 'tailwind-variants';
 
 const button = tv({
-  base: 'cursor-pointer  bg-blue-500 font-medium text-white active:opacity-80',
+  base: 'flex cursor-pointer items-center justify-center bg-blue-500 font-medium text-white active:opacity-80',
   variants: {
     color: {
       primary: 'bg-blue-500 text-white',

@@ -27,7 +27,7 @@ export default function RootLayout({
   params: { lang: string };
 }) {
   return (
-    <html lang={params.lang}>
+    <html lang={params.lang} className="dark">
       {/*
         <head /> will contain the components returned by the nearest parent
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head

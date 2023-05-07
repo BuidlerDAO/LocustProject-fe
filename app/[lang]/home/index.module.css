@@ -1,6 +1,6 @@
 .page {
-  width: 192vw;
-  height: 282.53vw;
+  width: 90rem;
+  height: 132.44rem;
   font-family: Poppins;
 }
 .wrapper {
@@ -8,19 +8,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 192vw;
-  height: 282.53vw;
+  width: 90rem;
+  height: 132.44rem;
   background-color: #000000;
 }
 .group {
   position: absolute;
   display: flex;
-  top: 35.6vw;
+  top: 16.69rem;
   flex-direction: column;
   align-items: center;
   align-self: center;
-  width: 192vw;
-  height: 115.33vw;
+  width: 90rem;
+  height: 54.06rem;
   background-image: url(../../../assets/homeImg/img_9.png);
   background-size: contain;
   font-weight: 500;
@@ -28,11 +28,11 @@
 .eventRules {
   position: relative;
   overflow: hidden;
-  height: 6.8vw;
-  max-width: 190.4vw;
-  margin-top: 74.93vw;
-  font-size: 4.53vw;
-  line-height: 6.8vw;
+  height: 3.19rem;
+  max-width: 89.25rem;
+  margin-top: 35.13rem;
+  font-size: 2.13rem;
+  line-height: 3.19rem;
   color: #ffffff;
   text-align: left;
   white-space: pre;
@@ -41,11 +41,11 @@
 .desc {
   position: relative;
   overflow: hidden;
-  height: 3.6vw;
-  max-width: 190.4vw;
-  margin-top: 1.07vw;
-  font-size: 2.4vw;
-  line-height: 3.6vw;
+  height: 1.69rem;
+  max-width: 89.25rem;
+  margin-top: 0.5rem;
+  font-size: 1.13rem;
+  line-height: 1.69rem;
   color: #d36cff;
   text-align: left;
   white-space: nowrap;
@@ -53,25 +53,25 @@
 }
 .item {
   position: absolute;
-  left: 36.8vw;
-  top: 30.8vw;
-  width: 38.93vw;
-  height: 38.13vw;
+  left: 17.25rem;
+  top: 14.44rem;
+  width: 18.25rem;
+  height: 17.88rem;
 }
 .empty {
   position: absolute;
-  top: 71.07vw;
+  top: 33.31rem;
   align-self: center;
-  width: 51.47vw;
-  height: 6.4vw;
+  width: 24.13rem;
+  height: 3rem;
 }
 .info {
   position: absolute;
-  top: 28.27vw;
+  top: 13.25rem;
   align-self: center;
-  font-size: 2.4vw;
+  font-size: 1.13rem;
   font-weight: 500;
-  line-height: 3.6vw;
+  line-height: 1.69rem;
   color: #6d62ee;
   text-align: center;
   white-space: pre;
@@ -79,65 +79,65 @@
 .group1 {
   position: absolute;
   display: flex;
-  top: 81.73vw;
+  top: 38.31rem;
   align-items: center;
   align-self: center;
-  width: 41.47vw;
-  height: 8.4vw;
+  width: 19.44rem;
+  height: 3.94rem;
   background-color: #000000;
-  border-radius: 6.13vw;
-  border-width: 0.13vw;
+  border-radius: 2.88rem;
+  border-width: 0.06rem;
   border-style: solid;
   border-color: rgba(51, 51, 53, 1);
 }
 .wantRegister {
-  margin-left: 5.73vw;
-  margin-right: 4.53vw;
-  font-size: 2.4vw;
+  margin-left: 2.69rem;
+  margin-right: 2.13rem;
+  font-size: 1.13rem;
   font-weight: 500;
-  line-height: 2.4vw;
+  line-height: 1.13rem;
   color: #ffffff;
   text-align: center;
   white-space: pre;
 }
 .iconRight {
-  width: 3.2vw;
-  height: 3.2vw;
-  margin-top: -0.27vw;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: -0.13rem;
 }
 .info1 {
   position: absolute;
-  top: 35.6vw;
-  right: 39.33vw;
-  font-size: 13.33vw;
-  line-height: 28.8vw;
+  top: 16.69rem;
+  right: 18.44rem;
+  font-size: 6.25rem;
+  line-height: 13.5rem;
   color: #ffffff;
   text-align: center;
   white-space: pre;
 }
 .banner {
   position: absolute;
-  top: 24.13vw;
-  right: 19.47vw;
-  width: 146vw;
-  height: 68.93vw;
+  top: 11.31rem;
+  right: 9.13rem;
+  width: 68.44rem;
+  height: 32.31rem;
 }
 .picture {
   position: absolute;
-  left: 56.53vw;
-  top: 86.53vw;
-  width: 15.6vw;
-  height: 15.6vw;
+  left: 26.5rem;
+  top: 40.56rem;
+  width: 7.31rem;
+  height: 7.31rem;
 }
 .header {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 192vw;
-  height: 10.67vw;
-  padding-left: 5.33vw;
-  padding-right: 5.33vw;
+  width: 90rem;
+  height: 5rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
   background-color: #04070b;
   box-sizing: border-box;
 }
@@ -146,13 +146,13 @@
   align-items: flex-start;
 }
 .iconPiece {
-  width: 2vw;
-  height: 2vw;
-  margin-right: 0.53vw;
+  width: 0.94rem;
+  height: 0.94rem;
+  margin-right: 0.25rem;
 }
 .locusts {
   font-family: Helvetica Neue;
-  font-size: 4vw;
+  font-size: 1.88rem;
   font-weight: 700;
   color: #ffffff;
   text-align: left;
@@ -161,85 +161,85 @@
 .connetWalletWrapper {
   display: flex;
   align-items: center;
-  height: 5.6vw;
-  padding-left: 2.53vw;
-  padding-right: 2.67vw;
+  height: 2.63rem;
+  padding-left: 1.19rem;
+  padding-right: 1.25rem;
   background-color: #525251;
-  line-height: 2.13vw;
+  line-height: 1rem;
   white-space: pre;
-  border-radius: 5.33vw;
+  border-radius: 2.5rem;
   box-sizing: border-box;
-  border-width: 0.13vw;
+  border-width: 0.06rem;
   border-style: solid;
   border-color: rgba(255, 255, 255, 1);
 }
 .connetWallet {
   font-family: Outfit;
-  font-size: 2.13vw;
+  font-size: 1rem;
   color: #ffffff;
   text-align: left;
 }
 .cover {
   position: relative;
-  width: 154.53vw;
-  height: 72vw;
-  margin-top: 15.2vw;
+  width: 72.44rem;
+  height: 33.75rem;
+  margin-top: 7.13rem;
 }
 .body {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 156.27vw;
-  height: 55.2vw;
-  margin-top: 30.8vw;
-  border-radius: 6.13vw;
-  border-width: 0.27vw;
+  width: 73.25rem;
+  height: 25.88rem;
+  margin-top: 14.44rem;
+  border-radius: 2.88rem;
+  border-width: 0.13rem;
   border-style: solid;
   border-color: rgba(38, 38, 38, 1);
 }
 .product {
   position: absolute;
-  right: -1.33vw;
-  bottom: -4.53vw;
-  width: 21.6vw;
-  height: 21.6vw;
+  right: -0.63rem;
+  bottom: -2.13rem;
+  width: 10.13rem;
+  height: 10.13rem;
 }
 .outlineWrapper {
   position: relative;
   display: flex;
   align-items: center;
-  height: 5.07vw;
-  padding-left: 3.2vw;
-  padding-right: 3.2vw;
-  margin-top: 4.27vw;
-  margin-left: 4.27vw;
+  height: 2.38rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
   background-image: linear-gradient(
     180deg,
     rgba(109, 98, 238, 1) 0%,
     rgba(47, 55, 249, 1) 100%
   );
   font-weight: 500;
-  line-height: 1.6vw;
+  line-height: 0.75rem;
   white-space: nowrap;
-  border-radius: 3.2vw;
+  border-radius: 1.5rem;
   box-sizing: border-box;
 }
 .outline {
-  font-size: 1.6vw;
+  font-size: 0.75rem;
   color: #ffffff;
   text-align: left;
 }
 .points {
   position: relative;
   overflow: hidden;
-  height: 3.2vw;
-  max-width: 147.2vw;
-  margin-top: 3.73vw;
-  margin-left: 4.27vw;
-  font-size: 2.13vw;
+  height: 1.5rem;
+  max-width: 69rem;
+  margin-top: 1.75rem;
+  margin-left: 2rem;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 3.2vw;
+  line-height: 1.5rem;
   color: #64c7ff;
   text-align: justified;
   white-space: nowrap;
@@ -248,12 +248,12 @@
 .mechanismPrev {
   position: relative;
   overflow: hidden;
-  height: 2.4vw;
-  max-width: 147.2vw;
-  margin-top: 0.53vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
-  line-height: 2.4vw;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.25rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 1.13rem;
   color: #ffffff;
   text-align: left;
   white-space: pre;
@@ -262,13 +262,13 @@
 .mechanism {
   position: relative;
   overflow: hidden;
-  height: 3.2vw;
-  max-width: 147.2vw;
-  margin-top: 1.6vw;
-  margin-left: 4.27vw;
-  font-size: 2.13vw;
+  height: 1.5rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 3.2vw;
+  line-height: 1.5rem;
   color: #64c7ff;
   text-align: justified;
   white-space: nowrap;
@@ -278,12 +278,12 @@
   position: relative;
   display: -webkit-inline-box;
   overflow: hidden;
-  width: 147.2vw;
-  height: 4.8vw;
-  margin-top: 0.53vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
-  line-height: 4.8vw;
+  width: 69rem;
+  height: 2.25rem;
+  margin-top: 0.25rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 2.25rem;
   color: #ffffff;
   text-align: left;
   white-space: normal;
@@ -294,12 +294,12 @@
 .info2 {
   position: relative;
   overflow: hidden;
-  height: 2.4vw;
-  max-width: 147.2vw;
-  margin-top: 2.4vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
-  line-height: 2.4vw;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 1.13rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 1.13rem;
   color: #ffffff;
   text-align: left;
   white-space: pre;
@@ -308,12 +308,12 @@
 .info3 {
   position: relative;
   overflow: hidden;
-  height: 2.4vw;
-  max-width: 147.2vw;
-  margin-top: 1.6vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
-  line-height: 2.4vw;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 1.13rem;
   color: #ffffff;
   text-align: left;
   white-space: pre;
@@ -323,11 +323,11 @@
   position: relative;
   display: -webkit-inline-box;
   overflow: hidden;
-  width: 40vw;
-  height: 4.8vw;
-  margin-top: 1.6vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
+  width: 18.75rem;
+  height: 2.25rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
   color: #ffffff;
   text-align: left;
   white-space: normal;
@@ -339,11 +339,11 @@
   position: relative;
   display: -webkit-inline-box;
   overflow: hidden;
-  width: 38.4vw;
-  height: 4.8vw;
-  margin-top: 1.6vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
+  width: 18rem;
+  height: 2.25rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
   color: #ffffff;
   text-align: left;
   white-space: normal;
@@ -356,56 +356,56 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 156.27vw;
-  height: 38.93vw;
-  margin-top: 4.53vw;
-  border-radius: 6.13vw;
-  border-width: 0.27vw;
+  width: 73.25rem;
+  height: 18.25rem;
+  margin-top: 2.13rem;
+  border-radius: 2.88rem;
+  border-width: 0.13rem;
   border-style: solid;
   border-color: rgba(38, 38, 38, 1);
 }
 .item1 {
   position: absolute;
-  top: 24.53vw;
-  right: -1.33vw;
-  width: 21.6vw;
-  height: 21.6vw;
+  top: 11.5rem;
+  right: -0.63rem;
+  width: 10.13rem;
+  height: 10.13rem;
 }
 .contentRequirementsWrapper {
   position: relative;
   display: flex;
   align-items: center;
-  height: 5.07vw;
-  padding-left: 3.2vw;
-  padding-right: 3.2vw;
-  margin-top: 4.27vw;
-  margin-left: 4.27vw;
+  height: 2.38rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
   background-image: linear-gradient(
     180deg,
     rgba(109, 98, 238, 1) 0%,
     rgba(47, 55, 249, 1) 100%
   );
   font-weight: 500;
-  line-height: 1.6vw;
+  line-height: 0.75rem;
   white-space: pre;
-  border-radius: 3.2vw;
+  border-radius: 1.5rem;
   box-sizing: border-box;
 }
 .contentRequirements {
-  font-size: 1.6vw;
+  font-size: 0.75rem;
   color: #ffffff;
   text-align: left;
 }
 .quantity {
   position: relative;
   overflow: hidden;
-  height: 3.2vw;
-  max-width: 147.2vw;
-  margin-top: 3.73vw;
-  margin-left: 4.27vw;
-  font-size: 2.13vw;
+  height: 1.5rem;
+  max-width: 69rem;
+  margin-top: 1.75rem;
+  margin-left: 2rem;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 3.2vw;
+  line-height: 1.5rem;
   color: #64c7ff;
   text-align: justified;
   white-space: nowrap;
@@ -414,12 +414,12 @@
 .qualityPrev {
   position: relative;
   overflow: hidden;
-  height: 2.4vw;
-  max-width: 147.2vw;
-  margin-top: 0.53vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
-  line-height: 2.4vw;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.25rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 1.13rem;
   color: #ffffff;
   text-align: left;
   white-space: pre;
@@ -428,13 +428,13 @@
 .quality {
   position: relative;
   overflow: hidden;
-  height: 3.2vw;
-  max-width: 147.2vw;
-  margin-top: 1.6vw;
-  margin-left: 4.27vw;
-  font-size: 2.13vw;
+  height: 1.5rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 3.2vw;
+  line-height: 1.5rem;
   color: #64c7ff;
   text-align: justified;
   white-space: nowrap;
@@ -443,12 +443,12 @@
 .auditPrev {
   position: relative;
   overflow: hidden;
-  height: 2.4vw;
-  max-width: 147.2vw;
-  margin-top: 0.53vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
-  line-height: 2.4vw;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.25rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 1.13rem;
   color: #ffffff;
   text-align: left;
   white-space: pre;
@@ -457,13 +457,13 @@
 .audit {
   position: relative;
   overflow: hidden;
-  height: 3.2vw;
-  max-width: 147.2vw;
-  margin-top: 1.6vw;
-  margin-left: 4.27vw;
-  font-size: 2.13vw;
+  height: 1.5rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 3.2vw;
+  line-height: 1.5rem;
   color: #64c7ff;
   text-align: justified;
   white-space: nowrap;
@@ -472,12 +472,12 @@
 .summary {
   position: relative;
   overflow: hidden;
-  height: 2.4vw;
-  max-width: 147.2vw;
-  margin-top: 0.53vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
-  line-height: 2.4vw;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.25rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 1.13rem;
   color: #ffffff;
   text-align: left;
   white-space: pre;
@@ -488,22 +488,22 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 156.27vw;
-  height: 40.53vw;
-  margin-top: 4.53vw;
-  line-height: 2.4vw;
+  width: 73.25rem;
+  height: 19rem;
+  margin-top: 2.13rem;
+  line-height: 1.13rem;
   white-space: pre;
-  border-radius: 6.13vw;
-  border-width: 0.27vw;
+  border-radius: 2.88rem;
+  border-width: 0.13rem;
   border-style: solid;
   border-color: rgba(38, 38, 38, 1);
 }
 .product1 {
   position: absolute;
-  top: 24.53vw;
-  right: -1.33vw;
-  width: 21.6vw;
-  height: 21.6vw;
+  top: 11.5rem;
+  right: -0.63rem;
+  width: 10.13rem;
+  height: 10.13rem;
   line-height: normal;
   white-space: normal;
 }
@@ -511,36 +511,36 @@
   position: relative;
   display: flex;
   align-items: center;
-  height: 5.07vw;
-  padding-left: 3.2vw;
-  padding-right: 3.2vw;
-  margin-top: 4.27vw;
-  margin-left: 4.27vw;
+  height: 2.38rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
   background-image: linear-gradient(
     180deg,
     rgba(109, 98, 238, 1) 0%,
     rgba(47, 55, 249, 1) 100%
   );
   font-weight: 500;
-  line-height: 1.6vw;
-  border-radius: 3.2vw;
+  line-height: 0.75rem;
+  border-radius: 1.5rem;
   box-sizing: border-box;
 }
 .outputFormat {
-  font-size: 1.6vw;
+  font-size: 0.75rem;
   color: #ffffff;
   text-align: left;
 }
 .output {
   position: relative;
   overflow: hidden;
-  height: 3.2vw;
-  max-width: 147.2vw;
-  margin-top: 3.73vw;
-  margin-left: 4.27vw;
-  font-size: 2.13vw;
+  height: 1.5rem;
+  max-width: 69rem;
+  margin-top: 1.75rem;
+  margin-left: 2rem;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 3.2vw;
+  line-height: 1.5rem;
   color: #64c7ff;
   text-align: justified;
   text-overflow: ellipsis;
@@ -548,11 +548,11 @@
 .subject {
   position: relative;
   overflow: hidden;
-  height: 2.4vw;
-  max-width: 147.2vw;
-  margin-top: 1.6vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
   color: #ffffff;
   text-align: left;
   white-space: nowrap;
@@ -561,11 +561,11 @@
 .output1 {
   position: relative;
   overflow: hidden;
-  height: 2.4vw;
-  max-width: 147.2vw;
-  margin-top: 1.6vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
   color: #ffffff;
   text-align: left;
   text-overflow: ellipsis;
@@ -573,11 +573,11 @@
 .personalReflectionsPrev {
   position: relative;
   overflow: hidden;
-  height: 2.4vw;
-  max-width: 147.2vw;
-  margin-top: 1.6vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
   color: #ffffff;
   text-align: left;
   text-overflow: ellipsis;
@@ -585,11 +585,11 @@
 .personalReflections {
   position: relative;
   overflow: hidden;
-  height: 2.4vw;
-  max-width: 147.2vw;
-  margin-top: 1.6vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
   color: #ffffff;
   text-align: left;
   text-overflow: ellipsis;
@@ -597,11 +597,11 @@
 .relatedLinks {
   position: relative;
   overflow: hidden;
-  height: 2.4vw;
-  max-width: 147.2vw;
-  margin-top: 1.6vw;
-  margin-left: 4.27vw;
-  font-size: 1.6vw;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
   color: #ffffff;
   text-align: left;
   text-overflow: ellipsis;

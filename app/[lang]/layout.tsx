@@ -37,7 +37,7 @@ export default function RootLayout({
         <Flexible />
         <Toaster />
         <RootLayoutClient>
-          <Navbar />
+          {/* <Navbar /> */}
           {children}
         </RootLayoutClient>
       </body>

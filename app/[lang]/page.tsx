@@ -52,9 +52,8 @@ const Home = memo((props: any) => {
         </div>
         <img className={styles.item} src={img0.src} alt="" />
         <div className={styles.empty} />
-       <Link href='/home'>
-          <button className={styles.info} >👀 View previous event articles</button>
-         </Link>
+          <Link className={styles.info} href='/home'>👀 View previous event articles</Link>
+         
         <div className={styles.group1}>
           <span className={styles.wantRegister}>📣 I want to register</span>
           <img className={styles.iconRight} src={img1.src} alt=''/>

@@ -18,7 +18,7 @@ import styles from './index.module.css';
 import { url } from 'inspector';
 import { redirect } from 'next/navigation';
 
-const Home = memo((props: any) => {
+const Index = memo((props: any) => {
   const resizeListener = () => {
     // 定义设计图的尺寸
     const designSize = 1070;
@@ -147,4 +147,4 @@ const Home = memo((props: any) => {
   );
 });
 
-export default Home;
+export default Index;

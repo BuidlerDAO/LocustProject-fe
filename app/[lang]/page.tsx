@@ -17,6 +17,7 @@ import img9 from '@/assets/homeImg/img_9.png';
 import styles from './index.module.css';
 import { url } from 'inspector';
 import { redirect } from 'next/navigation';
+import { Button } from '@/components/button';
 
 const Index = memo((props: any) => {
   const resizeListener = () => {
@@ -45,20 +46,25 @@ const Index = memo((props: any) => {
   return (
     <div className={styles.page}>
       <div className={styles.wrapper}>
-        <div className={styles.group} >
+        <div className={styles.group}>
           <img src={img9.src} alt="" />
           <span className={styles.eventRules}>Event Rules</span>
           <span className={styles.desc}>由概要、内容要求、输出格式三部分</span>
         </div>
         <img className={styles.item} src={img0.src} alt="" />
         <div className={styles.empty} />
-          <Link className={styles.info} href='/home'>👀 View previous event articles</Link>
-         
+        <Link className={styles.info} href="/home">
+          👀 View previous event articles
+        </Link>
+
         <div className={styles.group1}>
           <span className={styles.wantRegister}>📣 I want to register</span>
-          <img className={styles.iconRight} src={img1.src} alt=''/>
+          <img className={styles.iconRight} src={img1.src} alt="" />
         </div>
-        <span className={styles.info1}>Cognitive <br/>Locust Program</span>
+        <span className={styles.info1}>
+          Cognitive <br />
+          Locust Program
+        </span>
         <img className={styles.banner} src={img2.src} />
         <img className={styles.picture} src={img3.src} />
         <div className={styles.header}>
@@ -73,9 +79,7 @@ const Index = memo((props: any) => {
         <img className={styles.cover} src={img5.src} />
         <div className={styles.body}>
           <img className={styles.product} src={img6.src} />
-          <div className={styles.outlineWrapper}>
-            <span className={styles.outline}>Outline</span>
-          </div>
+          {/*<Button className={styles.outlineWrapper}>Outline</Button>*/}
           <span className={styles.points}>1.Points</span>
           <span className={styles.mechanismPrev}>
             Each piece of content will be rewarded with 2 points (to be viewed
@@ -106,11 +110,9 @@ const Index = memo((props: any) => {
         </div>
         <div className={styles.main}>
           <img className={styles.item1} src={img7.src} />
-          <div className={styles.contentRequirementsWrapper}>
-            <span className={styles.contentRequirements}>
-              Content requirements
-            </span>
-          </div>
+          {/*<Button className={styles.contentRequirementsWrapper}>*/}
+          {/*  Content requirements*/}
+          {/*</Button>*/}
           <span className={styles.quantity}>1.Quantity</span>
           <span className={styles.qualityPrev}>
             At least 3 articles per week and at least 12 articles per month;
@@ -128,9 +130,7 @@ const Index = memo((props: any) => {
         </div>
         <div className={styles.footer}>
           <img className={styles.product1} src={img8.src} />
-          <div className={styles.outputFormatWrapper}>
-            <span className={styles.outputFormat}>Output format</span>
-          </div>
+          {/*<Button className={styles.outputFormatWrapper}>Output format</Button>*/}
           <span className={styles.output}>1.Output by</span>
           <span className={styles.subject}>Subject</span>
           <span className={styles.output1}>Output by</span>
@@ -146,5 +146,7 @@ const Index = memo((props: any) => {
     </div>
   );
 });
+
+Index.displayName = 'Index';
 
 export default Index;

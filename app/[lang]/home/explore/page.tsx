@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 import { Card, Breadcrumb, Form, Button, Radio, DatePicker, Select } from 'antd'
 import locale from 'antd/es/date-picker/locale/zh_CN'

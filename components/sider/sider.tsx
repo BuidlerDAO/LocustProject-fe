@@ -17,8 +17,10 @@ const handleMenuClick = (e) => {
   };
 
   return (
-    <Sider trigger={null} collapsible collapsed>
-        <div className="m-4 h-8" />
+    <Sider trigger={null} className="h-screen">
+      <div className="m-4 h-8" >
+        <img src='../../assets/Logo.png' alt="logo" />
+        </div>
         <Menu
           theme="dark"
           mode="inline"
@@ -33,7 +35,7 @@ const handleMenuClick = (e) => {
             {
               key: '2',
               icon: <VideoCameraOutlined />,
-              label: <Link href="/home/nav2">nav 2</Link>
+              label: <Link href="/home/post">new post</Link>
             },
             {
               key: '3',

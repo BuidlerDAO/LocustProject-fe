@@ -98,6 +98,24 @@ html {
   border-style: solid;
   border-color: rgba(51, 51, 53, 1);
 }
+.group1::before {
+  content: '📣';
+}
+.group2::before {
+  content: '👀';
+}
+.group1:hover {
+  background: #6e62ee;
+}
+.group2:hover {
+  background: #6e62ee;
+}
+.group1:hover::before {
+  content: '';
+}
+.group2:hover::before {
+  content: '';
+}
 .iconRight {
   width: 1.5rem;
   height: 1.5rem;

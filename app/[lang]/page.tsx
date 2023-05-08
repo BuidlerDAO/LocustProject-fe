@@ -1,6 +1,5 @@
 'use client';
-import React, { memo, useEffect } from 'react';
-import Link from 'next/link';
+import React, { memo, useCallback, useEffect } from 'react';
 
 import '@/styles/home.css';
 import img0 from '@/assets/homeImg/img_0.png';
@@ -18,8 +17,14 @@ import styles from './index.module.css';
 import { url } from 'inspector';
 import { redirect } from 'next/navigation';
 import { Button } from '@/components/button';
+import Toast from '@/components/toast/toast';
 
 const Index = memo((props: any) => {
+  const Click = useCallback(() => {
+    console.log(111);
+    Toast.error('操作失败');
+  }, []);
+
   const resizeListener = () => {
     // 定义设计图的尺寸
     const designSize = 1070;
@@ -43,6 +48,7 @@ const Index = memo((props: any) => {
       };
     }
   }, []);
+
   return (
     <div className={styles.page}>
       <div className={styles.wrapper}>
@@ -54,9 +60,9 @@ const Index = memo((props: any) => {
         <img className={styles.item} src={img0.src} alt="" />
         <div className={styles.empty} />
         <Button
-          className={`${styles.group1} z-[999] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
+          className={`${styles.group1} z-[9] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
         >
-          📣 I want to register
+          I want to register
           <img
             className={`${styles.iconRight}`}
             style={{ marginLeft: '0.5rem' }}
@@ -66,8 +72,9 @@ const Index = memo((props: any) => {
         </Button>
         <Button
           className={`${styles.group2}  z-[999] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
+          onClick={Click}
         >
-          👀 Past event articles
+          Past event articles
           <img
             className={`${styles.iconRight}`}
             style={{ marginLeft: '0.5rem' }}

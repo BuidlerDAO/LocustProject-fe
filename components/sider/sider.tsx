@@ -35,7 +35,7 @@ const handleMenuClick = (e) => {
             {
               key: '2',
               icon: <VideoCameraOutlined />,
-              label: <Link href="/home/nav2">nav 2</Link>
+              label: <Link href="/home/post">new post</Link>
             },
             {
               key: '3',

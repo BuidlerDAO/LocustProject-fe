@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Layout, Menu } from 'antd';
 import {
   MenuFoldOutlined,
@@ -19,7 +20,8 @@ const handleMenuClick = (e) => {
   return (
     <Sider trigger={null} className="h-screen">
       <div className="m-4 h-8" >
-        <img src='../../assets/Logo.png' alt="logo" />
+        <Image src="/assets/Logo.png" alt="logo" width={100} height={100} />
+        {/* <img src='../../assets/Logo.png' alt="logo" /> */}
         </div>
         <Menu
           theme="dark"

@@ -79,7 +79,7 @@ const Index = memo((props: any) => {
         <img className={styles.cover} src={img5.src} />
         <div className={styles.body}>
           <img className={styles.product} src={img6.src} />
-          {/*<Button className={styles.outlineWrapper}>Outline</Button>*/}
+          <Button className={styles.outlineWrapper}>Outline</Button>
           <span className={styles.points}>1.Points</span>
           <span className={styles.mechanismPrev}>
             Each piece of content will be rewarded with 2 points (to be viewed
@@ -110,9 +110,9 @@ const Index = memo((props: any) => {
         </div>
         <div className={styles.main}>
           <img className={styles.item1} src={img7.src} />
-          {/*<Button className={styles.contentRequirementsWrapper}>*/}
-          {/*  Content requirements*/}
-          {/*</Button>*/}
+          <Button className={styles.contentRequirementsWrapper}>
+            Content requirements
+          </Button>
           <span className={styles.quantity}>1.Quantity</span>
           <span className={styles.qualityPrev}>
             At least 3 articles per week and at least 12 articles per month;
@@ -130,7 +130,7 @@ const Index = memo((props: any) => {
         </div>
         <div className={styles.footer}>
           <img className={styles.product1} src={img8.src} />
-          {/*<Button className={styles.outputFormatWrapper}>Output format</Button>*/}
+          <Button className={styles.outputFormatWrapper}>Output format</Button>
           <span className={styles.output}>1.Output by</span>
           <span className={styles.subject}>Subject</span>
           <span className={styles.output1}>Output by</span>

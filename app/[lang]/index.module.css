@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
-html{
-    overflow-x:hidden;
+html {
+  overflow-x: hidden;
 }
 .page {
   width: 90rem;
@@ -118,10 +118,10 @@ html{
   font-size: 6.25rem;
   line-height: 108%;
   color: #ffffff;
-text-align: center;
-overflow-wrap: break-word;
-color: #FFFFFF;
-font-family: 'Poppins', sans-serif;
+  text-align: center;
+  overflow-wrap: break-word;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
 }
 .banner {
   position: absolute;
@@ -222,22 +222,14 @@ font-family: 'Poppins', sans-serif;
   padding-right: 1.5rem;
   margin-top: 2rem;
   margin-left: 2rem;
-  background-image: linear-gradient(
-    180deg,
-    rgba(109, 98, 238, 1) 0%,
-    rgba(47, 55, 249, 1) 100%
-  );
   font-weight: 500;
   line-height: 0.75rem;
   white-space: nowrap;
   border-radius: 1.5rem;
   box-sizing: border-box;
+  font-size: 12px;
 }
-.outline {
-  font-size: 0.75rem;
-  color: #ffffff;
-  text-align: left;
-}
+
 .points {
   position: relative;
   overflow: hidden;
@@ -388,22 +380,14 @@ font-family: 'Poppins', sans-serif;
   padding-right: 1.5rem;
   margin-top: 2rem;
   margin-left: 2rem;
-  background-image: linear-gradient(
-    180deg,
-    rgba(109, 98, 238, 1) 0%,
-    rgba(47, 55, 249, 1) 100%
-  );
   font-weight: 500;
   line-height: 0.75rem;
   white-space: pre;
   border-radius: 1.5rem;
   box-sizing: border-box;
+  font-size: 12px;
 }
-.contentRequirements {
-  font-size: 0.75rem;
-  color: #ffffff;
-  text-align: left;
-}
+
 .quantity {
   position: relative;
   overflow: hidden;
@@ -524,21 +508,13 @@ font-family: 'Poppins', sans-serif;
   padding-right: 1.5rem;
   margin-top: 2rem;
   margin-left: 2rem;
-  background-image: linear-gradient(
-    180deg,
-    rgba(109, 98, 238, 1) 0%,
-    rgba(47, 55, 249, 1) 100%
-  );
   font-weight: 500;
   line-height: 0.75rem;
   border-radius: 1.5rem;
   box-sizing: border-box;
+  font-size: 12px;
 }
-.outputFormat {
-  font-size: 0.75rem;
-  color: #ffffff;
-  text-align: left;
-}
+
 .output {
   position: relative;
   overflow: hidden;

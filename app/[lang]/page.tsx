@@ -53,20 +53,33 @@ const Index = memo((props: any) => {
         </div>
         <img className={styles.item} src={img0.src} alt="" />
         <div className={styles.empty} />
-        <Link className={styles.info} href="/home">
-          👀 View previous event articles
-        </Link>
-
-        <div className={styles.group1}>
-          <span className={styles.wantRegister}>📣 I want to register</span>
-          <img className={styles.iconRight} src={img1.src} alt="" />
-        </div>
+        <Button
+          className={`${styles.group1} z-[999] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
+        >
+          📣 I want to register
+          <img
+            className={`${styles.iconRight}`}
+            style={{ marginLeft: '0.5rem' }}
+            src={img1.src}
+            alt=""
+          />
+        </Button>
+        <Button
+          className={`${styles.group2}  z-[999] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
+        >
+          👀 Past event articles
+          <img
+            className={`${styles.iconRight}`}
+            style={{ marginLeft: '0.5rem' }}
+            src={img1.src}
+            alt=""
+          />
+        </Button>
         <span className={styles.info1}>
           Cognitive <br />
           Locust Program
         </span>
         <img className={styles.banner} src={img2.src} />
-        <img className={styles.picture} src={img3.src} />
         <div className={styles.header}>
           <div className={styles.view}>
             <img className={styles.iconPiece} src={img4.src} />

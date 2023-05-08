@@ -23,6 +23,7 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.2.32",
     "@prisma/client": "^4.13.0",
+    "antd": "^5.4.7",
     "ethers": "^6.3.0",
     "http-proxy-middleware": "^2.0.6",
     "negotiator": "^0.6.3",

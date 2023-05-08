@@ -79,6 +79,7 @@ html{
   color: #6d62ee;
   text-align: center;
   white-space: pre;
+  z-index: 2;
 }
 .group1 {
   position: absolute;

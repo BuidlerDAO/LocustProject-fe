@@ -1,5 +1,6 @@
 'use client';
 import React, { memo, useEffect } from 'react';
+import Link from 'next/link';
 
 import '@/styles/home.css';
 import img0 from '@/assets/homeImg/img_0.png';
@@ -15,6 +16,7 @@ import img9 from '@/assets/homeImg/img_9.png';
 
 import styles from './index.module.css';
 import { url } from 'inspector';
+import { redirect } from 'next/navigation';
 
 const Home = memo((props: any) => {
   const resizeListener = () => {
@@ -50,10 +52,12 @@ const Home = memo((props: any) => {
         </div>
         <img className={styles.item} src={img0.src} alt="" />
         <div className={styles.empty} />
-        <span className={styles.info}>👀 View previous event articles</span>
+       <Link href='/home'>
+          <button className={styles.info} >👀 View previous event articles</button>
+         </Link>
         <div className={styles.group1}>
           <span className={styles.wantRegister}>📣 I want to register</span>
-          <img className={styles.iconRight} src={img1.src} />
+          <img className={styles.iconRight} src={img1.src} alt=''/>
         </div>
         <span className={styles.info1}>Cognitive <br/>Locust Program</span>
         <img className={styles.banner} src={img2.src} />

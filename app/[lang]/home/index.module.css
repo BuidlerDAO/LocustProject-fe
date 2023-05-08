@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
 html{
     overflow-x:hidden;
 }
@@ -113,10 +114,12 @@ html{
   top: 16.69rem;
   right: 18.44rem;
   font-size: 6.25rem;
-  line-height: 13.5rem;
+  line-height: 108%;
   color: #ffffff;
-  text-align: center;
-  white-space: pre;
+text-align: center;
+overflow-wrap: break-word;
+color: #FFFFFF;
+font-family: 'Poppins', sans-serif;
 }
 .banner {
   position: absolute;

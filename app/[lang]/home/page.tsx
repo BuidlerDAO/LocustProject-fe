@@ -19,7 +19,7 @@ import { url } from 'inspector';
 const Home = memo((props: any) => {
   const resizeListener = () => {
     // 定义设计图的尺寸 3840
-    const designSize = 1100;
+    const designSize = 1050;
     // 获取 html 元素
     const html = document.documentElement;
     // 定义窗口的宽度
@@ -55,7 +55,7 @@ const Home = memo((props: any) => {
           <span className={styles.wantRegister}>📣 I want to register</span>
           <img className={styles.iconRight} src={img1.src} />
         </div>
-        <span className={styles.info1}>Cognitive Locust Program</span>
+        <span className={styles.info1}>Cognitive <br/>Locust Program</span>
         <img className={styles.banner} src={img2.src} />
         <img className={styles.picture} src={img3.src} />
         <div className={styles.header}>

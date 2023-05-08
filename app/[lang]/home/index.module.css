@@ -1,3 +1,6 @@
+html{
+    overflow-x:hidden;
+}
 .page {
   width: 90rem;
   height: 132.44rem;
@@ -21,8 +24,8 @@
   align-self: center;
   width: 90rem;
   height: 54.06rem;
-  background-image: url(../../../assets/homeImg/img_9.png);
-  background-size: contain;
+  /* background-image: url(../../../assets/homeImg/img_9.png);
+  background-size: contain; */
   font-weight: 500;
 }
 .eventRules {

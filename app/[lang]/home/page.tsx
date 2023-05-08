@@ -1,5 +1,5 @@
-'use strict';
-import React, { memo } from 'react';
+'use client';
+import React, { memo, useEffect } from 'react';
 
 import '@/styles/home.css';
 import img0 from '@/assets/homeImg/img_0.png';
@@ -11,14 +11,40 @@ import img5 from '@/assets/homeImg/img_5.png';
 import img6 from '@/assets/homeImg/img_6.png';
 import img7 from '@/assets/homeImg/img_7.png';
 import img8 from '@/assets/homeImg/img_8.png';
+import img9 from '@/assets/homeImg/img_9.png';
 
 import styles from './index.module.css';
+import { url } from 'inspector';
 
-export default memo((props) => {
+const Home = memo((props: any) => {
+  const resizeListener = () => {
+    // 定义设计图的尺寸 3840
+    const designSize = 1100;
+    // 获取 html 元素
+    const html = document.documentElement;
+    // 定义窗口的宽度
+    const clientW = html.clientWidth;
+    const clienH = html.clientHeight;
+    // html 的fontsize 大小
+    const htmlRem = (clientW * 12) / designSize;
+    html.style.fontSize = htmlRem + 'px';
+    // console.log(clientW);
+  };
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      window.addEventListener('resize', resizeListener);
+      window.dispatchEvent(new Event('resize')); // trigger resize on first mount
+      return () => {
+        window.removeEventListener('resize', resizeListener);
+      };
+    }
+  }, []);
   return (
     <div className={styles.page}>
       <div className={styles.wrapper}>
-        <div className={styles.group}>
+        <div className={styles.group} >
+          <img src={img9.src} alt="" />
           <span className={styles.eventRules}>Event Rules</span>
           <span className={styles.desc}>由概要、内容要求、输出格式三部分</span>
         </div>
@@ -117,3 +143,5 @@ export default memo((props) => {
     </div>
   );
 });
+
+export default Home;

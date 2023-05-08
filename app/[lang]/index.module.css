@@ -239,6 +239,9 @@ html {
   border-style: solid;
   border-color: rgba(38, 38, 38, 1);
 }
+.body:hover {
+  border-color: #6e62ee;
+}
 .product {
   position: absolute;
   right: -0.63rem;
@@ -397,6 +400,9 @@ html {
   border-style: solid;
   border-color: rgba(38, 38, 38, 1);
 }
+.main:hover {
+  border-color: #6e62ee;
+}
 .item1 {
   position: absolute;
   top: 11.5rem;
@@ -522,6 +528,9 @@ html {
   border-width: 0.13rem;
   border-style: solid;
   border-color: rgba(38, 38, 38, 1);
+}
+.footer:hover {
+  border-color: #6e62ee;
 }
 .product1 {
   position: absolute;

@@ -8,9 +8,9 @@ const { Header, Sider, Content } = Layout;
 export default function Home() {
   const [collapsed, setCollapsed] = useState(false);
   return (
-      <Layout className="layout">
+      <Layout className="h-screen">
         <Sider trigger={null} collapsible collapsed={collapsed}>
-          <div className="logo" />
+          <div className="h-8 m-4" />
           <Menu
               theme="dark"
               mode="inline"
@@ -42,7 +42,7 @@ export default function Home() {
               }}
           >
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-              className: 'trigger',
+              className: "text-lg leading-[64px] cursor-pointer transition-[color] duration-[0.3s] px-6 py-0 hover:text-[#1890ff]",
               onClick: () => setCollapsed(!collapsed),
             })}
           </Header>

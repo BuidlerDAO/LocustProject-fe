@@ -1,95 +1,68 @@
-'use client';
-import Link from 'next/link';
-import { Button, Card, Space, Table, Tag } from 'antd';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+'use client'
+import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
+import { Avatar, List, Space } from 'antd';
+import React from 'react';
 
-//import img404 from '@/assets/error.png'
+const data = Array.from({ length: 23 }).map((_, i) => ({
+  href: 'https://ant.design',
+  title: `ant design part ${i}`,
+  avatar: `https://xsgames.co/randomusers/avatar.php?g=pixel&key=${i}`,
+  description:
+    'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+  content:
+    'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+}));
 
-interface PostProps {
-  id: string;
-  comment_count: number;
-  cover: string[];
-  like_count: number;
-  pubdate: string;
-  read_count: number;
-  status: number;
-  title: string;
-}
+const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
+  <Space>
+    {React.createElement(icon)}
+    {text}
+  </Space>
+);
 
-const Explore: React.FC = () => {
-  const columns = [
-    {
-      title: '封面',
-      dataIndex: 'cover',
-      width: 120,
-      render: (cover: string[]) => {
-        return <img src={cover[0]} width={80} height={60} alt="" />;
-      }
-    },
-    {
-      title: '标题',
-      dataIndex: 'title',
-      width: 220
-    },
-    {
-      title: '状态',
-      dataIndex: 'status',
-      render: (data: number) => <Tag color="green">审核通过</Tag>
-    },
-    {
-      title: '发布时间',
-      dataIndex: 'pubdate'
-    },
-    {
-      title: '阅读数',
-      dataIndex: 'read_count'
-    },
-    {
-      title: '评论数',
-      dataIndex: 'comment_count'
-    },
-    {
-      title: '点赞数',
-      dataIndex: 'like_count'
-    },
-    {
-      title: '操作',
-      render: (data: PostProps) => {
-        return (
-          <Space size="middle">
-            <Button type="primary" shape="circle" icon={<EditOutlined />} />
-            <Button
-              type="primary"
-              danger
-              shape="circle"
-              icon={<DeleteOutlined />}
-            />
-          </Space>
-        );
-      }
+const App: React.FC = () => (
+  <List
+    itemLayout="vertical"
+    size="large"
+    pagination={{
+      onChange: (page) => {
+        console.log(page);
+      },
+      pageSize: 3,
+    }}
+    style={{color: 'white'}}
+    dataSource={data}
+    footer={
+      <div>
+        <b>ant design</b> footer part
+      </div>
     }
-  ];
+    renderItem={(item) => (
+      <List.Item
+        key={item.title}
+        className='bg-white'
+        actions={[
+          <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
+          <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
+          <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+        ]}
+        extra={
+          <img
+            width={272}
+            alt="logo"
+            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+          />
+        }
+      >
+        <List.Item.Meta
+          avatar={<Avatar src={item.avatar} />}
+          title={<a href={item.href}>{item.title}</a>}
+          description={item.description}
+        />
+        {item.content}
+      </List.Item>
+    )}
+  />
+);
 
-  const data = [
-    {
-      id: '8218',
-      comment_count: 0,
-      cover: ['http://geek.itheima.net/resources/images/15.jpg'],
-      like_count: 0,
-      pubdate: '2019-03-11 09:00:00',
-      read_count: 2,
-      status: 2,
-      title: 'wkwebview离线化加载h5资源解决方案'
-    }
-  ];
-
-  return (
-    <div>
-      <Card title={`根据筛选条件共查询到 count 条结果：`}>
-        <Table rowKey="id" columns={columns} dataSource={data} />
-      </Card>
-    </div>
-  );
-};
-
-export default Explore;
+export default App;

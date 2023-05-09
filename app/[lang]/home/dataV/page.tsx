@@ -127,12 +127,12 @@ const dataV = () => {
         {/* <Table columns={columns} dataSource={data} /> */}
         <div className='flex flex-col'>
           <div className='text-lg'>Contracts</div>
-          <div className='flex-row'>
-            <Card className='ml-2 w-10'>
+          <div className='flex-row flex'>
+            <Card className='ml-2 w-48'>
             <p>Contract Address: 0x1234567890abcdef</p>
             <p>Contract Balance: 1000</p>
             </Card>
-            <Card className='ml-2 w-10'>
+            <Card className='ml-2 w-48'>
             <p>Contract Address: 0x1234567890abcdef</p>
             <p>Contract Balance: 1000</p>
           </Card>

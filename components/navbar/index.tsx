@@ -9,7 +9,9 @@ const Navbar = () => {
       <div className="sticky inset-0 z-10 flex h-full w-full max-w-full items-center px-8 py-2 lg:px-10 lg:py-4">
         <div className="text-blue-gray-900 dark:text-blue-gray-100 flex w-full items-center justify-between">
           <div className="flex items-center justify-center">
-            <LogoIcon />
+            <div className="mr-[-5px] mt-[-18px]">
+              <LogoIcon />
+            </div>
             <Typography
               variant="h1"
               className="ml-1  py-1.5 text-[30px] leading-[30px] dark:text-white"

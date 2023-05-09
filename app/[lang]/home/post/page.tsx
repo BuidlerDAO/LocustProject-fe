@@ -8,6 +8,7 @@ import { PlusOutlined } from '@ant-design/icons'
 
 const { Option } = Select
 const { RangePicker } = DatePicker
+const { TextArea } = Input
 
 const Post = () => {
   const onFinish = (e) => {
@@ -34,14 +35,14 @@ const Post = () => {
           <Form.Item
            
             name="title"
-            rules={[{ required: true, message: '请输入文章标题' }]}
+            rules={[{ required: true, message: 'Enter The Article' }]}
           >
             <Input placeholder="+ Enter The Article" style={{ width: 400 }} />
           </Form.Item>
           <Form.Item
            
-            name="channel_id"
-            rules={[{ required: true, message: '请选择文章频道' }]}
+            name="Link"
+            rules={[{ required: true, message: 'Please Enter The Original Link' }]}
           >
             <Input placeholder="Please Enter The Original Link" style={{ width: 400 }} />
           </Form.Item>
@@ -65,17 +66,20 @@ const Post = () => {
               </div>
             </Upload>
           </Form.Item> */}
-          <Form.Item
-           
-            name="content"
+          <Form.Item      
+            name="OriginalText"
             rules={[{ required: true, message: 'Please Enter The Core Content Of The Original Text' }]}
-          > <Input placeholder="Please Enter The Core Content Of The Original Text" style={{ width: 400 }} /></Form.Item>
+          >
+            <TextArea placeholder='Please Enter The Core Content Of The Original Text' style={{ width: 600, height: 400 }} />
+          </Form.Item>
           <Form.Item
-           style={{ width: 600, height: 400 }}
-            name="content"
+            name="PersonalThoughts"
             rules={[{ required: true, message: 'Please Enter Personal Thoughts' }]}
           >
+            <TextArea placeholder='Please Enter Personal Thoughts' style={{ width: 600, height: 400 }}/>
+              
            
+              
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 4 }}>
             <Space>

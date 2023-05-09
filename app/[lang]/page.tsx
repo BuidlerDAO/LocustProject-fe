@@ -23,7 +23,9 @@ import Link from 'next/link';
 const Index = memo((props: any) => {
   const Click = useCallback(() => {
     console.log(111);
-    Toast.error('操作失败');
+    Toast.error('You have not signed up for locusts, please sign up first', {
+      duration: Infinity
+    });
   }, []);
 
   const resizeListener = () => {
@@ -62,6 +64,7 @@ const Index = memo((props: any) => {
         <div className={styles.empty} />
         <Button
           className={`${styles.group1} z-[9] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
+          onClick={Click}
         >
           I want to register
           <img
@@ -74,7 +77,6 @@ const Index = memo((props: any) => {
         <Link href="/home">
           <Button
             className={`${styles.group2}  z-[9] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
-            onClick={Click}
           >
             Past event articles
             <img

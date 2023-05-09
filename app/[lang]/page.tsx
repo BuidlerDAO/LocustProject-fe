@@ -18,6 +18,7 @@ import { url } from 'inspector';
 import { redirect } from 'next/navigation';
 import { Button } from '@/components/button';
 import Toast from '@/components/toast/toast';
+import Link from 'next/link';
 
 const Index = memo((props: any) => {
   const Click = useCallback(() => {
@@ -70,6 +71,7 @@ const Index = memo((props: any) => {
             alt=""
           />
         </Button>
+        <Link href="/home">
         <Button
           className={`${styles.group2}  z-[999] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
           onClick={Click}
@@ -81,7 +83,8 @@ const Index = memo((props: any) => {
             src={img1.src}
             alt=""
           />
-        </Button>
+          </Button>
+          </Link>
         <span className={styles.info1}>
           Cognitive <br />
           Locust Program

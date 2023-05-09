@@ -77,9 +77,6 @@ const Post = () => {
             rules={[{ required: true, message: 'Please Enter Personal Thoughts' }]}
           >
             <TextArea placeholder='Please Enter Personal Thoughts' style={{ width: 600, height: 400 }}/>
-              
-           
-              
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 4 }}>
             <Space>

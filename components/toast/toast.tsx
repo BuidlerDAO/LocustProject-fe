@@ -23,7 +23,7 @@ const successIcon = (
 );
 
 const errorIcon = (
-  <div className="mr-[6px] inline-flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-[4px] bg-red-100 text-red-500">
+  <div className="ml-[8px] mt-[-14px] inline-flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-[4px] bg-black text-red-500">
     <svg
       width="16"
       height="16"

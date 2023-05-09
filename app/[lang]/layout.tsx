@@ -6,6 +6,7 @@ import Navbar from '@/components/navbar';
 import { Metadata } from 'next';
 import { DefaultMetadata } from '@/components/theme/metadata';
 import { i18n } from '@/i18n/config';
+import { WalletConfigWrapper } from '@/components/wallet';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -34,12 +35,13 @@ export default function RootLayout({
       */}
       <head />
       <body>
-        <Flexible />
+        {/*<WalletConfigWrapper>*/}
         <Toaster />
         <RootLayoutClient>
-          {/* <Navbar /> */}
+          <Navbar />
           {children}
         </RootLayoutClient>
+        {/*</WalletConfigWrapper>*/}
       </body>
     </html>
   );

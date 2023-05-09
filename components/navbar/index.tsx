@@ -2,6 +2,7 @@
 
 import { Typography } from '@/components/typography';
 import LogoIcon from '@/components/icons/logoIcon';
+import { WalletConnect } from '@/components/wallet';
 const Navbar = () => {
   return (
     <div className={`fixed z-50 flex h-[6rem] w-full flex-wrap items-center`}>
@@ -17,7 +18,9 @@ const Navbar = () => {
             </Typography>
           </div>
           <div className="flex">
-            <div className="ml-12">{/*<WalletConnect />*/}</div>
+            <div className="ml-12">
+              <WalletConnect />
+            </div>
           </div>
         </div>
       </div>

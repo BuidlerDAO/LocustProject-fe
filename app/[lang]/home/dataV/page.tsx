@@ -125,23 +125,28 @@ const dataV = () => {
     <>
       <div className="flex-col">
         {/* <Table columns={columns} dataSource={data} /> */}
-        <div className='flex'>
+        <div className='flex flex-col'>
           <div className='text-lg'>Contracts</div>
-          <div>
-            <Card className='ml-4'>
+          <div className='flex-row'>
+            <Card className='ml-2 w-10'>
             <p>Contract Address: 0x1234567890abcdef</p>
             <p>Contract Balance: 1000</p>
             </Card>
-            <Card className='ml-4'>
+            <Card className='ml-2 w-10'>
             <p>Contract Address: 0x1234567890abcdef</p>
             <p>Contract Balance: 1000</p>
           </Card>
           </div>
-          
         </div>
-        <div></div>
-        <Table columns={columns1} dataSource={data} />
+        <div>
+          <div className='text-lg'>Statistics</div>
+          <div className='flex-row'>
+            <div>Overview Table</div>
+           <Table columns={columns1} dataSource={data} />
+        </div>
+        <div>Schedule</div>
         <Table columns={columns2} dataSource={data2} />
+        </div>
       </div>
     </>
   );

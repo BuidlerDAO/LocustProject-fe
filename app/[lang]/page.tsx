@@ -19,6 +19,7 @@ import { redirect } from 'next/navigation';
 import { Button } from '@/components/button';
 import Toast from '@/components/toast/toast';
 import Link from 'next/link';
+import Navbar from '@/components/navbar';
 
 const Index = memo((props: any) => {
   const Click = useCallback(() => {
@@ -55,6 +56,7 @@ const Index = memo((props: any) => {
   return (
     <div className={styles.page}>
       <div className={styles.wrapper}>
+        <Navbar />
         <div className={styles.group}>
           <img src={img9.src} alt="" />
           <span className={styles.eventRules}>Event Rules</span>

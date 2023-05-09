@@ -7,7 +7,8 @@ const button = tv({
   base: 'flex cursor-pointer items-center justify-center bg-blue-500 font-medium text-white active:opacity-80',
   variants: {
     color: {
-      primary: 'bg-blue-500 text-white',
+      primary:
+        'background: rgba(4, 7, 11, 0.7) text-white backdrop-blur-[14px]',
       secondary: 'bg-gradient-to-r from-purple-500 to-blue-600 text-white'
     },
     size: {

@@ -35,13 +35,13 @@ export default function RootLayout({
       */}
       <head />
       <body>
-        {/*<WalletConfigWrapper>*/}
-        <Toaster />
-        <RootLayoutClient>
-          <Navbar />
-          {children}
-        </RootLayoutClient>
-        {/*</WalletConfigWrapper>*/}
+        <WalletConfigWrapper>
+          <Toaster />
+          <RootLayoutClient>
+            <Navbar />
+            {children}
+          </RootLayoutClient>
+        </WalletConfigWrapper>
       </body>
     </html>
   );

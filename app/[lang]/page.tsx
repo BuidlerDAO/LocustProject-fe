@@ -72,33 +72,33 @@ const Index = memo((props: any) => {
           />
         </Button>
         <Link href="/home">
-        <Button
-          className={`${styles.group2}  z-[999] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
-          onClick={Click}
-        >
-          Past event articles
-          <img
-            className={`${styles.iconRight}`}
-            style={{ marginLeft: '0.5rem' }}
-            src={img1.src}
-            alt=""
-          />
+          <Button
+            className={`${styles.group2}  z-[9] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
+            onClick={Click}
+          >
+            Past event articles
+            <img
+              className={`${styles.iconRight}`}
+              style={{ marginLeft: '0.5rem' }}
+              src={img1.src}
+              alt=""
+            />
           </Button>
-          </Link>
+        </Link>
         <span className={styles.info1}>
           Cognitive <br />
           Locust Program
         </span>
         <img className={styles.banner} src={img2.src} />
-        <div className={styles.header}>
-          <div className={styles.view}>
-            <img className={styles.iconPiece} src={img4.src} />
-            <span className={styles.locusts}>Locusts</span>
-          </div>
-          <div className={styles.connetWalletWrapper}>
-            <span className={styles.connetWallet}>Connet Wallet</span>
-          </div>
-        </div>
+        {/*<div className={styles.header}>*/}
+        {/*  <div className={styles.view}>*/}
+        {/*    <img className={styles.iconPiece} src={img4.src} />*/}
+        {/*    <span className={styles.locusts}>Locusts</span>*/}
+        {/*  </div>*/}
+        {/*  <div className={styles.connetWalletWrapper}>*/}
+        {/*    <span className={styles.connetWallet}>Connet Wallet</span>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
         <img className={styles.cover} src={img5.src} />
         <div className={styles.body}>
           <img className={styles.product} src={img6.src} />

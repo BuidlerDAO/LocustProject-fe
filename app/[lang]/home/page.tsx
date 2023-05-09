@@ -13,6 +13,7 @@ import { usePathname } from 'next/navigation';
 import { DownOutlined, SmileOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Dropdown, Space } from 'antd';
+import Disconnect from '../../../components/icons/disconnect';
 
 const { Header,  Content } = Layout;
 
@@ -32,22 +33,14 @@ const items: MenuProps['items'] = [
         Event Participation
       </Link>
     ),
-    icon: <SmileOutlined />,
-    disabled: true,
   },
   {
     key: '3',
     label: (
       <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-        3rd menu item (disabled)
+        Disconnect
       </a>
     ),
-    disabled: true,
-  },
-  {
-    key: '4',
-    danger: true,
-    label: 'Disconnect',
   },
 ];
 

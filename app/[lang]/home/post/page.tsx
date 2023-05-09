@@ -10,6 +10,9 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 
 const Post = () => {
+  const onFinish = (e) => {
+    console.log(e)
+  }
   return (
      <div className="publish">
       <Card
@@ -26,25 +29,24 @@ const Post = () => {
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 16 }}
           initialValues={{ type: 1 }}
+          onFinish={onFinish}
         >
           <Form.Item
-            label="标题"
+           
             name="title"
             rules={[{ required: true, message: '请输入文章标题' }]}
           >
-            <Input placeholder="请输入文章标题" style={{ width: 400 }} />
+            <Input placeholder="+ Enter The Article" style={{ width: 400 }} />
           </Form.Item>
           <Form.Item
-            label="频道"
+           
             name="channel_id"
             rules={[{ required: true, message: '请选择文章频道' }]}
           >
-            <Select placeholder="请选择文章频道" style={{ width: 400 }}>
-              <Option value={0}>推荐</Option>
-            </Select>
+            <Input placeholder="Please Enter The Original Link" style={{ width: 400 }} />
           </Form.Item>
 
-          <Form.Item label="封面">
+          {/* <Form.Item label="封面">
             <Form.Item name="type">
               <Radio.Group>
                 <Radio value={1}>单图</Radio>
@@ -62,16 +64,22 @@ const Post = () => {
                 <PlusOutlined />
               </div>
             </Upload>
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item
-            label="内容"
+           
             name="content"
-            rules={[{ required: true, message: '请输入文章内容' }]}
-          ></Form.Item>
-
+            rules={[{ required: true, message: 'Please Enter The Core Content Of The Original Text' }]}
+          > <Input placeholder="Please Enter The Core Content Of The Original Text" style={{ width: 400 }} /></Form.Item>
+          <Form.Item
+           style={{ width: 600, height: 400 }}
+            name="content"
+            rules={[{ required: true, message: 'Please Enter Personal Thoughts' }]}
+          >
+           
+          </Form.Item>
           <Form.Item wrapperCol={{ offset: 4 }}>
             <Space>
-              <Button size="large" type="primary" htmlType="submit">
+              <Button size="large" type="primary" htmlType="submit" style={{color:'#424144'}}>
                 发布文章
               </Button>
             </Space>

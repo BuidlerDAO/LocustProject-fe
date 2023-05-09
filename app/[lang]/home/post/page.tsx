@@ -4,6 +4,9 @@ import { Card, Breadcrumb, Form, Button, Radio, DatePicker, Select,Space,Upload,
 import locale from 'antd/es/date-picker/locale/zh_CN'
 import { url } from 'inspector';
 import { PlusOutlined } from '@ant-design/icons'
+import { create } from 'zustand'
+import usePostStore from '@/store';
+
 
 
 const { Option } = Select
@@ -11,8 +14,12 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 
 const Post = () => {
+  const increase = usePostStore((state) => state.increase)
+  const decrease = usePostStore((state) => state.decrease)
   const onFinish = (e) => {
     console.log(e)
+    increase(e)
+    console.log(usePostStore.getState())
   }
   return (
      <div className="publish">

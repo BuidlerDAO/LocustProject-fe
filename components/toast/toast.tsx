@@ -1,6 +1,7 @@
 'use client';
 
 import _toast, { Toaster as DefaultToaster } from 'react-hot-toast';
+import Delete from '@/components/icons/delete';
 
 const successIcon = (
   <div className="mr-[6px] inline-flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-[4px] bg-green-100 text-green-500">
@@ -83,10 +84,9 @@ const handleClose = () => {
   return toast(
     <>
       {message}
-      <button
-        onClick={handleClose}
-        style={{ backgroundColor: 'red', width: '50px', height: '50px' }}
-      ></button>
+      <button onClick={handleClose}>
+        <Delete />
+      </button>
     </>,
     {
       position: 'top-center',

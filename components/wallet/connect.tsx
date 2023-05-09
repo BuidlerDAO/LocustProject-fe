@@ -231,7 +231,10 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             <div className="mx-9 mb-8 mt-3">
               <MetaMaskConnect onData={handleData} className="mt-[14px]" />
               <WalletConnectBtn onData={handleData} className="mt-[14px]" />
-              <CoinbaseConnect onData={handleData} className="mt-[14px]" />
+              <CoinbaseConnect
+                onData={handleData}
+                className="mt-[14px] whitespace-nowrap"
+              />
             </div>
           </Dialog>
         </ClientOnly>

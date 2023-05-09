@@ -33,7 +33,7 @@ interface ButtonProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
   className?: string;
   size?: 'sm' | 'md';
-  color?: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | undefined;
   onclick?: any;
 }
 

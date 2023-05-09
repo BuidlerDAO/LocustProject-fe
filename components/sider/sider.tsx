@@ -44,7 +44,7 @@ export default function Sider() {
           {
             key: '3',
             icon: <UploadOutlined />,
-            label: <Link href="/home/nav3">nav 3</Link>
+            label: <Link href="/home/dataV">Data View</Link>
           }
         ]}
       />

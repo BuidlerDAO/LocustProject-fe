@@ -84,7 +84,7 @@ const handleClose = () => {
   return toast(
     <>
       {message}
-      <button onClick={handleClose}>
+      <button onClick={handleClose} className="mt-[-10px]">
         <Delete />
       </button>
     </>,

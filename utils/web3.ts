@@ -7,7 +7,7 @@ import { ethers } from 'ethers';
 export const checkMetamaskConnection = async () => {
   if (window.ethereum) {
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const provider = new ethers.providers.JsonRpcProvider(window.ethereum);
       const accounts = await provider.send('eth_requestAccounts', []);
       if (accounts) return true;
       return false;
@@ -26,7 +26,7 @@ export const checkMetamaskConnection = async () => {
 export const getWeb3Account = async () => {
   if (window.ethereum) {
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const provider = new ethers.providers.JsonRpcProvider(window.ethereum);
       const accounts = await provider.send('eth_requestAccounts', []);
       return accounts;
     } catch (error) {
@@ -45,7 +45,7 @@ export const getWeb3Account = async () => {
 export const getWeb3SignMessage = async (msg: string) => {
   if (window.ethereum) {
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const provider = new ethers.providers.JsonRpcProvider(window.ethereum);
       const Singer = await provider.getSigner();
       const sig = await Singer.signMessage(msg);
       return sig;
@@ -101,7 +101,10 @@ export const switchWeb3ChainId = async (chainId: string) => {
  */
 export const checkAddress = (address: string): string => {
   let ret = '';
-  const hash_0x = ethers.keccak256(address.toLowerCase());
+  const hash_0x = ethers.utils.solidityKeccak256(
+    ['address'],
+    [address.toLowerCase()]
+  );
   console.log('hash', hash_0x);
   // hash_0x.replace(/^0x/i, '');
   const addressHash = hash_0x.replace(/^0x/i, '');
@@ -123,7 +126,7 @@ export const checkAddress = (address: string): string => {
  * @description 监听账号变化
  */
 export const acountChanged = (cb: any) => {
-  const provider = new ethers.BrowserProvider(window.ethereum);
+  const provider = new ethers.providers.JsonRpcProvider(window.ethereum);
   provider.on('accountsChanged', function (accounts) {
     console.log(accounts);
     const acount = accounts[0];

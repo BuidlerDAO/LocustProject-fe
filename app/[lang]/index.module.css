@@ -1,0 +1,634 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
+html {
+  overflow-x: hidden;
+}
+.page {
+  width: 90rem;
+  height: 132.44rem;
+  font-family: Poppins;
+}
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90rem;
+  height: 132.44rem;
+  background-color: #000000;
+}
+.group {
+  position: absolute;
+  display: flex;
+  top: 16.69rem;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  width: 90rem;
+  height: 54.06rem;
+  /* background-image: url(../../../assets/homeImg/img_9.png);
+  background-size: contain; */
+  font-weight: 500;
+}
+.eventRules {
+  position: relative;
+  overflow: hidden;
+  height: 3.19rem;
+  max-width: 89.25rem;
+  margin-top: 35.13rem;
+  font-size: 2.13rem;
+  line-height: 3.19rem;
+  color: #ffffff;
+  text-align: left;
+  white-space: pre;
+  text-overflow: ellipsis;
+}
+.desc {
+  position: relative;
+  overflow: hidden;
+  height: 1.69rem;
+  max-width: 89.25rem;
+  margin-top: 0.5rem;
+  font-size: 1.13rem;
+  line-height: 1.69rem;
+  color: #d36cff;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.item {
+  position: absolute;
+  left: 17.25rem;
+  top: 14.44rem;
+  width: 18.25rem;
+  height: 17.88rem;
+}
+.empty {
+  position: absolute;
+  top: 33.31rem;
+  align-self: center;
+  width: 24.13rem;
+  height: 3rem;
+}
+.info {
+  position: absolute;
+  top: 13.25rem;
+  align-self: center;
+  font-size: 1.13rem;
+  font-weight: 500;
+  line-height: 1.69rem;
+  color: #6d62ee;
+  text-align: center;
+  white-space: pre;
+  z-index: 2;
+  display: flex;
+}
+.group1 {
+  position: absolute;
+  display: flex;
+  top: 38.31rem;
+  left: 23.5rem;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  width: 19.44rem;
+  height: 3.94rem;
+  background-color: #000000;
+  border-radius: 2.88rem;
+  border-width: 0.06rem;
+  border-style: solid;
+  border-color: rgba(51, 51, 53, 1);
+}
+.group1::before {
+  content: '📣';
+}
+.group1:hover img {
+  display: none;
+}
+.group1:hover {
+  background: #6e62ee;
+}
+.group1:hover::before {
+  content: '';
+}
+.iconRight {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: -0.13rem;
+}
+.group2 {
+  position: absolute;
+  display: flex;
+  top: 38.31rem;
+  right: 23.5rem;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  width: 19.44rem;
+  height: 3.94rem;
+  background-color: #000000;
+  border-radius: 2.88rem;
+  border-width: 0.06rem;
+  border-style: solid;
+  border-color: rgba(51, 51, 53, 1);
+}
+.group2::before {
+  content: '👀';
+}
+.group2:hover img {
+  display: none;
+}
+.group2:hover {
+  background: #6e62ee;
+}
+.group2:hover::before {
+  content: '';
+}
+.info1 {
+  position: absolute;
+  top: 16.69rem;
+  right: 18.44rem;
+  font-size: 6.25rem;
+  line-height: 108%;
+  color: #ffffff;
+  text-align: center;
+  overflow-wrap: break-word;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+}
+.banner {
+  position: absolute;
+  top: 11.31rem;
+  right: 9.13rem;
+  width: 68.44rem;
+  height: 32.31rem;
+}
+.picture {
+  position: absolute;
+  left: 26.5rem;
+  top: 40.56rem;
+  width: 7.31rem;
+  height: 7.31rem;
+}
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90rem;
+  height: 5rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  background-color: #04070b;
+  box-sizing: border-box;
+}
+.view {
+  display: flex;
+  align-items: flex-start;
+}
+.iconPiece {
+  width: 0.94rem;
+  height: 0.94rem;
+  margin-right: 0.25rem;
+}
+.locusts {
+  font-family: Helvetica Neue;
+  font-size: 1.88rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: left;
+  white-space: nowrap;
+}
+.connetWalletWrapper {
+  display: flex;
+  align-items: center;
+  height: 2.63rem;
+  padding-left: 1.19rem;
+  padding-right: 1.25rem;
+  background-color: #525251;
+  line-height: 1rem;
+  white-space: pre;
+  border-radius: 2.5rem;
+  box-sizing: border-box;
+  border-width: 0.06rem;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 1);
+}
+.connetWallet {
+  font-family: Outfit;
+  font-size: 1rem;
+  color: #ffffff;
+  text-align: left;
+}
+.cover {
+  position: relative;
+  width: 72.44rem;
+  height: 33.75rem;
+  margin-top: 7.13rem;
+}
+.body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 73.25rem;
+  height: 25.88rem;
+  margin-top: 14.44rem;
+  border-radius: 2.88rem;
+  border-width: 0.13rem;
+  border-style: solid;
+  border-color: rgba(38, 38, 38, 1);
+}
+.body:hover {
+  border-color: #6e62ee;
+}
+.product {
+  position: absolute;
+  right: -0.63rem;
+  bottom: -2.13rem;
+  width: 10.13rem;
+  height: 10.13rem;
+}
+.outlineWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 2.38rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  font-weight: 500;
+  line-height: 0.75rem;
+  white-space: nowrap;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+.points {
+  position: relative;
+  overflow: hidden;
+  height: 1.5rem;
+  max-width: 69rem;
+  margin-top: 1.75rem;
+  margin-left: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: #64c7ff;
+  text-align: justified;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.mechanismPrev {
+  position: relative;
+  overflow: hidden;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.25rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 1.13rem;
+  color: #ffffff;
+  text-align: left;
+  white-space: pre;
+  text-overflow: ellipsis;
+}
+.mechanism {
+  position: relative;
+  overflow: hidden;
+  height: 1.5rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: #64c7ff;
+  text-align: justified;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.article {
+  position: relative;
+  display: -webkit-inline-box;
+  overflow: hidden;
+  width: 69rem;
+  height: 2.25rem;
+  margin-top: 0.25rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 2.25rem;
+  color: #ffffff;
+  text-align: left;
+  white-space: normal;
+  text-overflow: ellipsis;
+  webkit-box-orient: vertical;
+  webkit-line-clamp: 2;
+}
+.info2 {
+  position: relative;
+  overflow: hidden;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 1.13rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 1.13rem;
+  color: #ffffff;
+  text-align: left;
+  white-space: pre;
+  text-overflow: ellipsis;
+}
+.info3 {
+  position: relative;
+  overflow: hidden;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 1.13rem;
+  color: #ffffff;
+  text-align: left;
+  white-space: pre;
+  text-overflow: ellipsis;
+}
+.title {
+  position: relative;
+  display: -webkit-inline-box;
+  overflow: hidden;
+  width: 18.75rem;
+  height: 2.25rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  color: #ffffff;
+  text-align: left;
+  white-space: normal;
+  text-overflow: ellipsis;
+  webkit-box-orient: vertical;
+  webkit-line-clamp: 2;
+}
+.title1 {
+  position: relative;
+  display: -webkit-inline-box;
+  overflow: hidden;
+  width: 18rem;
+  height: 2.25rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  color: #ffffff;
+  text-align: left;
+  white-space: normal;
+  text-overflow: ellipsis;
+  webkit-box-orient: vertical;
+  webkit-line-clamp: 2;
+}
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 73.25rem;
+  height: 18.25rem;
+  margin-top: 2.13rem;
+  border-radius: 2.88rem;
+  border-width: 0.13rem;
+  border-style: solid;
+  border-color: rgba(38, 38, 38, 1);
+}
+.main:hover {
+  border-color: #6e62ee;
+}
+.item1 {
+  position: absolute;
+  top: 11.5rem;
+  right: -0.63rem;
+  width: 10.13rem;
+  height: 10.13rem;
+}
+.contentRequirementsWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 2.38rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  font-weight: 500;
+  line-height: 0.75rem;
+  white-space: pre;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+.quantity {
+  position: relative;
+  overflow: hidden;
+  height: 1.5rem;
+  max-width: 69rem;
+  margin-top: 1.75rem;
+  margin-left: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: #64c7ff;
+  text-align: justified;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.qualityPrev {
+  position: relative;
+  overflow: hidden;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.25rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 1.13rem;
+  color: #ffffff;
+  text-align: left;
+  white-space: pre;
+  text-overflow: ellipsis;
+}
+.quality {
+  position: relative;
+  overflow: hidden;
+  height: 1.5rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: #64c7ff;
+  text-align: justified;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.auditPrev {
+  position: relative;
+  overflow: hidden;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.25rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 1.13rem;
+  color: #ffffff;
+  text-align: left;
+  white-space: pre;
+  text-overflow: ellipsis;
+}
+.audit {
+  position: relative;
+  overflow: hidden;
+  height: 1.5rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: #64c7ff;
+  text-align: justified;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.summary {
+  position: relative;
+  overflow: hidden;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.25rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  line-height: 1.13rem;
+  color: #ffffff;
+  text-align: left;
+  white-space: pre;
+  text-overflow: ellipsis;
+}
+.footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 73.25rem;
+  height: 19rem;
+  margin-top: 2.13rem;
+  line-height: 1.13rem;
+  white-space: pre;
+  border-radius: 2.88rem;
+  border-width: 0.13rem;
+  border-style: solid;
+  border-color: rgba(38, 38, 38, 1);
+}
+.footer:hover {
+  border-color: #6e62ee;
+}
+.product1 {
+  position: absolute;
+  top: 11.5rem;
+  right: -0.63rem;
+  width: 10.13rem;
+  height: 10.13rem;
+  line-height: normal;
+  white-space: normal;
+}
+.outputFormatWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 2.38rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  font-weight: 500;
+  line-height: 0.75rem;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+.output {
+  position: relative;
+  overflow: hidden;
+  height: 1.5rem;
+  max-width: 69rem;
+  margin-top: 1.75rem;
+  margin-left: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: #64c7ff;
+  text-align: justified;
+  text-overflow: ellipsis;
+}
+.subject {
+  position: relative;
+  overflow: hidden;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  color: #ffffff;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.output1 {
+  position: relative;
+  overflow: hidden;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  color: #ffffff;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+.personalReflectionsPrev {
+  position: relative;
+  overflow: hidden;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  color: #ffffff;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+.personalReflections {
+  position: relative;
+  overflow: hidden;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  color: #ffffff;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+.relatedLinks {
+  position: relative;
+  overflow: hidden;
+  height: 1.13rem;
+  max-width: 69rem;
+  margin-top: 0.75rem;
+  margin-left: 2rem;
+  font-size: 0.75rem;
+  color: #ffffff;
+  text-align: left;
+  text-overflow: ellipsis;
+}

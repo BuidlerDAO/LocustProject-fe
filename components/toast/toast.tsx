@@ -98,11 +98,19 @@ const handleClose = () => {
 
 (toast as Toast).success = (...args: Parameters<ToastHandler>) => {
   const [message, options] = args;
-  return toast(message, {
-    position: 'top-center',
-    icon: successIcon,
-    ...options
-  });
+  return toast(
+    <>
+      {message}
+      <button onClick={handleClose} className="mt-[-15px]">
+        <Delete />
+      </button>
+    </>,
+    {
+      position: 'top-center',
+      icon: successIcon,
+      ...options
+    }
+  );
 };
 
 (toast as Toast).warning = (...args: Parameters<ToastHandler>) => {

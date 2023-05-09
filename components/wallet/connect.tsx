@@ -44,7 +44,7 @@ export const MetaMaskConnect = ({
   return (
     <Button
       color="primary"
-      className={`flex justify-between rounded-[10px] px-6 hover:bg-[#6E62EE] active:bg-[#27272A] ${className}`}
+      className={`flex justify-between rounded-[10px] px-6 hover:bg-[#27272A] active:bg-[#27272A] ${className}`}
       onClick={() => connect()}
     >
       <div className="flex items-center">

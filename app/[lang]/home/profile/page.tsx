@@ -145,7 +145,7 @@ const Profile: React.FC = () => {
         <input
           type="text"
           className="mr-[-93px] mt-[14px] h-[37px] w-[401px] rounded-[6px] border-[1px] bg-black"
-          style={{ borderColor: '#747474' }}
+          style={{ borderColor: '#747474', textIndent: '12px' }}
         />
       </div>
       {/*推特部分*/}

@@ -25,7 +25,21 @@ const { TextArea } = Input;
 const Post = () => {
   const increase = usePostStore((state) => state.increase);
   const decrease = usePostStore((state) => state.decrease);
-  const onFinish = (e) => {
+  function getCurrentDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    const formattedMonth = month < 10 ? `0${month}` : month;
+    const formattedDay = day < 10 ? `0${day}` : day;
+
+    return `${year}-${formattedMonth}-${formattedDay}`;
+  }
+
+  const onFinish = (e: { title: string; link: string; originalText: string; personalThoughts: string; }) => {
+    console.log(getCurrentDate())
+    
+    Object.assign(e, { time: getCurrentDate() });
     console.log(e);
     increase(e);
     console.log(usePostStore.getState());

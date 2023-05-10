@@ -7,6 +7,7 @@ type PostStore = {
       link: string;
       originalText: string;
       personalThoughts: string;
+      time: string;
     };
   };
   count: number;
@@ -15,6 +16,7 @@ type PostStore = {
     link: string;
     originalText: string;
     personalThoughts: string;
+    time: string;
   }) => void;
   decrease: () => void;
 };

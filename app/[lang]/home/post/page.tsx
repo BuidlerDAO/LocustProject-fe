@@ -1,26 +1,37 @@
-'use client'
-import Link from 'next/link'
-import { Card, Breadcrumb, Form, Button, Radio, DatePicker, Select,Space,Upload,Input } from 'antd'
-import locale from 'antd/es/date-picker/locale/zh_CN'
+'use client';
+import Link from 'next/link';
+import {
+  Card,
+  Breadcrumb,
+  Form,
+  Button,
+  Radio,
+  DatePicker,
+  Select,
+  Space,
+  Upload,
+  Input
+} from 'antd';
+import locale from 'antd/es/date-picker/locale/zh_CN';
 import { url } from 'inspector';
-import { PlusOutlined } from '@ant-design/icons'
-import { create } from 'zustand'
+import { PlusOutlined } from '@ant-design/icons';
+import { create } from 'zustand';
 import usePostStore from '@/store';
 
-const { Option } = Select
-const { RangePicker } = DatePicker
-const { TextArea } = Input
+const { Option } = Select;
+const { RangePicker } = DatePicker;
+const { TextArea } = Input;
 
 const Post = () => {
-  const increase = usePostStore((state) => state.increase)
-  const decrease = usePostStore((state) => state.decrease)
+  const increase = usePostStore((state) => state.increase);
+  const decrease = usePostStore((state) => state.decrease);
   const onFinish = (e) => {
-    console.log(e)
-    increase(e)
-    console.log(usePostStore.getState())
-  }
+    console.log(e);
+    increase(e);
+    console.log(usePostStore.getState());
+  };
   return (
-     <div className="publish">
+    <div className="publish">
       <Card
         title={
           <Breadcrumb separator=">">
@@ -38,54 +49,55 @@ const Post = () => {
           onFinish={onFinish}
         >
           <Form.Item
-           
             name="title"
             rules={[{ required: true, message: 'Enter The Article' }]}
           >
             <Input placeholder="+ Enter The Article" style={{ width: 400 }} />
           </Form.Item>
           <Form.Item
-           
             name="Link"
-            rules={[{ required: true, message: 'Please Enter The Original Link' }]}
+            rules={[
+              { required: true, message: 'Please Enter The Original Link' }
+            ]}
           >
-            <Input placeholder="Please Enter The Original Link" style={{ width: 400 }} />
+            <Input
+              placeholder="Please Enter The Original Link"
+              style={{ width: 400 }}
+            />
           </Form.Item>
-
-          {/* <Form.Item label="封面">
-            <Form.Item name="type">
-              <Radio.Group>
-                <Radio value={1}>单图</Radio>
-                <Radio value={3}>三图</Radio>
-                <Radio value={0}>无图</Radio>
-              </Radio.Group>
-            </Form.Item>
-            <Upload
-              name="image"
-              listType="picture-card"
-              className="avatar-uploader"
-              showUploadList
-            >
-              <div style={{ marginTop: 8 }}>
-                <PlusOutlined />
-              </div>
-            </Upload>
-          </Form.Item> */}
-          <Form.Item      
+          <Form.Item
             name="OriginalText"
-            rules={[{ required: true, message: 'Please Enter The Core Content Of The Original Text' }]}
+            rules={[
+              {
+                required: true,
+                message: 'Please Enter The Core Content Of The Original Text'
+              }
+            ]}
           >
-            <TextArea placeholder='Please Enter The Core Content Of The Original Text' style={{ width: 600, height: 400 }} />
+            <TextArea
+              placeholder="Please Enter The Core Content Of The Original Text"
+              style={{ width: 600, height: 400 }}
+            />
           </Form.Item>
           <Form.Item
             name="PersonalThoughts"
-            rules={[{ required: true, message: 'Please Enter Personal Thoughts' }]}
+            rules={[
+              { required: true, message: 'Please Enter Personal Thoughts' }
+            ]}
           >
-            <TextArea placeholder='Please Enter Personal Thoughts' style={{ width: 600, height: 400 }}/>
+            <TextArea
+              placeholder="Please Enter Personal Thoughts"
+              style={{ width: 600, height: 400 }}
+            />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 4 }}>
             <Space>
-              <Button size="large" type="primary" htmlType="submit" style={{color:'#424144'}}>
+              <Button
+                size="large"
+                type="primary"
+                htmlType="submit"
+                style={{ color: '#424144' }}
+              >
                 发布文章
               </Button>
             </Space>
@@ -93,6 +105,6 @@ const Post = () => {
         </Form>
       </Card>
     </div>
-  )
-}
-export default Post
+  );
+};
+export default Post;

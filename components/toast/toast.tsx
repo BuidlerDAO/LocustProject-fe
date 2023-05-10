@@ -1,6 +1,7 @@
 'use client';
 
 import _toast, { Toaster as DefaultToaster } from 'react-hot-toast';
+import Delete from '@/components/icons/delete';
 
 const successIcon = (
   <div className="mr-[6px] inline-flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-[4px] bg-green-100 text-green-500">
@@ -22,20 +23,26 @@ const successIcon = (
 );
 
 const errorIcon = (
-  <div className="mr-[6px] inline-flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-[4px] bg-red-100 text-red-500">
+  <div className="ml-[8px] mt-[-14px] inline-flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-[4px] bg-black text-red-500">
     <svg
-      aria-hidden="true"
-      className="h-[16px] w-[16px]"
-      fill="currentColor"
-      viewBox="0 0 20 20"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
+        d="M10.192 4.81803C10.4654 4.54466 10.9086 4.54466 11.182 4.81803C11.4553 5.09139 11.4553 5.53461 11.182 5.80798L8.98995 8.00001L11.182 10.192C11.4553 10.4654 11.4553 10.9086 11.182 11.182C10.9086 11.4554 10.4654 11.4554 10.192 11.182L8 8.98996L5.80797 11.182C5.5346 11.4554 5.09139 11.4554 4.81802 11.182C4.54465 10.9086 4.54465 10.4654 4.81802 10.192L7.01005 8.00001L4.81802 5.80798C4.54465 5.53461 4.54465 5.09139 4.81802 4.81803C5.09139 4.54466 5.5346 4.54466 5.80797 4.81803L8 7.01006L10.192 4.81803Z"
+        fill="#FF3162"
+      />
+      <path
         fillRule="evenodd"
-        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
         clipRule="evenodd"
-      ></path>
+        d="M0.300049 8.00005C0.300049 3.74746 3.74746 0.300049 8.00005 0.300049C12.2526 0.300049 15.7 3.74746 15.7 8.00005C15.7 12.2526 12.2526 15.7 8.00005 15.7C3.74746 15.7 0.300049 12.2526 0.300049 8.00005ZM8.00005 1.70005C4.52065 1.70005 1.70005 4.52065 1.70005 8.00005C1.70005 11.4794 4.52065 14.3 8.00005 14.3C11.4794 14.3 14.3 11.4794 14.3 8.00005C14.3 4.52065 11.4794 1.70005 8.00005 1.70005Z"
+        fill="#FF3162"
+      />
     </svg>
+
     <span className="sr-only">Error icon</span>
   </div>
 );
@@ -68,23 +75,42 @@ type Toast = typeof toast & {
   warning: ToastHandler;
   success: ToastHandler;
 };
+const handleClose = () => {
+  toast.dismiss();
+};
 
 (toast as Toast).error = (...args: Parameters<ToastHandler>) => {
   const [message, options] = args;
-  return toast(message, {
-    position: 'top-center',
-    icon: errorIcon,
-    ...options
-  });
+  return toast(
+    <>
+      {message}
+      <button onClick={handleClose} className="mt-[-15px]">
+        <Delete />
+      </button>
+    </>,
+    {
+      position: 'top-center',
+      icon: errorIcon,
+      ...options
+    }
+  );
 };
 
 (toast as Toast).success = (...args: Parameters<ToastHandler>) => {
   const [message, options] = args;
-  return toast(message, {
-    position: 'top-center',
-    icon: successIcon,
-    ...options
-  });
+  return toast(
+    <>
+      {message}
+      <button onClick={handleClose} className="mt-[-15px]">
+        <Delete />
+      </button>
+    </>,
+    {
+      position: 'top-center',
+      icon: successIcon,
+      ...options
+    }
+  );
 };
 
 (toast as Toast).warning = (...args: Parameters<ToastHandler>) => {
@@ -105,7 +131,13 @@ export const Toaster = () => {
           style: {
             fontSize: '14px',
             padding: '5px 10px',
-            borderRadius: '10px'
+            borderRadius: '16px',
+            border: '1px solid rgba(255, 255, 255, 0.16)',
+            boxShadow:
+              '0px 4px 8px rgba(0, 0, 0, 0.06), 0px 8px 16px 1px rgba(0, 0, 0, 0.12)',
+            color: '#fff',
+            zIndex: '999',
+            backgroundColor: 'black'
           },
           success: {
             icon: successIcon

@@ -13,7 +13,7 @@ import LogoIcon from '@/components/icons/logoIcon';
 export default function Sider() {
   const { Sider } = Layout;
 
-  const handleMenuClick = (e) => {
+  const handleMenuClick = (e: any) => {
     const link = e.key;
     console.log(link);
   };
@@ -21,7 +21,6 @@ export default function Sider() {
   return (
     <Sider trigger={null} className="h-screen">
       <div className="m-4 h-8">
-        <LogoIcon />
         {/*<Image src="/assets/Logo.png" alt="logo" width={100} height={100} />*/}
         {/* <img src='../../assets/Logo.png' alt="logo" /> */}
       </div>
@@ -44,7 +43,7 @@ export default function Sider() {
           {
             key: '3',
             icon: <UploadOutlined />,
-            label: <Link href="/home/nav3">nav 3</Link>
+            label: <Link href="/home/dataV">Data View</Link>
           }
         ]}
       />

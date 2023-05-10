@@ -18,6 +18,7 @@ import { url } from 'inspector';
 import { PlusOutlined } from '@ant-design/icons';
 import { create } from 'zustand';
 import usePostStore from '@/store';
+import './index.css';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -37,9 +38,14 @@ const Post = () => {
     return `${year}-${formattedMonth}-${formattedDay}`;
   }
 
-  const onFinish = (e: { title: string; link: string; originalText: string; personalThoughts: string; }) => {
-    console.log(getCurrentDate())
-    
+  const onFinish = (e: {
+    title: string;
+    link: string;
+    originalText: string;
+    personalThoughts: string;
+  }) => {
+    console.log(getCurrentDate());
+
     Object.assign(e, { time: getCurrentDate() });
     console.log(e);
     increase(e);
@@ -67,7 +73,10 @@ const Post = () => {
             name="title"
             rules={[{ required: true, message: 'Enter The Article' }]}
           >
-            <Input placeholder="+ Enter The Article" style={{ width: 400 }} />
+            <Input
+              placeholder="+ Enter The Article"
+              style={{ width: '75vw', height: 66 }}
+            />
           </Form.Item>
           <Form.Item
             name="Link"
@@ -77,7 +86,7 @@ const Post = () => {
           >
             <Input
               placeholder="Please Enter The Original Link"
-              style={{ width: 400 }}
+              style={{ width: '75vw', height: 66 }}
             />
           </Form.Item>
           <Form.Item
@@ -89,9 +98,11 @@ const Post = () => {
               }
             ]}
           >
-            <TextArea
+            <div>Orginal Summary</div>
+            <textarea
               placeholder="Please Enter The Core Content Of The Original Text"
-              style={{ width: 600, height: 400 }}
+              style={{ width: '75vw', height: 265 }}
+              rows={10}
             />
           </Form.Item>
           <Form.Item
@@ -100,13 +111,15 @@ const Post = () => {
               { required: true, message: 'Please Enter Personal Thoughts' }
             ]}
           >
-            <TextArea
+            <div>Personal Thoughts</div>
+            <textarea
+              rows={10}
               placeholder="Please Enter Personal Thoughts"
-              style={{ width: 600, height: 400 }}
+              style={{ width: '75vw', height: 265 }}
             />
           </Form.Item>
-          <Form.Item wrapperCol={{ offset: 4 }}>
-            <Space>
+          <Form.Item>
+            <div className="flex items-center justify-center">
               <Button
                 size="large"
                 type="primary"
@@ -115,7 +128,7 @@ const Post = () => {
               >
                 发布文章
               </Button>
-            </Space>
+            </div>
           </Form.Item>
         </Form>
       </Card>

@@ -67,29 +67,35 @@ const Profile: React.FC = () => {
     </div>
   );
   return (
-    <div>
+    <div style={{ backgroundColor: 'black', width: '100%', height: '100%' }}>
       {/*<Card title={'Avatar'} style={{ width: '100%', height: '100%' }}>*/}
       {/*<Form layout="vertical">*/}
-      <div style={{ fontSize: '28px' }}>Profile</div>
-      <Form.Item name="avatar" className="mt-[38px]">
-        {/* <Avatar size={64} icon={<UserOutlined />} /> */}
-        {/*<Upload*/}
-        {/*  style={{ borderRadius: '25px' }}*/}
-        {/*  name="avatar"*/}
-        {/*  listType="picture-card"*/}
-        {/*  className="avatar-uploader"*/}
-        {/*  showUploadList={false}*/}
-        {/*  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"*/}
-        {/*  beforeUpload={beforeUpload}*/}
-        {/*  onChange={handleChange}*/}
-        {/*>*/}
-        {/*  {imageUrl ? (*/}
-        {/*    <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />*/}
-        {/*  ) : (*/}
-        {/*    uploadButton*/}
-        {/*  )}*/}
-        {/*</Upload>*/}
-        <div className="ml-[369px] flex items-center">
+      <div className="ml-[140px]" style={{ fontSize: '28px' }}>
+        Profile
+      </div>
+      {/*<div className='absolute left-[340px]' style={{ fontSize: '28px' }}>Profile222</div>*/}
+      {/*<Form.Item name="avatar" className="mt-[38px]">*/}
+      {/* <Avatar size={64} icon={<UserOutlined />} /> */}
+      {/*<Upload*/}
+      {/*  style={{ borderRadius: '25px' }}*/}
+      {/*  name="avatar"*/}
+      {/*  listType="picture-card"*/}
+      {/*  className="avatar-uploader"*/}
+      {/*  showUploadList={false}*/}
+      {/*  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"*/}
+      {/*  beforeUpload={beforeUpload}*/}
+      {/*  onChange={handleChange}*/}
+      {/*>*/}
+      {/*  {imageUrl ? (*/}
+      {/*    <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />*/}
+      {/*  ) : (*/}
+      {/*    uploadButton*/}
+      {/*  )}*/}
+      {/*</Upload>*/}
+      <div className="mt-[17px] flex flex-col items-center">
+        <div className="size-[16px] mb-[14px] ml-[-250px]">Avatar</div>
+        <div className=" flex items-center">
+          {/*<div className='flex'>ssssssssssssss</div>*/}
           <div
             className="rounded-full"
             style={{
@@ -114,7 +120,9 @@ const Profile: React.FC = () => {
             recommended,max size 5M
           </span>
         </div>
-      </Form.Item>
+      </div>
+
+      {/*</Form.Item>*/}
       {/*<Form.Item label="User Name" name="userName">*/}
       {/*  <Input placeholder="User Name" />*/}
       {/*</Form.Item>*/}

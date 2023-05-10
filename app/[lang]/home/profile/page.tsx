@@ -19,6 +19,8 @@ import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { useState } from 'react';
 import type { UploadChangeParam } from 'antd/es/upload';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import img3 from '@/assets/homeImg/img_3.png';
+import Image from 'next/image';
 
 //import img404 from '@/assets/error.png'
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
@@ -66,43 +68,64 @@ const Profile: React.FC = () => {
   );
   return (
     <div>
-      <Card title={'Avatar'} style={{ backgroundColor: 'black' }}>
-        <Form layout="vertical">
-          <Form.Item label="Avatar" name="avatar" style={{ color: 'white' }}>
-            {/* <Avatar size={64} icon={<UserOutlined />} /> */}
-            <Upload
-              style={{ color: 'white' }}
-              name="avatar"
-              listType="picture-card"
-              className="avatar-uploader"
-              showUploadList={false}
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              beforeUpload={beforeUpload}
-              onChange={handleChange}
-            >
-              {imageUrl ? (
-                <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
-              ) : (
-                uploadButton
-              )}
-            </Upload>
-            <span style={{ color: 'white' }}>
-              Support PNG、JPG、GIF,64×64
-              <br />
-              recommended,max size 5M
-            </span>
-          </Form.Item>
-          <Form.Item label="User Name" name="userName">
-            <Input placeholder="User Name" />
-          </Form.Item>
-          <Form.Item label="Twitter" name="Twitter">
-            <div className="bg-blue-500">
-              <Twitter />
-            </div>
-            <TwitterIcon />
-          </Form.Item>
-        </Form>
-      </Card>
+      {/*<Card title={'Avatar'} style={{ width: '100%', height: '100%' }}>*/}
+      {/*<Form layout="vertical">*/}
+      <div style={{ fontSize: '28px' }}>Profile</div>
+      <Form.Item name="avatar" className="mt-[38px]">
+        {/* <Avatar size={64} icon={<UserOutlined />} /> */}
+        {/*<Upload*/}
+        {/*  style={{ borderRadius: '25px' }}*/}
+        {/*  name="avatar"*/}
+        {/*  listType="picture-card"*/}
+        {/*  className="avatar-uploader"*/}
+        {/*  showUploadList={false}*/}
+        {/*  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"*/}
+        {/*  beforeUpload={beforeUpload}*/}
+        {/*  onChange={handleChange}*/}
+        {/*>*/}
+        {/*  {imageUrl ? (*/}
+        {/*    <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />*/}
+        {/*  ) : (*/}
+        {/*    uploadButton*/}
+        {/*  )}*/}
+        {/*</Upload>*/}
+        <div className="ml-[369px] flex items-center">
+          <div
+            className="rounded-full"
+            style={{
+              width: '64px',
+              height: '64px',
+              borderColor: 'white',
+              borderWidth: '1px'
+            }}
+          >
+            <Image alt="" src={img3}></Image>
+            {/*<Avatar />*/}
+          </div>
+          <span
+            className="text-[#A1A1A9]"
+            style={{
+              color: 'white',
+              marginLeft: '14px'
+            }}
+          >
+            Support PNG、JPG、GIF,64×64
+            <br />
+            recommended,max size 5M
+          </span>
+        </div>
+      </Form.Item>
+      {/*<Form.Item label="User Name" name="userName">*/}
+      {/*  <Input placeholder="User Name" />*/}
+      {/*</Form.Item>*/}
+      {/*<Form.Item label="Twitter" name="Twitter">*/}
+      {/*  <div className="bg-blue-500">*/}
+      {/*    <Twitter />*/}
+      {/*  </div>*/}
+      {/*  <TwitterIcon />*/}
+      {/*</Form.Item>*/}
+      {/*</Form>*/}
+      {/*</Card>*/}
     </div>
   );
 };

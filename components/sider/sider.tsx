@@ -21,7 +21,7 @@ export default function Sider() {
   return (
     <Sider
       trigger={null}
-      className="h-screen"
+      className="mt-[-70px] h-screen"
       style={{ backgroundColor: 'black' }}
     >
       <div className="m-4 h-8">

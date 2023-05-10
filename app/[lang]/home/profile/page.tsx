@@ -90,33 +90,11 @@ const Profile: React.FC = () => {
   );
   return (
     <div style={{ backgroundColor: 'black', width: '100%', height: '100%' }}>
-      {/*<PreviewImage />*/}
-      {/*<Card title={'Avatar'} style={{ width: '100%', height: '100%' }}>*/}
-      {/*<Form layout="vertical">*/}
-      <div className="ml-[140px]" style={{ fontSize: '28px' }}>
-        Profile
-      </div>
-      {/*<div className='absolute left-[340px]' style={{ fontSize: '28px' }}>Profile222</div>*/}
-      {/*<Form.Item name="avatar" className="mt-[38px]">*/}
-      {/* <Avatar size={64} icon={<UserOutlined />} /> */}
-      {/*<Upload*/}
-      {/*  style={{ borderRadius: '25px' }}*/}
-      {/*  name="avatar"*/}
-      {/*  listType="picture-card"*/}
-      {/*  className="avatar-uploader"*/}
-      {/*  showUploadList={false}*/}
-      {/*  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"*/}
-      {/*  beforeUpload={beforeUpload}*/}
-      {/*  onChange={handleChange}*/}
-      {/*>*/}
-      {/*  {imageUrl ? (*/}
-      {/*    <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />*/}
-      {/*  ) : (*/}
-      {/*    uploadButton*/}
-      {/*  )}*/}
-      {/*</Upload>*/}
+      {/*Profile字样*/}
+      <div className="ml-[140px] text-[28px]">Profile</div>
+      {/*头像部分*/}
       <div className="mt-[17px] flex flex-col items-center">
-        <div className="size-[16px] mb-[14px] ml-[-250px]">Avatar</div>
+        <div className="size-[16px] mb-[14px] ml-[-263px]">Avatar</div>
         <div className=" flex items-center">
           <div
             className="rounded-full"
@@ -138,7 +116,12 @@ const Profile: React.FC = () => {
                 >
                   <Upload />
                 </div>
-                <input ref={inputRef} type="file" className="hidden" />
+                <input
+                  ref={inputRef}
+                  type="file"
+                  className="hidden"
+                  style={{ borderColor: 'white', borderWidth: '1px' }}
+                />
               </div>
             </div>
           </div>
@@ -155,19 +138,16 @@ const Profile: React.FC = () => {
           </span>
         </div>
       </div>
-      {/*<div>aaaaaaaaaaaaaaaaaaaaa</div>*/}
-      {/*</Form.Item>*/}
-      {/*<Form.Item label="User Name" name="userName">*/}
-      {/*  <Input placeholder="User Name" />*/}
-      {/*</Form.Item>*/}
-      {/*<Form.Item label="Twitter" name="Twitter">*/}
-      {/*  <div className="bg-blue-500">*/}
-      {/*    <Twitter />*/}
-      {/*  </div>*/}
-      {/*  <TwitterIcon />*/}
-      {/*</Form.Item>*/}
-      {/*</Form>*/}
-      {/*</Card>*/}
+      {/*UserName部分*/}
+      <div className="flex flex-col items-center">
+        <div className="mr-[233px] mt-[38px] text-[16px]">UserName</div>
+        {/*输入框部分*/}
+        <input
+          type="text"
+          className="mr-[-93px] mt-[14px] w-[401px] rounded-[6px] border-2 bg-black"
+          style={{ borderColor: '#747474' }}
+        />
+      </div>
     </div>
   );
 };

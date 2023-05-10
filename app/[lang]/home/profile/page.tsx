@@ -144,9 +144,26 @@ const Profile: React.FC = () => {
         {/*输入框部分*/}
         <input
           type="text"
-          className="mr-[-93px] mt-[14px] w-[401px] rounded-[6px] border-2 bg-black"
+          className="mr-[-93px] mt-[14px] h-[37px] w-[401px] rounded-[6px] border-[1px] bg-black"
           style={{ borderColor: '#747474' }}
         />
+      </div>
+      {/*推特部分*/}
+      <div className="relative flex flex-col items-center">
+        <div className="mr-[260px] mt-[38px] text-[16px]">Twitter</div>
+        {/*绑定框部分*/}
+        <div
+          className="item-center mr-[-93px] mt-[14px] flex h-[37px] w-[401px] justify-between rounded-[6px] border-[1px] bg-black"
+          style={{ borderColor: '#747474' }}
+        >
+          <div className="flex-raw item-center ml-[12px] mt-[4px] flex justify-center">
+            <Twitter />
+            <span className="ml-[8px] mt-[1.2px]">Twitter</span>
+          </div>
+          <span className="mr-[12px] mt-[5.2px]" style={{ color: '#6E62EE' }}>
+            Connect
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Layout, Menu } from 'antd';
 import {
+  AppstoreOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   RiseOutlined,
@@ -32,25 +33,34 @@ export default function Sider() {
         defaultSelectedKeys={['1']}
         onSelect={handleMenuClick}
       >
-        <div style={{ color: '#6E62EE' }}>
-          <Link href="/home/explore">
-            <Menu.Item key={1} icon={<AppstoreOutlined />}>
+        <Link href="/home/explore">
+          <div className="hover:text-purple1">
+            <Menu.Item
+              key={1}
+              icon={<AppstoreOutlined />}
+              className="hover:text-purple1"
+            >
               Explore
             </Menu.Item>
-          </Link>
-        </div>
-        <Link href="/home/dataV">
-          <Menu.Item key={3} icon={<RiseOutlined />}>
-            Data View
-          </Menu.Item>
+          </div>
         </Link>
-        <div className=''>
-          <Link href="/home/post">
-            <Menu.Item key={2} icon={<UserOutlined />}>
-              new Post
+        <div className="text-purple1 border-l-indigo-500 border-l-4">
+          <Link href="/home/dataV">
+            <Menu.Item key={3} icon={<RiseOutlined />}>
+              Data View
             </Menu.Item>
           </Link>
         </div>
+        <Link href="/home/post">
+          <Menu.Item key={2}>
+            <div
+              className="rounded-full bg-purple1 text-white text-base flex justify-center items-center py-2 px-1"
+              style={{ fontFamily: 'Poppins' }}
+            >
+              new Post
+            </div>
+          </Menu.Item>
+        </Link>
       </Menu>
     </Sider>
   );

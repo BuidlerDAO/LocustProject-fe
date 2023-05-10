@@ -129,28 +129,34 @@ const Profile: React.FC = () => {
           >
             <div className="relative">
               <Image alt="" src={img3}></Image>
-              <div></div>
-              <Upload />
-              <input
-                ref={inputRef}
-                type="file"
-                className="hidden"
-                // onChange={async (e: any) => {
-                //   const file = e.target.files[0];
-                //   const base64Url = await toBase64(file);
-                //   setUploadUrl(base64Url || '');
-                //
-                //   const formData = new FormData();
-                //   formData.append('avatar', file);
-                //   const res = await request(`${API}/user/profile`, {
-                //     method: 'PUT',
-                //     body: formData
-                //   });
-                //   if (res?.data) {
-                //     getUserProfile();
-                //   }
-                // }}
-              />
+              <div
+                onClick={() => {
+                  inputRef.current?.click();
+                }}
+                className="absolute right-[16px] top-[20px]"
+              >
+                <Upload />
+                <input
+                  ref={inputRef}
+                  type="file"
+                  className="hidden"
+                  // onChange={async (e: any) => {
+                  //   const file = e.target.files[0];
+                  //   const base64Url = await toBase64(file);
+                  //   setUploadUrl(base64Url || '');
+                  //
+                  //   const formData = new FormData();
+                  //   formData.append('avatar', file);
+                  //   const res = await request(`${API}/user/profile`, {
+                  //     method: 'PUT',
+                  //     body: formData
+                  //   });
+                  //   if (res?.data) {
+                  //     getUserProfile();
+                  //   }
+                  // }}
+                />
+              </div>
             </div>
             {/*<Avatar />*/}
           </div>

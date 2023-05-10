@@ -133,7 +133,7 @@ const Profile: React.FC = () => {
                 onClick={() => {
                   inputRef.current?.click();
                 }}
-                className="absolute right-[16px] top-[20px]"
+                className="absolute right-[16px] top-[20px] opacity-0 transition-opacity duration-300 hover:opacity-100"
               >
                 <Upload />
                 <input
@@ -157,6 +157,7 @@ const Profile: React.FC = () => {
                   // }}
                 />
               </div>
+              <div className="absolute right-[-0.1px] top-[-1px] h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50"></div>
             </div>
             {/*<Avatar />*/}
           </div>

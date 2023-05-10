@@ -133,9 +133,8 @@ const Profile: React.FC = () => {
                 onClick={() => {
                   inputRef.current?.click();
                 }}
-                className="absolute right-[16px] top-[20px] opacity-0 transition-opacity duration-300 hover:opacity-100"
+                className="absolute right-[-1px] top-[-2px] h-[65px] w-[65px] opacity-0 transition-opacity duration-300 hover:opacity-100"
               >
-                <Upload />
                 <input
                   ref={inputRef}
                   type="file"
@@ -157,7 +156,11 @@ const Profile: React.FC = () => {
                   // }}
                 />
               </div>
-              <div className="absolute right-[-0.1px] top-[-1px] h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50"></div>
+              <div className="absolute right-[-0.1px] top-[-1px] h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
+                <div className="relative right-[-27px] top-[18px]">
+                  <Upload />
+                </div>
+              </div>
             </div>
             {/*<Avatar />*/}
           </div>

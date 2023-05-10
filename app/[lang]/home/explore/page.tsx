@@ -1,6 +1,13 @@
 'use client';
-import { EllipsisOutlined, FieldTimeOutlined, LikeOutlined, LinkOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Avatar, List, Space, Collapse } from 'antd';
+import {
+  EllipsisOutlined,
+  FieldTimeOutlined,
+  LikeOutlined,
+  LinkOutlined,
+  MessageOutlined,
+  StarOutlined
+} from '@ant-design/icons';
+import { Avatar, Collapse, List, Space } from 'antd';
 import React, { useState } from 'react';
 import { AvatarIcon } from '../../../../components/icons/campaignAvatar';
 import Paragraph from 'antd/es/typography/Paragraph';
@@ -25,7 +32,7 @@ const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
 );
 
 const App: React.FC = () => {
-   const [ellipsis, setEllipsis] = useState(true);
+  const [ellipsis, setEllipsis] = useState(true);
   return (
     <div className="w-full">
       <List
@@ -84,5 +91,5 @@ const App: React.FC = () => {
       />
     </div>
   );
-}
+};
 export default App;

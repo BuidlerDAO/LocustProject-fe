@@ -1,6 +1,17 @@
 'use client';
 import Link from 'next/link';
-import { Avatar,message, Button, Card, Form, Input, Space, Table, Tag,Upload } from 'antd';
+import {
+  Avatar,
+  Button,
+  Card,
+  Form,
+  Input,
+  message,
+  Space,
+  Table,
+  Tag,
+  Upload
+} from 'antd';
 import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons';
 import Twitter from '@/components/icons/twitter';
 import { TwitterIcon } from '@/components/icons/campaignTwitter';
@@ -28,11 +39,13 @@ const beforeUpload = (file: RcFile) => {
   return isJpgOrPng && isLt2M;
 };
 
-const Explore: React.FC = () => {
+const Profile: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
 
-  const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
+  const handleChange: UploadProps['onChange'] = (
+    info: UploadChangeParam<UploadFile>
+  ) => {
     if (info.file.status === 'uploading') {
       setLoading(true);
       return;
@@ -53,34 +66,45 @@ const Explore: React.FC = () => {
   );
   return (
     <div>
-      <Card title={'Avatar'}>
-        <Form layout='vertical'>
-          <Form.Item label='Avatar' name='avatar'>
+      <Card title={'Avatar'} style={{ backgroundColor: 'black' }}>
+        <Form layout="vertical">
+          <Form.Item label="Avatar" name="avatar" style={{ color: 'white' }}>
             {/* <Avatar size={64} icon={<UserOutlined />} /> */}
             <Upload
-        name="avatar"
-        listType="picture-card"
-        className="avatar-uploader"
-        showUploadList={false}
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-        beforeUpload={beforeUpload}
-        onChange={handleChange}
-      >
-        {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-      </Upload>
-            <span>Support PNG、JPG、GIF,64×64<br/>recommended,max size 5M</span>
-          </Form.Item>  
-          <Form.Item label='User Name' name='userName'>
-            <Input placeholder='User Name' />
+              style={{ color: 'white' }}
+              name="avatar"
+              listType="picture-card"
+              className="avatar-uploader"
+              showUploadList={false}
+              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              beforeUpload={beforeUpload}
+              onChange={handleChange}
+            >
+              {imageUrl ? (
+                <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
+              ) : (
+                uploadButton
+              )}
+            </Upload>
+            <span style={{ color: 'white' }}>
+              Support PNG、JPG、GIF,64×64
+              <br />
+              recommended,max size 5M
+            </span>
           </Form.Item>
-          <Form.Item label='Twitter' name='Twitter'>
-            <div className='bg-blue-500'><Twitter /></div>
+          <Form.Item label="User Name" name="userName">
+            <Input placeholder="User Name" />
+          </Form.Item>
+          <Form.Item label="Twitter" name="Twitter">
+            <div className="bg-blue-500">
+              <Twitter />
+            </div>
             <TwitterIcon />
           </Form.Item>
-          </Form>
+        </Form>
       </Card>
     </div>
   );
 };
 
-export default Explore;
+export default Profile;

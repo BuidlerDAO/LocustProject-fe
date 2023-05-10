@@ -53,14 +53,7 @@ const Post = () => {
   return (
     <div className="publish">
       <Card
-        title={
-          <Breadcrumb separator=">">
-            <Breadcrumb.Item>
-              <Link href="/home">首页</Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>发布文章</Breadcrumb.Item>
-          </Breadcrumb>
-        }
+        color='#000000'
       >
         <Form
           labelCol={{ span: 4 }}

@@ -1,9 +1,10 @@
 'use client';
-import { EllipsisOutlined, FieldTimeOutlined, LikeOutlined, LinkOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Avatar, List, Space, Collapse } from 'antd';
+import { DeleteOutlined, EllipsisOutlined, FieldTimeOutlined, LikeOutlined, LinkOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
+import { Avatar, List, Space, Collapse, Tooltip, Button } from 'antd';
 import React, { useState } from 'react';
 import { AvatarIcon } from '../../../../components/icons/campaignAvatar';
 import Paragraph from 'antd/es/typography/Paragraph';
+import Delete from '../../../../components/icons/delete';
 
 const { Panel } = Collapse;
 
@@ -18,9 +19,19 @@ const data = Array.from({ length: 23 }).map((_, i) => ({
 }));
 
 const App: React.FC = () => {
-   const [ellipsis, setEllipsis] = useState(true);
+  const [ellipsis, setEllipsis] = useState(true);
+  const onDelete = () => {
+    console.log('delete');
+  };
+  const text = () => (
+    <button  className='hover:text-red-600' onClick={onDelete}>
+      <DeleteOutlined />
+      &nbsp;
+      <span>Delete</span>
+    </button>
+  );
   return (
-    <div className="w-full">
+    <div className="mr-16">
       <List
         itemLayout="vertical"
         size="large"
@@ -42,9 +53,11 @@ const App: React.FC = () => {
           /> */}
             <div className='flex justify-between'>
               <span>{item.title}</span>
+              <Tooltip title={text} placement='bottom'>
               <span className='flex'>
-                <EllipsisOutlined onClick={() => setEllipsis(!ellipsis)} />
-              </span>
+                <EllipsisOutlined  />
+                </span>
+                </Tooltip>
             </div>
             <div>
               <span>

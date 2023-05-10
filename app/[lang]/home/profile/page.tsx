@@ -41,6 +41,27 @@ const beforeUpload = (file: RcFile) => {
   return isJpgOrPng && isLt2M;
 };
 
+const PreviewImage = ({ imageUrl }: { imageUrl: string }) => {
+  const [isHovering, setIsHovering] = useState(false);
+  return (
+    <div
+      className="preview-container relative inline-block h-28 w-28"
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+    >
+      <img
+        src={imageUrl}
+        alt="preview"
+        className="preview-image h-full w-full rounded-full object-cover"
+      />
+      {isHovering && (
+        <div className="preview-overlay absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center rounded-full bg-black bg-opacity-60 text-lg font-bold text-white">
+          Upload new
+        </div>
+      )}
+    </div>
+  );
+};
 const Profile: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
@@ -121,7 +142,22 @@ const Profile: React.FC = () => {
           </span>
         </div>
       </div>
-
+      <Upload
+        name="avatar"
+        listType="picture-circle"
+        className="avatar-uploader text-white"
+        showUploadList={false}
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        beforeUpload={beforeUpload}
+        onChange={handleChange}
+      >
+        {imageUrl ? (
+          <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
+        ) : (
+          uploadButton
+        )}
+      </Upload>
+      {/*<div>aaaaaaaaaaaaaaaaaaaaa</div>*/}
       {/*</Form.Item>*/}
       {/*<Form.Item label="User Name" name="userName">*/}
       {/*  <Input placeholder="User Name" />*/}

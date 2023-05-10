@@ -1,9 +1,12 @@
+'use client'
 import Link from 'next/link';
 import Image from 'next/image';
 import { Layout, Menu } from 'antd';
 import {
+  AppstoreOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  RiseOutlined,
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined
@@ -26,27 +29,39 @@ export default function Sider() {
       </div>
       <Menu
         theme="dark"
-        mode="inline"
+        // mode="inline"
         defaultSelectedKeys={['1']}
         onSelect={handleMenuClick}
-        items={[
-          {
-            key: '1',
-            icon: <UserOutlined />,
-            label: <Link href="/home/explore">Explore</Link>
-          },
-          {
-            key: '2',
-            icon: <VideoCameraOutlined />,
-            label: <Link href="/home/post">new post</Link>
-          },
-          {
-            key: '3',
-            icon: <UploadOutlined />,
-            label: <Link href="/home/dataV">Data View</Link>
-          }
-        ]}
-      />
+      >
+        <Link href="/home/explore">
+          <div className="hover:text-purple1">
+            <Menu.Item
+              key={1}
+              icon={<AppstoreOutlined />}
+              className="hover:text-purple1"
+            >
+              Explore
+            </Menu.Item>
+          </div>
+        </Link>
+        <div className="text-purple1 border-l-indigo-500 border-l-4">
+          <Link href="/home/dataV">
+            <Menu.Item key={3} icon={<RiseOutlined />}>
+              Data View
+            </Menu.Item>
+          </Link>
+        </div>
+        <Link href="/home/post">
+          <Menu.Item key={2}>
+            <div
+              className="rounded-full bg-purple1 text-white text-base flex justify-center items-center py-2 px-1"
+              style={{ fontFamily: 'Poppins' }}
+            >
+              new Post
+            </div>
+          </Menu.Item>
+        </Link>
+      </Menu>
     </Sider>
   );
 }

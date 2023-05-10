@@ -1,7 +1,12 @@
-'use client'
-import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Avatar, List, Space } from 'antd';
-import React from 'react';
+'use client';
+import { DeleteOutlined, EllipsisOutlined, FieldTimeOutlined, LikeOutlined, LinkOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
+import { Avatar, List, Space, Collapse, Tooltip, Button } from 'antd';
+import React, { useState } from 'react';
+import { AvatarIcon } from '../../../../components/icons/campaignAvatar';
+import Paragraph from 'antd/es/typography/Paragraph';
+import Delete from '../../../../components/icons/delete';
+
+const { Panel } = Collapse;
 
 const data = Array.from({ length: 23 }).map((_, i) => ({
   href: 'https://ant.design',
@@ -10,59 +15,81 @@ const data = Array.from({ length: 23 }).map((_, i) => ({
   description:
     'Ant Design, a design language for background applications, is refined by Ant UED Team.',
   content:
-    'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+    'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.'
 }));
 
-const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
-
-const App: React.FC = () => (
-  <List
-    itemLayout="vertical"
-    size="large"
-    pagination={{
-      onChange: (page) => {
-        console.log(page);
-      },
-      pageSize: 3,
-    }}
-    style={{color: 'white'}}
-    dataSource={data}
-    footer={
-      <div>
-        <b>ant design</b> footer part
-      </div>
-    }
-    renderItem={(item) => (
-      <List.Item
-        key={item.title}
-        className='bg-white'
-        actions={[
-          <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-          <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-          <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
-        ]}
-        extra={
-          <img
-            width={272}
-            alt="logo"
-            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-          />
-        }
-      >
-        <List.Item.Meta
-          avatar={<Avatar src={item.avatar} />}
-          title={<a href={item.href}>{item.title}</a>}
-          description={item.description}
-        />
-        {item.content}
-      </List.Item>
-    )}
-  />
-);
-
+const App: React.FC = () => {
+  const [ellipsis, setEllipsis] = useState(true);
+  const onDelete = () => {
+    console.log('delete');
+  };
+  const text = () => (
+    <button  className='hover:text-red-600' onClick={onDelete}>
+      <DeleteOutlined />
+      &nbsp;
+      <span>Delete</span>
+    </button>
+  );
+  return (
+    <div className="mr-16">
+      <List
+        itemLayout="vertical"
+        size="large"
+        pagination={{
+          onChange: (page) => {
+            console.log(page);
+          },
+          pageSize: 3,
+          
+        }}
+        style={{ color: 'white' }}
+        dataSource={data}
+        renderItem={(item) => (
+          <List.Item key={item.title} className="bg-white">
+            {/* <List.Item.Meta
+            avatar={<Avatar src={item.avatar} />}
+            title={<a href={item.href}>{item.title}</a>}
+            description={item.description}
+          /> */}
+            <div className='flex justify-between'>
+              <span>{item.title}</span>
+              <Tooltip title={text} placement='bottom'>
+              <span className='flex'>
+                <EllipsisOutlined  />
+                </span>
+                </Tooltip>
+            </div>
+            <div>
+              <span>
+                <FieldTimeOutlined />
+              </span>
+              <span>
+                <Avatar src={item.avatar} />
+              </span>
+              <span>
+                <LinkOutlined />
+                <a href={item.href}>{item.href}</a>
+              </span>
+            </div>
+            <Paragraph
+              ellipsis={
+                ellipsis ? { rows: 2, expandable: true, symbol: 'more' } : false
+              }
+            >
+              Ant Design, a design language for background applications, is
+              refined by Ant UED Team. Ant Design, a design language for
+              background applications, is refined by Ant UED Team. Ant Design, a
+              design language for background applications, is refined by Ant UED
+              Team. Ant Design, a design language for background applications,
+              is refined by Ant UED Team. Ant Design, a design language for
+              background applications, is refined by Ant UED Team. Ant Design, a
+              design language for background applications, is refined by Ant UED
+              Team.
+            </Paragraph>
+          </List.Item>
+        )}
+      />
+    </div>
+  );
+}
 export default App;

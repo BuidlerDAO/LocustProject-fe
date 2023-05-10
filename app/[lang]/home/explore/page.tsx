@@ -17,13 +17,6 @@ const data = Array.from({ length: 23 }).map((_, i) => ({
     'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.'
 }));
 
-const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
-
 const App: React.FC = () => {
    const [ellipsis, setEllipsis] = useState(true);
   return (
@@ -35,7 +28,8 @@ const App: React.FC = () => {
           onChange: (page) => {
             console.log(page);
           },
-          pageSize: 3
+          pageSize: 3,
+          
         }}
         style={{ color: 'white' }}
         dataSource={data}
@@ -46,9 +40,9 @@ const App: React.FC = () => {
             title={<a href={item.href}>{item.title}</a>}
             description={item.description}
           /> */}
-            <div>
+            <div className='flex justify-between'>
               <span>{item.title}</span>
-              <span>
+              <span className='flex'>
                 <EllipsisOutlined onClick={() => setEllipsis(!ellipsis)} />
               </span>
             </div>

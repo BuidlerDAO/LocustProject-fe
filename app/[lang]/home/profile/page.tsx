@@ -127,42 +127,20 @@ const Profile: React.FC = () => {
               borderWidth: '1px'
             }}
           >
-            <div className="relative">
+            <div className="relative flex">
               <Image alt="" src={img3}></Image>
-              <div
-                onClick={() => {
-                  inputRef.current?.click();
-                }}
-                className="absolute right-[-1px] top-[-2px] h-[65px] w-[65px] opacity-0 transition-opacity duration-300 hover:opacity-100"
-              >
-                <input
-                  ref={inputRef}
-                  type="file"
-                  className="hidden"
-                  // onChange={async (e: any) => {
-                  //   const file = e.target.files[0];
-                  //   const base64Url = await toBase64(file);
-                  //   setUploadUrl(base64Url || '');
-                  //
-                  //   const formData = new FormData();
-                  //   formData.append('avatar', file);
-                  //   const res = await request(`${API}/user/profile`, {
-                  //     method: 'PUT',
-                  //     body: formData
-                  //   });
-                  //   if (res?.data) {
-                  //     getUserProfile();
-                  //   }
-                  // }}
-                />
-              </div>
-              <div className="absolute right-[-0.1px] top-[-1px] h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
-                <div className="relative right-[-27px] top-[18px]">
+              <div className="absolute right-[-3.1px] top-[-1px] flex h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
+                <div
+                  className="relative right-[-27px] top-[18px]"
+                  onClick={() => {
+                    inputRef.current?.click();
+                  }}
+                >
                   <Upload />
                 </div>
+                <input ref={inputRef} type="file" className="hidden" />
               </div>
             </div>
-            {/*<Avatar />*/}
           </div>
           <span
             className="text-[#A1A1A9]"

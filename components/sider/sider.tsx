@@ -1,9 +1,11 @@
+'use client'
 import Link from 'next/link';
 import Image from 'next/image';
 import { Layout, Menu } from 'antd';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  RiseOutlined,
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined
@@ -30,27 +32,30 @@ export default function Sider() {
       </div>
       <Menu
         theme="dark"
-        mode="inline"
+        // mode="inline"
         defaultSelectedKeys={['1']}
         onSelect={handleMenuClick}
-        items={[
-          {
-            key: '1',
-            icon: <UserOutlined />,
-            label: <Link href="/home/explore">Explore</Link>
-          },
-          {
-            key: '2',
-            icon: <VideoCameraOutlined />,
-            label: <Link href="/home/post">new post</Link>
-          },
-          {
-            key: '3',
-            icon: <UploadOutlined />,
-            label: <Link href="/home/dataV">Data View</Link>
-          }
-        ]}
-      />
+      >
+        <div style={{ color: '#6E62EE' }}>
+          <Link href="/home/explore">
+            <Menu.Item key={1} icon={<AppstoreOutlined />}>
+              Explore
+            </Menu.Item>
+          </Link>
+        </div>
+        <Link href="/home/dataV">
+          <Menu.Item key={3} icon={<RiseOutlined />}>
+            Data View
+          </Menu.Item>
+        </Link>
+        <div className=''>
+          <Link href="/home/post">
+            <Menu.Item key={2} icon={<UserOutlined />}>
+              new Post
+            </Menu.Item>
+          </Link>
+        </div>
+      </Menu>
     </Sider>
   );
 }

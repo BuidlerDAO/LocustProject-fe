@@ -18,7 +18,6 @@ import { url } from 'inspector';
 import { PlusOutlined } from '@ant-design/icons';
 import { create } from 'zustand';
 import usePostStore from '@/store';
-import './index.css';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;

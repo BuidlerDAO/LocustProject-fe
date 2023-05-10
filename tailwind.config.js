@@ -14,7 +14,15 @@ module.exports = withTV({
     hoverOnlyWhenSupported: true
   },
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        'purple1': '#6E62EE',
+        'pink': '#D36CFF',
+        'purple2': '#D06CF7',
+        'Grey': '#27272A',
+        'GreyWord':'#747474'
+      }
+    }
   },
   plugins: []
 });

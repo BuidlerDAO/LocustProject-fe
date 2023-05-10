@@ -9,19 +9,18 @@ import {
   message,
   Space,
   Table,
-  Tag,
-  Upload
+  Tag
 } from 'antd';
 import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons';
 import Twitter from '@/components/icons/twitter';
 import { TwitterIcon } from '@/components/icons/campaignTwitter';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { UploadChangeParam } from 'antd/es/upload';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import img3 from '@/assets/homeImg/img_3.png';
 import Image from 'next/image';
-
+import Upload from '@/components/icons/upload';
 //import img404 from '@/assets/error.png'
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
   const reader = new FileReader();
@@ -41,31 +40,33 @@ const beforeUpload = (file: RcFile) => {
   return isJpgOrPng && isLt2M;
 };
 
-const PreviewImage = ({ imageUrl }: { imageUrl: string }) => {
-  const [isHovering, setIsHovering] = useState(false);
-  return (
-    <div
-      className="preview-container relative inline-block h-28 w-28"
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
-    >
-      <img
-        src={imageUrl}
-        alt="preview"
-        className="preview-image h-full w-full rounded-full object-cover"
-      />
-      {isHovering && (
-        <div className="preview-overlay absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center rounded-full bg-black bg-opacity-60 text-lg font-bold text-white">
-          Upload new
-        </div>
-      )}
-    </div>
-  );
-};
+// const PreviewImage = ({ imageUrl }: { imageUrl: string }) => {
+//   const [isHovering, setIsHovering] = useState(false);
+//   return (
+//     <div
+//       className="preview-container relative inline-block h-28 w-28"
+//       onMouseEnter={() => setIsHovering(true)}
+//       onMouseLeave={() => setIsHovering(false)}
+//     >
+//       {!isHovering && (
+//         <img
+//           src={imageUrl}
+//           // alt="preview"
+//           className="preview-image h-full w-full rounded-full object-cover"
+//         />
+//       )}
+//       {/*{isHovering && (*/}
+//       {/*  <div className="preview-overlay absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center rounded-full bg-black bg-opacity-60 text-lg font-bold text-white">*/}
+//       {/*    Upload new*/}
+//       {/*  </div>*/}
+//       {/*)}*/}
+//     </div>
+//   );
+// };
 const Profile: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
-
+  const inputRef = useRef<HTMLInputElement>(null);
   const handleChange: UploadProps['onChange'] = (
     info: UploadChangeParam<UploadFile>
   ) => {
@@ -89,6 +90,7 @@ const Profile: React.FC = () => {
   );
   return (
     <div style={{ backgroundColor: 'black', width: '100%', height: '100%' }}>
+      {/*<PreviewImage />*/}
       {/*<Card title={'Avatar'} style={{ width: '100%', height: '100%' }}>*/}
       {/*<Form layout="vertical">*/}
       <div className="ml-[140px]" style={{ fontSize: '28px' }}>
@@ -116,7 +118,6 @@ const Profile: React.FC = () => {
       <div className="mt-[17px] flex flex-col items-center">
         <div className="size-[16px] mb-[14px] ml-[-250px]">Avatar</div>
         <div className=" flex items-center">
-          {/*<div className='flex'>ssssssssssssss</div>*/}
           <div
             className="rounded-full"
             style={{
@@ -126,7 +127,31 @@ const Profile: React.FC = () => {
               borderWidth: '1px'
             }}
           >
-            <Image alt="" src={img3}></Image>
+            <div className="relative">
+              <Image alt="" src={img3}></Image>
+              <div></div>
+              <Upload />
+              <input
+                ref={inputRef}
+                type="file"
+                className="hidden"
+                // onChange={async (e: any) => {
+                //   const file = e.target.files[0];
+                //   const base64Url = await toBase64(file);
+                //   setUploadUrl(base64Url || '');
+                //
+                //   const formData = new FormData();
+                //   formData.append('avatar', file);
+                //   const res = await request(`${API}/user/profile`, {
+                //     method: 'PUT',
+                //     body: formData
+                //   });
+                //   if (res?.data) {
+                //     getUserProfile();
+                //   }
+                // }}
+              />
+            </div>
             {/*<Avatar />*/}
           </div>
           <span
@@ -142,21 +167,6 @@ const Profile: React.FC = () => {
           </span>
         </div>
       </div>
-      <Upload
-        name="avatar"
-        listType="picture-circle"
-        className="avatar-uploader text-white"
-        showUploadList={false}
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-        beforeUpload={beforeUpload}
-        onChange={handleChange}
-      >
-        {imageUrl ? (
-          <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
-        ) : (
-          uploadButton
-        )}
-      </Upload>
       {/*<div>aaaaaaaaaaaaaaaaaaaaa</div>*/}
       {/*</Form.Item>*/}
       {/*<Form.Item label="User Name" name="userName">*/}

@@ -1,33 +1,88 @@
+'use client'
 import React from 'react';
 
 import PropTypes from 'prop-types';
 import Logo from '../icons/logo';
 import { AppstoreOutlined, RiseOutlined } from '@ant-design/icons';
 
-const SideMenu = (props: { rootClassName: any; Vector_alt2: string | undefined; Vector_src2: string | undefined; Vector_alt3: string | undefined; Vector_src3: string | undefined; Vector_alt4: string | undefined; Vector_src4: string | undefined; Vector_alt5: string | undefined; Vector_src5: string | undefined; Rectangle1_alt: string | undefined; Rectangle1_src: string | undefined; Frame_alt: string | undefined; Frame_src: string | undefined; Vector_alt: string | undefined; Vector_src: string | undefined; Vector_alt1: string | undefined; Vector_src1: string | undefined; }) => {
+const SideMenu = (props: {
+  rootClassName: any;
+  Vector_alt2: string | undefined;
+  Vector_src2: string | undefined;
+  Vector_alt3: string | undefined;
+  Vector_src3: string | undefined;
+  Vector_alt4: string | undefined;
+  Vector_src4: string | undefined;
+  Vector_alt5: string | undefined;
+  Vector_src5: string | undefined;
+  Rectangle1_alt: string | undefined;
+  Rectangle1_src: string | undefined;
+  Frame_alt: string | undefined;
+  Frame_src: string | undefined;
+  Vector_alt: string | undefined;
+  Vector_src: string | undefined;
+  Vector_alt1: string | undefined;
+  Vector_src1: string | undefined;
+}) => {
+  //当用户点击按钮时，切换按钮的颜色
+  const [isExplore, setIsExplore] = React.useState(true);
+  const [isDataView, setIsDataView] = React.useState(false);
+  const [isPost, setIsPost] = React.useState(false);
+
   return (
     <>
       <div className={`side-menu-side-menu ${props.rootClassName} `}>
         <div className="side-menu-frame1171274769">
           <div className="side-menu-menu">
-            <div className="side-menu-frame1029">
+            {/* explore 按钮 */}
+            <div
+              className="side-menu-frame1029"
+              onClick={() => {
+                setIsExplore(true);
+                setIsDataView(false);
+                setIsPost(false);
+              }}
+              style={{ color: isExplore ? 'rgba(109, 98, 238, 1)' : '' }}
+            >
               <div className="side-menu-frame1013">
-                <span style={{ color: 'rgba(109, 98, 238, 1)' }}>
+                <span>
                   <AppstoreOutlined />
                 </span>
                 <span className="side-menu-text">
                   <span>Explore</span>
                 </span>
               </div>
-              <div className="side-menu-rectangle1" />
+              <div
+                className="side-menu-rectangle1"
+                style={{
+                  backgroundColor: isExplore ? 'rgba(109, 98, 238, 1)' : ''
+                }}
+              />
             </div>
-            <div className="side-menu-frame">
+            {/* data view 按钮 */}
+            <div
+              className="side-menu-frame"
+              onClick={() => {
+                setIsExplore(false);
+                setIsDataView(true);
+                setIsPost(false);
+              }}
+              style={{
+                color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+              }}
+            >
               <div className="side-menu-frame1021">
                 <RiseOutlined />
                 <span className="side-menu-text2">
                   <span>Data View</span>
                 </span>
               </div>
+              <div
+                className="side-menu-rectangle1"
+                style={{
+                  backgroundColor: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                }}
+              />
             </div>
           </div>
           <div className="side-menu-btn">
@@ -40,21 +95,6 @@ const SideMenu = (props: { rootClassName: any; Vector_alt2: string | undefined; 
         </div>
         <div className="side-menu-logo">
           <div className="side-menu-logo1">
-            {/* <div className="side-menu-logo2">
-              <img
-                alt={props.Vector_alt}
-                src={props.Vector_src}
-                className="side-menu-vector4"
-              />
-              <img
-                alt={props.Vector_alt1}
-                src={props.Vector_src1}
-                className="side-menu-vector5"
-              />
-            </div>
-            <span className="side-menu-text6">
-              <span>Locusts</span>
-            </span> */}
             <Logo />
           </div>
         </div>
@@ -62,8 +102,8 @@ const SideMenu = (props: { rootClassName: any; Vector_alt2: string | undefined; 
       <style jsx>
         {`
           .side-menu-side-menu {
-            width: 300px;
-            height: 1194px;
+            width: 18rem;
+            height: 100vh;
             display: flex;
             position: relative;
             align-items: flex-start;
@@ -74,7 +114,7 @@ const SideMenu = (props: { rootClassName: any; Vector_alt2: string | undefined; 
             gap: 24px;
             top: 137px;
             left: 0px;
-            width: 300px;
+            width: 100%;
             display: flex;
             position: absolute;
             align-items: flex-start;
@@ -87,7 +127,7 @@ const SideMenu = (props: { rootClassName: any; Vector_alt2: string | undefined; 
             flex-direction: column;
           }
           .side-menu-frame1029 {
-            width: 300px;
+            width: 100%;
             height: 52px;
             display: flex;
             position: relative;
@@ -153,7 +193,6 @@ const SideMenu = (props: { rootClassName: any; Vector_alt2: string | undefined; 
             position: absolute;
           }
           .side-menu-text {
-            color: rgba(109, 98, 238, 1);
             height: auto;
             font-size: 18px;
             font-style: Medium;
@@ -171,11 +210,10 @@ const SideMenu = (props: { rootClassName: any; Vector_alt2: string | undefined; 
             height: 18px;
             position: absolute;
             border-radius: 3px;
-            background-color: rgba(109, 98, 238, 1);
           }
           .side-menu-frame {
             gap: 4px;
-            width: 300px;
+            width: 100%;
             height: 52px;
             display: flex;
             padding: 4px 8px 4px 0;
@@ -255,7 +293,7 @@ const SideMenu = (props: { rootClassName: any; Vector_alt2: string | undefined; 
           .side-menu-logo {
             top: 0px;
             left: 0px;
-            width: 300px;
+            width: 100%;
             height: 100px;
             display: flex;
             overflow: hidden;

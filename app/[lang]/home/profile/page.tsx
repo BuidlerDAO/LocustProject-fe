@@ -109,7 +109,7 @@ const Profile: React.FC = () => {
               <Image alt="" src={img3}></Image>
               <div className="absolute right-[-3.1px] top-[-1px] flex h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
                 <div
-                  className="relative right-[-27px] top-[18px]"
+                  className="relative right-[-27px] top-[18px] cursor-pointer"
                   onClick={() => {
                     inputRef.current?.click();
                   }}

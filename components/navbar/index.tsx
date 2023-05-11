@@ -10,7 +10,7 @@ import { SearchIcon } from '@/components/icons/search';
 import Link from 'next/link';
 const Navbar = () => {
   const path = usePathname();
-  const flag = path == '/zh-CN' || path == 'en';
+  const flag = path == '/zh-CN' || path == '/en';
 
   return (
     <div
@@ -49,19 +49,17 @@ const Navbar = () => {
                   backgroundColor: '#1f1f1f',
                   borderColor: 'rgba(255, 255, 255, 0.16)'
                 }}
-                className="relative left-[49px] flex h-[52px] w-[448px] items-center rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+                className="relative left-[98.5px] flex h-[52px] w-[448px] items-center rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
               />
               {/*Sign up for Locust*/}
-              <Link href="/">
-                <div className="relative left-[159px] text-white">
-                  Sign up for Locust
-                </div>
-              </Link>
+              <div className="ml-[140px] flex text-white">
+                <Link href="/">Sign up for Locust</Link>
+              </div>
             </>
           )}
 
           {/*WalletConnect*/}
-          <div className="flex">
+          <div>
             <WalletConnect />
           </div>
         </div>

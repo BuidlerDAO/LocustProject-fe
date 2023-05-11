@@ -53,7 +53,7 @@ const Post = () => {
   return (
     <div>
       <PostComponent />
-      <Card>
+      {/* <Card>
         <Form
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 34 }}
@@ -125,7 +125,7 @@ const Post = () => {
             </div>
           </Form.Item>
         </Form>
-      </Card>
+      </Card> */}
     </div>
   );
 };

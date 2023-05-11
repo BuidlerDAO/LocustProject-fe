@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 'use client';
 import Link from 'next/link';
 import {
@@ -18,6 +17,7 @@ import { url } from 'inspector';
 import { PlusOutlined } from '@ant-design/icons';
 import { create } from 'zustand';
 import usePostStore from '@/store';
+import PostComponent from '@/components/postComponent/postComponent';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -51,7 +51,8 @@ const Post = () => {
     console.log(usePostStore.getState());
   };
   return (
-    <div className="publish">
+    <div>
+      <PostComponent />
       <Card>
         <Form
           labelCol={{ span: 4 }}

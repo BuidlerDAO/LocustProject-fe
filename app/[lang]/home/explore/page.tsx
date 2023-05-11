@@ -43,7 +43,6 @@ const App: React.FC = () => {
   );
   return (
     <div className="mr-16">
-      <Block data={postData}/>
       <List
         itemLayout="vertical"
         size="large"
@@ -56,47 +55,8 @@ const App: React.FC = () => {
         style={{ color: 'white' }}
         dataSource={data}
         renderItem={(item) => (
-          <List.Item key={item.title} className="bg-white">
-            {/* <List.Item.Meta
-            avatar={<Avatar src={item.avatar} />}
-            title={<a href={item.href}>{item.title}</a>}
-            description={item.description}
-          /> */}
-            <div className="flex justify-between">
-              <span>{item.title}</span>
-              <Tooltip title={text} placement="bottom">
-                <span className="flex">
-                  <EllipsisOutlined />
-                </span>
-              </Tooltip>
-            </div>
-            <div>
-              <span>
-                <FieldTimeOutlined />
-              </span>
-              <span>
-                <Avatar src={item.avatar} />
-              </span>
-              <span>
-                <LinkOutlined />
-                <a href={item.href}>{item.href}</a>
-              </span>
-            </div>
-            <Paragraph
-              ellipsis={
-                ellipsis ? { rows: 2, expandable: true, symbol: 'more' } : false
-              }
-            >
-              Ant Design, a design language for background applications, is
-              refined by Ant UED Team. Ant Design, a design language for
-              background applications, is refined by Ant UED Team. Ant Design, a
-              design language for background applications, is refined by Ant UED
-              Team. Ant Design, a design language for background applications,
-              is refined by Ant UED Team. Ant Design, a design language for
-              background applications, is refined by Ant UED Team. Ant Design, a
-              design language for background applications, is refined by Ant UED
-              Team.
-            </Paragraph>
+          <List.Item key={item.title} >
+            <Block data={postData} />
           </List.Item>
         )}
       />

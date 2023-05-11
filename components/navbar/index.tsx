@@ -5,6 +5,8 @@ import LogoIconTop from '@/components/icons/logoIconTop';
 import Logo from '@/components/icons/logo';
 import { WalletConnect } from '@/components/wallet';
 import { usePathname } from 'next/navigation';
+import { Input } from 'antd';
+import { SearchIcon } from '@/components/icons/search';
 const Navbar = () => {
   const path = usePathname();
   const flag = path == '/zh-CN' || path == 'en';
@@ -30,10 +32,20 @@ const Navbar = () => {
               Locusts
             </Typography>
           </div>
+          {/*搜索框*/}
+          <Input
+            size="large"
+            placeholder="Search"
+            prefix={<SearchIcon />}
+            style={{
+              backgroundColor: '#1f1f1f',
+              borderColor: 'rgba(255, 255, 255, 0.16)'
+            }}
+            className="flex h-[52px] w-[448px] items-center rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+          />
+          <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
           <div className="flex">
-            <div className="mr-[0px]">
-              <WalletConnect />
-            </div>
+            <WalletConnect />
           </div>
         </div>
       </div>

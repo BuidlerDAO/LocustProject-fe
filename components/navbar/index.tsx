@@ -16,7 +16,11 @@ const Navbar = () => {
         <div className="text-blue-gray-900 dark:text-blue-gray-100 flex w-full items-center justify-between">
           <div className="flex items-center justify-center">
             {/*首页logo只有上半部分*/}
-            <div className="mr-[-5px] mt-[-18px]">
+            <div
+              className={`mr-[-5px] mt-[-18px]
+                            ${!flag && 'mt-[0.2px] '}
+            } `}
+            >
               {flag ? <LogoIconTop /> : <Logo />}
             </div>
             <Typography

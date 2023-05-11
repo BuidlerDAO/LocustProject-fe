@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Logo from '../icons/logo';
 import { AppstoreOutlined, RiseOutlined } from '@ant-design/icons';
+import Link from 'next/link';
 
 const SideMenu = (props: {
   rootClassName: any;
@@ -35,63 +36,69 @@ const SideMenu = (props: {
         <div className="side-menu-frame1171274769">
           <div className="side-menu-menu">
             {/* explore 按钮 */}
-            <div
-              className="side-menu-frame1029"
-              onClick={() => {
-                setIsExplore(true);
-                setIsDataView(false);
-                setIsPost(false);
-              }}
-              style={{ color: isExplore ? 'rgba(109, 98, 238, 1)' : '' }}
-            >
-              <div className="side-menu-frame1013">
-                <span>
-                  <AppstoreOutlined />
-                </span>
-                <span className="side-menu-text">
-                  <span>Explore</span>
-                </span>
-              </div>
+            <Link href="/home/explore">
               <div
-                className="side-menu-rectangle1"
-                style={{
-                  backgroundColor: isExplore ? 'rgba(109, 98, 238, 1)' : ''
+                className="side-menu-frame1029"
+                onClick={() => {
+                  setIsExplore(true);
+                  setIsDataView(false);
+                  setIsPost(false);
                 }}
-              />
-            </div>
+                style={{ color: isExplore ? 'rgba(109, 98, 238, 1)' : '' }}
+              >
+                <div className="side-menu-frame1013">
+                  <span>
+                    <AppstoreOutlined />
+                  </span>
+                  <span className="side-menu-text">
+                    <span>Explore</span>
+                  </span>
+                </div>
+                <div
+                  className="side-menu-rectangle1"
+                  style={{
+                    backgroundColor: isExplore ? 'rgba(109, 98, 238, 1)' : ''
+                  }}
+                />
+              </div>
+            </Link>
             {/* data view 按钮 */}
-            <div
-              className="side-menu-frame"
-              onClick={() => {
-                setIsExplore(false);
-                setIsDataView(true);
-                setIsPost(false);
-              }}
-              style={{
-                color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
-              }}
-            >
-              <div className="side-menu-frame1021">
-                <RiseOutlined />
-                <span className="side-menu-text2">
-                  <span>Data View</span>
+            <Link href="/home/dataV">
+              <div
+                className="side-menu-frame"
+                onClick={() => {
+                  setIsExplore(false);
+                  setIsDataView(true);
+                  setIsPost(false);
+                }}
+                style={{
+                  color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                }}
+              >
+                <div className="side-menu-frame1021">
+                  <RiseOutlined />
+                  <span className="side-menu-text2">
+                    <span>Data View</span>
+                  </span>
+                </div>
+                <div
+                  className="side-menu-rectangle1"
+                  style={{
+                    backgroundColor: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                  }}
+                />
+              </div>
+            </Link>
+          </div>
+          <Link href="/home/post">
+            <div className="side-menu-btn">
+              <div className="side-menu-frame10211">
+                <span className="side-menu-text4">
+                  <span>New Post</span>
                 </span>
               </div>
-              <div
-                className="side-menu-rectangle1"
-                style={{
-                  backgroundColor: isDataView ? 'rgba(109, 98, 238, 1)' : ''
-                }}
-              />
             </div>
-          </div>
-          <div className="side-menu-btn">
-            <div className="side-menu-frame10211">
-              <span className="side-menu-text4">
-                <span>New Post</span>
-              </span>
-            </div>
-          </div>
+          </Link>
         </div>
         <div className="side-menu-logo">
           <div className="side-menu-logo1">
@@ -145,6 +152,7 @@ const SideMenu = (props: {
             position: absolute;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
           }
           .side-menu-category {
             width: 24px;
@@ -231,13 +239,13 @@ const SideMenu = (props: {
             position: absolute;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
           }
           .side-menu-frame1 {
             width: 24px;
             height: 24px;
           }
           .side-menu-text2 {
-            color: rgba(255, 255, 255, 1);
             height: auto;
             font-size: 18px;
             font-style: Medium;
@@ -250,19 +258,21 @@ const SideMenu = (props: {
           }
           .side-menu-btn {
             gap: 4px;
-            width: 299px;
+            width: 100%;
             height: 52px;
-            display: flex;
             padding: 4px 8px 4px 0;
             position: relative;
-            align-items: flex-start;
             flex-shrink: 0;
             border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            
           }
           .side-menu-frame10211 {
             gap: 8px;
             top: 0px;
-            left: 30px;
+            left: 20px;
             width: 239px;
             height: 52px;
             display: flex;
@@ -277,6 +287,9 @@ const SideMenu = (props: {
               rgba(110, 98, 238, 1) 2%,
               rgba(63, 61, 250, 1) 100%
             );
+          }
+          .side-menu-frame10211:hover {
+            background: linear-gradient(180deg, #8377FF -67.27%, #504EF0 100%);
           }
           .side-menu-text4 {
             color: rgba(255, 255, 255, 1);

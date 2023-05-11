@@ -144,7 +144,7 @@ const Profile: React.FC = () => {
         {/*输入框部分*/}
         <input
           type="text"
-          className="mr-[-93px] mt-[14px] h-[37px] w-[401px] rounded-[6px] border-[1px] bg-black"
+          className="mr-[-93px] mt-[14px] h-[37px] w-[401px] rounded-[6px] border-[1px] bg-black focus:outline-none"
           style={{ borderColor: '#747474', textIndent: '12px' }}
         />
       </div>

@@ -99,7 +99,7 @@ const postComponent = (props: { rootClassName: any }) => {
           </div>
           <Form.Item>
             <div className="component-frame15065">
-              <Button htmlType="submit">
+              <Button htmlType="submit" style={{border:'none',padding:'0'}}>
                 <span className="component-text06">Submit</span>
               </Button>
             </div>
@@ -259,15 +259,14 @@ const postComponent = (props: { rootClassName: any }) => {
             top: 52rem;
             gap: 8px;
             left: 23.625rem;
-            width: 11rem;
-            bottom: 1rem;
+            width: 10rem;
             display: flex;
             padding: 0.75rem 4rem;
             position: absolute;
-            align-items: flex-start;
+            align-items: flex-center;
             border-color: rgba(41, 40, 47, 1);
             border-style: solid;
-            border-width: 1px;
+            border-width: 3px;
             border-radius: 44px;
             background-color: var(--dl-color-maincolors-backgrounddark);
           }
@@ -276,7 +275,7 @@ const postComponent = (props: { rootClassName: any }) => {
             height: auto;
             font-size: 14px;
             font-style: Medium;
-            text-align: left;
+            text-align: center;
             font-family: Inter;
             font-weight: 500;
             line-height: 24px;

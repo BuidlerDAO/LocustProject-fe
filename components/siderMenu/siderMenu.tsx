@@ -100,11 +100,6 @@ const SideMenu = (props: {
             </div>
           </Link>
         </div>
-        <div className="side-menu-logo">
-          <div className="side-menu-logo1">
-            <Logo />
-          </div>
-        </div>
       </div>
       <style jsx>
         {`
@@ -119,7 +114,6 @@ const SideMenu = (props: {
           }
           .side-menu-frame1171274769 {
             gap: 24px;
-            top: 137px;
             left: 0px;
             width: 100%;
             display: flex;

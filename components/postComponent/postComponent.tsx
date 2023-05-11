@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
-import { Input } from 'antd';
+import { Button, Form, Input } from 'antd';
+import usePostStore from '@/store';
 
 const { TextArea } = Input;
 
@@ -12,27 +13,59 @@ const postComponent = (props: { rootClassName: any }) => {
   const [time, setTime] = useState('');
   const [material1, setMaterial1] = useState('');
   const [material2, setMaterial2] = useState('');
+  const increase = usePostStore((state) => state.increase);
+  const decrease = usePostStore((state) => state.decrease);
+  function getCurrentDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    const formattedMonth = month < 10 ? `0${month}` : month;
+    const formattedDay = day < 10 ? `0${day}` : day;
 
-  const handleSubmit = (event: { preventDefault: () => void; }) => {
-    event.preventDefault();
-    console.log('Title:', title);
-    console.log('Time:', time);
-    console.log('Material 1:', material1);
-    console.log('Material 2:', material2);
+    return `${year}-${formattedMonth}-${formattedDay}`;
+  }
+
+  const onFinish = (e: {
+    title: string;
+    link: string;
+    originalText: string;
+    personalThoughts: string;
+  }) => {
+    console.log(getCurrentDate());
+
+    Object.assign(e, { time: getCurrentDate() });
+    console.log(e);
+    increase(e);
+    console.log(usePostStore.getState());
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <Form
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 34 }}
+        initialValues={{ type: 1 }}
+        onFinish={onFinish}
+      >
         <div className={`component-container ${props.rootClassName} `}>
           <div className="component-frame15062">
-            <Input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="+ Enter the article"
-              style={{ width: '62.25rem', height: '4.125rem', border: 'none'}}
-              className="w-62.25rem h-4.125rem absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
-            />
+            <Form.Item
+              name="title"
+              rules={[{ required: true, message: 'Enter The Article' }]}
+            >
+              <Input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="+ Enter the article"
+                style={{
+                  width: '62.25rem',
+                  height: '4.125rem',
+                  border: 'none'
+                }}
+                className="w-62.25rem h-4.125rem absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
+              />
+            </Form.Item>
             {/* <span className="component-text">
             <span>+ Enter the article</span>
           </span> */}
@@ -41,63 +74,102 @@ const postComponent = (props: { rootClassName: any }) => {
             </span>
           </div>
           <div className="component-frame15063">
-            <Input
-              type="text"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-              placeholder="Please enter the original link"
-              style={{ width: '62.25rem', height: '4.125rem', border: 'none'}}
-              className="w-62.25rem h-4.125rem absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
-            />
+            <Form.Item
+              name="Link"
+              rules={[
+                { required: true, message: 'Please Enter The Original Link' }
+              ]}
+            >
+              <Input
+                type="text"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
+                placeholder="Please enter the original link"
+                style={{
+                  width: '62.25rem',
+                  height: '4.125rem',
+                  border: 'none'
+                }}
+                className="w-62.25rem h-4.125rem absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
+              />
+            </Form.Item>
             {/* <span className="component-text04">
             <span>Please enter the original link</span>
           </span> */}
           </div>
-          <div className="component-frame15065">
-            <span className="component-text06">
-              <button type="submit">Submit</button>
-            </span>
-          </div>
+          <Form.Item>
+            <div className="component-frame15065">
+              <Button htmlType="submit">
+                <span className="component-text06">Submit</span>
+              </Button>
+            </div>
+          </Form.Item>
           <div className="component-frame1171274789">
             <span className="component-text08">
               <span>Original Summary</span>
             </span>
-            <div className="component-frame15064">
-              <TextArea
-                value={material1}
-                onChange={(e) => setMaterial1(e.target.value)}
-                placeholder="Please enter the core content of the original text"
-                style={{ width: '62.25rem', height: '16.5625rem', border: 'none'}}
-              className="absolute left-0 top-0 flex items-start rounded-lg  bg-inherit text-white"
-              />
-              {/* <span className="component-text10">
+            <Form.Item
+              name="OriginalText"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please Enter The Core Content Of The Original Text'
+                }
+              ]}
+            >
+              <div className="component-frame15064">
+                <TextArea
+                  value={material1}
+                  onChange={(e) => setMaterial1(e.target.value)}
+                  placeholder="Please enter the core content of the original text"
+                  style={{
+                    width: '62.25rem',
+                    height: '16.5625rem',
+                    border: 'none'
+                  }}
+                  className="absolute left-0 top-0 flex items-start rounded-lg  bg-inherit text-white"
+                />
+
+                {/* <span className="component-text10">
                 <span>please enter the core content of the original text</span>
               </span> */}
-              <span className="component-text12">
-                <span>x/n</span>
-              </span>
-            </div>
+                <span className="component-text12">
+                  <span>x/n</span>
+                </span>
+              </div>
+            </Form.Item>
           </div>
           <div className="component-frame1171274790">
             <span className="component-text14">
               <span>Personal Thoughts</span>
             </span>
+            <Form.Item
+              name="PersonalThoughts"
+              rules={[
+                { required: true, message: 'Please Enter Personal Thoughts' }
+              ]}
+            >
+              <div className="component-frame15066">
+                <TextArea
+                  value={material2}
+                  onChange={(e) => setMaterial2(e.target.value)}
+                  placeholder="Please enter Personal thoughts"
+                  style={{
+                    width: '62.25rem',
+                    height: '16.5625rem',
+                    border: 'none'
+                  }}
+                  className=" absolute left-0 top-0 flex  items-start rounded-lg  bg-inherit text-white"
+                />
 
-            <div className="component-frame15066">
-              <TextArea
-                value={material2}
-                onChange={(e) => setMaterial2(e.target.value)}
-                placeholder="Please enter Personal thoughts"
-                style={{ width: '62.25rem', height: '16.5625rem', border: 'none'}}
-              className=" absolute left-0 top-0 flex  items-start rounded-lg  bg-inherit text-white"
-              />
-              {/* <span className="component-text16">
+                {/* <span className="component-text16">
                 <span>please enter Personal thoughts</span>
               </span> */}
-            </div>
+              </div>
+            </Form.Item>
           </div>
         </div>
-      </form>
+      </Form>
       <style jsx>
         {`
           .component-container {
@@ -117,11 +189,11 @@ const postComponent = (props: { rootClassName: any }) => {
             position: absolute;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: rgba(255, 255, 255, 0.05999999865889549);
+            border-color: #2c2c2c;
             border-style: solid;
             border-width: 1px;
             border-radius: 16px;
-            background-color: rgba(255, 255, 255, 0.05999999865889549);
+            background-color: #2c2c2c;
           }
           .component-text {
             top: 21px;
@@ -162,11 +234,11 @@ const postComponent = (props: { rootClassName: any }) => {
             position: absolute;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: rgba(255, 255, 255, 0.05999999865889549);
+            border-color: #2c2c2c;
             border-style: solid;
             border-width: 1px;
             border-radius: 16px;
-            background-color: rgba(255, 255, 255, 0.05999999865889549);
+            background-color: #2c2c2c;
           }
           .component-text04 {
             top: 21px;
@@ -184,8 +256,9 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-frame15065 {
+            top: 52rem;
             gap: 8px;
-            left: 27.625rem;
+            left: 23.625rem;
             width: 11rem;
             bottom: 1rem;
             display: flex;
@@ -276,6 +349,7 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-frame1171274790 {
+            top: 31.75rem;
             gap: 18px;
             left: 0px;
             width: 62.25rem;

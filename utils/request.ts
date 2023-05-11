@@ -1,4 +1,3 @@
-import { getCookie } from './cookie';
 import { getApiUrl } from './helpers';
 import toast from '@/components/toast/toast';
 
@@ -24,7 +23,9 @@ const request = async (url: string, config?: RequestOptions) => {
     body: null,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: getCookie('token') ? 'Bearer ' + getCookie('token') : ''
+      Authorization: localStorage.getItem('token')
+        ? 'Bearer ' + localStorage.getItem('token')
+        : ''
     },
     credentials: 'include',
     cache: 'no-cache',
@@ -39,9 +40,21 @@ const request = async (url: string, config?: RequestOptions) => {
   if (config && config.headers)
     configs.headers = {
       ...inital.headers,
-      Authorization: getCookie('token') ? 'Bearer ' + getCookie('token') : '',
+      Authorization: localStorage.getItem('token')
+        ? 'Bearer ' + localStorage.getItem('token')
+        : '',
       ...config.headers
     };
+
+  // body
+  if (
+    configs.body &&
+    /^(POST|PUT|PATCH)$/i.test(configs.method?.toUpperCase() || '') &&
+    configs.responseType &&
+    configs.responseType.toUpperCase() === 'JSON'
+  ) {
+    configs.body = JSON.stringify({ ...configs.body });
+  }
 
   // 基于fetch请求数据
   const finalConfig: RequestInit = {
@@ -94,9 +107,9 @@ const request = async (url: string, config?: RequestOptions) => {
           case 400:
             toast.error('Please verify your info!', { id: 'status400' });
             break;
-          case 401:
-            toast.error('Please Login!', { id: 'status401' });
-            break;
+          // case 401:
+          //   toast.error('Please Login!', { id: 'status401' });
+          //   break;
           case 403:
             toast.error('You have no access to this', { id: 'status403' });
             break;

@@ -18,7 +18,7 @@ const Navbar = () => {
             {/*首页logo只有上半部分*/}
             <div
               className={`mr-[-5px] mt-[-18px]
-                            ${!flag && 'mt-[0.2px] '}
+                            ${!flag && 'mr-[6px] mt-[0.2px]'}
             } `}
             >
               {flag ? <LogoIconTop /> : <Logo />}

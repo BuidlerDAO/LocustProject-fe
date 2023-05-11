@@ -8,7 +8,7 @@ import { FaDev } from 'react-icons/fa';
 import { CgCommunity } from 'react-icons/cg';
 import { RxArrowRight } from 'react-icons/rx';
 import { AiOutlineScan } from 'react-icons/ai';
-import LogoIcon from './logoIcon';
+import LogoIconTop from './logoIconTop';
 import AmountIcon from './amount';
 import HookIcon from './hook';
 import TwitterIcon from './twitter';
@@ -57,7 +57,7 @@ export {
   OutlineComment,
   DevIcon,
   CommunityIcon,
-  LogoIcon,
+  LogoIconTop,
   AmountIcon,
   HookIcon,
   TwitterIcon,

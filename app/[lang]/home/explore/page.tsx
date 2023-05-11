@@ -1,6 +1,14 @@
 'use client';
-import { DeleteOutlined, EllipsisOutlined, FieldTimeOutlined, LikeOutlined, LinkOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Avatar, List, Space, Collapse, Tooltip, Button } from 'antd';
+import {
+  DeleteOutlined,
+  EllipsisOutlined,
+  FieldTimeOutlined,
+  LikeOutlined,
+  LinkOutlined,
+  MessageOutlined,
+  StarOutlined
+} from '@ant-design/icons';
+import { Avatar, Button, Collapse, List, Space, Tooltip } from 'antd';
 import React, { useState } from 'react';
 import { AvatarIcon } from '../../../../components/icons/campaignAvatar';
 import Paragraph from 'antd/es/typography/Paragraph';
@@ -24,7 +32,7 @@ const App: React.FC = () => {
     console.log('delete');
   };
   const text = () => (
-    <button  className='hover:text-red-600' onClick={onDelete}>
+    <button className="hover:text-red-600" onClick={onDelete}>
       <DeleteOutlined />
       &nbsp;
       <span>Delete</span>
@@ -39,8 +47,7 @@ const App: React.FC = () => {
           onChange: (page) => {
             console.log(page);
           },
-          pageSize: 3,
-          
+          pageSize: 3
         }}
         style={{ color: 'white' }}
         dataSource={data}
@@ -51,13 +58,13 @@ const App: React.FC = () => {
             title={<a href={item.href}>{item.title}</a>}
             description={item.description}
           /> */}
-            <div className='flex justify-between'>
+            <div className="flex justify-between">
               <span>{item.title}</span>
-              <Tooltip title={text} placement='bottom'>
-              <span className='flex'>
-                <EllipsisOutlined  />
+              <Tooltip title={text} placement="bottom">
+                <span className="flex">
+                  <EllipsisOutlined />
                 </span>
-                </Tooltip>
+              </Tooltip>
             </div>
             <div>
               <span>
@@ -91,5 +98,5 @@ const App: React.FC = () => {
       />
     </div>
   );
-}
+};
 export default App;

@@ -22,7 +22,11 @@ export default function Sider() {
   };
 
   return (
-    <Sider trigger={null} className="h-screen">
+    <Sider
+      trigger={null}
+      className="mt-[-70px] h-screen"
+      style={{ backgroundColor: 'black' }}
+    >
       <div className="m-4 h-8">
         {/*<Image src="/assets/Logo.png" alt="logo" width={100} height={100} />*/}
         {/* <img src='../../assets/Logo.png' alt="logo" /> */}

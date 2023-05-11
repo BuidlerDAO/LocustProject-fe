@@ -34,26 +34,33 @@ const Navbar = () => {
               Locusts
             </Typography>
           </div>
-          {/*搜索框*/}
-          <Input
-            size="large"
-            placeholder="Search"
-            prefix={<SearchIcon />}
-            onPressEnter={() => {
-              console.log(222);
-            }}
-            style={{
-              backgroundColor: '#1f1f1f',
-              borderColor: 'rgba(255, 255, 255, 0.16)'
-            }}
-            className="relative left-[49px] flex h-[52px] w-[448px] items-center rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
-          />
+          {/*搜索框 & sign up 是否出现 */}
+          {flag ? null : (
+            <>
+              {/*搜索框*/}
+              <Input
+                size="large"
+                placeholder="Search"
+                prefix={<SearchIcon />}
+                onPressEnter={() => {
+                  return null;
+                }}
+                style={{
+                  backgroundColor: '#1f1f1f',
+                  borderColor: 'rgba(255, 255, 255, 0.16)'
+                }}
+                className="relative left-[49px] flex h-[52px] w-[448px] items-center rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+              />
+              {/*Sign up for Locust*/}
+              <Link href="/">
+                <div className="relative left-[159px] text-white">
+                  Sign up for Locust
+                </div>
+              </Link>
+            </>
+          )}
 
-          <Link href="/">
-            <div className="relative left-[159px] text-white">
-              Sign up for Locust
-            </div>
-          </Link>
+          {/*WalletConnect*/}
           <div className="flex">
             <WalletConnect />
           </div>

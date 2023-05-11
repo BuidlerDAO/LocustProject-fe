@@ -12,12 +12,15 @@ const HomeLayout: FC<{ children: ReactNode }> = (props) => {
       <ConfigProvider
         theme={{
           token: {
-            colorBgContainer:'#000000'
+            colorBgContainer: '#1a1a1a',
+            colorText: 'white',
+            colorTextDescription: 'white',
+            colorTextPlaceholder: '#6f6f6f',
+            colorPrimaryHover: '#575757',
           }
         }}
       >
         <main className="flex h-screen">
-         
           <Suspense>{props.children}</Suspense>
         </main>
       </ConfigProvider>

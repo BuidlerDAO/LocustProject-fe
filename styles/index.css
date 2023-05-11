@@ -1,6 +1,7 @@
 @import './reset.css';
 @import './tailwind.css';
 @import 'nprogress/nprogress.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
 
 /* 自定义全局 CssVar */
 :root {

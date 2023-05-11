@@ -52,12 +52,10 @@ const Post = () => {
   };
   return (
     <div className="publish">
-      <Card
-        color='#000000'
-      >
+      <Card>
         <Form
           labelCol={{ span: 4 }}
-          wrapperCol={{ span: 16 }}
+          wrapperCol={{ span: 34 }}
           initialValues={{ type: 1 }}
           onFinish={onFinish}
         >
@@ -67,7 +65,8 @@ const Post = () => {
           >
             <Input
               placeholder="+ Enter The Article"
-              style={{ width: '75vw', height: 66 }}
+              className="text-white rounded-2xl"
+              style={{ width: '75vw', height: '5vh' }}
             />
           </Form.Item>
           <Form.Item
@@ -77,10 +76,12 @@ const Post = () => {
             ]}
           >
             <Input
+              className="text-white rounded-2xl"
               placeholder="Please Enter The Original Link"
-              style={{ width: '75vw', height: 66 }}
+              style={{ width: '75vw', height: '5vh' }}
             />
           </Form.Item>
+          <div className="text-white text-base mb-2">Orginal Summary</div>
           <Form.Item
             name="OriginalText"
             rules={[
@@ -90,35 +91,35 @@ const Post = () => {
               }
             ]}
           >
-            <div>Orginal Summary</div>
-            <textarea
+            <TextArea
+              className="text-white rounded-2xl"
               placeholder="Please Enter The Core Content Of The Original Text"
-              style={{ width: '75vw', height: 265 }}
+              style={{ width: '75vw', height: '15vh' }}
               rows={10}
             />
           </Form.Item>
+          <div className="text-white text-base mb-2">Personal Thoughts</div>
           <Form.Item
             name="PersonalThoughts"
             rules={[
               { required: true, message: 'Please Enter Personal Thoughts' }
             ]}
           >
-            <div>Personal Thoughts</div>
-            <textarea
+            <TextArea
+              className="text-white rounded-2xl"
               rows={10}
               placeholder="Please Enter Personal Thoughts"
-              style={{ width: '75vw', height: 265 }}
+              style={{ width: '75vw', height: '15vh' }}
             />
           </Form.Item>
           <Form.Item>
             <div className="flex items-center justify-center">
               <Button
-                size="large"
-                type="primary"
+                className="flex items-center px-16 py-6 rounded-full text-base text-white bg-purple3 hover:bg-purple1 hover:text-white outline-none justify-center"
                 htmlType="submit"
-                style={{ color: '#424144' }}
+                style={{ fontFamily: 'fantasy' }}
               >
-                发布文章
+                Submit
               </Button>
             </div>
           </Form.Item>

@@ -38,7 +38,7 @@ export default function RootLayout({
         <WalletConfigWrapper>
           <Toaster />
           <RootLayoutClient>
-            <Navbar />
+            {/* <Navbar /> */}
             {children}
           </RootLayoutClient>
         </WalletConfigWrapper>

@@ -11,7 +11,7 @@ import {
   UserOutlined,
   VideoCameraOutlined
 } from '@ant-design/icons';
-import LogoIcon from '@/components/icons/logoIcon';
+import Logo from '../icons/logo';
 
 export default function Sider() {
   const { Sider } = Layout;
@@ -27,10 +27,9 @@ export default function Sider() {
       className="mt-[-70px] h-screen"
       style={{ backgroundColor: 'black' }}
     >
-      <div className="m-4 h-8">
-        {/*<Image src="/assets/Logo.png" alt="logo" width={100} height={100} />*/}
-        {/* <img src='../../assets/Logo.png' alt="logo" /> */}
-      </div>
+      {/* <div className="m-4 h-8">
+        <Logo/>
+      </div> */}
       <Menu
         theme="dark"
         // mode="inline"

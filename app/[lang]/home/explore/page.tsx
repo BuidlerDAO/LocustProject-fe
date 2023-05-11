@@ -13,6 +13,8 @@ import React, { useState } from 'react';
 import { AvatarIcon } from '../../../../components/icons/campaignAvatar';
 import Paragraph from 'antd/es/typography/Paragraph';
 import Delete from '../../../../components/icons/delete';
+import Block from '@/components/blockCard/blockCard';
+import usePostStore from '@/store';
 
 const { Panel } = Collapse;
 
@@ -31,6 +33,7 @@ const App: React.FC = () => {
   const onDelete = () => {
     console.log('delete');
   };
+  const postData = usePostStore((state)=>state.posts)
   const text = () => (
     <button className="hover:text-red-600" onClick={onDelete}>
       <DeleteOutlined />
@@ -40,6 +43,7 @@ const App: React.FC = () => {
   );
   return (
     <div className="mr-16">
+      <Block data={postData}/>
       <List
         itemLayout="vertical"
         size="large"

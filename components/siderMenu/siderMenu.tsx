@@ -273,10 +273,10 @@ const SideMenu = (props: {
             gap: 8px;
             top: 0px;
             left: 20px;
-            width: 239px;
+            width: 14.375rem;
             height: 52px;
             display: flex;
-            padding: 12px 64px;
+            padding: 0.75rem 4rem;
             position: absolute;
             align-items: center;
             flex-shrink: 0;
@@ -294,7 +294,7 @@ const SideMenu = (props: {
           .side-menu-text4 {
             color: rgba(255, 255, 255, 1);
             height: auto;
-            font-size: 18px;
+            font-size: 1.125rem;
             font-style: Medium;
             text-align: left;
             font-family: Poppins;

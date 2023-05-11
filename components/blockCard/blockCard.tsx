@@ -1,6 +1,10 @@
+'use client'
 import React from 'react';
 
 import PropTypes from 'prop-types';
+import { DeleteOutlined, EllipsisOutlined, FieldTimeOutlined, LinkOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
+
 
 const Block = (props: {
   rootClassName: any;
@@ -24,6 +28,16 @@ const Block = (props: {
     };
   };
 }) => {
+   const onDelete = () => {
+     console.log('delete');
+   };
+  const text = () => (
+    <button className="hover:text-red-600" onClick={onDelete}>
+      <DeleteOutlined />
+      &nbsp;
+      <span>Delete</span>
+    </button>
+  );
   return (
     <>
       <div className={`block-block ${props.rootClassName} `}>
@@ -32,11 +46,9 @@ const Block = (props: {
         </span>
         <div className="block-frametab">
           <div className="block-frame">
-            <img
-              alt={props.Frame_alt1}
-              src={props.Frame_src1}
-              className="block-frame1"
-            />
+            <div className='block-frame1'>
+              <FieldTimeOutlined />
+            </div>
             <span className="block-text02">
               <span>{props.data[0].time}</span>
             </span>
@@ -54,22 +66,21 @@ const Block = (props: {
             </span>
           </div>
           <div className="block-frame3">
-            <img
-              alt={props.Frame_alt2}
-              src={props.Frame_src2}
-              className="block-frame4"
-            />
+            <LinkOutlined />
             <span className="block-text06">
               <span>{props.data[0].link}</span>
             </span>
           </div>
         </div>
-        <img
-          alt={props.Frame_alt}
-          src={props.Frame_src}
-          className="block-frame5"
-        />
+        <Tooltip title={text} placement="bottom">
+          <span className="block-frame5">
+            <EllipsisOutlined />
+          </span>
+        </Tooltip>
         <div className="block-frame6">
+          <span className="block-text10-1">
+            <span>Original Summary</span>
+          </span>
           <span className="block-text08">
             <span>{props.data[0].originalText}</span>
           </span>
@@ -93,9 +104,9 @@ const Block = (props: {
       <style jsx>
         {`
           .block-block {
-            gap: 8px;
-            width: 1060px;
-            height: 670px;
+            gap: 0.5rem;
+            width: 64.25rem;
+            height: 41.875rem;
             display: flex;
             padding: 12px 12px 8px 12px;
             overflow: hidden;
@@ -125,13 +136,13 @@ const Block = (props: {
             text-decoration: none;
           }
           .block-frametab {
-            gap: 18px;
-            top: 66px;
-            left: 24px;
-            width: 567px;
+            gap: 1.125rem;
+            top: 4.125rem;
+            left: 1.5rem;
+            width: 35.4375rem;
             display: flex;
             position: absolute;
-            align-items: flex-start;
+            align-items: flex-center;
           }
           .block-frame {
             gap: 4px;
@@ -209,7 +220,7 @@ const Block = (props: {
           }
           .block-frame5 {
             top: 27px;
-            left: 1018px;
+            left: 62.25rem;
             width: 18px;
             height: 18px;
             position: absolute;
@@ -218,7 +229,7 @@ const Block = (props: {
             gap: 8px;
             top: 118px;
             left: 24px;
-            width: 1012px;
+            width: 62.25rem;
             display: flex;
             position: absolute;
             align-items: flex-start;
@@ -227,7 +238,7 @@ const Block = (props: {
           }
           .block-text08 {
             color: rgba(116, 116, 116, 1);
-            width: 1012px;
+            width: 62.25rem;
             height: auto;
             font-size: 14px;
             font-style: italic;
@@ -240,9 +251,9 @@ const Block = (props: {
           }
           .block-frame1171274787 {
             gap: 8px;
-            top: 370px;
+            top: 23.125rem;
             left: 24px;
-            width: 1012px;
+            width: 62.25rem;
             display: flex;
             position: absolute;
             align-items: flex-start;
@@ -260,9 +271,22 @@ const Block = (props: {
             font-stretch: normal;
             text-decoration: none;
           }
+          .block-text10-1 {
+            color: rgba(255, 255, 255, 1);
+            height: auto;
+            font-size: 18px;
+            font-style: Semi Bold;
+            text-align: left;
+            font-family: Inter;
+            font-weight: 700;
+            line-height: 28px;
+            font-stretch: normal;
+            text-decoration: none;
+            font-style: italic;
+          }
           .block-group1 {
-            width: 1012px;
-            height: 88px;
+            width: 62.25rem;
+            height: 5.5rem;
             display: flex;
             position: relative;
             align-items: flex-start;
@@ -270,7 +294,7 @@ const Block = (props: {
           }
           .block-text12 {
             color: rgba(165, 165, 165, 1);
-            width: 1012px;
+            width: 62.25rem;
             height: auto;
             position: absolute;
             font-size: 14px;
@@ -283,15 +307,15 @@ const Block = (props: {
             text-decoration: none;
           }
           .block-line18 {
-            top: 352px;
+            top: 22rem;
             left: 0px;
-            width: 1060px;
+            width: 62.25rem;
             height: 1px;
             position: absolute;
           }
           .block-root-class-name {
-            top: 138px;
-            left: 340px;
+            top: 8.625rem;
+            left: 21.25rem;
             position: absolute;
           }
         `}

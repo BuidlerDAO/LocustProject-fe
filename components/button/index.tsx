@@ -9,7 +9,7 @@ const button = tv({
     color: {
       primary:
         'background: rgba(4, 7, 11, 0.7) rounded-full border border-white text-white backdrop-blur-[14px]',
-      secondary: 'bg-gradient-to-r from-purple-500 to-blue-600 text-white'
+      secondary: 'bg-purple3 text-white'
     },
     size: {
       sm: 'text-sm',

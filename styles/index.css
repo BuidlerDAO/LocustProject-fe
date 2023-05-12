@@ -1,6 +1,7 @@
 @import './reset.css';
 @import './tailwind.css';
 @import 'nprogress/nprogress.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
 
 /* 自定义全局 CssVar */
 :root {
@@ -21,4 +22,13 @@
 .vxe-button.type--button.theme--primary:hover,
 .vxe-pager .vxe-pager--num-btn:not(.is--disabled).is--active {
   color: #fff !important;
+}
+
+/*antd输入框*/
+.ant-input-lg {
+  background-color: #1f1f1f;
+  color: #ffffff;
+}
+.ant-input-lg::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }

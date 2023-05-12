@@ -5,6 +5,7 @@ import Sider from "@/components/sider/sider";
 import Loading from "./loading";
 import type { FC } from 'react';
 import { ConfigProvider } from "antd";
+import SideMenu from "@/components/siderMenu/siderMenu";
 
 const HomeLayout: FC<{ children: ReactNode }> = (props) => {
   return (
@@ -17,7 +18,7 @@ const HomeLayout: FC<{ children: ReactNode }> = (props) => {
         },
       }}>
       <main className="flex h-screen">
-      <Sider />
+      <SideMenu/>
       <Suspense fallback={<Loading/> }>{props.children}</Suspense>
         </main>
         </ConfigProvider>

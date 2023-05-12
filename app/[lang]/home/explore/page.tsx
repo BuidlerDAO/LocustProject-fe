@@ -1,10 +1,20 @@
 'use client';
-import { DeleteOutlined, EllipsisOutlined, FieldTimeOutlined, LikeOutlined, LinkOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Avatar, List, Space, Collapse, Tooltip, Button } from 'antd';
+import {
+  DeleteOutlined,
+  EllipsisOutlined,
+  FieldTimeOutlined,
+  LikeOutlined,
+  LinkOutlined,
+  MessageOutlined,
+  StarOutlined
+} from '@ant-design/icons';
+import { Avatar, Button, Collapse, List, Space, Tooltip } from 'antd';
 import React, { useState } from 'react';
 import { AvatarIcon } from '../../../../components/icons/campaignAvatar';
 import Paragraph from 'antd/es/typography/Paragraph';
 import Delete from '../../../../components/icons/delete';
+import Block from '@/components/blockCard/blockCard';
+import usePostStore from '@/store';
 
 const { Panel } = Collapse;
 
@@ -23,8 +33,9 @@ const App: React.FC = () => {
   const onDelete = () => {
     console.log('delete');
   };
+  const postData = usePostStore((state)=>state.posts)
   const text = () => (
-    <button  className='hover:text-red-600' onClick={onDelete}>
+    <button className="hover:text-red-600" onClick={onDelete}>
       <DeleteOutlined />
       &nbsp;
       <span>Delete</span>
@@ -39,57 +50,17 @@ const App: React.FC = () => {
           onChange: (page) => {
             console.log(page);
           },
-          pageSize: 3,
-          
+          pageSize: 3
         }}
         style={{ color: 'white' }}
         dataSource={data}
         renderItem={(item) => (
-          <List.Item key={item.title} className="bg-white">
-            {/* <List.Item.Meta
-            avatar={<Avatar src={item.avatar} />}
-            title={<a href={item.href}>{item.title}</a>}
-            description={item.description}
-          /> */}
-            <div className='flex justify-between'>
-              <span>{item.title}</span>
-              <Tooltip title={text} placement='bottom'>
-              <span className='flex'>
-                <EllipsisOutlined  />
-                </span>
-                </Tooltip>
-            </div>
-            <div>
-              <span>
-                <FieldTimeOutlined />
-              </span>
-              <span>
-                <Avatar src={item.avatar} />
-              </span>
-              <span>
-                <LinkOutlined />
-                <a href={item.href}>{item.href}</a>
-              </span>
-            </div>
-            <Paragraph
-              ellipsis={
-                ellipsis ? { rows: 2, expandable: true, symbol: 'more' } : false
-              }
-            >
-              Ant Design, a design language for background applications, is
-              refined by Ant UED Team. Ant Design, a design language for
-              background applications, is refined by Ant UED Team. Ant Design, a
-              design language for background applications, is refined by Ant UED
-              Team. Ant Design, a design language for background applications,
-              is refined by Ant UED Team. Ant Design, a design language for
-              background applications, is refined by Ant UED Team. Ant Design, a
-              design language for background applications, is refined by Ant UED
-              Team.
-            </Paragraph>
+          <List.Item key={item.title} >
+            <Block data={postData} />
           </List.Item>
         )}
       />
     </div>
   );
-}
+};
 export default App;

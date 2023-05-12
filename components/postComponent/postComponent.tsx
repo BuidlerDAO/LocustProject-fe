@@ -1,18 +1,16 @@
 /* eslint-disable prettier/prettier */
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
 import usePostStore from '@/store';
+import Link from 'next/link';
 
 const { TextArea } = Input;
 
 const postComponent = (props: { rootClassName: any }) => {
-  const [title, setTitle] = useState('');
-  const [time, setTime] = useState('');
-  const [material1, setMaterial1] = useState('');
-  const [material2, setMaterial2] = useState('');
+  const [form] = Form.useForm();
   const [isNull, setIsNull] = useState(true);
   const increase = usePostStore((state) => state.increase);
   const decrease = usePostStore((state) => state.decrease);
@@ -39,8 +37,28 @@ const postComponent = (props: { rootClassName: any }) => {
     increase(e);
     console.log(usePostStore.getState());
   };
+  const title = Form.useWatch('title', form);
+  const link = Form.useWatch('Link', form);
+  const OriginalText = Form.useWatch('OriginalText', form);
+  const PersonalThoughts = Form.useWatch('PersonalThoughts', form);
   //当title,time,material1,material2不为空时，isNull改变状态为false
-   
+  useEffect(() => {
+    console.log(title, link, OriginalText, PersonalThoughts);
+    if (
+      title !== undefined &&
+      title !== '' &&
+      link !== undefined &&
+      link !== '' &&
+      OriginalText !== undefined &&
+      OriginalText !== '' &&
+      PersonalThoughts !== undefined &&
+      PersonalThoughts !== ''
+    ) {
+      setIsNull(false);
+    } else {
+      setIsNull(true);
+    }
+  }, [title, link, OriginalText, PersonalThoughts]);
   return (
     <>
       <Form
@@ -48,6 +66,7 @@ const postComponent = (props: { rootClassName: any }) => {
         wrapperCol={{ span: 34 }}
         initialValues={{ type: 1 }}
         onFinish={onFinish}
+        form={form}
       >
         <div className={`component-container ${props.rootClassName} `}>
           <div className="component-frame15062">
@@ -57,8 +76,6 @@ const postComponent = (props: { rootClassName: any }) => {
             >
               <Input
                 type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
                 placeholder="+ Enter the article"
                 style={{
                   width: '62.25rem',
@@ -84,8 +101,6 @@ const postComponent = (props: { rootClassName: any }) => {
             >
               <Input
                 type="text"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
                 placeholder="Please enter the original link"
                 style={{
                   width: '62.25rem',
@@ -105,18 +120,24 @@ const postComponent = (props: { rootClassName: any }) => {
                   : 'frame1171274791-frame1171274791'
               }
             >
-              <Button
-                htmlType="submit"
-                style={{ border: 'none', padding: '0' }}
-              >
-                <span
-                  className={
-                    isNull == true ? 'component-text06' : 'frame1171274791-text'
-                  }
+              {isNull ? (
+                <Button
+                  htmlType="submit"
+                  style={{ border: 'none', padding: '0' }}
+                  disabled
                 >
-                  Submit
-                </span>
-              </Button>
+                  <span className="component-text06">Submit</span>
+                </Button>
+              ) : (
+                <Link href="/home/explore">
+                  <Button
+                    htmlType="submit"
+                    style={{ border: 'none', padding: '0' }}
+                  >
+                    <span className="frame1171274791-text">Submit</span>
+                  </Button>
+                </Link>
+              )}
               {/* <div className="frame1171274791-frame1171274791">
                 <span className="frame1171274791-text">
                   <span>Submit</span>
@@ -139,8 +160,6 @@ const postComponent = (props: { rootClassName: any }) => {
             >
               <div className="component-frame15064">
                 <TextArea
-                  value={material1}
-                  onChange={(e) => setMaterial1(e.target.value)}
                   placeholder="Please enter the core content of the original text"
                   style={{
                     width: '62.25rem',
@@ -171,8 +190,6 @@ const postComponent = (props: { rootClassName: any }) => {
             >
               <div className="component-frame15066">
                 <TextArea
-                  value={material2}
-                  onChange={(e) => setMaterial2(e.target.value)}
                   placeholder="Please enter Personal thoughts"
                   style={{
                     width: '62.25rem',

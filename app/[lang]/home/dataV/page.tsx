@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Card, Table } from 'antd';
+import { Card, ConfigProvider, Table } from 'antd';
 
 const columns1 = [
   {
@@ -71,7 +71,7 @@ const columns2 = [
     key: 'registrationTime'
   }
 ];
-const data = [
+const data: readonly any[] | undefined = [
   // {
   //   key: '1',
   //   name: 'John Brown',
@@ -125,27 +125,39 @@ const dataV = () => {
     <>
       <div className="flex-col">
         {/* <Table columns={columns} dataSource={data} /> */}
-        <div className='flex flex-col'>
-          <div className='text-lg'>Contracts</div>
-          <div className='flex-row flex'>
-            <Card className='ml-2 w-48'>
-            <p>Contract Address: 0x1234567890abcdef</p>
-            <p>Contract Balance: 1000</p>
+        <div className="flex flex-col">
+          <div className="text-lg">Contracts</div>
+          <div className="flex-row flex">
+            <Card className="ml-2 w-48">
+              <p>Contract Address: 0x1234567890abcdef</p>
+              <p>Contract Balance: 1000</p>
             </Card>
-            <Card className='ml-2 w-48'>
-            <p>Contract Address: 0x1234567890abcdef</p>
-            <p>Contract Balance: 1000</p>
-          </Card>
+            <Card className="ml-2 w-48">
+              <p>Contract Address: 0x1234567890abcdef</p>
+              <p>Contract Balance: 1000</p>
+            </Card>
           </div>
         </div>
         <div>
-          <div className='text-lg'>Statistics</div>
-          <div className='flex-row'>
+          <div className="text-lg">Statistics</div>
+          <div className="flex-row">
             <div>Overview Table</div>
-           <Table columns={columns1} dataSource={data} />
-        </div>
-        <div>Schedule</div>
-        <Table columns={columns2} dataSource={data2} />
+            <Table columns={columns1} dataSource={data} />
+          </div>
+          <div>Schedule</div>
+          <ConfigProvider
+            theme={{
+              token: {
+                colorBgContainer: '#0f0f0f',
+                colorText: 'white',
+                colorTextHeading: ' #747474',
+                colorBorderSecondary: '#26262675',
+                colorSplit:'#26262675',
+              }
+            }}
+          >
+            <Table columns={columns2} dataSource={data2} />
+          </ConfigProvider>
         </div>
       </div>
     </>

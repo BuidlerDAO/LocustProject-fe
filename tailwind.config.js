@@ -21,7 +21,8 @@ module.exports = withTV({
         'purple2': '#D06CF7',
         'purple3':'#5f57f2',
         'Grey': '#27272A',
-        'GreyWord':'#747474'
+        'GreyWord': '#747474',
+        'textGrey':'rgba(116, 116, 116, 1)'
       }
     }
   },

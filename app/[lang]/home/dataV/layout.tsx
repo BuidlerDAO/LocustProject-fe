@@ -5,18 +5,17 @@ import Sider from '@/components/sider/sider';
 import type { FC } from 'react';
 import { ConfigProvider } from 'antd';
 
-
 const HomeLayout: FC<{ children: ReactNode }> = (props) => {
   return (
     <div>
       <ConfigProvider
         theme={{
           token: {
-            colorBgContainer: '#1a1a1a',
+            colorBgContainer: '#000000',
             colorText: 'white',
             //colorTextDescription: 'white',
-            colorTextPlaceholder: '#6f6f6f',
-            colorPrimaryHover: '#575757',
+            // colorTextPlaceholder: '#6f6f6f',
+            // colorPrimaryHover: '#575757'
           }
         }}
       >

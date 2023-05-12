@@ -1,18 +1,18 @@
 /* eslint-disable prettier/prettier */
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
 import usePostStore from '@/store';
-
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 const { TextArea } = Input;
 
 const postComponent = (props: { rootClassName: any }) => {
-  const [title, setTitle] = useState('');
-  const [time, setTime] = useState('');
-  const [material1, setMaterial1] = useState('');
-  const [material2, setMaterial2] = useState('');
+  const router = useRouter()
+  const [form] = Form.useForm();
+  const [isNull, setIsNull] = useState(true);
   const increase = usePostStore((state) => state.increase);
   const decrease = usePostStore((state) => state.decrease);
   function getCurrentDate() {
@@ -25,7 +25,6 @@ const postComponent = (props: { rootClassName: any }) => {
 
     return `${year}-${formattedMonth}-${formattedDay}`;
   }
-
   const onFinish = (e: {
     title: string;
     link: string;
@@ -38,14 +37,39 @@ const postComponent = (props: { rootClassName: any }) => {
     console.log(e);
     increase(e);
     console.log(usePostStore.getState());
+    //跳转到/home/explore页
+    router.push('/home/explore')
   };
+  const title = Form.useWatch('title', form);
+  const link = Form.useWatch('Link', form);
+  const OriginalText = Form.useWatch('OriginalText', form);
+  const PersonalThoughts = Form.useWatch('PersonalThoughts', form);
+  //当title,time,material1,material2不为空时，isNull改变状态为false
+  useEffect(() => {
+    //console.log(title, link, OriginalText, PersonalThoughts);
+    if (
+      title !== undefined &&
+      title !== '' &&
+      link !== undefined &&
+      link !== '' &&
+      OriginalText !== undefined &&
+      OriginalText !== '' &&
+      PersonalThoughts !== undefined &&
+      PersonalThoughts !== ''
+    ) {
+      setIsNull(false);
+    } else {
+      setIsNull(true);
+    }
+  }, [title, link, OriginalText, PersonalThoughts]);
   return (
     <>
       <Form
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 34 }}
-        initialValues={{ type: 1 }}
+       
         onFinish={onFinish}
+        form={form}
       >
         <div className={`component-container ${props.rootClassName} `}>
           <div className="component-frame15062">
@@ -55,8 +79,6 @@ const postComponent = (props: { rootClassName: any }) => {
             >
               <Input
                 type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
                 placeholder="+ Enter the article"
                 style={{
                   width: '62.25rem',
@@ -82,8 +104,6 @@ const postComponent = (props: { rootClassName: any }) => {
             >
               <Input
                 type="text"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
                 placeholder="Please enter the original link"
                 style={{
                   width: '62.25rem',
@@ -93,15 +113,39 @@ const postComponent = (props: { rootClassName: any }) => {
                 className="w-62.25rem h-4.125rem absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
               />
             </Form.Item>
-            {/* <span className="component-text04">
-            <span>Please enter the original link</span>
-          </span> */}
           </div>
+          {/* 提交按钮 */}
           <Form.Item>
-            <div className="component-frame15065">
-              <Button htmlType="submit" style={{border:'none',padding:'0'}}>
-                <span className="component-text06">Submit</span>
-              </Button>
+            <div
+              className={
+                isNull == true
+                  ? 'component-frame15065'
+                  : 'frame1171274791-frame1171274791'
+              }
+            >
+              {isNull ? (
+                <Button
+                  htmlType="submit"
+                  style={{ border: 'none', padding: '0' }}
+                  disabled
+                >
+                  <span className="component-text06">Submit</span>
+                </Button>
+              ) : (
+               
+                  <Button
+                    htmlType="submit"
+                    style={{ border: 'none', padding: '0' }}
+                  >
+                    <span className="frame1171274791-text">Submit</span>
+                  </Button>
+                
+              )}
+              {/* <div className="frame1171274791-frame1171274791">
+                <span className="frame1171274791-text">
+                  <span>Submit</span>
+                </span>
+              </div> */}
             </div>
           </Form.Item>
           <div className="component-frame1171274789">
@@ -119,8 +163,6 @@ const postComponent = (props: { rootClassName: any }) => {
             >
               <div className="component-frame15064">
                 <TextArea
-                  value={material1}
-                  onChange={(e) => setMaterial1(e.target.value)}
                   placeholder="Please enter the core content of the original text"
                   style={{
                     width: '62.25rem',
@@ -151,8 +193,6 @@ const postComponent = (props: { rootClassName: any }) => {
             >
               <div className="component-frame15066">
                 <TextArea
-                  value={material2}
-                  onChange={(e) => setMaterial2(e.target.value)}
                   placeholder="Please enter Personal thoughts"
                   style={{
                     width: '62.25rem',
@@ -172,6 +212,38 @@ const postComponent = (props: { rootClassName: any }) => {
       </Form>
       <style jsx>
         {`
+          .frame1171274791-frame1171274791 {
+            top: 52rem;
+            left: 23.625rem;
+
+            display: flex;
+            padding: 0.75rem 4rem;
+            position: absolute;
+            gap: 8px;
+            width: 10rem;
+            height: auto;
+            display: flex;
+
+            align-items: flex-start;
+            border-radius: 44px;
+            background-image: linear-gradient(
+              180deg,
+              rgba(110, 98, 238, 1) 2%,
+              rgba(63, 61, 250, 1) 100%
+            );
+          }
+          .frame1171274791-text {
+            color: rgba(255, 255, 255, 1);
+            height: auto;
+            font-size: 14px;
+            font-style: Medium;
+            text-align: left;
+            font-family: Inter;
+            font-weight: 500;
+            line-height: 24px;
+            font-stretch: normal;
+            text-decoration: none;
+          }
           .component-container {
             width: 62.25rem;
             height: 56.25rem;
@@ -266,7 +338,7 @@ const postComponent = (props: { rootClassName: any }) => {
             align-items: flex-center;
             border-color: rgba(41, 40, 47, 1);
             border-style: solid;
-            border-width: 3px;
+            border-width: 2px;
             border-radius: 44px;
             background-color: var(--dl-color-maincolors-backgrounddark);
           }

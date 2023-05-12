@@ -6,10 +6,11 @@ import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
 import usePostStore from '@/store';
 import Link from 'next/link';
-
+import { useRouter } from 'next/navigation';
 const { TextArea } = Input;
 
 const postComponent = (props: { rootClassName: any }) => {
+  const router = useRouter()
   const [form] = Form.useForm();
   const [isNull, setIsNull] = useState(true);
   const increase = usePostStore((state) => state.increase);
@@ -36,6 +37,8 @@ const postComponent = (props: { rootClassName: any }) => {
     console.log(e);
     increase(e);
     console.log(usePostStore.getState());
+    //跳转到/home/explore页
+    router.push('/home/explore')
   };
   const title = Form.useWatch('title', form);
   const link = Form.useWatch('Link', form);
@@ -129,14 +132,14 @@ const postComponent = (props: { rootClassName: any }) => {
                   <span className="component-text06">Submit</span>
                 </Button>
               ) : (
-                <Link href="/home/explore">
+               
                   <Button
                     htmlType="submit"
                     style={{ border: 'none', padding: '0' }}
                   >
                     <span className="frame1171274791-text">Submit</span>
                   </Button>
-                </Link>
+                
               )}
               {/* <div className="frame1171274791-frame1171274791">
                 <span className="frame1171274791-text">

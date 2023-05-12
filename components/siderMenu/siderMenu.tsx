@@ -91,7 +91,14 @@ const SideMenu = (props: {
             </div>
           </div>
           <Link href="/home/post">
-            <div className="side-menu-btn">
+            <div
+              className="side-menu-btn"
+              onClick={() => {
+                setIsExplore(false);
+                setIsDataView(false);
+                setIsPost(true);
+              }}
+            >
               <div className="side-menu-frame10211">
                 <span className="side-menu-text4">
                   <span>New Post</span>

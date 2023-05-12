@@ -13,6 +13,7 @@ const postComponent = (props: { rootClassName: any }) => {
   const [time, setTime] = useState('');
   const [material1, setMaterial1] = useState('');
   const [material2, setMaterial2] = useState('');
+  const [isNull, setIsNull] = useState(true);
   const increase = usePostStore((state) => state.increase);
   const decrease = usePostStore((state) => state.decrease);
   function getCurrentDate() {
@@ -25,7 +26,6 @@ const postComponent = (props: { rootClassName: any }) => {
 
     return `${year}-${formattedMonth}-${formattedDay}`;
   }
-
   const onFinish = (e: {
     title: string;
     link: string;
@@ -39,6 +39,8 @@ const postComponent = (props: { rootClassName: any }) => {
     increase(e);
     console.log(usePostStore.getState());
   };
+  //当title,time,material1,material2不为空时，isNull改变状态为false
+   
   return (
     <>
       <Form
@@ -93,15 +95,33 @@ const postComponent = (props: { rootClassName: any }) => {
                 className="w-62.25rem h-4.125rem absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
               />
             </Form.Item>
-            {/* <span className="component-text04">
-            <span>Please enter the original link</span>
-          </span> */}
           </div>
+          {/* 提交按钮 */}
           <Form.Item>
-            <div className="component-frame15065">
-              <Button htmlType="submit" style={{border:'none',padding:'0'}}>
-                <span className="component-text06">Submit</span>
+            <div
+              className={
+                isNull == true
+                  ? 'component-frame15065'
+                  : 'frame1171274791-frame1171274791'
+              }
+            >
+              <Button
+                htmlType="submit"
+                style={{ border: 'none', padding: '0' }}
+              >
+                <span
+                  className={
+                    isNull == true ? 'component-text06' : 'frame1171274791-text'
+                  }
+                >
+                  Submit
+                </span>
               </Button>
+              {/* <div className="frame1171274791-frame1171274791">
+                <span className="frame1171274791-text">
+                  <span>Submit</span>
+                </span>
+              </div> */}
             </div>
           </Form.Item>
           <div className="component-frame1171274789">
@@ -172,6 +192,38 @@ const postComponent = (props: { rootClassName: any }) => {
       </Form>
       <style jsx>
         {`
+          .frame1171274791-frame1171274791 {
+            top: 52rem;
+            left: 23.625rem;
+
+            display: flex;
+            padding: 0.75rem 4rem;
+            position: absolute;
+            gap: 8px;
+            width: 10rem;
+            height: auto;
+            display: flex;
+
+            align-items: flex-start;
+            border-radius: 44px;
+            background-image: linear-gradient(
+              180deg,
+              rgba(110, 98, 238, 1) 2%,
+              rgba(63, 61, 250, 1) 100%
+            );
+          }
+          .frame1171274791-text {
+            color: rgba(255, 255, 255, 1);
+            height: auto;
+            font-size: 14px;
+            font-style: Medium;
+            text-align: left;
+            font-family: Inter;
+            font-weight: 500;
+            line-height: 24px;
+            font-stretch: normal;
+            text-decoration: none;
+          }
           .component-container {
             width: 62.25rem;
             height: 56.25rem;
@@ -266,7 +318,7 @@ const postComponent = (props: { rootClassName: any }) => {
             align-items: flex-center;
             border-color: rgba(41, 40, 47, 1);
             border-style: solid;
-            border-width: 3px;
+            border-width: 2px;
             border-radius: 44px;
             background-color: var(--dl-color-maincolors-backgrounddark);
           }

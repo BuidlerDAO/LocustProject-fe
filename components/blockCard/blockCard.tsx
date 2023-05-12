@@ -1,10 +1,14 @@
-'use client'
+'use client';
 import React from 'react';
 
 import PropTypes from 'prop-types';
-import { DeleteOutlined, EllipsisOutlined, FieldTimeOutlined, LinkOutlined } from '@ant-design/icons';
+import {
+  DeleteOutlined,
+  EllipsisOutlined,
+  FieldTimeOutlined,
+  LinkOutlined
+} from '@ant-design/icons';
 import { Tooltip } from 'antd';
-
 
 const Block = (props: {
   rootClassName: any;
@@ -28,9 +32,9 @@ const Block = (props: {
     };
   };
 }) => {
-   const onDelete = () => {
-     console.log('delete');
-   };
+  const onDelete = () => {
+    console.log('delete');
+  };
   const text = () => (
     <button className="hover:text-red-600" onClick={onDelete}>
       <DeleteOutlined />
@@ -46,7 +50,7 @@ const Block = (props: {
         </span>
         <div className="block-frametab">
           <div className="block-frame">
-            <div className='block-frame1'>
+            <div className="block-frame1 text-textGrey">
               <FieldTimeOutlined />
             </div>
             <span className="block-text02">
@@ -66,7 +70,9 @@ const Block = (props: {
             </span>
           </div>
           <div className="block-frame3">
-            <LinkOutlined />
+            <span className="text-textGrey">
+              <LinkOutlined />
+            </span>
             <span className="block-text06">
               <span>{props.data[0].link}</span>
             </span>
@@ -74,7 +80,9 @@ const Block = (props: {
         </div>
         <Tooltip title={text} placement="bottom">
           <span className="block-frame5">
-            <EllipsisOutlined />
+            <span className="text-textGrey">
+              <EllipsisOutlined />
+            </span>
           </span>
         </Tooltip>
         <div className="block-frame6">
@@ -95,11 +103,7 @@ const Block = (props: {
             </span>
           </div>
         </div>
-        <img
-          alt={props.Line18_alt}
-          src={props.Line18_src}
-          className="block-line18"
-        />
+        <div className="block-line18" />
       </div>
       <style jsx>
         {`
@@ -309,9 +313,10 @@ const Block = (props: {
           .block-line18 {
             top: 22rem;
             left: 0px;
-            width: 62.25rem;
+            width: 100%;
             height: 1px;
             position: absolute;
+            background-color: #434343;
           }
           .block-root-class-name {
             top: 8.625rem;

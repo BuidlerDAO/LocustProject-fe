@@ -43,7 +43,7 @@ const postComponent = (props: { rootClassName: any }) => {
   const PersonalThoughts = Form.useWatch('PersonalThoughts', form);
   //当title,time,material1,material2不为空时，isNull改变状态为false
   useEffect(() => {
-    console.log(title, link, OriginalText, PersonalThoughts);
+    //console.log(title, link, OriginalText, PersonalThoughts);
     if (
       title !== undefined &&
       title !== '' &&
@@ -64,7 +64,7 @@ const postComponent = (props: { rootClassName: any }) => {
       <Form
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 34 }}
-        initialValues={{ type: 1 }}
+       
         onFinish={onFinish}
         form={form}
       >

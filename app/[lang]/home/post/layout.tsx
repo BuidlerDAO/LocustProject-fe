@@ -14,7 +14,7 @@ const HomeLayout: FC<{ children: ReactNode }> = (props) => {
           token: {
             colorBgContainer: '#1a1a1a',
             colorText: 'white',
-            colorTextDescription: 'white',
+            //colorTextDescription: 'white',
             colorTextPlaceholder: '#6f6f6f',
             colorPrimaryHover: '#575757',
           }

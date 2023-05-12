@@ -148,15 +148,25 @@ const dataV = () => {
           <ConfigProvider
             theme={{
               token: {
-                colorBgContainer: '#0f0f0f',
-                colorText: 'white',
+                colorBgContainer: '#ffffff',
+                colorText: '#ffffff',
+                colorBgTextActive: '#ffffff',
+                colorTextPlaceholder: '#ffffff',
                 colorTextHeading: ' #747474',
                 colorBorderSecondary: '#26262675',
-                colorSplit:'#26262675',
+                colorSplit: '#26262675',
+                colorTextDisabled: '#26262675',
+                colorBgDisabled: '#26262675',
               }
             }}
           >
-            <Table columns={columns2} dataSource={data2} />
+            <Table
+              columns={columns2}
+              dataSource={data2}
+              pagination={{
+                position: ['bottomCenter']
+              }}
+            />
           </ConfigProvider>
         </div>
       </div>

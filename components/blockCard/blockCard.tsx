@@ -23,13 +23,11 @@ const Block = (props: {
   Line18_alt: string | undefined;
   Line18_src: string | undefined;
   data: {
-    [id: number]: {
       title: string;
       link: string;
       originalText: string;
       personalThoughts: string;
       time: string;
-    };
   };
 }) => {
   const onDelete = () => {
@@ -46,7 +44,7 @@ const Block = (props: {
     <>
       <div className={`block-block ${props.rootClassName} `}>
         <span className="block-text">
-          <span>{props.data[0].title}</span>
+          <span>{props.data.title}</span>
         </span>
         <div className="block-frametab">
           <div className="block-frame">
@@ -54,7 +52,7 @@ const Block = (props: {
               <FieldTimeOutlined />
             </div>
             <span className="block-text02">
-              <span>{props.data[0].time}</span>
+              <span>{props.data.time}</span>
             </span>
           </div>
           <div className="block-frame2">
@@ -74,7 +72,7 @@ const Block = (props: {
               <LinkOutlined />
             </span>
             <span className="block-text06">
-              <span>{props.data[0].link}</span>
+              <span>{props.data.link}</span>
             </span>
           </div>
         </div>
@@ -90,7 +88,7 @@ const Block = (props: {
             <span>Original Summary</span>
           </span>
           <span className="block-text08">
-            <span>{props.data[0].originalText}</span>
+            <span>{props.data.originalText}</span>
           </span>
         </div>
         <div className="block-frame1171274787">
@@ -99,7 +97,7 @@ const Block = (props: {
           </span>
           <div className="block-group1">
             <span className="block-text12">
-              <span>{props.data[0].personalThoughts}</span>
+              <span>{props.data.personalThoughts}</span>
             </span>
           </div>
         </div>

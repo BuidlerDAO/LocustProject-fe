@@ -9,38 +9,47 @@ import {
   StarOutlined
 } from '@ant-design/icons';
 import { Avatar, Button, Collapse, List, Space, Tooltip } from 'antd';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AvatarIcon } from '../../../../components/icons/campaignAvatar';
 import Paragraph from 'antd/es/typography/Paragraph';
 import Delete from '../../../../components/icons/delete';
 import Block from '@/components/blockCard/blockCard';
 import usePostStore from '@/store';
 
-const { Panel } = Collapse;
-
-const data = Array.from({ length: 23 }).map((_, i) => ({
-  href: 'https://ant.design',
-  title: `ant design part ${i}`,
-  avatar: `https://xsgames.co/randomusers/avatar.php?g=pixel&key=${i}`,
-  description:
-    'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-  content:
-    'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.'
-}));
-
 const App: React.FC = () => {
-  const [ellipsis, setEllipsis] = useState(true);
+  type postData = {
+    [id: number]: {
+      title: string;
+      link: string;
+      originalText: string;
+      personalThoughts: string;
+      time: string;
+    };
+  };
+  type data = [
+    {
+      id: number;
+      title: string;
+      link: string;
+      originalText: string;
+      personalThoughts: string;
+      time: string;
+    }
+  ];
   const onDelete = () => {
     console.log('delete');
   };
-  const postData = usePostStore((state)=>state.posts)
-  const text = () => (
-    <button className="hover:text-red-600" onClick={onDelete}>
-      <DeleteOutlined />
-      &nbsp;
-      <span>Delete</span>
-    </button>
-  );
+  useEffect(() => {
+    console.log(data);
+  }, []);
+  const postData = usePostStore((state) => state.posts);
+  const data = Array.from(Object.values(postData)).map((post) => ({
+    title: post.title,
+    link: post.link,
+    originalText: post.originalText,
+    personalThoughts: post.personalThoughts,
+    time: post.time
+  }));
   return (
     <div className="mr-16">
       <List
@@ -50,13 +59,14 @@ const App: React.FC = () => {
           onChange: (page) => {
             console.log(page);
           },
-          pageSize: 3
+          pageSize: 3,
+         
         }}
         style={{ color: 'white' }}
         dataSource={data}
         renderItem={(item) => (
-          <List.Item key={item.title} >
-            <Block data={postData} />
+          <List.Item  title={item.title}>
+            <Block data={item} />
           </List.Item>
         )}
       />

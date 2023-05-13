@@ -1,14 +1,14 @@
 'use client';
 import React from 'react';
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {
   DeleteOutlined,
   EllipsisOutlined,
   FieldTimeOutlined,
-  LinkOutlined
+  LinkOutlined,
 } from '@ant-design/icons';
-import { Tooltip } from 'antd';
+import { Dropdown, MenuProps, Tooltip } from 'antd';
 
 const Block = (props: {
   rootClassName: any;
@@ -30,11 +30,19 @@ const Block = (props: {
     time: string;
   };
 }) => {
-  const onDelete = () => {
-    console.log('delete');
+  function onDelete(e: any) {
+    console.log(e);
   };
+  const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: 'Delete',
+      icon: <DeleteOutlined />,
+      onClick: (props : any) => onDelete(props)
+    }
+  ]
   const text = () => (
-    <button className="hover:text-red-600" onClick={onDelete}>
+    <button className="hover:text-red-600" onClick={(props)=>onDelete(props)}>
       <DeleteOutlined />
       &nbsp;
       <span>Delete</span>
@@ -76,13 +84,14 @@ const Block = (props: {
             </span>
           </div>
         </div>
-        <Tooltip title={text} placement="bottom">
+        
+        <Dropdown menu={{items}} >
           <span className="block-frame5">
             <span className="text-textGrey">
               <EllipsisOutlined />
             </span>
           </span>
-        </Tooltip>
+        </Dropdown>
         <div className="flex flex-col">
           <div className="block-frame6">
             <span className="block-text10-1">
@@ -342,18 +351,5 @@ Block.defaultProps = {
   rootClassName: ''
 };
 
-Block.propTypes = {
-  Frame_src: PropTypes.string,
-  Frame_alt: PropTypes.string,
-  Line18_src: PropTypes.string,
-  Line18_alt: PropTypes.string,
-  Frame_src1: PropTypes.string,
-  Frame_alt1: PropTypes.string,
-  Frame_src2: PropTypes.string,
-  Frame_alt2: PropTypes.string,
-  Ellipse2_src: PropTypes.string,
-  Ellipse2_alt: PropTypes.string,
-  rootClassName: PropTypes.string
-};
 
 export default Block;

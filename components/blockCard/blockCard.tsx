@@ -23,11 +23,11 @@ const Block = (props: {
   Line18_alt: string | undefined;
   Line18_src: string | undefined;
   data: {
-      title: string;
-      link: string;
-      originalText: string;
-      personalThoughts: string;
-      time: string;
+    title: string;
+    link: string;
+    originalText: string;
+    personalThoughts: string;
+    time: string;
   };
 }) => {
   const onDelete = () => {
@@ -83,32 +83,33 @@ const Block = (props: {
             </span>
           </span>
         </Tooltip>
-        <div className="block-frame6">
-          <span className="block-text10-1">
-            <span>Original Summary</span>
-          </span>
-          <span className="block-text08">
-            <span>{props.data.originalText}</span>
-          </span>
-        </div>
-        <div className="block-frame1171274787">
-          <span className="block-text10">
-            <span>Personal Thoughts</span>
-          </span>
-          <div className="block-group1">
-            <span className="block-text12">
-              <span>{props.data.personalThoughts}</span>
+        <div className="flex flex-col">
+          <div className="block-frame6">
+            <span className="block-text10-1">
+              <span>Original Summary</span>
+            </span>
+            <span className="block-text08">
+              <span>{props.data.originalText}</span>
             </span>
           </div>
+          <div className="block-line18" />
+          <div className="block-frame1171274787">
+            <span className="block-text10">
+              <span>Personal Thoughts</span>
+            </span>
+            <div className="block-group1">
+              <span className="block-text12">
+                <span>{props.data.personalThoughts}</span>
+              </span>
+            </div>
+          </div>
         </div>
-        <div className="block-line18" />
       </div>
       <style jsx>
         {`
           .block-block {
             gap: 0.5rem;
             width: 64.25rem;
-            height: 41.875rem;
             display: flex;
             padding: 12px 12px 8px 12px;
             overflow: hidden;
@@ -126,7 +127,7 @@ const Block = (props: {
             top: 24px;
             left: 24px;
             color: rgba(255, 255, 255, 1);
-            height: auto;
+            height: 24px;
             position: absolute;
             font-size: 22px;
             font-style: Semi Bold;
@@ -138,6 +139,7 @@ const Block = (props: {
             text-decoration: none;
           }
           .block-frametab {
+            height: 1.5rem;
             gap: 1.125rem;
             top: 4.125rem;
             left: 1.5rem;
@@ -229,11 +231,10 @@ const Block = (props: {
           }
           .block-frame6 {
             gap: 8px;
-            top: 118px;
-            left: 24px;
+            margin-top: 7rem;
+            text-align: center;
             width: 62.25rem;
             display: flex;
-            position: absolute;
             align-items: flex-start;
             flex-shrink: 0;
             flex-direction: column;
@@ -253,17 +254,17 @@ const Block = (props: {
           }
           .block-frame1171274787 {
             gap: 8px;
-            top: 23.125rem;
-            left: 24px;
+            margin-top: 1rem;
+
             width: 62.25rem;
             display: flex;
-            position: absolute;
-            align-items: flex-start;
+
+            align-items: flex-center;
             flex-direction: column;
           }
           .block-text10 {
             color: rgba(255, 255, 255, 1);
-            height: auto;
+            height: 1.75rem;
             font-size: 18px;
             font-style: Semi Bold;
             text-align: left;
@@ -275,7 +276,7 @@ const Block = (props: {
           }
           .block-text10-1 {
             color: rgba(255, 255, 255, 1);
-            height: auto;
+            height: 1.75rem;
             font-size: 18px;
             font-style: Semi Bold;
             text-align: left;
@@ -288,7 +289,7 @@ const Block = (props: {
           }
           .block-group1 {
             width: 62.25rem;
-            height: 5.5rem;
+
             display: flex;
             position: relative;
             align-items: flex-start;
@@ -298,7 +299,7 @@ const Block = (props: {
             color: rgba(165, 165, 165, 1);
             width: 62.25rem;
             height: auto;
-            position: absolute;
+
             font-size: 14px;
             font-style: Regular;
             text-align: left;
@@ -309,11 +310,11 @@ const Block = (props: {
             text-decoration: none;
           }
           .block-line18 {
-            top: 22rem;
-            left: 0px;
+            margin-top: 1rem;
+            margin-left: -1px;
+            position: relative;
             width: 100%;
             height: 1px;
-            position: absolute;
             background-color: #434343;
           }
           .block-root-class-name {

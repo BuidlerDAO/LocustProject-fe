@@ -55,13 +55,7 @@ const App: React.FC = () => {
       <List
         itemLayout="vertical"
         size="large"
-        pagination={{
-          onChange: (page) => {
-            console.log(page);
-          },
-          pageSize: 3,
-         
-        }}
+        
         style={{ color: 'white' }}
         dataSource={data}
         renderItem={(item) => (

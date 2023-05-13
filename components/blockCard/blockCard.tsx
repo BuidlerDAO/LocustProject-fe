@@ -6,9 +6,10 @@ import {
   DeleteOutlined,
   EllipsisOutlined,
   FieldTimeOutlined,
-  LinkOutlined,
+  LinkOutlined
 } from '@ant-design/icons';
 import { Dropdown, MenuProps, Tooltip } from 'antd';
+import usePostStore from '@/store';
 
 const Block = (props: {
   rootClassName: any;
@@ -30,19 +31,14 @@ const Block = (props: {
     time: string;
   };
 }) => {
-  function onDelete(e: any) {
-    console.log(e);
-  };
-  const items: MenuProps['items'] = [
-    {
-      key: '1',
-      label: 'Delete',
-      icon: <DeleteOutlined />,
-      onClick: (props : any) => onDelete(props)
-    }
-  ]
+  const decrease = usePostStore((state) => state.decrease);
+  
+  function onDelete() {
+    console.log(props.data);
+    decrease(props.data.title);
+  }
   const text = () => (
-    <button className="hover:text-red-600" onClick={(props)=>onDelete(props)}>
+    <button className="hover:text-red-600" onClick={() => onDelete()}>
       <DeleteOutlined />
       &nbsp;
       <span>Delete</span>
@@ -84,14 +80,16 @@ const Block = (props: {
             </span>
           </div>
         </div>
-        
-        <Dropdown menu={{items}} >
+        <Tooltip
+          title={text}
+          placement="bottom"
+        >
           <span className="block-frame5">
             <span className="text-textGrey">
               <EllipsisOutlined />
             </span>
           </span>
-        </Dropdown>
+        </Tooltip>
         <div className="flex flex-col">
           <div className="block-frame6">
             <span className="block-text10-1">
@@ -350,6 +348,5 @@ Block.defaultProps = {
   Ellipse2_alt: 'Ellipse22514',
   rootClassName: ''
 };
-
 
 export default Block;

@@ -25,7 +25,7 @@ const { TextArea } = Input;
 
 const Post = () => {
   const increase = usePostStore((state) => state.increase);
-  const decrease = usePostStore((state) => state.decrease);
+  
   function getCurrentDate() {
     const today = new Date();
     const year = today.getFullYear();

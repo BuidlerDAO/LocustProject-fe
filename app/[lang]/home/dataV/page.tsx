@@ -1,7 +1,9 @@
 'use client';
 import React from 'react';
-import { Card, ConfigProvider, Table } from 'antd';
+import { Card, ConfigProvider, Dropdown, MenuProps, Space, Table } from 'antd';
 import './index.css';
+import { DownOutlined } from '@ant-design/icons';
+
 
 const columns1 = [
   {
@@ -122,6 +124,40 @@ const data2 = [
   }
 ];
 
+const items: MenuProps['items'] = [
+  {
+    label: (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.antgroup.com"
+      >
+        1st menu item
+      </a>
+    ),
+    key: '0'
+  },
+  {
+    label: (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.aliyun.com"
+      >
+        2nd menu item
+      </a>
+    ),
+    key: '1'
+  },
+  {
+    type: 'divider'
+  },
+  {
+    label: '3rd menu item（disabled）',
+    key: '3',
+    disabled: true
+  }
+];
 // const pagination = {
 //   pageSize: 10,
 //   showSizeChanger: true,
@@ -155,10 +191,23 @@ const dataV = () => {
         <div>
           <div className="text-lg">Statistics</div>
           <div className="flex-row">
-            <div className='ot'>Overview Table</div>
+            <div className="ot">Overview Table</div>
             <Table columns={columns1} dataSource={data} />
           </div>
-          <div>Schedule</div>
+          {/* 表格头部 */}
+          <div className='flex justify-between'>
+            <div>Schedule</div>
+            <div className=''>
+              <Dropdown menu={{ items }}>
+                <a onClick={(e) => e.preventDefault()}>
+                  <Space>
+                    March
+                    <DownOutlined />
+                  </Space>
+                </a>
+              </Dropdown>
+            </div>
+          </div>
           <ConfigProvider
             theme={{
               token: {
@@ -169,8 +218,7 @@ const dataV = () => {
                 colorTextHeading: ' #747474',
                 colorBorderSecondary: '#26262675',
                 colorSplit: '#26262675',
-                colorTextDisabled: '#ffffff',
-                colorBorder:'#29282F'
+                colorBorder: '#29282F'
                 // colorBgDisabled: '#26262675',
               }
             }}

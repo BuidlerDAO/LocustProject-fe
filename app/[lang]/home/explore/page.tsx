@@ -48,14 +48,13 @@ const App: React.FC = () => {
     link: post.link,
     originalText: post.originalText,
     personalThoughts: post.personalThoughts,
-    time: post.time
+    time: post.time,
   }));
   return (
     <div className="mr-16">
       <List
         itemLayout="vertical"
-        size="large"
-        
+        size="large" 
         style={{ color: 'white' }}
         dataSource={data}
         renderItem={(item) => (

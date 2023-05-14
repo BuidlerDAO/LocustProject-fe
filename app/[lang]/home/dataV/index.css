@@ -1,0 +1,15 @@
+:global .ant-table-wrapper .ant-spin-container .ant-pagination li button {
+  background-color: white;
+}
+:global .ant-pagination .ant-pagination-item a {
+  color: white !important;
+}
+:global .ot {
+  color: #d83a3a;
+}
+.ot {
+  color: aqua;
+}
+.ant-pagination .ant-pagination-item a {
+  color: white ;
+}

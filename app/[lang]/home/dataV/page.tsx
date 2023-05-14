@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { Card, ConfigProvider, Table } from 'antd';
+import './index.css';
 
 const columns1 = [
   {
@@ -120,6 +121,19 @@ const data2 = [
     registrationTime: '2021-03-01'
   }
 ];
+
+// const pagination = {
+//   pageSize: 10,
+//   showSizeChanger: true,
+//   pageSizeOptions: ['10', '20', '30', '40'],
+//   showTotal: (total: any, range: any[]) => `${range[0]}-${range[1]} of ${total} items`,
+//   style: {
+//     marginTop: 16,
+//     color: '#ffffff',
+//     backgroundColor: '#000000'
+//   }
+// };
+
 const dataV = () => {
   return (
     <>
@@ -141,22 +155,23 @@ const dataV = () => {
         <div>
           <div className="text-lg">Statistics</div>
           <div className="flex-row">
-            <div>Overview Table</div>
+            <div className='ot'>Overview Table</div>
             <Table columns={columns1} dataSource={data} />
           </div>
           <div>Schedule</div>
           <ConfigProvider
             theme={{
               token: {
-                colorBgContainer: '#ffffff',
+                colorBgContainer: '#0f0f0f',
                 colorText: '#ffffff',
                 colorBgTextActive: '#ffffff',
                 colorTextPlaceholder: '#ffffff',
                 colorTextHeading: ' #747474',
                 colorBorderSecondary: '#26262675',
                 colorSplit: '#26262675',
-                colorTextDisabled: '#26262675',
-                colorBgDisabled: '#26262675',
+                colorTextDisabled: '#ffffff',
+                colorBorder:'#29282F'
+                // colorBgDisabled: '#26262675',
               }
             }}
           >

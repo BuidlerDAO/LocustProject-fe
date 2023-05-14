@@ -57,7 +57,6 @@ const Navbar = () => {
               </div>
             </>
           )}
-
           {/*WalletConnect*/}
           <div>
             <WalletConnect />

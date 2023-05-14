@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 const { TextArea } = Input;
 
 const postComponent = (props: { rootClassName: any }) => {
-  const router = useRouter()
+  const router = useRouter();
   const [form] = Form.useForm();
   const [isNull, setIsNull] = useState(true);
   const increase = usePostStore((state) => state.increase);
@@ -22,7 +22,6 @@ const postComponent = (props: { rootClassName: any }) => {
     const day = today.getDate();
     const formattedMonth = month < 10 ? `0${month}` : month;
     const formattedDay = day < 10 ? `0${day}` : day;
-
     return `${year}-${formattedMonth}-${formattedDay}`;
   }
   const onFinish = (e: {
@@ -38,12 +37,12 @@ const postComponent = (props: { rootClassName: any }) => {
     increase(e);
     console.log(usePostStore.getState());
     //跳转到/home/explore页
-    router.push('/home/explore')
+    router.push('/home/explore');
   };
   const title = Form.useWatch('title', form);
-  const link = Form.useWatch('Link', form);
-  const OriginalText = Form.useWatch('OriginalText', form);
-  const PersonalThoughts = Form.useWatch('PersonalThoughts', form);
+  const link = Form.useWatch('link', form);
+  const originalText = Form.useWatch('originalText', form);
+  const personalThoughts = Form.useWatch('personalThoughts', form);
   //当title,time,material1,material2不为空时，isNull改变状态为false
   useEffect(() => {
     //console.log(title, link, OriginalText, PersonalThoughts);
@@ -52,22 +51,21 @@ const postComponent = (props: { rootClassName: any }) => {
       title !== '' &&
       link !== undefined &&
       link !== '' &&
-      OriginalText !== undefined &&
-      OriginalText !== '' &&
-      PersonalThoughts !== undefined &&
-      PersonalThoughts !== ''
+      originalText !== undefined &&
+      originalText !== '' &&
+      personalThoughts !== undefined &&
+      personalThoughts !== ''
     ) {
       setIsNull(false);
     } else {
       setIsNull(true);
     }
-  }, [title, link, OriginalText, PersonalThoughts]);
+  }, [title, link, originalText, personalThoughts]);
   return (
     <>
       <Form
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 34 }}
-       
         onFinish={onFinish}
         form={form}
       >
@@ -97,7 +95,7 @@ const postComponent = (props: { rootClassName: any }) => {
           </div>
           <div className="component-frame15063">
             <Form.Item
-              name="Link"
+              name="link"
               rules={[
                 { required: true, message: 'Please Enter The Original Link' }
               ]}
@@ -132,14 +130,12 @@ const postComponent = (props: { rootClassName: any }) => {
                   <span className="component-text06">Submit</span>
                 </Button>
               ) : (
-               
-                  <Button
-                    htmlType="submit"
-                    style={{ border: 'none', padding: '0' }}
-                  >
-                    <span className="frame1171274791-text">Submit</span>
-                  </Button>
-                
+                <Button
+                  htmlType="submit"
+                  style={{ border: 'none', padding: '0' }}
+                >
+                  <span className="frame1171274791-text">Submit</span>
+                </Button>
               )}
               {/* <div className="frame1171274791-frame1171274791">
                 <span className="frame1171274791-text">
@@ -153,7 +149,7 @@ const postComponent = (props: { rootClassName: any }) => {
               <span>Original Summary</span>
             </span>
             <Form.Item
-              name="OriginalText"
+              name="originalText"
               rules={[
                 {
                   required: true,
@@ -186,7 +182,7 @@ const postComponent = (props: { rootClassName: any }) => {
               <span>Personal Thoughts</span>
             </span>
             <Form.Item
-              name="PersonalThoughts"
+              name="personalThoughts"
               rules={[
                 { required: true, message: 'Please Enter Personal Thoughts' }
               ]}

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Logo from '../icons/logo';
 import { AppstoreOutlined, DownOutlined, RiseOutlined } from '@ant-design/icons';
 import Link from 'next/link';
-import { Dropdown, Space, ConfigProvider, Table, MenuProps } from 'antd';
+import { Dropdown, Space, ConfigProvider, Table, MenuProps, Select } from 'antd';
 
 const Table1 = (props: {
  
@@ -70,57 +70,36 @@ const Table1 = (props: {
      bonusesReceived: 10,
      registrationTime: '2021-03-01'
    }
- ];
-
- const items: MenuProps['items'] = [
-   {
-     label: (
-       <a
-         target="_blank"
-         rel="noopener noreferrer"
-         href="https://www.antgroup.com"
-       >
-         1st menu item
-       </a>
-     ),
-     key: '0'
-   },
-   {
-     label: (
-       <a
-         target="_blank"
-         rel="noopener noreferrer"
-         href="https://www.aliyun.com"
-       >
-         2nd menu item
-       </a>
-     ),
-     key: '1'
-   },
-   {
-     type: 'divider'
-   },
-   {
-     label: '3rd menu item（disabled）',
-     key: '3',
-     disabled: true
-   }
- ];
+  ];
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
 
   return (
     <>
       <div>
         <div className="flex justify-between">
           <div>Schedule</div>
-          <div className="">
-            <Dropdown menu={{ items }}>
-              <a onClick={(e) => e.preventDefault()}>
-                <Space>
-                  March
-                  <DownOutlined />
-                </Space>
-              </a>
-            </Dropdown>
+          <div className="month-border">
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorBgElevated: 'black'
+                }
+              }}
+            >
+              <Select
+                defaultValue="lucy"
+                style={{ width: 120 }}
+                onChange={handleChange}
+                options={[
+                  { value: 'jack', label: 'Jack' },
+                  { value: 'lucy', label: 'Lucy' },
+                  { value: 'Yiminghe', label: 'yiminghe' },
+                  { value: 'disabled', label: 'Disabled', disabled: true }
+                ]}
+              />
+            </ConfigProvider>
           </div>
         </div>
         <ConfigProvider
@@ -163,6 +142,13 @@ const Table1 = (props: {
         }
         .ant-pagination .ant-pagination-disabled .ant-pagination-item-link {
           color: white;
+        }
+        .month-border {
+          background: #0D0COF;
+          border: 1px solid #29282f;
+          border-radius: 8px;
+          padding: 0.5rem 1.5rem;
+          gap: 0.25rem;
         }
       `}</style>
     </>

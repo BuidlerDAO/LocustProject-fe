@@ -7,7 +7,7 @@ import { AppstoreOutlined, DownOutlined, RiseOutlined } from '@ant-design/icons'
 import Link from 'next/link';
 import { Dropdown, Space, ConfigProvider, Table, MenuProps } from 'antd';
 
-const SideMenu = (props: {
+const Table1 = (props: {
  
 }) => {
   const columns2 = [
@@ -169,4 +169,4 @@ const SideMenu = (props: {
   );
 };
 
-export default SideMenu;
+export default Table1;

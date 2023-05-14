@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, ConfigProvider, Dropdown, MenuProps, Space, Table } from 'antd';
 import './index.css';
 import { DownOutlined } from '@ant-design/icons';
-
+import Table1 from '@/components/table/table';
 
 const columns1 = [
   {
@@ -194,43 +194,7 @@ const dataV = () => {
             <div className="ot">Overview Table</div>
             <Table columns={columns1} dataSource={data} />
           </div>
-          {/* 表格头部 */}
-          <div className='flex justify-between'>
-            <div>Schedule</div>
-            <div className=''>
-              <Dropdown menu={{ items }}>
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>
-                    March
-                    <DownOutlined />
-                  </Space>
-                </a>
-              </Dropdown>
-            </div>
-          </div>
-          <ConfigProvider
-            theme={{
-              token: {
-                colorBgContainer: '#0f0f0f',
-                colorText: '#ffffff',
-                colorBgTextActive: '#ffffff',
-                colorTextPlaceholder: '#ffffff',
-                colorTextHeading: ' #747474',
-                colorBorderSecondary: '#26262675',
-                colorSplit: '#26262675',
-                colorBorder: '#29282F'
-                // colorBgDisabled: '#26262675',
-              }
-            }}
-          >
-            <Table
-              columns={columns2}
-              dataSource={data2}
-              pagination={{
-                position: ['bottomCenter']
-              }}
-            />
-          </ConfigProvider>
+          <Table1/>
         </div>
       </div>
     </>

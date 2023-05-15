@@ -16,7 +16,7 @@ import locale from 'antd/es/date-picker/locale/zh_CN';
 import { url } from 'inspector';
 import { PlusOutlined } from '@ant-design/icons';
 import { create } from 'zustand';
-import usePostStore from '@/store';
+import { usePostStore } from '@/store';
 import PostComponent from '@/components/postComponent/postComponent';
 
 const { Option } = Select;
@@ -25,7 +25,7 @@ const { TextArea } = Input;
 
 const Post = () => {
   const increase = usePostStore((state) => state.increase);
-  
+
   function getCurrentDate() {
     const today = new Date();
     const year = today.getFullYear();

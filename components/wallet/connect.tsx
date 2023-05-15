@@ -164,7 +164,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
               <Button
                 color="primary"
                 onClick={() => handleOpen()}
-                className="text-[16px] hover:border-[#6E62EE] "
+                className="text-[16px] hover:border-[#6E62EE] px-10 py-2"
               >
                 Connect Wallet
               </Button>

@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 
 // import PropTypes from 'prop-types';
 import {
@@ -8,8 +8,9 @@ import {
   FieldTimeOutlined,
   LinkOutlined
 } from '@ant-design/icons';
-import { Dropdown, MenuProps, Tooltip } from 'antd';
-import usePostStore from '@/store';
+import { Dropdown, MenuProps, Modal, Tooltip } from 'antd';
+import { usePostStore } from '@/store';
+import { on } from 'events';
 
 const Block = (props: {
   rootClassName: any;
@@ -32,13 +33,28 @@ const Block = (props: {
   };
 }) => {
   const decrease = usePostStore((state) => state.decrease);
-  
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+    onDelete();
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   function onDelete() {
     console.log(props.data);
     decrease(props.data.title);
   }
   const text = () => (
-    <button className="hover:text-red-600" onClick={() => onDelete()}>
+    <button className="hover:text-red-600" onClick={showModal}>
       <DeleteOutlined />
       &nbsp;
       <span>Delete</span>
@@ -47,6 +63,16 @@ const Block = (props: {
   return (
     <>
       <div className={`block-block ${props.rootClassName} `}>
+        <Modal
+          title="Basic Modal"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Modal>
         <span className="block-text">
           <span>{props.data.title}</span>
         </span>
@@ -80,10 +106,7 @@ const Block = (props: {
             </span>
           </div>
         </div>
-        <Tooltip
-          title={text}
-          placement="bottom"
-        >
+        <Tooltip title={text} placement="bottom">
           <span className="block-frame5">
             <span className="text-textGrey">
               <EllipsisOutlined />

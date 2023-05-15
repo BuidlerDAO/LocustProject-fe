@@ -64,4 +64,19 @@ expansion,modularization and other performance topics this year,we can probably 
     }))
 }));
 
-export default usePostStore;
+type LoginStore = {
+  isLoggedIn: boolean;
+  username: string;
+  login: (username: string) => void;
+};
+
+const useLoginStore = create<LoginStore>((set: SetState<LoginStore>) => ({
+  isLoggedIn: false,
+  username: '',
+  login: (username) =>
+    set(() => ({
+      isLoggedIn: true,
+      username: username
+    }))
+}));
+export { usePostStore , useLoginStore};

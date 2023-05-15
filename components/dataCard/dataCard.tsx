@@ -5,35 +5,40 @@ import { CopyOutlined, DollarCircleOutlined } from '@ant-design/icons';
 
 const DataCard = (props: {
 }) => {
+  const onCopy = () => {
+    console.log('copied');
+  };
   return (
     <>
       <div className={`component2-container `}>
         <span className="component2-text">
           <span>Contracts</span>
         </span>
-        <div className="component2-frame">
-          <span className="component2-text02">
-            <span>Address</span>
-          </span>
-          <span className="component2-text04">
-            <span>
-              0x3bd0fc9d34b3966ebe27c143e1926a522d4e9b78eff3c66553e00126977aca91
+        <div className="flex">
+          <div className="component2-frame">
+            <span className="component2-frame1">
+              <CopyOutlined style={{ fontSize: '125%' }} onClick={onCopy}/>
             </span>
-          </span>
-          <span className="component2-frame1">
-            <CopyOutlined />
-          </span>
-        </div>
-        <div className="component2-frame2">
-          <span className="component2-text06">
-            <span>Balance:</span>
-          </span>
-          <span className="component2-text08 H2">
-            <span>$300</span>
-          </span>
-          <span className="component2-currency-circle-dollar">
-            <DollarCircleOutlined width={'24px'} height={'24px'}/>
-          </span>
+            <span className="component2-text02">
+              <span>Address</span>
+            </span>
+            <span className="component2-text04">
+              <span className="w-9/12 flex">
+                0x3bd0fc9d34b3966ebe27c143e1926a522d4e9b78eff3c66553e00126977aca91
+              </span>
+            </span>
+          </div>
+          <div className="component2-frame2">
+            <span className="component2-text06">
+              <span>Balance:</span>
+            </span>
+            <span className="component2-text08 H2">
+              <span>$300</span>
+            </span>
+            <span className="component2-currency-circle-dollar">
+              <DollarCircleOutlined style={{ fontSize: '125%' }} />
+            </span>
+          </div>
         </div>
       </div>
       <style jsx>
@@ -43,13 +48,14 @@ const DataCard = (props: {
             display: flex;
             position: relative;
             align-items: flex-start;
+            flex-direction: column;
           }
           .component2-text {
-            top: 0px;
-            left: 0px;
+            margin-top: 0px;
+            margin-left: 0px;
             color: rgba(255, 255, 255, 1);
             height: auto;
-            position: absolute;
+
             font-size: 28px;
             font-style: Medium;
             text-align: left;
@@ -61,13 +67,13 @@ const DataCard = (props: {
           }
           .component2-frame {
             flex-direction: column;
-            margin-top: 62px;
+            margin-top: 1rem;
             margin-left: 0px;
             width: 50vw;
             height: 112px;
             display: flex;
             overflow: hidden;
-            
+
             align-items: flex-start;
             flex-shrink: 0;
             border-style: solid;
@@ -106,14 +112,18 @@ const DataCard = (props: {
             line-height: normal;
             font-stretch: normal;
             text-decoration: none;
+            width: 35vw;
           }
           .component2-frame1 {
+            display: flex;
+            width: 24px;
+            height: 24px;
             margin-top: 12px;
-            margin-left: 34rem;
-            position:absolute;
+            margin-left: 45vw;
+            position: absolute;
           }
           .component2-frame2 {
-            margin-top: 62px;
+            margin-top: 1rem;
             margin-left: 1rem;
             width: 15rem;
             height: 112px;

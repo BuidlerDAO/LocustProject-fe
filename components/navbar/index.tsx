@@ -5,12 +5,38 @@ import LogoIconTop from '@/components/icons/logoIconTop';
 import Logo from '@/components/icons/logo';
 import { WalletConnect } from '@/components/wallet';
 import { usePathname } from 'next/navigation';
-import { Input } from 'antd';
+import { Dropdown, Input, MenuProps, Space } from 'antd';
 import { SearchIcon } from '@/components/icons/search';
 import Link from 'next/link';
+import { DownOutlined } from '@ant-design/icons';
+import { useLoginStore } from '@/store';
+
 const Navbar = () => {
   const path = usePathname();
   const flag = path == '/zh-CN' || path == '/en';
+  const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: <Link href="/home/profile">My Profile</Link>
+    },
+    {
+      key: '2',
+      label: <Link href="/home/profile">Event Participation</Link>
+    },
+    {
+      key: '3',
+      label: (
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.luohanacademy.com"
+        >
+          Disconnect
+        </a>
+      )
+    }
+  ];
+  const { isLoggedIn } = useLoginStore();
 
   return (
     <div
@@ -59,7 +85,22 @@ const Navbar = () => {
           )}
           {/*WalletConnect*/}
           <div>
-            <WalletConnect />
+            {
+              isLoggedIn ? (
+                <WalletConnect />
+              ) : (
+                  <Dropdown menu={{ items }}>
+              <a onClick={(e) => e.preventDefault()} className="text-white">
+                <Space>
+                  Hover me
+                  <DownOutlined />
+                </Space>
+              </a>
+                </Dropdown>
+              )
+            }
+            
+            
           </div>
         </div>
       </div>

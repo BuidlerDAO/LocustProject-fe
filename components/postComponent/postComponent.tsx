@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
-import usePostStore from '@/store';
+import { usePostStore } from '@/store';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 const { TextArea } = Input;

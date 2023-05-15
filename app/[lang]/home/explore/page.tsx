@@ -14,7 +14,7 @@ import { AvatarIcon } from '../../../../components/icons/campaignAvatar';
 import Paragraph from 'antd/es/typography/Paragraph';
 import Delete from '../../../../components/icons/delete';
 import Block from '@/components/blockCard/blockCard';
-import usePostStore from '@/store';
+import { usePostStore } from '@/store';
 
 const App: React.FC = () => {
   type postData = {
@@ -48,17 +48,17 @@ const App: React.FC = () => {
     link: post.link,
     originalText: post.originalText,
     personalThoughts: post.personalThoughts,
-    time: post.time,
+    time: post.time
   }));
   return (
     <div className="mr-16">
       <List
         itemLayout="vertical"
-        size="large" 
+        size="large"
         style={{ color: 'white' }}
         dataSource={data}
         renderItem={(item) => (
-          <List.Item  title={item.title}>
+          <List.Item title={item.title}>
             <Block data={item} />
           </List.Item>
         )}

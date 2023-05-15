@@ -9,7 +9,7 @@ import {
   LinkOutlined
 } from '@ant-design/icons';
 import { Dropdown, MenuProps, Modal, Tooltip } from 'antd';
-import usePostStore from '@/store';
+import { usePostStore } from '@/store';
 import { on } from 'events';
 
 const Block = (props: {
@@ -33,21 +33,21 @@ const Block = (props: {
   };
 }) => {
   const decrease = usePostStore((state) => state.decrease);
-  
-   const [isModalOpen, setIsModalOpen] = useState(false);
 
-   const showModal = () => {
-     setIsModalOpen(true);
-   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-   const handleOk = () => {
-     setIsModalOpen(false);
-     onDelete();
-   };
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
 
-   const handleCancel = () => {
-     setIsModalOpen(false);
-   };
+  const handleOk = () => {
+    setIsModalOpen(false);
+    onDelete();
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   function onDelete() {
     console.log(props.data);

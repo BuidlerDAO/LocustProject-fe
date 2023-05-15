@@ -155,66 +155,45 @@ const Table2 = (props: {
   );
 };
 const Table1 = (props: {}) => {
-  const columns2 = [
+  const columns1 = [
     {
-      title: 'User Name',
-      dataIndex: 'userName',
-      key: 'userName'
+      title: 'Month',
+      dataIndex: 'month',
+      key: 'month'
     },
     {
-      title: 'Wallet Address',
-      dataIndex: 'walletAddress',
-      key: 'walletAddress'
+      title: 'Enrollment',
+      dataIndex: 'enrollment',
+      key: 'enrollment'
     },
     {
-      title: 'Number of Content Submitted',
+      title: 'Number of content submitted',
       dataIndex: 'numContentSubmitted',
       key: 'numContentSubmitted'
     },
     {
-      title: 'Number of Deleted Content',
-      dataIndex: 'numDeletedContent',
-      key: 'numDeletedContent'
+      title: 'Number of valid content',
+      dataIndex: 'numValidContent',
+      key: 'numValidContent'
     },
     {
-      title: 'Bonuses Received',
-      dataIndex: 'bonusesReceived',
-      key: 'bonusesReceived'
+      title: 'Number of completed tasks',
+      dataIndex: 'numCompletedTasks',
+      key: 'numCompletedTasks'
     },
     {
-      title: 'Registration Time',
-      dataIndex: 'registrationTime',
-      key: 'registrationTime'
+      title: 'Number of incomplete',
+      dataIndex: 'numIncomplete',
+      key: 'numIncomplete'
+    },
+    {
+      title: 'Total prize pool',
+      dataIndex: 'totalPrizePool',
+      key: 'totalPrizePool'
     }
   ];
-  const data2 = [
-    {
-      key: '1',
-      userName: 'John Doe',
-      walletAddress: '0x1234567890abcdef',
-      numContentSubmitted: 10,
-      numDeletedContent: 2,
-      bonusesReceived: 5,
-      registrationTime: '2021-01-01'
-    },
-    {
-      key: '2',
-      userName: 'Jane Smith',
-      walletAddress: '0xabcdef1234567890',
-      numContentSubmitted: 5,
-      numDeletedContent: 1,
-      bonusesReceived: 2,
-      registrationTime: '2021-02-01'
-    },
-    {
-      key: '3',
-      userName: 'Bob Johnson',
-      walletAddress: '0x0987654321fedcba',
-      numContentSubmitted: 20,
-      numDeletedContent: 0,
-      bonusesReceived: 10,
-      registrationTime: '2021-03-01'
-    }
+  const data1: readonly any[] | undefined = [
+    
   ];
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
@@ -227,13 +206,13 @@ const Table1 = (props: {}) => {
       <div>
         <div className="flex justify-between">
           <div>
-            Schedule
+            Overview Table
             <DownloadOutlined
               className="ml-6 cursor-pointer"
               onClick={onDownload}
             />
           </div>
-          <div>
+          {/* <div>
             <ConfigProvider
               theme={{
                 token: {
@@ -264,7 +243,7 @@ const Table1 = (props: {}) => {
                 ]}
               />
             </ConfigProvider>
-          </div>
+          </div> */}
         </div>
         <ConfigProvider
           theme={{
@@ -282,8 +261,8 @@ const Table1 = (props: {}) => {
           }}
         >
           <Table
-            columns={columns2}
-            dataSource={data2}
+            columns={columns1}
+            dataSource={data1}
             pagination={{
               position: ['bottomCenter']
             }}
@@ -303,4 +282,4 @@ const Table1 = (props: {}) => {
   );
 };
 
-export {Table2};
+export {Table2,Table1};

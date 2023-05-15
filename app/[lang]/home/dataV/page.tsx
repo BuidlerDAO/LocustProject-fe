@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, ConfigProvider, Dropdown, MenuProps, Space, Table } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 // import { Table2 } from '@/components/table/table';
-import { Table2 } from '@/components/table/table';
+import { Table2,Table1 } from '@/components/table/table';
 
 const columns1 = [
   {
@@ -190,10 +190,7 @@ const dataV = () => {
         </div>
         <div>
           <div className="text-lg">Statistics</div>
-          <div className="flex-row">
-            <div className="ot">Overview Table</div>
-            <Table columns={columns1} dataSource={data} />
-          </div>
+          <Table1 />
           <Table2 />
         </div>
       </div>

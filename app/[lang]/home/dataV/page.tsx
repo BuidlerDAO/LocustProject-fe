@@ -3,7 +3,8 @@ import React from 'react';
 import { Card, ConfigProvider, Dropdown, MenuProps, Space, Table } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 // import { Table2 } from '@/components/table/table';
-import { Table2,Table1 } from '@/components/table/table';
+import { Table2, Table1 } from '@/components/table/table';
+import DataCard from '@/components/dataCard/dataCard';
 
 const columns1 = [
   {
@@ -175,19 +176,7 @@ const dataV = () => {
     <>
       <div className="flex-col">
         {/* <Table columns={columns} dataSource={data} /> */}
-        <div className="flex flex-col">
-          <div className="text-lg">Contracts</div>
-          <div className="flex-row flex">
-            <Card className="ml-2 w-48">
-              <p>Contract Address: 0x1234567890abcdef</p>
-              <p>Contract Balance: 1000</p>
-            </Card>
-            <Card className="ml-2 w-48">
-              <p>Contract Address: 0x1234567890abcdef</p>
-              <p>Contract Balance: 1000</p>
-            </Card>
-          </div>
-        </div>
+        <DataCard />
         <div>
           <div className="text-lg">Statistics</div>
           <Table1 />

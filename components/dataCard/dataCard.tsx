@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
-import { CopyOutlined } from '@ant-design/icons';
+import { CopyOutlined, DollarCircleOutlined } from '@ant-design/icons';
 
 const DataCard = (props: {
 }) => {
@@ -20,7 +20,9 @@ const DataCard = (props: {
               0x3bd0fc9d34b3966ebe27c143e1926a522d4e9b78eff3c66553e00126977aca91
             </span>
           </span>
-          <CopyOutlined className="component2-frame1" />
+          <span className="component2-frame1">
+            <CopyOutlined />
+          </span>
         </div>
         <div className="component2-frame2">
           <span className="component2-text06">
@@ -29,11 +31,9 @@ const DataCard = (props: {
           <span className="component2-text08 H2">
             <span>$300</span>
           </span>
-          <img
-            alt={props.CurrencyCircleDollar_alt}
-            src={props.CurrencyCircleDollar_src}
-            className="component2-currency-circle-dollar"
-          />
+          <span className="component2-currency-circle-dollar">
+            <DollarCircleOutlined width={'24px'} height={'24px'}/>
+          </span>
         </div>
       </div>
       <style jsx>
@@ -61,13 +61,13 @@ const DataCard = (props: {
           }
           .component2-frame {
             flex-direction: column;
-            top: 62px;
-            left: 0px;
+            margin-top: 62px;
+            margin-left: 0px;
             width: 50vw;
             height: 112px;
             display: flex;
             overflow: hidden;
-            position: absolute;
+            
             align-items: flex-start;
             flex-shrink: 0;
             border-style: solid;
@@ -84,7 +84,6 @@ const DataCard = (props: {
             margin-left: 24px;
             color: rgba(116, 116, 116, 1);
             height: auto;
-            
             font-size: 14px;
             font-style: Medium;
             text-align: left;
@@ -109,17 +108,19 @@ const DataCard = (props: {
             text-decoration: none;
           }
           .component2-frame1 {
-            margin-top: 62px;
-            margin-right:2px;
+            margin-top: 12px;
+            margin-left: 34rem;
+            position:absolute;
           }
           .component2-frame2 {
-            top: 62px;
-            right: 0px;
-            width: 278px;
+            margin-top: 62px;
+            margin-left: 1rem;
+            width: 15rem;
             height: 112px;
             display: flex;
+            flex-direction: column;
             overflow: hidden;
-            position: absolute;
+            position: static;
             align-items: flex-start;
             flex-shrink: 0;
             border-style: solid;
@@ -132,11 +133,10 @@ const DataCard = (props: {
             );
           }
           .component2-text06 {
-            top: 24px;
-            left: 24px;
+            margin-top: 24px;
+            margin-left: 24px;
             color: rgba(116, 116, 116, 1);
             height: auto;
-            position: absolute;
             font-size: 14px;
             font-style: Medium;
             text-align: left;
@@ -147,20 +147,19 @@ const DataCard = (props: {
             text-decoration: none;
           }
           .component2-text08 {
-            top: 52px;
-            left: 24px;
+            margin-top: 4px;
+            margin-left: 24px;
             color: rgba(255, 255, 255, 1);
             height: auto;
-            position: absolute;
             text-align: left;
             line-height: 36px;
           }
           .component2-currency-circle-dollar {
-            top: 22px;
-            left: 230px;
+            margin-top: 12px;
+            margin-left: 12rem;
+            position: absolute;
             width: 24px;
             height: 24px;
-            position: absolute;
           }
           .component2-root-class-name {
             top: 0px;

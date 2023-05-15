@@ -80,17 +80,28 @@ const Table1 = (props: {
       <div>
         <div className="flex justify-between">
           <div>Schedule</div>
-          <div className="month-border">
+          <div>
             <ConfigProvider
               theme={{
                 token: {
-                  colorBgElevated: 'black'
+                  colorBgElevated: 'black',
+                  colorText: '#ffffff',
+                  colorIconHover: '#ffffff',
+                  colorIcon: '#ffffff'
                 }
               }}
             >
               <Select
                 defaultValue="lucy"
-                style={{ width: 120 }}
+                style={{
+                  width: 80,
+                  borderRadius: '8px',
+                  border: '1px solid #29282f',
+                  color: 'white',
+                  outlineColor: '#29282f'
+                }}
+                className=""
+                bordered={false}
                 onChange={handleChange}
                 options={[
                   { value: 'jack', label: 'Jack' },
@@ -149,6 +160,9 @@ const Table1 = (props: {
           border-radius: 8px;
           padding: 0.5rem 1.5rem;
           gap: 0.25rem;
+        }
+        :global .ant-select .ant-select-arrow{
+          color: white;!important
         }
       `}</style>
     </>

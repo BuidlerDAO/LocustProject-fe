@@ -2,6 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { CopyOutlined, DollarCircleOutlined } from '@ant-design/icons';
+import { Modal } from 'antd';
 
 const DataCard = (props: {
 }) => {
@@ -17,7 +18,7 @@ const DataCard = (props: {
         <div className="flex">
           <div className="component2-frame">
             <span className="component2-frame1">
-              <CopyOutlined style={{ fontSize: '125%' }} onClick={onCopy}/>
+              <CopyOutlined style={{ fontSize: '125%' }} onClick={onCopy} />
             </span>
             <span className="component2-text02">
               <span>Address</span>

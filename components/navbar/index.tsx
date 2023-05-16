@@ -10,6 +10,7 @@ import { SearchIcon } from '@/components/icons/search';
 import Link from 'next/link';
 import { DownOutlined } from '@ant-design/icons';
 import { useLoginStore } from '@/store';
+import { Button } from '../button';
 
 const Navbar = () => {
   const path = usePathname();
@@ -75,32 +76,35 @@ const Navbar = () => {
                   backgroundColor: '#1f1f1f',
                   borderColor: 'rgba(255, 255, 255, 0.16)'
                 }}
-                className="relative left-[98.5px] flex h-[52px] w-[448px] items-center rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+                className="absolute left-[18rem] flex h-[52px] w-[448px] items-center rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
               />
               {/*Sign up for Locust*/}
-              <div className="ml-[140px] flex text-white">
-                <Link href="/">Sign up for Locust</Link>
-              </div>
+              {isLoggedIn ? null : (
+                <div className="ml-[45rem] flex text-white absolute">
+                  <Link href="/">Sign up for Locust</Link>
+                </div>
+              )}
             </>
           )}
           {/*WalletConnect*/}
           <div>
-            {
-              isLoggedIn ? (
-                <WalletConnect />
-              ) : (
-                  <Dropdown menu={{ items }}>
-              <a onClick={(e) => e.preventDefault()} className="text-white">
-                <Space>
-                  Hover me
-                  <DownOutlined />
-                </Space>
-              </a>
-                </Dropdown>
-              )
-            }
-            
-            
+            {isLoggedIn ? (
+              <Dropdown menu={{ items }}>
+                <a onClick={(e) => e.preventDefault()} className="text-white">
+                  <Button
+                    color="primary"
+                    className="text-[16px] hover:border-[#6E62EE] px-10 py-2 outline-none border:none"
+                  >
+                    <Space>
+                      Hover me
+                      <DownOutlined />
+                    </Space>
+                  </Button>
+                </a>
+              </Dropdown>
+            ) : (
+              <WalletConnect />
+            )}
           </div>
         </div>
       </div>

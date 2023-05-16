@@ -6,10 +6,12 @@ import { TableUserOverview, UserArticle } from "@/components/table/table"
 const participate=()=> {
   return (
     <>
-      <UserDataCard />
-      Statistics
-      <TableUserOverview />
-      <UserArticle />
+      <div className="flex flex-col">
+        <UserDataCard />
+        <div className="mt-12">Statistics</div>
+        <TableUserOverview />
+        <UserArticle />
+      </div>
     </>
   );
 }

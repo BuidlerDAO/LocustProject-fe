@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
+import { DollarCircleOutlined } from '@ant-design/icons';
 
 const UserDataCard = () => {
   return (
@@ -13,11 +14,9 @@ const UserDataCard = () => {
           <span className="component3-text02 H24">
             <span>100 U</span>
           </span>
-          <img
-            src={props.CurrencyCircleDollar_src}
-            alt={props.CurrencyCircleDollar_alt}
-            className="component3-currency-circle-dollar"
-          />
+          <span className="component3-currency-circle-dollar">
+            <DollarCircleOutlined style={{ fontSize: '125%' }} />
+          </span>
         </div>
         <div className="component3-frame1">
           <span className="component3-text04 14Semibold12">
@@ -26,11 +25,10 @@ const UserDataCard = () => {
           <span className="component3-text06 H24">
             <span>100</span>
           </span>
-          <img
-            src={props.CurrencyCircleDollar_src1}
-            alt={props.CurrencyCircleDollar_alt1}
-            className="component3-currency-circle-dollar1"
-          />
+
+          <span className="component3-currency-circle-dollar1">
+            <DollarCircleOutlined style={{ fontSize: '125%' }} />
+          </span>
         </div>
         <div className="component3-frame2">
           <span className="component3-text08 14Semibold12">
@@ -39,11 +37,9 @@ const UserDataCard = () => {
           <span className="component3-text10 H24">
             <span>20 U</span>
           </span>
-          <img
-            src={props.CurrencyCircleDollar_src2}
-            alt={props.CurrencyCircleDollar_alt2}
-            className="component3-currency-circle-dollar2"
-          />
+          <span className="component3-currency-circle-dollar2">
+            <DollarCircleOutlined style={{ fontSize: '125%' }} />
+          </span>
           <div className="component3-frame15065">
             <span className="component3-text12">
               <span>Claim</span>
@@ -54,20 +50,19 @@ const UserDataCard = () => {
       <style jsx>
         {`
           .component3-container {
-            width: 1060px;
+            width: 100%;
             height: 113px;
             display: flex;
+            margin-top: 24px;
             position: relative;
             align-items: flex-start;
           }
           .component3-frame {
-            top: 0px;
-            left: 0px;
             width: 328px;
             height: 112px;
             display: flex;
             overflow: hidden;
-            position: absolute;
+            position: relative;
             align-items: flex-start;
             flex-shrink: 0;
             border-radius: 16px;
@@ -99,13 +94,13 @@ const UserDataCard = () => {
             position: absolute;
           }
           .component3-frame1 {
-            top: 1px;
-            left: 366px;
+            
+            margin-left:20px;
             width: 328px;
             height: 112px;
             display: flex;
             overflow: hidden;
-            position: absolute;
+           position: relative;
             align-items: flex-start;
             flex-shrink: 0;
             border-radius: 16px;
@@ -137,14 +132,13 @@ const UserDataCard = () => {
             position: absolute;
           }
           .component3-frame2 {
-            top: 1px;
-            right: 0px;
+            margin-left:20px;
             width: 328px;
             height: 112px;
             display: flex;
-            overflow: hidden;
-            position: absolute;
+            overflow: hidden;   
             align-items: flex-start;
+            position: relative;
             flex-shrink: 0;
             border-radius: 16px;
             background-color: rgba(227, 245, 255, 1);

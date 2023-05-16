@@ -47,33 +47,34 @@ export default function Home() {
   }, [url]);
 
   return (
-    <Layout className="h-screen">
-      <Layout className="site-layout">
-        <Header
-          className="site-layout-background"
-          style={{
-            padding: 0
-          }}
-        >
-          <Dropdown menu={{ items }}>
-            <a onClick={(e) => e.preventDefault()} className="text-white">
-              <Space>
-                Hover me
-                <DownOutlined />
-              </Space>
-            </a>
-          </Dropdown>
-        </Header>
-        <Content
-          className="site-layout-background"
-          style={{
-            margin: '24px 16px',
-            padding: 24
-          }}
-        >
-          Content
-        </Content>
-      </Layout>
-    </Layout>
+    // <Layout className="h-screen">
+    //   <Layout className="site-layout">
+    //     <Header
+    //       className="site-layout-background"
+    //       style={{
+    //         padding: 0
+    //       }}
+    //     >
+    //       <Dropdown menu={{ items }}>
+    //         <a onClick={(e) => e.preventDefault()} className="text-white">
+    //           <Space>
+    //             Hover me
+    //             <DownOutlined />
+    //           </Space>
+    //         </a>
+    //       </Dropdown>
+    //     </Header>
+    //     <Content
+    //       className="site-layout-background"
+    //       style={{
+    //         margin: '24px 16px',
+    //         padding: 24
+    //       }}
+    //     >
+    //       Content
+    //     </Content>
+    //   </Layout>
+    // </Layout>
+    <div>1</div>
   );
 }

@@ -5,7 +5,7 @@ import LogoIconTop from '@/components/icons/logoIconTop';
 import Logo from '@/components/icons/logo';
 import { WalletConnect } from '@/components/wallet';
 import { usePathname } from 'next/navigation';
-import { Dropdown, Input, MenuProps, Space } from 'antd';
+import { ConfigProvider, Dropdown, Input, MenuProps, Space } from 'antd';
 import { SearchIcon } from '@/components/icons/search';
 import Link from 'next/link';
 import { DownOutlined } from '@ant-design/icons';
@@ -22,7 +22,7 @@ const Navbar = () => {
     },
     {
       key: '2',
-      label: <Link href="/home/profile">Event Participation</Link>
+      label: <Link href="/home/participate">Event Participation</Link>
     },
     {
       key: '3',
@@ -89,19 +89,27 @@ const Navbar = () => {
           {/*WalletConnect*/}
           <div>
             {isLoggedIn ? (
-              <Dropdown menu={{ items }}>
-                <a onClick={(e) => e.preventDefault()} className="text-white">
-                  <Button
-                    color="primary"
-                    className="text-[16px] hover:border-[#6E62EE] px-10 py-2 outline-none border:none"
-                  >
-                    <Space>
-                      Hover me
-                      <DownOutlined />
-                    </Space>
-                  </Button>
-                </a>
-              </Dropdown>
+              <ConfigProvider theme={{
+                token: {
+                  colorBgElevated: '#1A1A1A',
+                  colorText:'white',
+                }
+              }}>
+                <Dropdown menu={{ items }}>
+                  <a onClick={(e) => e.preventDefault()} className="text-white">
+                    <div
+                      color="primary"
+                      className="text-[16px] hover:border-[#6E62EE] px-10 py-2 rounded-[40px]"
+                      style={{ backgroundColor: '#1A1A1A' }}
+                    >
+                      <Space>
+                        Hover me
+                        <DownOutlined />
+                      </Space>
+                    </div>
+                  </a>
+                </Dropdown>
+              </ConfigProvider>
             ) : (
               <WalletConnect />
             )}

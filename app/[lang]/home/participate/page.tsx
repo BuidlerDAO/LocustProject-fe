@@ -1,6 +1,17 @@
 'use client'
 import React from "react"
+import UserDataCard from "@/components/userDataCard/userDataCard"
+import { TableUserOverview, UserArticle } from "@/components/table/table"
 
-export default function participate() {
-  return <div>Home</div>
+const participate=()=> {
+  return (
+    <>
+      <UserDataCard />
+      Statistics
+      <TableUserOverview />
+      <UserArticle />
+    </>
+  );
 }
+
+export default participate

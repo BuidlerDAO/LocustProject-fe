@@ -58,7 +58,7 @@ const UserDataCard = () => {
             align-items: flex-start;
           }
           .component3-frame {
-            width: 328px;
+            width: 24vw;
             height: 112px;
             display: flex;
             overflow: hidden;
@@ -88,15 +88,15 @@ const UserDataCard = () => {
           }
           .component3-currency-circle-dollar {
             top: 22px;
-            left: 280px;
+            right:2vw;
             width: 24px;
-            height: 24px;
+            height: 24px;1
             position: absolute;
           }
           .component3-frame1 {
             
             margin-left:20px;
-            width: 328px;
+            width: 24vw;
             height: 112px;
             display: flex;
             overflow: hidden;
@@ -126,14 +126,14 @@ const UserDataCard = () => {
           }
           .component3-currency-circle-dollar1 {
             top: 22px;
-            left: 280px;
+            right:2vw;
             width: 24px;
             height: 24px;
             position: absolute;
           }
           .component3-frame2 {
             margin-left:20px;
-            width: 328px;
+            width: 24vw;
             height: 112px;
             display: flex;
             overflow: hidden;   
@@ -163,7 +163,7 @@ const UserDataCard = () => {
           }
           .component3-currency-circle-dollar2 {
             top: 22px;
-            left: 280px;
+            right:2vw;
             width: 24px;
             height: 24px;
             position: absolute;
@@ -171,7 +171,7 @@ const UserDataCard = () => {
           .component3-frame15065 {
             gap: 8px;
             top: 60px;
-            left: 223px;
+            right:2vw;
             width: 81px;
             display: flex;
             padding: 8px 24px;

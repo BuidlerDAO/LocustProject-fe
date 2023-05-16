@@ -15,7 +15,7 @@ const UserDataCard = () => {
             <span>100 U</span>
           </span>
           <span className="component3-currency-circle-dollar">
-            <DollarCircleOutlined style={{ fontSize: '125%' }} />
+            <DollarCircleOutlined style={{ fontSize: '125%' ,color:'black'}} />
           </span>
         </div>
         <div className="component3-frame1">
@@ -27,7 +27,7 @@ const UserDataCard = () => {
           </span>
 
           <span className="component3-currency-circle-dollar1">
-            <DollarCircleOutlined style={{ fontSize: '125%' }} />
+            <DollarCircleOutlined style={{ fontSize: '125%',color:'black' }} />
           </span>
         </div>
         <div className="component3-frame2">
@@ -38,7 +38,7 @@ const UserDataCard = () => {
             <span>20 U</span>
           </span>
           <span className="component3-currency-circle-dollar2">
-            <DollarCircleOutlined style={{ fontSize: '125%' }} />
+            <DollarCircleOutlined style={{ fontSize: '125%' ,color:'black'}} />
           </span>
           <div className="component3-frame15065">
             <span className="component3-text12">
@@ -88,13 +88,13 @@ const UserDataCard = () => {
           }
           .component3-currency-circle-dollar {
             top: 22px;
-            right:2vw;
+            right: 2vw;
             width: 24px;
-            height: 24px;1
+            height: 24px;
             position: absolute;
           }
           .component3-frame1 {
-            
+           
             margin-left:20px;
             width: 24vw;
             height: 112px;

@@ -101,9 +101,9 @@ const Block = (props: {
             <span className="text-textGrey">
               <LinkOutlined />
             </span>
-            <span className="block-text06">
-              <span>{props.data.link}</span>
-            </span>
+            <div className="block-text06">
+              <a href={props.data.link}>{props.data.link}</a>
+            </div>
           </div>
         </div>
         <Tooltip title={text} placement="bottom">
@@ -139,7 +139,7 @@ const Block = (props: {
         {`
           .block-block {
             gap: 0.5rem;
-            width: 64.25rem;
+            width: 73vw;
             display: flex;
             padding: 12px 12px 8px 12px;
             overflow: hidden;
@@ -254,16 +254,16 @@ const Block = (props: {
           }
           .block-frame5 {
             top: 27px;
-            left: 62.25rem;
+            left: 80rem;
             width: 18px;
             height: 18px;
             position: absolute;
           }
           .block-frame6 {
             gap: 8px;
-            margin-top: 7rem;
+            margin-top: 6rem;
             text-align: center;
-            width: 62.25rem;
+            width: 80rem;
             display: flex;
             align-items: flex-start;
             flex-shrink: 0;
@@ -271,7 +271,7 @@ const Block = (props: {
           }
           .block-text08 {
             color: rgba(116, 116, 116, 1);
-            width: 62.25rem;
+            width: 71vw;
             height: auto;
             font-size: 14px;
             font-style: italic;
@@ -318,7 +318,7 @@ const Block = (props: {
             font-style: italic;
           }
           .block-group1 {
-            width: 62.25rem;
+            width: 71vw;
 
             display: flex;
             position: relative;
@@ -341,7 +341,7 @@ const Block = (props: {
           }
           .block-line18 {
             margin-top: 1rem;
-            margin-left: -1px;
+            margin-left: -30px;
             position: relative;
             width: 100%;
             height: 1px;

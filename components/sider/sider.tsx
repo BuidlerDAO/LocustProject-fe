@@ -36,7 +36,7 @@ export default function Sider() {
         defaultSelectedKeys={['1']}
         onSelect={handleMenuClick}
       >
-        <Link href="/home/explore">
+        <Link href="/home">
           <div className="hover:text-purple1">
             <Menu.Item
               key={1}

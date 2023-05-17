@@ -3,10 +3,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CopyOutlined, DollarCircleOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
+import toast from '../toast/toast';
 
 const DataCard = (props: object) => {
   const onCopy = () => {
-    console.log('copied');
+    const value =
+      '0x3bd0fc9d34b3966ebe27c143e1926a522d4e9b78eff3c66553e00126977aca91'; // replace with the value you want to copy
+    navigator.clipboard
+      .writeText(value)
+      .then(() =>
+        toast.success('Copy success', {
+          duration: 4000
+        })
+      )
+      .catch((err) => console.error('failed to copy', err));
   };
   return (
     <>

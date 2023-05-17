@@ -24,7 +24,7 @@ const Index = memo((props: any) => {
   const Click = useCallback(() => {
     console.log(111);
     Toast.error('You have not signed up for locusts, please sign up first', {
-      duration: Infinity
+      duration: 4000
     });
   }, []);
 

@@ -88,7 +88,7 @@ const Navbar = () => {
       className={`relative z-50 flex h-[100px] w-full flex-wrap items-center bg-black`}
     >
       <div className="sticky inset-0 z-10 flex h-full w-full max-w-full items-center px-8 py-2 lg:px-10 lg:py-4">
-        <div className="text-blue-gray-900 dark:text-blue-gray-100 flex w-full items-center justify-between">
+        <div className="text-blue-gray-900 dark:text-blue-gray-100 flex w-full items-center">
           <div className="flex items-center justify-center">
             {/*首页logo只有上半部分*/}
             <div
@@ -106,32 +106,48 @@ const Navbar = () => {
             </Typography>
           </div>
           {/*搜索框 & sign up 是否出现 */}
-          {flag ? null : (
+          {flag ? (
+            <>
+              <div className="flex h-[52px] w-[50vw] ml-[10vw]"></div>
+            </>
+          ) : (
             <>
               {/*搜索框*/}
-
-              <AutoComplete
-                options={options}
-                onSelect={onSelect}
-                onSearch={onSearch}
+              <ConfigProvider
+                theme={{
+                  token: {
+                    colorBgElevated: 'black',
+                    colorText: '#ffffff',
+                    colorIconHover: '#ffffff',
+                    colorIcon: '#ffffff'
+                  }
+                }}
               >
-                <Input
-                  size="large"
-                  placeholder="Search"
-                  prefix={<SearchIcon />}
-                  onPressEnter={() => {
-                    return null;
-                  }}
+                <AutoComplete
+                  options={options}
+                  onSelect={onSelect}
+                  onSearch={handleSearch}
                   style={{
                     backgroundColor: '#1f1f1f',
                     borderColor: 'rgba(255, 255, 255, 0.16)'
                   }}
-                  className="absolute left-[18rem] flex h-[52px] w-[448px] items-center rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
-                />
-              </AutoComplete>
+                  className="flex h-[52px] w-[30vw] ml-[12vw] rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+                >
+                  <Input
+                    size="large"
+                    placeholder="Search"
+                    prefix={<SearchIcon />}
+                    onPressEnter={() => {
+                      return null;
+                    }}
+                    bordered={false}
+                    className="flex h-[52px] w-full items-center rounded-full"
+                  />
+                </AutoComplete>
+              </ConfigProvider>
               {/*Sign up for Locust*/}
               {isLoggedIn ? null : (
-                <div className="ml-[60vw] flex text-white absolute">
+                <div className="ml-[5vw] flex text-white ">
                   <Link href="/">Sign up for Locust</Link>
                 </div>
               )}
@@ -164,7 +180,9 @@ const Navbar = () => {
                 </Dropdown>
               </ConfigProvider>
             ) : (
-              <WalletConnect />
+              <span className="ml-[10vw] flex items-center">
+                <WalletConnect />
+              </span>
             )}
           </div>
         </div>

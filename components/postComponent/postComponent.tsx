@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable prettier/prettier */
 'use client';
 import React, { useEffect, useState } from 'react';

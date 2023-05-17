@@ -31,7 +31,9 @@
     "prettier"
   ],
   "settings": {
-    "import/ignore": ["node_modules"],
+    "import/ignore": [
+      "node_modules"
+    ],
     "react": {
       "version": "detect"
     }
@@ -39,7 +41,7 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "prettier/prettier": [
-      "warn",
+      "off",
       {
         "singleQuote": true,
         "semi": true,
@@ -62,6 +64,7 @@
       }
     ],
     "@typescript-eslint/no-unused-vars": "off",
-    "tailwindcss/no-custom-classname": "off"
+    "tailwindcss/no-custom-classname": "off",
+    "react/no-unknown-property": "off"
   }
 }

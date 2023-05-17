@@ -5,12 +5,48 @@ import LogoIconTop from '@/components/icons/logoIconTop';
 import Logo from '@/components/icons/logo';
 import { WalletConnect } from '@/components/wallet';
 import { usePathname } from 'next/navigation';
-import { Dropdown, Input, MenuProps, Space } from 'antd';
+import { AutoComplete, ConfigProvider, Dropdown, Input, MenuProps, SelectProps, Space } from 'antd';
 import { SearchIcon } from '@/components/icons/search';
 import Link from 'next/link';
 import { DownOutlined } from '@ant-design/icons';
 import { useLoginStore } from '@/store';
+import { Button } from '../button';
+import { useState } from 'react';
 
+const getRandomInt = (max: number, min = 0) =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
+
+const searchResult = (query: string) =>
+  new Array(getRandomInt(5))
+    .join('.')
+    .split('.')
+    .map((_, idx) => {
+      const category = `${query}${idx}`;
+      return {
+        value: category,
+        label: (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between'
+            }}
+          >
+            <span>
+              Found {query} on{' '}
+              <a
+                href={`https://s.taobao.com/search?q=${query}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {category}
+              </a>
+            </span>
+            <span>{getRandomInt(200, 100)} results</span>
+          </div>
+        )
+      };
+    });
+    
 const Navbar = () => {
   const path = usePathname();
   const flag = path == '/zh-CN' || path == '/en';
@@ -21,7 +57,7 @@ const Navbar = () => {
     },
     {
       key: '2',
-      label: <Link href="/home/profile">Event Participation</Link>
+      label: <Link href="/home/participate">Event Participation</Link>
     },
     {
       key: '3',
@@ -38,6 +74,15 @@ const Navbar = () => {
   ];
   const { isLoggedIn } = useLoginStore();
 
+   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
+
+   const handleSearch = (value: string) => {
+     setOptions(value ? searchResult(value) : []);
+   };
+
+   const onSelect = (value: string) => {
+     console.log('onSelect', value);
+   };
   return (
     <div
       className={`relative z-50 flex h-[100px] w-full flex-wrap items-center bg-black`}
@@ -64,43 +109,63 @@ const Navbar = () => {
           {flag ? null : (
             <>
               {/*搜索框*/}
-              <Input
-                size="large"
-                placeholder="Search"
-                prefix={<SearchIcon />}
-                onPressEnter={() => {
-                  return null;
-                }}
-                style={{
-                  backgroundColor: '#1f1f1f',
-                  borderColor: 'rgba(255, 255, 255, 0.16)'
-                }}
-                className="relative left-[98.5px] flex h-[52px] w-[448px] items-center rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
-              />
+
+              <AutoComplete
+                options={options}
+                onSelect={onSelect}
+                onSearch={onSearch}
+              >
+                <Input
+                  size="large"
+                  placeholder="Search"
+                  prefix={<SearchIcon />}
+                  onPressEnter={() => {
+                    return null;
+                  }}
+                  style={{
+                    backgroundColor: '#1f1f1f',
+                    borderColor: 'rgba(255, 255, 255, 0.16)'
+                  }}
+                  className="absolute left-[18rem] flex h-[52px] w-[448px] items-center rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+                />
+              </AutoComplete>
               {/*Sign up for Locust*/}
-              <div className="ml-[140px] flex text-white">
-                <Link href="/">Sign up for Locust</Link>
-              </div>
+              {isLoggedIn ? null : (
+                <div className="ml-[60vw] flex text-white absolute">
+                  <Link href="/">Sign up for Locust</Link>
+                </div>
+              )}
             </>
           )}
           {/*WalletConnect*/}
           <div>
-            {
-              isLoggedIn ? (
-                <WalletConnect />
-              ) : (
-                  <Dropdown menu={{ items }}>
-              <a onClick={(e) => e.preventDefault()} className="text-white">
-                <Space>
-                  Hover me
-                  <DownOutlined />
-                </Space>
-              </a>
+            {isLoggedIn ? (
+              <ConfigProvider
+                theme={{
+                  token: {
+                    colorBgElevated: '#1A1A1A',
+                    colorText: 'white'
+                  }
+                }}
+              >
+                <Dropdown menu={{ items }}>
+                  <a onClick={(e) => e.preventDefault()} className="text-white">
+                    <div
+                      color="primary"
+                      className="text-[16px] hover:border-[#6E62EE] px-10 py-2 rounded-[40px]"
+                      style={{ backgroundColor: '#1A1A1A' }}
+                    >
+                      <Space>
+                        Hover me
+                        <DownOutlined />
+                      </Space>
+                    </div>
+                  </a>
                 </Dropdown>
-              )
-            }
-            
-            
+              </ConfigProvider>
+            ) : (
+              <WalletConnect />
+            )}
           </div>
         </div>
       </div>

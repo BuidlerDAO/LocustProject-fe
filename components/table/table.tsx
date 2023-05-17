@@ -281,5 +281,195 @@ const Table1 = (props: {}) => {
     </>
   );
 };
-
-export {Table2,Table1};
+const TableUserOverview = (props: {}) => {
+  //columns含有Month、Number of articles submitted、Number of unsuccessful articles、Number of valid articles、Bonus、Total Prize Pool
+  const columns = [
+    {
+      title: 'Month',
+      dataIndex: 'month',
+      key: 'month'
+    },
+    {
+      title: 'Number of articles submitted',
+      dataIndex: 'numArticlesSubmitted',
+      key: 'numArticlesSubmitted'
+    },
+    {
+      title: 'Number of unsuccessful articles',
+      dataIndex: 'numUnsuccessfulArticles',
+      key: 'numUnsuccessfulArticles'
+    },
+    {
+      title: 'Number of valid articles',
+      dataIndex: 'numValidArticles',
+      key: 'numValidArticles'
+    },
+    {
+      title: 'Bonus',
+      dataIndex: 'bonus',
+      key: 'bonus'
+    },
+    {
+      title: 'Total Prize Pool',
+      dataIndex: 'totalPrizePool',
+      key: 'totalPrizePool'
+    }
+  ];
+  const data: readonly any[] | undefined = [
+    {
+      month: '2021-01',
+      numArticlesSubmitted: 10,
+      numUnsuccessfulArticles: 2,
+      numValidArticles: 8,
+      bonus: 100,
+      totalPrizePool: 1000
+    },
+    {
+      month: '2021-02',
+      numArticlesSubmitted: 10,
+      numUnsuccessfulArticles: 2,
+      numValidArticles: 8,
+      bonus: 100,
+      totalPrizePool: 1000
+    },
+  ];
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
+  const onDownload = () => {
+    console.log('download');
+  };
+  return (
+    <>
+      <div>
+        <div className="flex justify-between">
+          <div>
+            Overview
+            <DownloadOutlined
+              className="ml-6 cursor-pointer"
+              onClick={onDownload}
+            />
+          </div>
+        </div>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorBgContainer: '#0f0f0f',
+              colorText: '#ffffff',
+              colorBgTextActive: '#ffffff',
+              colorTextPlaceholder: '#ffffff',
+              colorTextHeading: ' #747474',
+              colorBorderSecondary: '#26262675',
+              colorSplit: '#26262675',
+              colorBorder: '#29282F'
+              // colorBgDisabled: '#26262675',
+            }
+          }}
+        >
+          <Table
+            columns={columns}
+            dataSource={data}
+            pagination={{
+              position: ['bottomCenter']
+            }}
+          />
+        </ConfigProvider>
+      </div>
+      <style jsx>{`
+        .month-border {
+          background: #0D0COF;
+          border: 1px solid #29282f;
+          border-radius: 8px;
+          padding: 0.5rem 1.5rem;
+          gap: 0.25rem;
+        }
+      `}</style>
+    </>
+  );
+};
+const UserArticle = (props: {}) => {
+  //columns中有Article Title、Submit Time、Status
+  const columns = [
+    {
+      title: 'Article Title',
+      dataIndex: 'articleTitle',
+      key: 'articleTitle'
+    },
+    {
+      title: 'Submit Time',
+      dataIndex: 'submitTime',
+      key: 'submitTime'
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status'
+    }
+  ];
+  const data: readonly any[] | undefined = [
+    {
+      articleTitle: 'Article Title',
+      submitTime: '2021-01-01',
+      status: 'Normal'
+    },
+    {
+      articleTitle: 'Article Title',
+      submitTime: '2021-01-01',
+      status: 'Audit does not pass'
+    },
+  ]
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
+  const onDownload = () => {
+    console.log('download');
+  };
+  return (
+    <>
+      <div>
+        <div className="flex justify-between">
+          <div>
+            Article Details
+            <DownloadOutlined
+              className="ml-6 cursor-pointer"
+              onClick={onDownload}
+            />
+          </div>
+        </div>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorBgContainer: '#0f0f0f',
+              colorText: '#ffffff',
+              colorBgTextActive: '#ffffff',
+              colorTextPlaceholder: '#ffffff',
+              colorTextHeading: ' #747474',
+              colorBorderSecondary: '#26262675',
+              colorSplit: '#26262675',
+              colorBorder: '#29282F'
+              // colorBgDisabled: '#26262675',
+            }
+          }}
+        >
+          <Table
+            columns={columns}
+            dataSource={data}
+            pagination={{
+              position: ['bottomCenter']
+            }}
+          />
+        </ConfigProvider>
+      </div>
+      <style jsx>{`
+        .month-border {
+          background: #0D0COF;
+          border: 1px solid #29282f;
+          border-radius: 8px;
+          padding: 0.5rem 1.5rem;
+          gap: 0.25rem;
+        }
+      `}</style>
+    </>
+  );
+};
+export {Table2,Table1,TableUserOverview,UserArticle};

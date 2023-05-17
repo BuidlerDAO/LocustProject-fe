@@ -1,7 +1,3 @@
-
-html {
-  overflow-x: hidden;
-}
 .page {
   width: 90rem;
   height: 132.44rem;
@@ -555,7 +551,6 @@ html {
   border-radius: 1.5rem;
   box-sizing: border-box;
   font-size: 12px;
-  
 }
 
 .output {

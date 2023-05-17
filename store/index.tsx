@@ -75,7 +75,7 @@ const useLoginStore = create<LoginStore>((set: SetState<LoginStore>) => ({
   username: '',
   login: (username) =>
     set(() => ({
-      isLoggedIn: true,
+      isLoggedIn: false,
       username: username
     }))
 }));

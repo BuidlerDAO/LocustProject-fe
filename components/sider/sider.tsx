@@ -57,7 +57,7 @@ export default function Sider() {
         <Link href="/home/post">
           <Menu.Item key={2}>
             <div
-              className="rounded-full bg-purple1 text-white text-base flex justify-center items-center py-2 px-1"
+              className="flex items-center justify-center rounded-full bg-purple1 px-1 py-2 text-base text-white"
               style={{ fontFamily: 'Poppins' }}
             >
               new Post

@@ -31,7 +31,6 @@ const postComponent = (props: { rootClassName: any }) => {
     personalThoughts: string;
   }) => {
     console.log(getCurrentDate());
-
     Object.assign(e, { time: getCurrentDate() });
     console.log(e);
     increase(e);

@@ -106,7 +106,11 @@ const Navbar = () => {
             </Typography>
           </div>
           {/*搜索框 & sign up 是否出现 */}
-          {flag ? null : (
+          {flag ? (
+            <>
+              <div className="flex h-[52px] w-[50vw] ml-[10vw]"></div>
+            </>
+          ) : (
             <>
               {/*搜索框*/}
               <ConfigProvider
@@ -176,7 +180,7 @@ const Navbar = () => {
                 </Dropdown>
               </ConfigProvider>
             ) : (
-              <span className="ml-[5vw] flex items-center">
+              <span className="ml-[10vw] flex items-center">
                 <WalletConnect />
               </span>
             )}

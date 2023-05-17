@@ -71,11 +71,11 @@ type LoginStore = {
 };
 
 const useLoginStore = create<LoginStore>((set: SetState<LoginStore>) => ({
-  isLoggedIn: true,
+  isLoggedIn: false,
   username: '',
   login: (username) =>
     set(() => ({
-      isLoggedIn: true,
+      isLoggedIn: false,
       username: username
     }))
 }));

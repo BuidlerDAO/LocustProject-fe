@@ -5,13 +5,48 @@ import LogoIconTop from '@/components/icons/logoIconTop';
 import Logo from '@/components/icons/logo';
 import { WalletConnect } from '@/components/wallet';
 import { usePathname } from 'next/navigation';
-import { ConfigProvider, Dropdown, Input, MenuProps, Space } from 'antd';
+import { AutoComplete, ConfigProvider, Dropdown, Input, MenuProps, SelectProps, Space } from 'antd';
 import { SearchIcon } from '@/components/icons/search';
 import Link from 'next/link';
 import { DownOutlined } from '@ant-design/icons';
 import { useLoginStore } from '@/store';
 import { Button } from '../button';
+import { useState } from 'react';
 
+const getRandomInt = (max: number, min = 0) =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
+
+const searchResult = (query: string) =>
+  new Array(getRandomInt(5))
+    .join('.')
+    .split('.')
+    .map((_, idx) => {
+      const category = `${query}${idx}`;
+      return {
+        value: category,
+        label: (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between'
+            }}
+          >
+            <span>
+              Found {query} on{' '}
+              <a
+                href={`https://s.taobao.com/search?q=${query}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {category}
+              </a>
+            </span>
+            <span>{getRandomInt(200, 100)} results</span>
+          </div>
+        )
+      };
+    });
+    
 const Navbar = () => {
   const path = usePathname();
   const flag = path == '/zh-CN' || path == '/en';
@@ -39,6 +74,15 @@ const Navbar = () => {
   ];
   const { isLoggedIn } = useLoginStore();
 
+   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
+
+   const handleSearch = (value: string) => {
+     setOptions(value ? searchResult(value) : []);
+   };
+
+   const onSelect = (value: string) => {
+     console.log('onSelect', value);
+   };
   return (
     <div
       className={`relative z-50 flex h-[100px] w-full flex-wrap items-center bg-black`}
@@ -65,22 +109,29 @@ const Navbar = () => {
           {flag ? null : (
             <>
               {/*搜索框*/}
-              <Input
-                size="large"
-                placeholder="Search"
-                prefix={<SearchIcon />}
-                onPressEnter={() => {
-                  return null;
-                }}
-                style={{
-                  backgroundColor: '#1f1f1f',
-                  borderColor: 'rgba(255, 255, 255, 0.16)'
-                }}
-                className="absolute left-[18rem] flex h-[52px] w-[448px] items-center rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
-              />
+
+              <AutoComplete
+                options={options}
+                onSelect={onSelect}
+                onSearch={onSearch}
+              >
+                <Input
+                  size="large"
+                  placeholder="Search"
+                  prefix={<SearchIcon />}
+                  onPressEnter={() => {
+                    return null;
+                  }}
+                  style={{
+                    backgroundColor: '#1f1f1f',
+                    borderColor: 'rgba(255, 255, 255, 0.16)'
+                  }}
+                  className="absolute left-[18rem] flex h-[52px] w-[448px] items-center rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+                />
+              </AutoComplete>
               {/*Sign up for Locust*/}
               {isLoggedIn ? null : (
-                <div className="ml-[45rem] flex text-white absolute">
+                <div className="ml-[60vw] flex text-white absolute">
                   <Link href="/">Sign up for Locust</Link>
                 </div>
               )}
@@ -89,12 +140,14 @@ const Navbar = () => {
           {/*WalletConnect*/}
           <div>
             {isLoggedIn ? (
-              <ConfigProvider theme={{
-                token: {
-                  colorBgElevated: '#1A1A1A',
-                  colorText:'white',
-                }
-              }}>
+              <ConfigProvider
+                theme={{
+                  token: {
+                    colorBgElevated: '#1A1A1A',
+                    colorText: 'white'
+                  }
+                }}
+              >
                 <Dropdown menu={{ items }}>
                   <a onClick={(e) => e.preventDefault()} className="text-white">
                     <div

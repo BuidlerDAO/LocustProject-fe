@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import { CopyOutlined, DollarCircleOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
 
-const DataCard = (props: {
-}) => {
+const DataCard = (props: object) => {
   const onCopy = () => {
     console.log('copied');
   };
@@ -24,7 +23,7 @@ const DataCard = (props: {
               <span>Address</span>
             </span>
             <span className="component2-text04">
-              <span className="w-9/12 flex">
+              <span className="flex w-9/12">
                 0x3bd0fc9d34b3966ebe27c143e1926a522d4e9b78eff3c66553e00126977aca91
               </span>
             </span>

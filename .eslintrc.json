@@ -39,7 +39,7 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "prettier/prettier": [
-      "error",
+      "warn",
       {
         "singleQuote": true,
         "semi": true,
@@ -55,7 +55,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     "no-console": "warn",
     "sort-imports": [
-      "error",
+      "warn",
       {
         "ignoreCase": true,
         "ignoreDeclarationSort": true

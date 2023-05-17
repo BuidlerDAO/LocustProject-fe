@@ -37,7 +37,7 @@ const postComponent = (props: { rootClassName: any }) => {
     increase(e);
     console.log(usePostStore.getState());
     //跳转到/home/explore页
-    router.push('/home/explore');
+    router.push('/home');
   };
   const title = Form.useWatch('title', form);
   const link = Form.useWatch('link', form);

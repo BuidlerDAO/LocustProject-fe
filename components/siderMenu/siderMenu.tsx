@@ -45,7 +45,7 @@ const SideMenu = (props: {
               }}
               style={{ color: isExplore ? 'rgba(109, 98, 238, 1)' : '' }}
             >
-              <Link href="/home/explore">
+              <Link href="/home/">
                 <div className="side-menu-frame1013">
                   <span>
                     <AppstoreOutlined />

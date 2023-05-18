@@ -74,14 +74,14 @@ const postComponent = (props: { rootClassName: any }) => {
       >
         <div className={`component-container ${props.rootClassName} `}>
           <div className="component-frame15062">
-            <Form.Item
-              name="title"
-              rules={[{ required: true, message: 'Enter The Article' }]}
+            <ConfigProvider
+              theme={{
+                token: { colorBgContainer: '#FFFFFF0F' }
+              }}
             >
-              <ConfigProvider
-                theme={{
-                  token: { colorBgContainer: '#FFFFFF0F' }
-                }}
+              <Form.Item
+                name="title"
+                rules={[{ required: true, message: 'Enter The Article' }]}
               >
                 <Input
                   type="text"
@@ -94,35 +94,37 @@ const postComponent = (props: { rootClassName: any }) => {
                   maxLength={20}
                   className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  border-none text-white hover:border-solid"
                 />
-              </ConfigProvider>
-            </Form.Item>
+              </Form.Item>
+            </ConfigProvider>
+
             {/* <span className="component-text">
             <span>+ Enter the article</span>
           </span> */}
           </div>
           <div className="component-frame15063">
-            <Form.Item
-              name="link"
-              rules={[
-                { required: true, message: 'Please Enter The Original Link' }
-              ]}
+            <ConfigProvider
+              theme={{
+                token: { colorBgContainer: '#FFFFFF0F' }
+              }}
             >
-              <ConfigProvider
-                theme={{
-                  token: { colorBgContainer: '#FFFFFF0F' }
-                }}
+              <Form.Item
+                name="link"
+                rules={[
+                  { required: true, message: 'Please Enter The Original Link' }
+                ]}
               >
                 <Input
                   type="text"
                   placeholder="Please enter the original link"
                   style={{
                     width: '70vw',
-                    height: '7vh'
+                    height: '7vh',
+                    outline: 'none'
                   }}
                   className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  border-none text-white hover:border-solid"
                 />
-              </ConfigProvider>
-            </Form.Item>
+              </Form.Item>
+            </ConfigProvider>
           </div>
           {/* 提交按钮 */}
           <Form.Item>

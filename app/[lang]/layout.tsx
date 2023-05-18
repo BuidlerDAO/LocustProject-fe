@@ -3,7 +3,7 @@ import RootLayoutClient from '@/components/layout';
 import { Flexible } from '@/components/theme/flexible';
 import { Toaster } from '@/components/toast/toast';
 import Navbar from '@/components/navbar';
-import { Metadata } from 'next';
+import { Metadata } from 'next/types';
 import { DefaultMetadata } from '@/components/theme/metadata';
 import { i18n } from '@/i18n/config';
 import { WalletConfigWrapper } from '@/components/wallet';

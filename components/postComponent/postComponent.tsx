@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable prettier/prettier */
 'use client';
 import React, { useEffect, useState } from 'react';
 
 import PropTypes from 'prop-types';
-import { Button, Form, Input } from 'antd';
+import { Button, ConfigProvider, Form, Input } from 'antd';
 import { usePostStore } from '@/store';
 import Link from 'next/link';
+import './index.css';
 import { useRouter } from 'next/navigation';
+
 const { TextArea } = Input;
 
 const postComponent = (props: { rootClassName: any }) => {
@@ -30,9 +31,11 @@ const postComponent = (props: { rootClassName: any }) => {
     link: string;
     originalText: string;
     personalThoughts: string;
+    time: string;
   }) => {
     console.log(getCurrentDate());
-    Object.assign(e, { time: getCurrentDate() });
+    //Object.assign(e, { time: getCurrentDate() });
+    e.time = getCurrentDate();
     console.log(e);
     increase(e);
     console.log(usePostStore.getState());
@@ -71,45 +74,57 @@ const postComponent = (props: { rootClassName: any }) => {
       >
         <div className={`component-container ${props.rootClassName} `}>
           <div className="component-frame15062">
-            <Form.Item
-              name="title"
-              rules={[{ required: true, message: 'Enter The Article' }]}
+            <ConfigProvider
+              theme={{
+                token: { colorBgContainer: '#FFFFFF0F' }
+              }}
             >
-              <Input
-                type="text"
-                placeholder="+ Enter the article"
-                style={{
-                  width: '70vw',
-                  height: '7vh',
-                  border: 'none'
-                }}
-                // showCount
-                // maxLength={20}
-                className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
-              />
-            </Form.Item>
+              <Form.Item
+                name="title"
+                rules={[{ required: true, message: 'Enter The Article' }]}
+              >
+                <Input
+                  type="text"
+                  placeholder="+ Enter the article"
+                  style={{
+                    width: '70vw',
+                    height: '7vh'
+                  }}
+                  showCount
+                  maxLength={20}
+                  className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  border-none text-white hover:border-solid"
+                />
+              </Form.Item>
+            </ConfigProvider>
+
             {/* <span className="component-text">
             <span>+ Enter the article</span>
           </span> */}
           </div>
           <div className="component-frame15063">
-            <Form.Item
-              name="link"
-              rules={[
-                { required: true, message: 'Please Enter The Original Link' }
-              ]}
+            <ConfigProvider
+              theme={{
+                token: { colorBgContainer: '#FFFFFF0F' }
+              }}
             >
-              <Input
-                type="text"
-                placeholder="Please enter the original link"
-                style={{
-                  width: '70vw',
-                  height: '7vh',
-                  border: 'none'
-                }}
-                className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
-              />
-            </Form.Item>
+              <Form.Item
+                name="link"
+                rules={[
+                  { required: true, message: 'Please Enter The Original Link' }
+                ]}
+              >
+                <Input
+                  type="text"
+                  placeholder="Please enter the original link"
+                  style={{
+                    width: '70vw',
+                    height: '7vh',
+                    outline: 'none'
+                  }}
+                  className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  border-none text-white hover:border-solid"
+                />
+              </Form.Item>
+            </ConfigProvider>
           </div>
           {/* 提交按钮 */}
           <Form.Item>
@@ -154,19 +169,23 @@ const postComponent = (props: { rootClassName: any }) => {
               ]}
             >
               <div className="component-frame15064">
-                <TextArea
-                  showCount
-                  maxLength={100}
-                  placeholder="Please enter the core content of the original text"
-                  style={{
-                    width: '70vw',
-                    height: '30vh',
-                    border: 'none',
-                    resize: 'none'
+                <ConfigProvider
+                  theme={{
+                    token: { colorBgContainer: '#FFFFFF0F' }
                   }}
-                  className="absolute left-0 top-0 flex items-start rounded-lg  bg-inherit text-white"
-                />
-
+                >
+                  <TextArea
+                    showCount
+                    maxLength={100}
+                    placeholder="Please enter the core content of the original text"
+                    style={{
+                      width: '70vw',
+                      height: '30vh',
+                      resize: 'none'
+                    }}
+                    className="absolute left-0 top-0 flex items-start rounded-lg  border-none text-white hover:border-solid"
+                  />
+                </ConfigProvider>
                 {/* <span className="component-text10">
                 <span>please enter the core content of the original text</span>
               </span> */}
@@ -184,17 +203,21 @@ const postComponent = (props: { rootClassName: any }) => {
               ]}
             >
               <div className="component-frame15066">
-                <TextArea
-                  placeholder="Please enter Personal thoughts"
-                  style={{
-                    width: '70vw',
-                    height: '30vh',
-                    border: 'none',
-                    resize: 'none'
+                <ConfigProvider
+                  theme={{
+                    token: { colorBgContainer: '#FFFFFF0F' }
                   }}
-                  className=" absolute left-0 top-0 flex  items-start rounded-lg  bg-inherit text-white"
-                />
-
+                >
+                  <TextArea
+                    placeholder="Please enter Personal thoughts"
+                    style={{
+                      width: '70vw',
+                      height: '30vh',
+                      resize: 'none'
+                    }}
+                    className="absolute left-0 top-0 flex  items-start rounded-lg border-none text-white hover:border-solid"
+                  />
+                </ConfigProvider>
                 {/* <span className="component-text16">
                 <span>please enter Personal thoughts</span>
               </span> */}
@@ -253,11 +276,8 @@ const postComponent = (props: { rootClassName: any }) => {
             position: absolute;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: #2c2c2c;
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 8px;
-            background-color: #2c2c2c;
+            border-none;
+            background-color: inherit;
           }
           .component-text {
             top: 21px;
@@ -298,11 +318,8 @@ const postComponent = (props: { rootClassName: any }) => {
             position: absolute;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: #2c2c2c;
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 8px;
-            background-color: #2c2c2c;
+            border-none;
+            background-color: inherit;
           }
           .component-text04 {
             top: 21px;
@@ -374,11 +391,8 @@ const postComponent = (props: { rootClassName: any }) => {
             position: relative;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: rgba(255, 255, 255, 0.05999999865889549);
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.05999999865889549);
+            border-none;
+            background-color: inherit;
           }
           .component-text10 {
             top: 21px;
@@ -440,11 +454,9 @@ const postComponent = (props: { rootClassName: any }) => {
             position: relative;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: rgba(255, 255, 255, 0.05999999865889549);
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.05999999865889549);
+           border-none;
+            background-color: inherit;
+            
           }
           .component-text16 {
             top: 21px;

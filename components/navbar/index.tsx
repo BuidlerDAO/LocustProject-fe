@@ -141,7 +141,7 @@ const Navbar = () => {
                       return null;
                     }}
                     bordered={false}
-                    className="flex h-[52px] w-full items-center rounded-full"
+                    className="flex h-[52px] items-center rounded-full w-fit"
                   />
                 </AutoComplete>
               </ConfigProvider>

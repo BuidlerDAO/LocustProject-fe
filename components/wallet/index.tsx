@@ -15,21 +15,49 @@ const onClick: MenuProps['onClick'] = ({ key }) => {
 
 const items: MenuProps['items'] = [
   {
-    label: '1st menu item',
-    key: '1'
+    key: '1',
+    label: (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.antgroup.com"
+      >
+        1st menu item
+      </a>
+    )
   },
   {
-    label: '2nd menu item',
-    key: '2'
+    key: '2',
+    label: (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.aliyun.com"
+      >
+        2nd menu item (disabled)
+      </a>
+    )
   },
   {
-    label: '3rd menu item',
-    key: '3'
+    key: '3',
+    label: (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.luohanacademy.com"
+      >
+        3rd menu item
+      </a>
+    )
   }
 ];
 
 const Wallet: FC<MyProps> = () => {
   const [isConnect, setIsconnect] = useState(true);
+  const menuStyle = {
+    backgroundColor: 'red',
+    color: 'white'
+  };
   return (
     <>
       <Button
@@ -39,16 +67,33 @@ const Wallet: FC<MyProps> = () => {
         }`}
       >
         {isConnect ? (
-          <Dropdown menu={{ items, onClick }}>
-            <a
-              onClick={(e) => e.preventDefault()}
-              className="flex justify-between"
-            >
-              <Space>0x4c....3333</Space>
-              <div className="ml-[2px] mt-[8px]">
-                <DownOutlined />
+          <Dropdown
+            menu={{ items, onClick }}
+            placement="bottom"
+            overlayStyle={{
+              paddingTop: '14px',
+              width: '144px',
+              height: '136px'
+            }}
+            dropdownRender={(menu) => (
+              <div style={{ color: 'white' }}>
+                {React.cloneElement(menu as React.ReactElement, {
+                  style: menuStyle
+                })}
               </div>
-            </a>
+            )}
+          >
+            <div>
+              <a
+                onClick={(e) => e.preventDefault()}
+                className="flex justify-between"
+              >
+                <Space>0x4c....3333</Space>
+                <div className="ml-[2px] mt-[8px]">
+                  <DownOutlined />
+                </div>
+              </a>
+            </div>
           </Dropdown>
         ) : (
           <>Connect Wallet</>

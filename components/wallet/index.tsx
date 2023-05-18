@@ -5,58 +5,39 @@ import type { MenuProps } from 'antd';
 import { Dropdown, message, Space } from 'antd';
 import toast from '@/components/toast/toast';
 import DownOutlined from '@/components/icons/downOutLined';
+import Link from 'next/link';
 interface MyProps {
   children?: ReactNode;
 }
-
-const onClick: MenuProps['onClick'] = ({ key }) => {
-  toast.error(`Click on item ${key}`);
-};
 
 const items: MenuProps['items'] = [
   {
     key: '1',
     label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
-        1st menu item
-      </a>
+      <Link href="/home/profile" style={{ color: 'white' }}>
+        My Profile
+      </Link>
     )
   },
   {
     key: '2',
     label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.aliyun.com"
-      >
-        2nd menu item (disabled)
-      </a>
+      <Link href="/home" style={{ color: 'white', whiteSpace: 'nowrap' }}>
+        Event Participation
+      </Link>
     )
   },
   {
     key: '3',
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.luohanacademy.com"
-      >
-        3rd menu item
-      </a>
-    )
+    label: <p style={{ color: 'white' }}>Disconnect</p>
   }
 ];
 
 const Wallet: FC<MyProps> = () => {
   const [isConnect, setIsconnect] = useState(true);
   const menuStyle = {
-    backgroundColor: 'red',
-    color: 'white'
+    backgroundColor: '#1A1A1A',
+    borderRadius: '12px'
   };
   return (
     <>
@@ -68,7 +49,7 @@ const Wallet: FC<MyProps> = () => {
       >
         {isConnect ? (
           <Dropdown
-            menu={{ items, onClick }}
+            menu={{ items }}
             placement="bottom"
             overlayStyle={{
               paddingTop: '14px',
@@ -76,7 +57,7 @@ const Wallet: FC<MyProps> = () => {
               height: '136px'
             }}
             dropdownRender={(menu) => (
-              <div style={{ color: 'white' }}>
+              <div>
                 {React.cloneElement(menu as React.ReactElement, {
                   style: menuStyle
                 })}

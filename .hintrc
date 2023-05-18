@@ -11,6 +11,13 @@
           "-webkit-text-size-adjust"
         ]
       }
+    ],
+    "no-inline-styles": "off",
+    "axe/forms": [
+      "default",
+      {
+        "label": "off"
+      }
     ]
   }
 }

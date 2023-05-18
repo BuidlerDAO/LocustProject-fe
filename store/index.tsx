@@ -94,7 +94,7 @@ const useSiderStore = create<SiderStore>((set: SetState<SiderStore>) => ({
   isExplore: false,
   isDataView: false,
   isPost: false,
-  setIsExplore: (isExplore:any) =>
+  setIsExplore: (isExplore: any) =>
     set(() => ({
       isExplore: isExplore
     })),
@@ -102,11 +102,59 @@ const useSiderStore = create<SiderStore>((set: SetState<SiderStore>) => ({
     set(() => ({
       isDataView: isDataView
     })),
-  setIsPost: (isPost:any) =>
+  setIsPost: (isPost: any) =>
     set(() => ({
       isPost: isPost
     }))
 }));
 
-export { usePostStore , useLoginStore,useSiderStore};
+//存储登录用户状态和信息
+type UserStore = {
+  isAdmin: boolean;
+  isLogin: boolean;
+  isRegister: boolean;
+  isConnectTwitter: boolean;
+  username: string;
+  avatar: string;
+  setIsAdmin: (isAdmin: boolean) => void;
+  setIsLogin: (isLogin: boolean) => void;
+  setIsRegister: (isRegister: boolean) => void;
+  setIsConnectTwitter: (isConnectTwitter: boolean) => void;
+  setUsername: (username: string) => void;
+  setAvatar: (avatar: string) => void;
+};
 
+const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
+  isAdmin: false,
+  isLogin: false,
+  isRegister: false,
+  isConnectTwitter: false,
+  username: '',
+  avatar: '',
+  setIsAdmin: (isAdmin: boolean) =>
+    set(() => ({
+      isAdmin: isAdmin
+    })),
+  setIsLogin: (isLogin: boolean) =>
+    set(() => ({
+      isLogin: isLogin
+    })),
+  setIsRegister: (isRegister: boolean) =>
+    set(() => ({
+      isRegister: isRegister
+    })),
+  setIsConnectTwitter: (isConnectTwitter: boolean) =>
+    set(() => ({
+      isConnectTwitter: isConnectTwitter
+    })),
+  setUsername: (username: string) =>
+    set(() => ({
+      username: username
+    })),
+  setAvatar: (avatar: string) =>
+    set(() => ({
+      avatar: avatar
+    }))
+}));
+
+export { usePostStore, useLoginStore, useSiderStore, useUserStore };

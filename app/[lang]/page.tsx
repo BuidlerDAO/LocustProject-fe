@@ -15,7 +15,6 @@ import img9 from '@/assets/homeImg/img_9.png';
 
 import styles from './index.module.css';
 import { url } from 'inspector';
-import { redirect } from 'next/navigation';
 import { Button } from '@/components/button';
 import Toast from '@/components/toast/toast';
 import Link from 'next/link';

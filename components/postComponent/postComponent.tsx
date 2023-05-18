@@ -26,19 +26,21 @@ const postComponent = (props: { rootClassName: any }) => {
     return `${year}-${formattedMonth}-${formattedDay}`;
   }
   const onFinish = (e: {
-    title: string;
-    link: string;
-    originalText: string;
-    personalThoughts: string;
-  }) => {
-    console.log(getCurrentDate());
-    Object.assign(e, { time: getCurrentDate() });
-    console.log(e);
-    increase(e);
-    console.log(usePostStore.getState());
-    //跳转到/home/explore页
-    router.push('/home');
-  };
+  title: string;
+  link: string;
+  originalText: string;
+  personalThoughts: string;
+  time: string;
+}) => {
+  console.log(getCurrentDate());
+    //Object.assign(e, { time: getCurrentDate() });
+    e.time = getCurrentDate();
+  console.log(e);
+  increase(e);
+  console.log(usePostStore.getState());
+  //跳转到/home/explore页
+  router.push('/home');
+};
   const title = Form.useWatch('title', form);
   const link = Form.useWatch('link', form);
   const originalText = Form.useWatch('originalText', form);

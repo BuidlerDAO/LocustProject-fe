@@ -79,19 +79,18 @@ const postComponent = (props: { rootClassName: any }) => {
                 type="text"
                 placeholder="+ Enter the article"
                 style={{
-                  width: '62.25rem',
-                  height: '4.125rem',
+                  width: '70vw',
+                  height: '7vh',
                   border: 'none'
                 }}
-                className="w-62.25rem h-4.125rem absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
+                // showCount
+                // maxLength={20}
+                className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
               />
             </Form.Item>
             {/* <span className="component-text">
             <span>+ Enter the article</span>
           </span> */}
-            <span className="component-text02">
-              <span>x/n</span>
-            </span>
           </div>
           <div className="component-frame15063">
             <Form.Item
@@ -104,11 +103,11 @@ const postComponent = (props: { rootClassName: any }) => {
                 type="text"
                 placeholder="Please enter the original link"
                 style={{
-                  width: '62.25rem',
-                  height: '4.125rem',
+                  width: '70vw',
+                  height: '7vh',
                   border: 'none'
                 }}
-                className="w-62.25rem h-4.125rem absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
+                className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
               />
             </Form.Item>
           </div>
@@ -124,16 +123,13 @@ const postComponent = (props: { rootClassName: any }) => {
               {isNull ? (
                 <Button
                   htmlType="submit"
-                  style={{ border: 'none', padding: '0' }}
+                  style={{ border: 'none', zIndex: 1 }}
                   disabled
                 >
                   <span className="component-text06">Submit</span>
                 </Button>
               ) : (
-                <Button
-                  htmlType="submit"
-                  style={{ border: 'none', padding: '0' }}
-                >
+                <Button htmlType="submit" style={{ border: 'none', zIndex: 1 }}>
                   <span className="frame1171274791-text">Submit</span>
                 </Button>
               )}
@@ -159,11 +155,14 @@ const postComponent = (props: { rootClassName: any }) => {
             >
               <div className="component-frame15064">
                 <TextArea
+                  showCount
+                  maxLength={100}
                   placeholder="Please enter the core content of the original text"
                   style={{
-                    width: '62.25rem',
-                    height: '16.5625rem',
-                    border: 'none'
+                    width: '70vw',
+                    height: '30vh',
+                    border: 'none',
+                    resize: 'none'
                   }}
                   className="absolute left-0 top-0 flex items-start rounded-lg  bg-inherit text-white"
                 />
@@ -171,9 +170,6 @@ const postComponent = (props: { rootClassName: any }) => {
                 {/* <span className="component-text10">
                 <span>please enter the core content of the original text</span>
               </span> */}
-                <span className="component-text12">
-                  <span>x/n</span>
-                </span>
               </div>
             </Form.Item>
           </div>
@@ -191,9 +187,10 @@ const postComponent = (props: { rootClassName: any }) => {
                 <TextArea
                   placeholder="Please enter Personal thoughts"
                   style={{
-                    width: '62.25rem',
-                    height: '16.5625rem',
-                    border: 'none'
+                    width: '70vw',
+                    height: '30vh',
+                    border: 'none',
+                    resize: 'none'
                   }}
                   className=" absolute left-0 top-0 flex  items-start rounded-lg  bg-inherit text-white"
                 />
@@ -209,17 +206,15 @@ const postComponent = (props: { rootClassName: any }) => {
       <style jsx>
         {`
           .frame1171274791-frame1171274791 {
-            top: 52rem;
-            left: 23.625rem;
+            top: 100vh;
+            left: 28vw;
 
             display: flex;
             padding: 0.75rem 4rem;
             position: absolute;
             gap: 8px;
-            width: 10rem;
             height: auto;
             display: flex;
-
             align-items: flex-start;
             border-radius: 44px;
             background-image: linear-gradient(
@@ -227,6 +222,7 @@ const postComponent = (props: { rootClassName: any }) => {
               rgba(110, 98, 238, 1) 2%,
               rgba(63, 61, 250, 1) 100%
             );
+            cursor: pointer;
           }
           .frame1171274791-text {
             color: rgba(255, 255, 255, 1);
@@ -241,8 +237,8 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-container {
-            width: 62.25rem;
-            height: 56.25rem;
+            width: 73vw;
+            height: 110vh;
             display: flex;
             position: relative;
             align-items: flex-start;
@@ -251,8 +247,8 @@ const postComponent = (props: { rootClassName: any }) => {
           .component-frame15062 {
             top: 0px;
             left: 0px;
-            width: 62.25rem;
-            height: 4.125rem;
+            width: 70vw;
+            height: 7vh;
             display: flex;
             position: absolute;
             align-items: flex-start;
@@ -260,7 +256,7 @@ const postComponent = (props: { rootClassName: any }) => {
             border-color: #2c2c2c;
             border-style: solid;
             border-width: 1px;
-            border-radius: 16px;
+            border-radius: 8px;
             background-color: #2c2c2c;
           }
           .component-text {
@@ -294,10 +290,10 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-frame15063 {
-            top: 5.875rem;
+            top: 10vh;
             left: 0px;
-            width: 62.25rem;
-            height: 4.125rem;
+            width: 70vw;
+            height: 7vh;
             display: flex;
             position: absolute;
             align-items: flex-start;
@@ -305,7 +301,7 @@ const postComponent = (props: { rootClassName: any }) => {
             border-color: #2c2c2c;
             border-style: solid;
             border-width: 1px;
-            border-radius: 16px;
+            border-radius: 8px;
             background-color: #2c2c2c;
           }
           .component-text04 {
@@ -324,10 +320,9 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-frame15065 {
-            top: 52rem;
+            top: 100vh;
             gap: 8px;
-            left: 23.625rem;
-            width: 10rem;
+            left: 28vw;
             display: flex;
             padding: 0.75rem 4rem;
             position: absolute;
@@ -352,9 +347,9 @@ const postComponent = (props: { rootClassName: any }) => {
           }
           .component-frame1171274789 {
             gap: 18px;
-            top: 11.75rem;
+            top: 20vh;
             left: 0px;
-            width: 62.25rem;
+            width: 70vw;
             display: flex;
             position: absolute;
             align-items: flex-start;
@@ -373,8 +368,8 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-frame15064 {
-            width: 62.25rem;
-            height: 16.5625rem;
+            width: 70vw;
+            height: 30vh;
             display: flex;
             position: relative;
             align-items: flex-start;
@@ -382,7 +377,7 @@ const postComponent = (props: { rootClassName: any }) => {
             border-color: rgba(255, 255, 255, 0.05999999865889549);
             border-style: solid;
             border-width: 1px;
-            border-radius: 16px;
+            border-radius: 8px;
             background-color: rgba(255, 255, 255, 0.05999999865889549);
           }
           .component-text10 {
@@ -416,11 +411,11 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-frame1171274790 {
-            top: 31.75rem;
+            top: 58vh;
             gap: 18px;
             left: 0px;
-            width: 62.25rem;
-            bottom: 5.6875rem;
+            width: 70vw;
+            bottom: 10vh;
             display: flex;
             position: absolute;
             align-items: flex-start;
@@ -439,8 +434,8 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-frame15066 {
-            width: 62.25rem;
-            height: 16.5625rem;
+            width: 70vw;
+            height: 30vh;
             display: flex;
             position: relative;
             align-items: flex-start;
@@ -448,7 +443,7 @@ const postComponent = (props: { rootClassName: any }) => {
             border-color: rgba(255, 255, 255, 0.05999999865889549);
             border-style: solid;
             border-width: 1px;
-            border-radius: 16px;
+            border-radius: 8px;
             background-color: rgba(255, 255, 255, 0.05999999865889549);
           }
           .component-text16 {

@@ -8,8 +8,7 @@ import { AppstoreOutlined, DownOutlined, DownloadOutlined, RiseOutlined } from '
 import Link from 'next/link';
 import { Dropdown, Space, ConfigProvider, Table, MenuProps, Select } from 'antd';
 
-const Table2 = (props: {
-}) => {
+const Table2 = () => {
   const columns2 = [
     {
       title: 'User Name',
@@ -154,7 +153,7 @@ const Table2 = (props: {
     </>
   );
 };
-const Table1 = (props: {}) => {
+const Table1 = () => {
   const columns1 = [
     {
       title: 'Month',
@@ -281,7 +280,7 @@ const Table1 = (props: {}) => {
     </>
   );
 };
-const TableUserOverview = (props: {}) => {
+const TableUserOverview = () => {
   //columns含有Month、Number of articles submitted、Number of unsuccessful articles、Number of valid articles、Bonus、Total Prize Pool
   const columns = [
     {
@@ -387,7 +386,7 @@ const TableUserOverview = (props: {}) => {
     </>
   );
 };
-const UserArticle = (props: {}) => {
+const UserArticle = () => {
   //columns中有Article Title、Submit Time、Status
   const columns = [
     {

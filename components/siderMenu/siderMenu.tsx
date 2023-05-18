@@ -1,10 +1,12 @@
 'use client';
-import React from 'react';
+import React, { use, useEffect, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import Logo from '../icons/logo';
 import { AppstoreOutlined, RiseOutlined } from '@ant-design/icons';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useSiderStore } from '@/store';
 
 const SideMenu = (props: {
   rootClassName: any;
@@ -25,11 +27,43 @@ const SideMenu = (props: {
   Vector_alt1: string | undefined;
   Vector_src1: string | undefined;
 }) => {
+  const pathname = usePathname();
   //当用户点击按钮时，切换按钮的颜色
-  const [isExplore, setIsExplore] = React.useState(true);
-  const [isDataView, setIsDataView] = React.useState(false);
-  const [isPost, setIsPost] = React.useState(false);
+  // const [isExplore, setIsExplore] = React.useState(true);
+  // const [isDataView, setIsDataView] = React.useState(false);
+  // const [isPost, setIsPost] = React.useState(false);
+  //从store中获取用户点击的按钮
+  const {
+    isExplore,
+    setIsExplore,
+    isDataView,
+    setIsDataView,
+    isPost,
+    setIsPost
+  } = useSiderStore();
 
+  useEffect(() => {
+    console.log(pathname);
+    if (pathname === '/en/home' || pathname === '/zh-CN/home') {
+      setIsExplore(true);
+      setIsDataView(false);
+      setIsPost(false);
+    } else if (
+      pathname === '/en/home/dataV' ||
+      pathname === '/zh-CN/home/dataV'
+    ) {
+      setIsExplore(false);
+      setIsDataView(true);
+      setIsPost(false);
+    } else if (
+      pathname === '/en/home/post' ||
+      pathname === '/zh-CN/home/post'
+    ) {
+      setIsExplore(false);
+      setIsDataView(false);
+      setIsPost(true);
+    }
+  }, [pathname]);
   return (
     <>
       <div className={`side-menu-side-menu ${props.rootClassName} `}>
@@ -45,7 +79,7 @@ const SideMenu = (props: {
               }}
               style={{ color: isExplore ? 'rgba(109, 98, 238, 1)' : '' }}
             >
-              <Link href="/home/explore">
+              <Link href="/home/">
                 <div className="side-menu-frame1013">
                   <span>
                     <AppstoreOutlined />
@@ -101,7 +135,15 @@ const SideMenu = (props: {
             >
               <div className="side-menu-frame10211">
                 <span className="side-menu-text4">
-                  <span>New Post</span>
+                  <span
+                    onClick={() => {
+                      setIsExplore(true);
+                      setIsDataView(false);
+                      setIsPost(false);
+                    }}
+                  >
+                    New Post
+                  </span>
                 </span>
               </div>
             </div>
@@ -112,7 +154,7 @@ const SideMenu = (props: {
         {`
           .side-menu-side-menu {
             width: 18rem;
-            height: 100vh;
+            height: 100%;
             display: flex;
             position: relative;
             align-items: flex-start;

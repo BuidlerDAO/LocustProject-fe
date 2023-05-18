@@ -1,84 +1,67 @@
 'use client';
-import { Layout, Menu } from 'antd';
-import React, { use, useEffect, useState } from 'react';
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined
+  DeleteOutlined,
+  EllipsisOutlined,
+  FieldTimeOutlined,
+  LikeOutlined,
+  LinkOutlined,
+  MessageOutlined,
+  StarOutlined
 } from '@ant-design/icons';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { DownOutlined, SmileOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Dropdown, Space } from 'antd';
-import Disconnect from '../../../components/icons/disconnect';
+import { Avatar, Button, Collapse, List, Space, Tooltip } from 'antd';
+import React, { useState, useEffect } from 'react';
+import Paragraph from 'antd/es/typography/Paragraph';
+import Block from '@/components/blockCard/blockCard';
+import { usePostStore } from '@/store';
 
-const { Header,  Content } = Layout;
-
-const items: MenuProps['items'] = [
-  {
-    key: '1',
-    label: (
-     <Link href="/home/profile">
-        My Profile
-      </Link>
-    ),
-  },
-  {
-    key: '2',
-    label: (
-      <Link href="/home/profile">
-        Event Participation
-      </Link>
-    ),
-  },
-  {
-    key: '3',
-    label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-        Disconnect
-      </a>
-    ),
-  },
-];
-
-export default function Home() {
-  const url = usePathname();
+const App: React.FC = () => {
+  type postData = {
+    [id: number]: {
+      title: string;
+      link: string;
+      originalText: string;
+      personalThoughts: string;
+      time: string;
+    };
+  };
+  type data = [
+    {
+      id: number;
+      title: string;
+      link: string;
+      originalText: string;
+      personalThoughts: string;
+      time: string;
+    }
+  ];
+  const onDelete = () => {
+    console.log('delete');
+  };
   useEffect(() => {
-    console.log(url);
-  }, [url]);
-
+    console.log(data);
+  }, []);
+  const postData = usePostStore((state) => state.posts);
+  const data = Array.from(Object.values(postData)).map((post) => ({
+    title: post.title,
+    link: post.link,
+    originalText: post.originalText,
+    personalThoughts: post.personalThoughts,
+    time: post.time
+  }));
   return (
-    <Layout className="h-screen">
-      
-      <Layout className="site-layout">
-        <Header
-          className="site-layout-background"
-          style={{
-            padding: 0
-          }}
-        > 
-           <Dropdown menu={{ items }}>
-    <a onClick={(e) => e.preventDefault()} className='text-white'>
-      <Space>
-        Hover me
-        <DownOutlined />
-      </Space>
-    </a>
-  </Dropdown>
-        </Header>
-        <Content
-          className="site-layout-background"
-          style={{
-            margin: '24px 16px',
-            padding: 24
-          }}
-        >
-          Content
-        </Content>
-      </Layout>
-    </Layout>
+    <div className="mr-16">
+      <List
+        itemLayout="vertical"
+        size="large"
+        style={{ color: 'white' }}
+        dataSource={data}
+        renderItem={(item) => (
+          <List.Item title={item.title}>
+            <Block data={item} />
+          </List.Item>
+        )}
+      />
+    </div>
   );
-}
+};
+export default App;

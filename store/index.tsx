@@ -1,4 +1,5 @@
 import create, { SetState } from 'zustand';
+import Sider from '../components/sider/sider';
 
 type PostStore = {
   posts: {
@@ -18,7 +19,7 @@ type PostStore = {
     personalThoughts: string;
     time: string;
   }) => void;
-  decrease: () => void;
+  decrease: (title: string) => void;
 };
 
 const usePostStore = create<PostStore>((set: SetState<PostStore>) => ({
@@ -40,8 +41,8 @@ of poker as suits,numbers,cards,and through these atoms we see a variety of card
 so that users can build their own games more easily.Compared with the traditional UGC game ecology,such as RPG maps in Warcraft,full-chain games
 allow creators to get a reasonable and fair distribution,no longer "generating power for love",which is a win-win for the whole ecology.Of course,as of
 now,the difficulty of developing full-chain games lies mainly in the performance of the public chain.With the hot topics of various public chain upgrades.
-expansion,modularization and other performance topics this year,we can probably look forward to it`,  
-    time: '2023-05-13',
+expansion,modularization and other performance topics this year,we can probably look forward to it`,
+      time: '2023-05-13'
     }
   },
   count: 0,
@@ -52,12 +53,60 @@ expansion,modularization and other performance topics this year,we can probably 
         ...state.posts,
         [state.count]: {
           ...post,
-          id: state.count,
-        },
+          id: state.count
+        }
       },
-      count: state.count + 1,
+      count: state.count + 1
     })),
-  decrease: () => set((state) => ({ count: state.count - 1 }))
+  decrease: (title: string) =>
+    set((state) => ({
+      posts: Object.values(state.posts).filter((post) => post.title !== title),
+      count: state.count - 1
+    }))
 }));
 
-export default usePostStore;
+type LoginStore = {
+  isLoggedIn: boolean;
+  username: string;
+  login: (username: string) => void;
+};
+
+const useLoginStore = create<LoginStore>((set: SetState<LoginStore>) => ({
+  isLoggedIn: false,
+  username: '',
+  login: (username) =>
+    set(() => ({
+      isLoggedIn: false,
+      username: username
+    }))
+}));
+
+type SiderStore = {
+  isExplore: boolean;
+  isDataView: boolean;
+  isPost: boolean;
+  setIsExplore: (isExplore: boolean) => void;
+  setIsDataView: (isDataView: boolean) => void;
+  setIsPost: (isPost: boolean) => void;
+};
+
+const useSiderStore = create<SiderStore>((set: SetState<SiderStore>) => ({
+  isExplore: false,
+  isDataView: false,
+  isPost: false,
+  setIsExplore: (isExplore:any) =>
+    set(() => ({
+      isExplore: isExplore
+    })),
+  setIsDataView: (isDataView: any) =>
+    set(() => ({
+      isDataView: isDataView
+    })),
+  setIsPost: (isPost:any) =>
+    set(() => ({
+      isPost: isPost
+    }))
+}));
+
+export { usePostStore , useLoginStore,useSiderStore};
+

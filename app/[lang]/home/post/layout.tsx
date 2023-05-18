@@ -12,11 +12,11 @@ const HomeLayout: FC<{ children: ReactNode }> = (props) => {
       <ConfigProvider
         theme={{
           token: {
-            colorBgContainer: '#1a1a1a',
+            colorBgContainer: '#000000',
             colorText: 'white',
             //colorTextDescription: 'white',
-            colorTextPlaceholder: '#6f6f6f',
-            colorPrimaryHover: '#575757',
+            colorTextPlaceholder: '#FFFFFF66',
+            colorPrimaryHover: '#FFFFFF4D'
           }
         }}
       >

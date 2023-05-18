@@ -1,16 +1,18 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client';
 import React, { useEffect, useState } from 'react';
 
 import PropTypes from 'prop-types';
-import { Button, Form, Input } from 'antd';
-import usePostStore from '@/store';
+import { Button, ConfigProvider, Form, Input } from 'antd';
+import { usePostStore } from '@/store';
 import Link from 'next/link';
+import './index.css';
 import { useRouter } from 'next/navigation';
+
 const { TextArea } = Input;
 
 const postComponent = (props: { rootClassName: any }) => {
-  const router = useRouter()
+  const router = useRouter();
   const [form] = Form.useForm();
   const [isNull, setIsNull] = useState(true);
   const increase = usePostStore((state) => state.increase);
@@ -22,7 +24,6 @@ const postComponent = (props: { rootClassName: any }) => {
     const day = today.getDate();
     const formattedMonth = month < 10 ? `0${month}` : month;
     const formattedDay = day < 10 ? `0${day}` : day;
-
     return `${year}-${formattedMonth}-${formattedDay}`;
   }
   const onFinish = (e: {
@@ -30,20 +31,21 @@ const postComponent = (props: { rootClassName: any }) => {
     link: string;
     originalText: string;
     personalThoughts: string;
+    time: string;
   }) => {
     console.log(getCurrentDate());
-
-    Object.assign(e, { time: getCurrentDate() });
+    //Object.assign(e, { time: getCurrentDate() });
+    e.time = getCurrentDate();
     console.log(e);
     increase(e);
     console.log(usePostStore.getState());
     //跳转到/home/explore页
-    router.push('/home/explore')
+    router.push('/home');
   };
   const title = Form.useWatch('title', form);
-  const link = Form.useWatch('Link', form);
-  const OriginalText = Form.useWatch('OriginalText', form);
-  const PersonalThoughts = Form.useWatch('PersonalThoughts', form);
+  const link = Form.useWatch('link', form);
+  const originalText = Form.useWatch('originalText', form);
+  const personalThoughts = Form.useWatch('personalThoughts', form);
   //当title,time,material1,material2不为空时，isNull改变状态为false
   useEffect(() => {
     //console.log(title, link, OriginalText, PersonalThoughts);
@@ -52,67 +54,77 @@ const postComponent = (props: { rootClassName: any }) => {
       title !== '' &&
       link !== undefined &&
       link !== '' &&
-      OriginalText !== undefined &&
-      OriginalText !== '' &&
-      PersonalThoughts !== undefined &&
-      PersonalThoughts !== ''
+      originalText !== undefined &&
+      originalText !== '' &&
+      personalThoughts !== undefined &&
+      personalThoughts !== ''
     ) {
       setIsNull(false);
     } else {
       setIsNull(true);
     }
-  }, [title, link, OriginalText, PersonalThoughts]);
+  }, [title, link, originalText, personalThoughts]);
   return (
     <>
       <Form
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 34 }}
-       
         onFinish={onFinish}
         form={form}
       >
         <div className={`component-container ${props.rootClassName} `}>
           <div className="component-frame15062">
-            <Form.Item
-              name="title"
-              rules={[{ required: true, message: 'Enter The Article' }]}
+            <ConfigProvider
+              theme={{
+                token: { colorBgContainer: '#FFFFFF0F' }
+              }}
             >
-              <Input
-                type="text"
-                placeholder="+ Enter the article"
-                style={{
-                  width: '62.25rem',
-                  height: '4.125rem',
-                  border: 'none'
-                }}
-                className="w-62.25rem h-4.125rem absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
-              />
-            </Form.Item>
+              <Form.Item
+                name="title"
+                rules={[{ required: true, message: 'Enter The Article' }]}
+              >
+                <Input
+                  type="text"
+                  placeholder="+ Enter the article"
+                  style={{
+                    width: '70vw',
+                    height: '7vh'
+                  }}
+                  showCount
+                  maxLength={20}
+                  className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  border-none text-white hover:border-solid"
+                />
+              </Form.Item>
+            </ConfigProvider>
+
             {/* <span className="component-text">
             <span>+ Enter the article</span>
           </span> */}
-            <span className="component-text02">
-              <span>x/n</span>
-            </span>
           </div>
           <div className="component-frame15063">
-            <Form.Item
-              name="Link"
-              rules={[
-                { required: true, message: 'Please Enter The Original Link' }
-              ]}
+            <ConfigProvider
+              theme={{
+                token: { colorBgContainer: '#FFFFFF0F' }
+              }}
             >
-              <Input
-                type="text"
-                placeholder="Please enter the original link"
-                style={{
-                  width: '62.25rem',
-                  height: '4.125rem',
-                  border: 'none'
-                }}
-                className="w-62.25rem h-4.125rem absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
-              />
-            </Form.Item>
+              <Form.Item
+                name="link"
+                rules={[
+                  { required: true, message: 'Please Enter The Original Link' }
+                ]}
+              >
+                <Input
+                  type="text"
+                  placeholder="Please enter the original link"
+                  style={{
+                    width: '70vw',
+                    height: '7vh',
+                    outline: 'none'
+                  }}
+                  className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  border-none text-white hover:border-solid"
+                />
+              </Form.Item>
+            </ConfigProvider>
           </div>
           {/* 提交按钮 */}
           <Form.Item>
@@ -126,20 +138,15 @@ const postComponent = (props: { rootClassName: any }) => {
               {isNull ? (
                 <Button
                   htmlType="submit"
-                  style={{ border: 'none', padding: '0' }}
+                  style={{ border: 'none', zIndex: 1 }}
                   disabled
                 >
                   <span className="component-text06">Submit</span>
                 </Button>
               ) : (
-               
-                  <Button
-                    htmlType="submit"
-                    style={{ border: 'none', padding: '0' }}
-                  >
-                    <span className="frame1171274791-text">Submit</span>
-                  </Button>
-                
+                <Button htmlType="submit" style={{ border: 'none', zIndex: 1 }}>
+                  <span className="frame1171274791-text">Submit</span>
+                </Button>
               )}
               {/* <div className="frame1171274791-frame1171274791">
                 <span className="frame1171274791-text">
@@ -153,7 +160,7 @@ const postComponent = (props: { rootClassName: any }) => {
               <span>Original Summary</span>
             </span>
             <Form.Item
-              name="OriginalText"
+              name="originalText"
               rules={[
                 {
                   required: true,
@@ -162,22 +169,26 @@ const postComponent = (props: { rootClassName: any }) => {
               ]}
             >
               <div className="component-frame15064">
-                <TextArea
-                  placeholder="Please enter the core content of the original text"
-                  style={{
-                    width: '62.25rem',
-                    height: '16.5625rem',
-                    border: 'none'
+                <ConfigProvider
+                  theme={{
+                    token: { colorBgContainer: '#FFFFFF0F' }
                   }}
-                  className="absolute left-0 top-0 flex items-start rounded-lg  bg-inherit text-white"
-                />
-
+                >
+                  <TextArea
+                    showCount
+                    maxLength={100}
+                    placeholder="Please enter the core content of the original text"
+                    style={{
+                      width: '70vw',
+                      height: '30vh',
+                      resize: 'none'
+                    }}
+                    className="absolute left-0 top-0 flex items-start rounded-lg  border-none text-white hover:border-solid"
+                  />
+                </ConfigProvider>
                 {/* <span className="component-text10">
                 <span>please enter the core content of the original text</span>
               </span> */}
-                <span className="component-text12">
-                  <span>x/n</span>
-                </span>
               </div>
             </Form.Item>
           </div>
@@ -186,22 +197,27 @@ const postComponent = (props: { rootClassName: any }) => {
               <span>Personal Thoughts</span>
             </span>
             <Form.Item
-              name="PersonalThoughts"
+              name="personalThoughts"
               rules={[
                 { required: true, message: 'Please Enter Personal Thoughts' }
               ]}
             >
               <div className="component-frame15066">
-                <TextArea
-                  placeholder="Please enter Personal thoughts"
-                  style={{
-                    width: '62.25rem',
-                    height: '16.5625rem',
-                    border: 'none'
+                <ConfigProvider
+                  theme={{
+                    token: { colorBgContainer: '#FFFFFF0F' }
                   }}
-                  className=" absolute left-0 top-0 flex  items-start rounded-lg  bg-inherit text-white"
-                />
-
+                >
+                  <TextArea
+                    placeholder="Please enter Personal thoughts"
+                    style={{
+                      width: '70vw',
+                      height: '30vh',
+                      resize: 'none'
+                    }}
+                    className="absolute left-0 top-0 flex  items-start rounded-lg border-none text-white hover:border-solid"
+                  />
+                </ConfigProvider>
                 {/* <span className="component-text16">
                 <span>please enter Personal thoughts</span>
               </span> */}
@@ -213,17 +229,15 @@ const postComponent = (props: { rootClassName: any }) => {
       <style jsx>
         {`
           .frame1171274791-frame1171274791 {
-            top: 52rem;
-            left: 23.625rem;
+            top: 100vh;
+            left: 28vw;
 
             display: flex;
             padding: 0.75rem 4rem;
             position: absolute;
             gap: 8px;
-            width: 10rem;
             height: auto;
             display: flex;
-
             align-items: flex-start;
             border-radius: 44px;
             background-image: linear-gradient(
@@ -231,6 +245,7 @@ const postComponent = (props: { rootClassName: any }) => {
               rgba(110, 98, 238, 1) 2%,
               rgba(63, 61, 250, 1) 100%
             );
+            cursor: pointer;
           }
           .frame1171274791-text {
             color: rgba(255, 255, 255, 1);
@@ -245,8 +260,8 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-container {
-            width: 62.25rem;
-            height: 56.25rem;
+            width: 73vw;
+            height: 110vh;
             display: flex;
             position: relative;
             align-items: flex-start;
@@ -255,17 +270,14 @@ const postComponent = (props: { rootClassName: any }) => {
           .component-frame15062 {
             top: 0px;
             left: 0px;
-            width: 62.25rem;
-            height: 4.125rem;
+            width: 70vw;
+            height: 7vh;
             display: flex;
             position: absolute;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: #2c2c2c;
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 16px;
-            background-color: #2c2c2c;
+            border-none;
+            background-color: inherit;
           }
           .component-text {
             top: 21px;
@@ -298,19 +310,16 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-frame15063 {
-            top: 5.875rem;
+            top: 10vh;
             left: 0px;
-            width: 62.25rem;
-            height: 4.125rem;
+            width: 70vw;
+            height: 7vh;
             display: flex;
             position: absolute;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: #2c2c2c;
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 16px;
-            background-color: #2c2c2c;
+            border-none;
+            background-color: inherit;
           }
           .component-text04 {
             top: 21px;
@@ -328,10 +337,9 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-frame15065 {
-            top: 52rem;
+            top: 100vh;
             gap: 8px;
-            left: 23.625rem;
-            width: 10rem;
+            left: 28vw;
             display: flex;
             padding: 0.75rem 4rem;
             position: absolute;
@@ -356,9 +364,9 @@ const postComponent = (props: { rootClassName: any }) => {
           }
           .component-frame1171274789 {
             gap: 18px;
-            top: 11.75rem;
+            top: 20vh;
             left: 0px;
-            width: 62.25rem;
+            width: 70vw;
             display: flex;
             position: absolute;
             align-items: flex-start;
@@ -377,17 +385,14 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-frame15064 {
-            width: 62.25rem;
-            height: 16.5625rem;
+            width: 70vw;
+            height: 30vh;
             display: flex;
             position: relative;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: rgba(255, 255, 255, 0.05999999865889549);
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 16px;
-            background-color: rgba(255, 255, 255, 0.05999999865889549);
+            border-none;
+            background-color: inherit;
           }
           .component-text10 {
             top: 21px;
@@ -420,11 +425,11 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-frame1171274790 {
-            top: 31.75rem;
+            top: 58vh;
             gap: 18px;
             left: 0px;
-            width: 62.25rem;
-            bottom: 5.6875rem;
+            width: 70vw;
+            bottom: 10vh;
             display: flex;
             position: absolute;
             align-items: flex-start;
@@ -443,17 +448,15 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-frame15066 {
-            width: 62.25rem;
-            height: 16.5625rem;
+            width: 70vw;
+            height: 30vh;
             display: flex;
             position: relative;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: rgba(255, 255, 255, 0.05999999865889549);
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 16px;
-            background-color: rgba(255, 255, 255, 0.05999999865889549);
+           border-none;
+            background-color: inherit;
+            
           }
           .component-text16 {
             top: 21px;

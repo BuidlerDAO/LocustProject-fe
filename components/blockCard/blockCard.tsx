@@ -1,14 +1,16 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {
   DeleteOutlined,
   EllipsisOutlined,
   FieldTimeOutlined,
   LinkOutlined
 } from '@ant-design/icons';
-import { Tooltip } from 'antd';
+import { Dropdown, MenuProps, Modal, Tooltip } from 'antd';
+import { usePostStore } from '@/store';
+import { on } from 'events';
 
 const Block = (props: {
   rootClassName: any;
@@ -23,20 +25,36 @@ const Block = (props: {
   Line18_alt: string | undefined;
   Line18_src: string | undefined;
   data: {
-    [id: number]: {
-      title: string;
-      link: string;
-      originalText: string;
-      personalThoughts: string;
-      time: string;
-    };
+    title: string;
+    link: string;
+    originalText: string;
+    personalThoughts: string;
+    time: string;
   };
 }) => {
-  const onDelete = () => {
-    console.log('delete');
+  const decrease = usePostStore((state) => state.decrease);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
   };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+    onDelete();
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  function onDelete() {
+    console.log(props.data);
+    decrease(props.data.title);
+  }
   const text = () => (
-    <button className="hover:text-red-600" onClick={onDelete}>
+    <button className="hover:text-red-600" onClick={showModal}>
       <DeleteOutlined />
       &nbsp;
       <span>Delete</span>
@@ -45,8 +63,18 @@ const Block = (props: {
   return (
     <>
       <div className={`block-block ${props.rootClassName} `}>
+        <Modal
+          title="Basic Modal"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Modal>
         <span className="block-text">
-          <span>{props.data[0].title}</span>
+          <span>{props.data.title}</span>
         </span>
         <div className="block-frametab">
           <div className="block-frame">
@@ -54,7 +82,7 @@ const Block = (props: {
               <FieldTimeOutlined />
             </div>
             <span className="block-text02">
-              <span>{props.data[0].time}</span>
+              <span>{props.data.time}</span>
             </span>
           </div>
           <div className="block-frame2">
@@ -73,9 +101,9 @@ const Block = (props: {
             <span className="text-textGrey">
               <LinkOutlined />
             </span>
-            <span className="block-text06">
-              <span>{props.data[0].link}</span>
-            </span>
+            <div className="block-text06">
+              <a href={props.data.link}>{props.data.link}</a>
+            </div>
           </div>
         </div>
         <Tooltip title={text} placement="bottom">
@@ -85,32 +113,33 @@ const Block = (props: {
             </span>
           </span>
         </Tooltip>
-        <div className="block-frame6">
-          <span className="block-text10-1">
-            <span>Original Summary</span>
-          </span>
-          <span className="block-text08">
-            <span>{props.data[0].originalText}</span>
-          </span>
-        </div>
-        <div className="block-frame1171274787">
-          <span className="block-text10">
-            <span>Personal Thoughts</span>
-          </span>
-          <div className="block-group1">
-            <span className="block-text12">
-              <span>{props.data[0].personalThoughts}</span>
+        <div className="flex flex-col">
+          <div className="block-frame6">
+            <span className="block-text10-1">
+              <span>Original Summary</span>
+            </span>
+            <span className="block-text08">
+              <span>{props.data.originalText}</span>
             </span>
           </div>
+          <div className="block-line18" />
+          <div className="block-frame1171274787">
+            <span className="block-text10">
+              <span>Personal Thoughts</span>
+            </span>
+            <div className="block-group1">
+              <span className="block-text12">
+                <span>{props.data.personalThoughts}</span>
+              </span>
+            </div>
+          </div>
         </div>
-        <div className="block-line18" />
       </div>
       <style jsx>
         {`
           .block-block {
             gap: 0.5rem;
-            width: 64.25rem;
-            height: 41.875rem;
+            width: 73vw;
             display: flex;
             padding: 12px 12px 8px 12px;
             overflow: hidden;
@@ -128,7 +157,7 @@ const Block = (props: {
             top: 24px;
             left: 24px;
             color: rgba(255, 255, 255, 1);
-            height: auto;
+            height: 24px;
             position: absolute;
             font-size: 22px;
             font-style: Semi Bold;
@@ -140,6 +169,7 @@ const Block = (props: {
             text-decoration: none;
           }
           .block-frametab {
+            height: 1.5rem;
             gap: 1.125rem;
             top: 4.125rem;
             left: 1.5rem;
@@ -224,25 +254,24 @@ const Block = (props: {
           }
           .block-frame5 {
             top: 27px;
-            left: 62.25rem;
+            left: 80rem;
             width: 18px;
             height: 18px;
             position: absolute;
           }
           .block-frame6 {
             gap: 8px;
-            top: 118px;
-            left: 24px;
-            width: 62.25rem;
+            margin-top: 6rem;
+            text-align: center;
+            width: 80rem;
             display: flex;
-            position: absolute;
             align-items: flex-start;
             flex-shrink: 0;
             flex-direction: column;
           }
           .block-text08 {
             color: rgba(116, 116, 116, 1);
-            width: 62.25rem;
+            width: 71vw;
             height: auto;
             font-size: 14px;
             font-style: italic;
@@ -255,17 +284,17 @@ const Block = (props: {
           }
           .block-frame1171274787 {
             gap: 8px;
-            top: 23.125rem;
-            left: 24px;
+            margin-top: 1rem;
+
             width: 62.25rem;
             display: flex;
-            position: absolute;
-            align-items: flex-start;
+
+            align-items: flex-center;
             flex-direction: column;
           }
           .block-text10 {
             color: rgba(255, 255, 255, 1);
-            height: auto;
+            height: 1.75rem;
             font-size: 18px;
             font-style: Semi Bold;
             text-align: left;
@@ -277,7 +306,7 @@ const Block = (props: {
           }
           .block-text10-1 {
             color: rgba(255, 255, 255, 1);
-            height: auto;
+            height: 1.75rem;
             font-size: 18px;
             font-style: Semi Bold;
             text-align: left;
@@ -289,8 +318,8 @@ const Block = (props: {
             font-style: italic;
           }
           .block-group1 {
-            width: 62.25rem;
-            height: 5.5rem;
+            width: 71vw;
+
             display: flex;
             position: relative;
             align-items: flex-start;
@@ -300,7 +329,7 @@ const Block = (props: {
             color: rgba(165, 165, 165, 1);
             width: 62.25rem;
             height: auto;
-            position: absolute;
+
             font-size: 14px;
             font-style: Regular;
             text-align: left;
@@ -311,11 +340,11 @@ const Block = (props: {
             text-decoration: none;
           }
           .block-line18 {
-            top: 22rem;
-            left: 0px;
+            margin-top: 1rem;
+            margin-left: -30px;
+            position: relative;
             width: 100%;
             height: 1px;
-            position: absolute;
             background-color: #434343;
           }
           .block-root-class-name {
@@ -341,20 +370,6 @@ Block.defaultProps = {
   Ellipse2_src: '/playground_assets/ellipse22514-d6q-200h.png',
   Ellipse2_alt: 'Ellipse22514',
   rootClassName: ''
-};
-
-Block.propTypes = {
-  Frame_src: PropTypes.string,
-  Frame_alt: PropTypes.string,
-  Line18_src: PropTypes.string,
-  Line18_alt: PropTypes.string,
-  Frame_src1: PropTypes.string,
-  Frame_alt1: PropTypes.string,
-  Frame_src2: PropTypes.string,
-  Frame_alt2: PropTypes.string,
-  Ellipse2_src: PropTypes.string,
-  Ellipse2_alt: PropTypes.string,
-  rootClassName: PropTypes.string
 };
 
 export default Block;

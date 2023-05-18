@@ -1,4 +1,5 @@
 import create, { SetState } from 'zustand';
+import Sider from '../components/sider/sider';
 
 type PostStore = {
   posts: {
@@ -79,4 +80,33 @@ const useLoginStore = create<LoginStore>((set: SetState<LoginStore>) => ({
       username: username
     }))
 }));
-export { usePostStore , useLoginStore};
+
+type SiderStore = {
+  isExplore: boolean;
+  isDataView: boolean;
+  isPost: boolean;
+  setIsExplore: (isExplore: boolean) => void;
+  setIsDataView: (isDataView: boolean) => void;
+  setIsPost: (isPost: boolean) => void;
+};
+
+const useSiderStore = create<SiderStore>((set: SetState<SiderStore>) => ({
+  isExplore: false,
+  isDataView: false,
+  isPost: false,
+  setIsExplore: (isExplore:any) =>
+    set(() => ({
+      isExplore: isExplore
+    })),
+  setIsDataView: (isDataView: any) =>
+    set(() => ({
+      isDataView: isDataView
+    })),
+  setIsPost: (isPost:any) =>
+    set(() => ({
+      isPost: isPost
+    }))
+}));
+
+export { usePostStore , useLoginStore,useSiderStore};
+

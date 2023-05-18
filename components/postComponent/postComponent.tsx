@@ -88,8 +88,7 @@ const postComponent = (props: { rootClassName: any }) => {
                   placeholder="+ Enter the article"
                   style={{
                     width: '70vw',
-                    height: '7vh',
-                   
+                    height: '7vh'
                   }}
                   showCount
                   maxLength={20}
@@ -118,8 +117,7 @@ const postComponent = (props: { rootClassName: any }) => {
                   placeholder="Please enter the original link"
                   style={{
                     width: '70vw',
-                    height: '7vh',
-                   
+                    height: '7vh'
                   }}
                   className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  border-none text-white hover:border-solid"
                 />
@@ -181,7 +179,6 @@ const postComponent = (props: { rootClassName: any }) => {
                     style={{
                       width: '70vw',
                       height: '30vh',
-
                       resize: 'none'
                     }}
                     className="absolute left-0 top-0 flex items-start rounded-lg  border-none text-white hover:border-solid"
@@ -214,7 +211,6 @@ const postComponent = (props: { rootClassName: any }) => {
                     style={{
                       width: '70vw',
                       height: '30vh',
-                      
                       resize: 'none'
                     }}
                     className="absolute left-0 top-0 flex  items-start rounded-lg border-none text-white hover:border-solid"
@@ -278,10 +274,7 @@ const postComponent = (props: { rootClassName: any }) => {
             position: absolute;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: #2c2c2c;
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 8px;
+            border-none;
             background-color: inherit;
           }
           .component-text {
@@ -323,11 +316,8 @@ const postComponent = (props: { rootClassName: any }) => {
             position: absolute;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: #2c2c2c;
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 8px;
-            background-color: #2c2c2c;
+            border-none;
+            background-color: inherit;
           }
           .component-text04 {
             top: 21px;
@@ -399,11 +389,8 @@ const postComponent = (props: { rootClassName: any }) => {
             position: relative;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: #2c2c2c;
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 8px;
-            background-color: #2c2c2c;
+            border-none;
+            background-color: inherit;
           }
           .component-text10 {
             top: 21px;
@@ -465,10 +452,8 @@ const postComponent = (props: { rootClassName: any }) => {
             position: relative;
             align-items: flex-start;
             flex-shrink: 0;
-            
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 8px;
+           border-none;
+            background-color: inherit;
             
           }
           .component-text16 {

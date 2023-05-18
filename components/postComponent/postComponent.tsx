@@ -87,7 +87,7 @@ const postComponent = (props: { rootClassName: any }) => {
                 }}
                 // showCount
                 // maxLength={20}
-                className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
+                className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg   text-white"
               />
             </Form.Item>
             {/* <span className="component-text">
@@ -109,7 +109,7 @@ const postComponent = (props: { rootClassName: any }) => {
                   height: '7vh',
                   border: 'none'
                 }}
-                className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
+                className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg   text-white"
               />
             </Form.Item>
           </div>
@@ -166,7 +166,7 @@ const postComponent = (props: { rootClassName: any }) => {
                     border: 'none',
                     resize: 'none'
                   }}
-                  className="absolute left-0 top-0 flex items-start rounded-lg  bg-inherit text-white"
+                  className="absolute left-0 top-0 flex items-start rounded-lg  text-white"
                 />
 
                 {/* <span className="component-text10">
@@ -194,7 +194,7 @@ const postComponent = (props: { rootClassName: any }) => {
                     border: 'none',
                     resize: 'none'
                   }}
-                  className=" absolute left-0 top-0 flex  items-start rounded-lg  bg-inherit text-white"
+                  className="absolute left-0 top-0 flex  items-start rounded-lg  text-white"
                 />
 
                 {/* <span className="component-text16">
@@ -376,11 +376,11 @@ const postComponent = (props: { rootClassName: any }) => {
             position: relative;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: rgba(255, 255, 255, 0.05999999865889549);
+            border-color: #2c2c2c;
             border-style: solid;
             border-width: 1px;
             border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.05999999865889549);
+            background-color: #2c2c2c;
           }
           .component-text10 {
             top: 21px;
@@ -442,11 +442,11 @@ const postComponent = (props: { rootClassName: any }) => {
             position: relative;
             align-items: flex-start;
             flex-shrink: 0;
-            border-color: rgba(255, 255, 255, 0.05999999865889549);
+            border-color: #2c2c2c;
             border-style: solid;
             border-width: 1px;
             border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.05999999865889549);
+            background-color: #2c2c2c;
           }
           .component-text16 {
             top: 21px;

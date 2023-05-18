@@ -112,7 +112,7 @@ const SideMenu = (props: {
         {`
           .side-menu-side-menu {
             width: 18rem;
-            height: 100vh;
+            height: 100%;
             display: flex;
             position: relative;
             align-items: flex-start;

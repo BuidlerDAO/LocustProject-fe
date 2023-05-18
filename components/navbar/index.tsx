@@ -163,35 +163,9 @@ const Navbar = () => {
           )}
           {/*WalletConnect*/}
           <div>
-            {isLoggedIn ? (
-              <ConfigProvider
-                theme={{
-                  token: {
-                    colorBgElevated: '#1A1A1A',
-                    colorText: 'white'
-                  }
-                }}
-              >
-                <Dropdown menu={{ items }}>
-                  <a onClick={(e) => e.preventDefault()} className="text-white">
-                    <div
-                      color="primary"
-                      className="rounded-[40px] px-10 py-2 text-[16px] hover:border-[#6E62EE]"
-                      style={{ backgroundColor: '#1A1A1A' }}
-                    >
-                      <Space>
-                        Hover me
-                        <DownOutlined />
-                      </Space>
-                    </div>
-                  </a>
-                </Dropdown>
-              </ConfigProvider>
-            ) : (
-              <span className="ml-[10vw] flex items-center">
-                <Wallet />
-              </span>
-            )}
+            <span className="ml-[10vw] flex items-center">
+              <Wallet />
+            </span>
           </div>
         </div>
       </div>

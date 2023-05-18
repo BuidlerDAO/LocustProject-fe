@@ -155,7 +155,7 @@ const Navbar = () => {
               </ConfigProvider>
               {/*Sign up for Locust*/}
               {isLoggedIn ? null : (
-                <div className="ml-[5vw] flex text-white ">
+                <div className="ml-[5vw] flex text-white hover:text-[#6E62EE]">
                   <Link href="/">Sign up for Locust</Link>
                 </div>
               )}

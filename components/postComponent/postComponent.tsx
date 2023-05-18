@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable prettier/prettier */
 'use client';
 import React, { useEffect, useState } from 'react';
 
@@ -7,7 +6,9 @@ import PropTypes from 'prop-types';
 import { Button, Form, Input } from 'antd';
 import { usePostStore } from '@/store';
 import Link from 'next/link';
+import './index.css'
 import { useRouter } from 'next/navigation';
+
 const { TextArea } = Input;
 
 const postComponent = (props: { rootClassName: any }) => {

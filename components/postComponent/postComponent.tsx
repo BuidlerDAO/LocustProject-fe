@@ -83,13 +83,14 @@ const postComponent = (props: { rootClassName: any }) => {
                   height: '7vh',
                   border: 'none'
                 }}
+                // showCount
+                // maxLength={20}
                 className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  bg-inherit text-white"
               />
             </Form.Item>
             {/* <span className="component-text">
             <span>+ Enter the article</span>
           </span> */}
-            
           </div>
           <div className="component-frame15063">
             <Form.Item
@@ -122,16 +123,13 @@ const postComponent = (props: { rootClassName: any }) => {
               {isNull ? (
                 <Button
                   htmlType="submit"
-                  style={{ border: 'none' ,zIndex:1}}
+                  style={{ border: 'none', zIndex: 1 }}
                   disabled
                 >
                   <span className="component-text06">Submit</span>
                 </Button>
               ) : (
-                <Button
-                  htmlType="submit"
-                  style={{ border: 'none',zIndex:1 }}
-                >
+                <Button htmlType="submit" style={{ border: 'none', zIndex: 1 }}>
                   <span className="frame1171274791-text">Submit</span>
                 </Button>
               )}
@@ -157,11 +155,14 @@ const postComponent = (props: { rootClassName: any }) => {
             >
               <div className="component-frame15064">
                 <TextArea
+                  showCount
+                  maxLength={100}
                   placeholder="Please enter the core content of the original text"
                   style={{
                     width: '70vw',
                     height: '30vh',
-                    border: 'none'
+                    border: 'none',
+                    resize: 'none'
                   }}
                   className="absolute left-0 top-0 flex items-start rounded-lg  bg-inherit text-white"
                 />
@@ -169,7 +170,6 @@ const postComponent = (props: { rootClassName: any }) => {
                 {/* <span className="component-text10">
                 <span>please enter the core content of the original text</span>
               </span> */}
-               
               </div>
             </Form.Item>
           </div>
@@ -189,7 +189,8 @@ const postComponent = (props: { rootClassName: any }) => {
                   style={{
                     width: '70vw',
                     height: '30vh',
-                    border: 'none'
+                    border: 'none',
+                    resize: 'none'
                   }}
                   className=" absolute left-0 top-0 flex  items-start rounded-lg  bg-inherit text-white"
                 />
@@ -376,7 +377,7 @@ const postComponent = (props: { rootClassName: any }) => {
             border-color: rgba(255, 255, 255, 0.05999999865889549);
             border-style: solid;
             border-width: 1px;
-            border-radius:8px;
+            border-radius: 8px;
             background-color: rgba(255, 255, 255, 0.05999999865889549);
           }
           .component-text10 {

@@ -155,14 +155,16 @@ const Navbar = () => {
               </ConfigProvider>
               {/*Sign up for Locust*/}
               {isLoggedIn ? null : (
-                <div className="ml-[5vw] flex text-white hover:text-[#6E62EE]">
+                <div className="ml-[20vw] flex font-medium text-white hover:text-[#6E62EE]">
                   <Link href="/">Sign up for Locust</Link>
                 </div>
               )}
             </>
           )}
           {/*WalletConnect*/}
-          <span className="ml-[67vw] flex items-center">
+          <span
+            className={`${flag ? 'ml-[67vw]' : 'ml-[2vw]'} flex items-center`}
+          >
             <Wallet />
           </span>
         </div>

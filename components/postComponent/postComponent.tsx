@@ -488,8 +488,4 @@ postComponent.defaultProps = {
   rootClassName: ''
 };
 
-postComponent.propTypes = {
-  rootClassName: PropTypes.string
-};
-
 export default postComponent;

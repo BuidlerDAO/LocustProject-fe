@@ -8,9 +8,18 @@ import {
   FieldTimeOutlined,
   LinkOutlined
 } from '@ant-design/icons';
-import { Dropdown, MenuProps, Modal, Tooltip } from 'antd';
+import {
+  ConfigProvider,
+  Divider,
+  Dropdown,
+  MenuProps,
+  Modal,
+  Tooltip
+} from 'antd';
 import { usePostStore } from '@/store';
 import { on } from 'events';
+import { Colors } from '../../types/components/theme';
+import './index.css';
 
 const Block = (props: {
   rootClassName: any;
@@ -63,16 +72,51 @@ const Block = (props: {
   return (
     <>
       <div className={`block-block ${props.rootClassName} `}>
-        <Modal
-          title="Basic Modal"
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
+        <ConfigProvider
+          theme={{
+            token: {
+              colorBgElevated: '#232425',
+              colorText: '#fff'
+            }
+          }}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Modal>
+          <Modal
+            title="Delete article"
+            open={isModalOpen}
+            centered
+            closable={false}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            okButtonProps={{
+              style: {
+                padding: '8px 48px',
+                backgroundColor: '#E0E0E0',
+                color: 'black',
+                borderRadius: '32px',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }
+            }}
+            cancelButtonProps={{
+              style: {
+                padding: '8px 48px',
+                backgroundColor: 'inherit',
+                color: '#E0E0E0',
+                borderRadius: '32px',
+                border: '1px solid #E0E0E0',
+                alignItems: 'center',
+                height: 'fix-content',
+                marginRight: '10rem',
+                justifyContent: 'center'
+              }
+            }}
+          >
+            <div className="h-[1px] w-[100%] bg-[#4d4d4e]"></div>
+            <div className="mt-4" style={{ color: '#B7B7B7' }}>
+              Are you sure?This article will be deleted
+            </div>
+          </Modal>
+        </ConfigProvider>
         <span className="block-text">
           <span>{props.data.title}</span>
         </span>
@@ -102,7 +146,9 @@ const Block = (props: {
               <LinkOutlined />
             </span>
             <div className="block-text06">
-              <a href={props.data.link}>{props.data.link}</a>
+              <a href={props.data.link} color="inherit">
+                {props.data.link}
+              </a>
             </div>
           </div>
         </div>
@@ -241,7 +287,7 @@ const Block = (props: {
             height: 24px;
           }
           .block-text06 {
-            color: rgba(116, 116, 116, 1);
+            color: rgba(116, 116, 116, 1) !important;
             height: auto;
             font-size: 14px;
             font-style: Regular;

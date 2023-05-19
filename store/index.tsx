@@ -1,4 +1,4 @@
-import create, { SetState } from 'zustand';
+import { create, SetState } from 'zustand';
 import Sider from '../components/sider/sider';
 
 type PostStore = {

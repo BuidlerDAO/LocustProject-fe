@@ -11,41 +11,46 @@ interface MyProps {
   children?: ReactNode;
 }
 
-const items: MenuProps['items'] = [
-  {
-    key: '1',
-    label: (
-      <Link href="/home/profile" style={{ color: 'white' }}>
-        My Profile
-      </Link>
-    )
-  },
-  {
-    key: '2',
-    label: (
-      <Link href="/home" style={{ color: 'white', whiteSpace: 'nowrap' }}>
-        Event Participation
-      </Link>
-    )
-  },
-  {
-    key: '3',
-    label: <p style={{ color: 'white' }}>Disconnect</p>
-  }
-];
-
 const Wallet: FC<MyProps> = (props) => {
   const { isLoggedIn } = useLoginStore();
   const loginTest = useLoginStore((state) => state.loginTest);
+
+  const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: (
+        <Link href="/home/profile" style={{ color: 'white' }}>
+          My Profile
+        </Link>
+      )
+    },
+    {
+      key: '2',
+      label: (
+        <Link href="/home" style={{ color: 'white', whiteSpace: 'nowrap' }}>
+          Event Participation
+        </Link>
+      )
+    },
+    {
+      key: '3',
+      label: (
+        <p style={{ color: 'white' }} onClick={loginTest}>
+          Disconnect
+        </p>
+      )
+    }
+  ];
+
   const menuStyle = {
     backgroundColor: '#1A1A1A',
     borderRadius: '12px'
   };
   return (
     <>
+      {/*<button className="w-[50px] h-[50px] bg-white text-black" onClick={loginTest}>模拟登录</button>*/}
       <Button
         color="primary"
-        onClick={loginTest}
         className={`w-[144px] whitespace-nowrap px-10 py-2 text-[16px] font-semibold ${
           isLoggedIn ? 'border-black bg-[#1A1A1A]' : 'hover:border-[#6E62EE]'
         }`}
@@ -80,7 +85,7 @@ const Wallet: FC<MyProps> = (props) => {
             </div>
           </Dropdown>
         ) : (
-          <>Connect Wallet</>
+          <p onClick={loginTest}>Connect Wallet</p>
         )}
       </Button>
     </>

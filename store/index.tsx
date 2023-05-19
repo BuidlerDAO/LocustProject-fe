@@ -68,12 +68,14 @@ expansion,modularization and other performance topics this year,we can probably 
 type LoginStore = {
   isLoggedIn: boolean;
   username: string;
+  loginTest: () => void;
   login: (username: string) => void;
 };
 
 const useLoginStore = create<LoginStore>((set: SetState<LoginStore>) => ({
   isLoggedIn: false,
   username: '',
+  loginTest: () => set((state) => ({ isLoggedIn: !state.isLoggedIn })),
   login: (username) =>
     set(() => ({
       isLoggedIn: false,

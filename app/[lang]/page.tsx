@@ -91,16 +91,21 @@ const Index = memo((props: any) => {
           Locust Program
         </span>
         <img className={styles.banner} src={img2.src} />
-        {/*<div className={styles.header}>*/}
-        {/*  <div className={styles.view}>*/}
-        {/*    <img className={styles.iconPiece} src={img4.src} />*/}
-        {/*    <span className={styles.locusts}>Locusts</span>*/}
-        {/*  </div>*/}
-        {/*  <div className={styles.connetWalletWrapper}>*/}
-        {/*    <span className={styles.connetWallet}>Connet Wallet</span>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
         <img className={styles.cover} src={img5.src} />
+        {/*报名倒计时*/}
+        <div
+          // bg-white bg-clip-text text-transparent bg-gradient-to-b from-white to-[#343434] via-transparent
+          // style={{background:"linear-gradient(180deg, #FFFFFF 0%, #343434 136.46%)"}}
+          className="z-[99]  h-12 w-[1000px] items-center whitespace-nowrap bg-white
+                        bg-gradient-to-b from-white via-[#fff] to-[#343434] bg-clip-text text-center
+                        text-[32px] font-medium capitalize not-italic leading-[48px] tracking-[12.5px] text-transparent"
+        >
+          4月蝗虫倒计时
+          <span className="bg-white bg-gradient-to-b from-white to-[#6E62EE] bg-clip-text tracking-[0px] text-transparent">
+            15
+          </span>{' '}
+          天
+        </div>
         <div className={styles.body}>
           <img className={styles.product} src={img6.src} />
           <Button className={styles.outlineWrapper} color="secondary">

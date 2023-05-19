@@ -36,6 +36,7 @@ const items: MenuProps['items'] = [
 
 const Wallet: FC<MyProps> = (props) => {
   const { isLoggedIn } = useLoginStore();
+  const loginTest = useLoginStore((state) => state.loginTest);
   const menuStyle = {
     backgroundColor: '#1A1A1A',
     borderRadius: '12px'
@@ -44,6 +45,7 @@ const Wallet: FC<MyProps> = (props) => {
     <>
       <Button
         color="primary"
+        onClick={loginTest}
         className={`w-[144px] whitespace-nowrap px-10 py-2 text-[16px] font-semibold ${
           isLoggedIn ? 'border-black bg-[#1A1A1A]' : 'hover:border-[#6E62EE]'
         }`}

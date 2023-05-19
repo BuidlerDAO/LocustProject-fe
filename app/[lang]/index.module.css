@@ -1,7 +1,11 @@
 .page {
-  width: 90rem;
-  height: 132.44rem;
+  max-width: 90rem;
+  height: 120rem;
   font-family: Poppins;
+  background-color: black;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
 }
 .wrapper {
   position: relative;
@@ -9,7 +13,7 @@
   flex-direction: column;
   align-items: center;
   width: 90rem;
-  height: 132.44rem;
+  bottom: 108px;
   background-color: #000000;
 }
 .group {
@@ -130,6 +134,7 @@
 }
 .group2::before {
   content: '👀';
+  margin-bottom: 2px;
 }
 .group2:hover img {
   display: none;
@@ -220,7 +225,8 @@
   position: relative;
   width: 72.44rem;
   height: 33.75rem;
-  margin-top: 7.13rem;
+  top: 12rem;
+  /*margin-top: 7.13rem;*/
 }
 .body {
   position: relative;
@@ -229,7 +235,7 @@
   align-items: flex-start;
   width: 73.25rem;
   height: 25.88rem;
-  margin-top: 14.44rem;
+  margin-top: 13.94rem;
   border-radius: 2.88rem;
   border-width: 0.13rem;
   border-style: solid;
@@ -260,6 +266,7 @@
   border-radius: 1.5rem;
   box-sizing: border-box;
   font-size: 12px;
+  cursor: default;
 }
 
 .points {
@@ -421,6 +428,7 @@
   border-radius: 1.5rem;
   box-sizing: border-box;
   font-size: 12px;
+  cursor: default;
 }
 
 .quantity {
@@ -551,6 +559,7 @@
   border-radius: 1.5rem;
   box-sizing: border-box;
   font-size: 12px;
+  cursor: default;
 }
 
 .output {

@@ -1,0 +1,7 @@
+.ant-modal .ant-modal-footer {
+  text-align: center;
+  margin-top: 24px;
+}
+.ant-modal-content .ant-modal-footer .ant-btn {
+  height: auto;
+}

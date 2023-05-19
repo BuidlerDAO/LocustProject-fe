@@ -8,9 +8,19 @@ import {
   FieldTimeOutlined,
   LinkOutlined
 } from '@ant-design/icons';
-import { Dropdown, MenuProps, Modal, Tooltip } from 'antd';
+import {
+  ConfigProvider,
+  Divider,
+  Dropdown,
+  MenuProps,
+  Modal,
+  Tooltip
+} from 'antd';
 import { usePostStore } from '@/store';
 import { on } from 'events';
+import { Colors } from '../../types/components/theme';
+import './index.css';
+import Modalprop from '../modal/modal';
 
 const Block = (props: {
   rootClassName: any;
@@ -63,16 +73,12 @@ const Block = (props: {
   return (
     <>
       <div className={`block-block ${props.rootClassName} `}>
-        <Modal
-          title="Basic Modal"
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Modal>
+        <Modalprop
+          isModalOpen={isModalOpen}
+          handleOk={handleOk}
+          handleCancel={handleCancel}
+          locate="post"
+        />
         <span className="block-text">
           <span>{props.data.title}</span>
         </span>
@@ -102,7 +108,9 @@ const Block = (props: {
               <LinkOutlined />
             </span>
             <div className="block-text06">
-              <a href={props.data.link}>{props.data.link}</a>
+              <a href={props.data.link} color="inherit">
+                {props.data.link}
+              </a>
             </div>
           </div>
         </div>
@@ -154,8 +162,8 @@ const Block = (props: {
             background-color: #1a1a1a;
           }
           .block-text {
-            top: 24px;
-            left: 24px;
+            top: 1.5rem;
+            left: 1.5rem;
             color: rgba(255, 255, 255, 1);
             height: 24px;
             position: absolute;
@@ -173,7 +181,7 @@ const Block = (props: {
             gap: 1.125rem;
             top: 4.125rem;
             left: 1.5rem;
-            width: 35.4375rem;
+
             display: flex;
             position: absolute;
             align-items: flex-center;
@@ -184,8 +192,8 @@ const Block = (props: {
             align-items: center;
           }
           .block-frame1 {
-            width: 24px;
-            height: 24px;
+            // width: 24px;
+            // height: 24px;
           }
           .block-text02 {
             color: rgba(116, 116, 116, 1);
@@ -241,7 +249,7 @@ const Block = (props: {
             height: 24px;
           }
           .block-text06 {
-            color: rgba(116, 116, 116, 1);
+            color: rgba(116, 116, 116, 1) !important;
             height: auto;
             font-size: 14px;
             font-style: Regular;
@@ -254,7 +262,7 @@ const Block = (props: {
           }
           .block-frame5 {
             top: 27px;
-            left: 80rem;
+            left: 71vw;
             width: 18px;
             height: 18px;
             position: absolute;
@@ -263,7 +271,7 @@ const Block = (props: {
             gap: 8px;
             margin-top: 6rem;
             text-align: center;
-            width: 80rem;
+
             display: flex;
             align-items: flex-start;
             flex-shrink: 0;
@@ -327,7 +335,7 @@ const Block = (props: {
           }
           .block-text12 {
             color: rgba(165, 165, 165, 1);
-            width: 62.25rem;
+
             height: auto;
 
             font-size: 14px;
@@ -343,7 +351,7 @@ const Block = (props: {
             margin-top: 1rem;
             margin-left: -30px;
             position: relative;
-            width: 100%;
+            width: 110%;
             height: 1px;
             background-color: #434343;
           }

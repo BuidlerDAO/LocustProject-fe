@@ -1,4 +1,5 @@
-import create, { SetState } from 'zustand';
+import { create, SetState } from 'zustand';
+import Sider from '../components/sider/sider';
 
 type PostStore = {
   posts: {
@@ -67,16 +68,95 @@ expansion,modularization and other performance topics this year,we can probably 
 type LoginStore = {
   isLoggedIn: boolean;
   username: string;
+  loginTest: () => void;
   login: (username: string) => void;
 };
 
 const useLoginStore = create<LoginStore>((set: SetState<LoginStore>) => ({
   isLoggedIn: false,
   username: '',
+  loginTest: () => set((state) => ({ isLoggedIn: !state.isLoggedIn })),
   login: (username) =>
     set(() => ({
       isLoggedIn: false,
       username: username
     }))
 }));
-export { usePostStore , useLoginStore};
+
+type SiderStore = {
+  isExplore: boolean;
+  isDataView: boolean;
+  isPost: boolean;
+  setIsExplore: (isExplore: boolean) => void;
+  setIsDataView: (isDataView: boolean) => void;
+  setIsPost: (isPost: boolean) => void;
+};
+
+const useSiderStore = create<SiderStore>((set: SetState<SiderStore>) => ({
+  isExplore: false,
+  isDataView: false,
+  isPost: false,
+  setIsExplore: (isExplore: any) =>
+    set(() => ({
+      isExplore: isExplore
+    })),
+  setIsDataView: (isDataView: any) =>
+    set(() => ({
+      isDataView: isDataView
+    })),
+  setIsPost: (isPost: any) =>
+    set(() => ({
+      isPost: isPost
+    }))
+}));
+
+//存储登录用户状态和信息
+type UserStore = {
+  isAdmin: boolean;
+  isLogin: boolean;
+  isRegister: boolean;
+  isConnectTwitter: boolean;
+  username: string;
+  avatar: string;
+  setIsAdmin: (isAdmin: boolean) => void;
+  setIsLogin: (isLogin: boolean) => void;
+  setIsRegister: (isRegister: boolean) => void;
+  setIsConnectTwitter: (isConnectTwitter: boolean) => void;
+  setUsername: (username: string) => void;
+  setAvatar: (avatar: string) => void;
+};
+
+const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
+  isAdmin: false,
+  isLogin: false,
+  isRegister: false,
+  isConnectTwitter: false,
+  username: '',
+  avatar: '',
+  setIsAdmin: (isAdmin: boolean) =>
+    set(() => ({
+      isAdmin: isAdmin
+    })),
+  setIsLogin: (isLogin: boolean) =>
+    set(() => ({
+      isLogin: isLogin
+    })),
+  setIsRegister: (isRegister: boolean) =>
+    set(() => ({
+      isRegister: isRegister
+    })),
+  setIsConnectTwitter: (isConnectTwitter: boolean) =>
+    set(() => ({
+      isConnectTwitter: isConnectTwitter
+    })),
+  setUsername: (username: string) =>
+    set(() => ({
+      username: username
+    })),
+  setAvatar: (avatar: string) =>
+    set(() => ({
+      avatar: avatar
+    }))
+}));
+
+export { usePostStore, useLoginStore, useSiderStore, useUserStore };

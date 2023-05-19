@@ -23,7 +23,7 @@ const successIcon = (
 );
 
 const errorIcon = (
-  <div className="ml-[8px] mt-[-14px] inline-flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-[4px] bg-black text-red-500">
+  <div className="ml-[8px] mt-[-1px] inline-flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-[4px] bg-black text-red-500">
     <svg
       width="16"
       height="16"
@@ -84,7 +84,7 @@ const handleClose = () => {
   return toast(
     <>
       {message}
-      <button onClick={handleClose} className="mt-[-15px]">
+      <button onClick={handleClose} className="ml-[0.25vw] mt-[0.3vw] flex">
         <Delete />
       </button>
     </>,

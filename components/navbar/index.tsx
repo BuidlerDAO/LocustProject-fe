@@ -3,9 +3,17 @@
 import { Typography } from '@/components/typography';
 import LogoIconTop from '@/components/icons/logoIconTop';
 import Logo from '@/components/icons/logo';
-import { WalletConnect } from '@/components/wallet';
+import Wallet from '@/components/wallet';
 import { usePathname } from 'next/navigation';
-import { AutoComplete, ConfigProvider, Dropdown, Input, MenuProps, SelectProps, Space } from 'antd';
+import {
+  AutoComplete,
+  ConfigProvider,
+  Dropdown,
+  Input,
+  MenuProps,
+  SelectProps,
+  Space
+} from 'antd';
 import { SearchIcon } from '@/components/icons/search';
 import Link from 'next/link';
 import { DownOutlined } from '@ant-design/icons';
@@ -46,7 +54,7 @@ const searchResult = (query: string) =>
         )
       };
     });
-    
+
 const Navbar = () => {
   const path = usePathname();
   const flag = path == '/zh-CN' || path == '/en';
@@ -74,15 +82,15 @@ const Navbar = () => {
   ];
   const { isLoggedIn } = useLoginStore();
 
-   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
+  const [options, setOptions] = useState<SelectProps<object>['options']>([]);
 
-   const handleSearch = (value: string) => {
-     setOptions(value ? searchResult(value) : []);
-   };
+  const handleSearch = (value: string) => {
+    setOptions(value ? searchResult(value) : []);
+  };
 
-   const onSelect = (value: string) => {
-     console.log('onSelect', value);
-   };
+  const onSelect = (value: string) => {
+    console.log('onSelect', value);
+  };
   return (
     <div
       className={`relative z-50 flex h-[100px] w-full flex-wrap items-center bg-black`}
@@ -108,7 +116,7 @@ const Navbar = () => {
           {/*搜索框 & sign up 是否出现 */}
           {flag ? (
             <>
-              <div className="flex h-[52px] w-[50vw] ml-[10vw]"></div>
+              <div className="ml-[10vw] flex h-[52px] w-[50vw]"></div>
             </>
           ) : (
             <>
@@ -131,7 +139,7 @@ const Navbar = () => {
                     backgroundColor: '#1f1f1f',
                     borderColor: 'rgba(255, 255, 255, 0.16)'
                   }}
-                  className="flex h-[52px] w-[30vw] ml-[12vw] rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+                  className="ml-[12vw] flex h-[52px] w-[30vw] rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
                 >
                   <Input
                     size="large"
@@ -141,50 +149,26 @@ const Navbar = () => {
                       return null;
                     }}
                     bordered={false}
-                    className="flex h-[52px] items-center rounded-full w-fit"
+                    className="flex h-[52px] w-fit items-center rounded-full"
                   />
                 </AutoComplete>
               </ConfigProvider>
               {/*Sign up for Locust*/}
-              {isLoggedIn ? null : (
-                <div className="ml-[5vw] flex text-white ">
+              {isLoggedIn ? (
+                <div className="ml-[28vw]"></div>
+              ) : (
+                <div className="ml-[20vw] flex font-medium text-white hover:text-[#6E62EE]">
                   <Link href="/">Sign up for Locust</Link>
                 </div>
               )}
             </>
           )}
           {/*WalletConnect*/}
-          <div>
-            {isLoggedIn ? (
-              <ConfigProvider
-                theme={{
-                  token: {
-                    colorBgElevated: '#1A1A1A',
-                    colorText: 'white'
-                  }
-                }}
-              >
-                <Dropdown menu={{ items }}>
-                  <a onClick={(e) => e.preventDefault()} className="text-white">
-                    <div
-                      color="primary"
-                      className="text-[16px] hover:border-[#6E62EE] px-10 py-2 rounded-[40px]"
-                      style={{ backgroundColor: '#1A1A1A' }}
-                    >
-                      <Space>
-                        Hover me
-                        <DownOutlined />
-                      </Space>
-                    </div>
-                  </a>
-                </Dropdown>
-              </ConfigProvider>
-            ) : (
-              <span className="ml-[10vw] flex items-center">
-                <WalletConnect />
-              </span>
-            )}
-          </div>
+          <span
+            className={`${flag ? 'ml-[65vw]' : 'ml-[2vw]'} flex items-center`}
+          >
+            <Wallet />
+          </span>
         </div>
       </div>
     </div>

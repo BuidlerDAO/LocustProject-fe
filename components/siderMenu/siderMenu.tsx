@@ -1,10 +1,11 @@
 'use client';
-import React from 'react';
+import React, { use, useEffect, useState } from 'react';
 
-import PropTypes from 'prop-types';
 import Logo from '../icons/logo';
 import { AppstoreOutlined, RiseOutlined } from '@ant-design/icons';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useSiderStore } from '@/store';
 
 const SideMenu = (props: {
   rootClassName: any;
@@ -25,11 +26,43 @@ const SideMenu = (props: {
   Vector_alt1: string | undefined;
   Vector_src1: string | undefined;
 }) => {
+  const pathname = usePathname();
   //当用户点击按钮时，切换按钮的颜色
-  const [isExplore, setIsExplore] = React.useState(true);
-  const [isDataView, setIsDataView] = React.useState(false);
-  const [isPost, setIsPost] = React.useState(false);
+  // const [isExplore, setIsExplore] = React.useState(true);
+  // const [isDataView, setIsDataView] = React.useState(false);
+  // const [isPost, setIsPost] = React.useState(false);
+  //从store中获取用户点击的按钮
+  const {
+    isExplore,
+    setIsExplore,
+    isDataView,
+    setIsDataView,
+    isPost,
+    setIsPost
+  } = useSiderStore();
 
+  useEffect(() => {
+    console.log(pathname);
+    if (pathname === '/en/home' || pathname === '/zh-CN/home') {
+      setIsExplore(true);
+      setIsDataView(false);
+      setIsPost(false);
+    } else if (
+      pathname === '/en/home/dataV' ||
+      pathname === '/zh-CN/home/dataV'
+    ) {
+      setIsExplore(false);
+      setIsDataView(true);
+      setIsPost(false);
+    } else if (
+      pathname === '/en/home/post' ||
+      pathname === '/zh-CN/home/post'
+    ) {
+      setIsExplore(false);
+      setIsDataView(false);
+      setIsPost(true);
+    }
+  }, [pathname]);
   return (
     <>
       <div className={`side-menu-side-menu ${props.rootClassName} `}>
@@ -101,7 +134,15 @@ const SideMenu = (props: {
             >
               <div className="side-menu-frame10211">
                 <span className="side-menu-text4">
-                  <span>New Post</span>
+                  <span
+                    onClick={() => {
+                      setIsExplore(true);
+                      setIsDataView(false);
+                      setIsPost(false);
+                    }}
+                  >
+                    New Post
+                  </span>
                 </span>
               </div>
             </div>
@@ -394,26 +435,6 @@ SideMenu.defaultProps = {
   Vector_alt1: 'VectorI444',
   Vector_alt2: 'VectorI444',
   Vector_src2: '/playground_assets/vectori444-cbyy.svg'
-};
-
-SideMenu.propTypes = {
-  rootClassName: PropTypes.string,
-  Vector_src3: PropTypes.string,
-  Vector_src4: PropTypes.string,
-  Vector_src5: PropTypes.string,
-  Vector_alt3: PropTypes.string,
-  Vector_src1: PropTypes.string,
-  Vector_alt: PropTypes.string,
-  Rectangle1_alt: PropTypes.string,
-  Rectangle1_src: PropTypes.string,
-  Frame_alt: PropTypes.string,
-  Frame_src: PropTypes.string,
-  Vector_alt5: PropTypes.string,
-  Vector_alt4: PropTypes.string,
-  Vector_src: PropTypes.string,
-  Vector_alt1: PropTypes.string,
-  Vector_alt2: PropTypes.string,
-  Vector_src2: PropTypes.string
 };
 
 export default SideMenu;

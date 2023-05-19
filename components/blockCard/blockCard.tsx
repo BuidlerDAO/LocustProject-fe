@@ -200,8 +200,8 @@ const Block = (props: {
             background-color: #1a1a1a;
           }
           .block-text {
-            top: 24px;
-            left: 24px;
+            top: 1.5rem;
+            left: 1.5rem;
             color: rgba(255, 255, 255, 1);
             height: 24px;
             position: absolute;
@@ -219,7 +219,7 @@ const Block = (props: {
             gap: 1.125rem;
             top: 4.125rem;
             left: 1.5rem;
-            width: 35.4375rem;
+
             display: flex;
             position: absolute;
             align-items: flex-center;
@@ -230,8 +230,8 @@ const Block = (props: {
             align-items: center;
           }
           .block-frame1 {
-            width: 24px;
-            height: 24px;
+            // width: 24px;
+            // height: 24px;
           }
           .block-text02 {
             color: rgba(116, 116, 116, 1);

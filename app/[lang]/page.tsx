@@ -60,7 +60,6 @@ const Index = memo((props: any) => {
           <span className={styles.eventRules}>Event Rules</span>
           <span className={styles.desc}>由概要、内容要求、输出格式三部分</span>
         </div>
-        <img className={styles.item} src={img0.src} alt="" />
         <div className={styles.empty} />
         <Button
           className={`${styles.group1} z-[9] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
@@ -104,6 +103,17 @@ const Index = memo((props: any) => {
             {daysLeft}
           </span>{' '}
           天
+        </div>
+        <div className="relative top-[13vw] flex flex-col items-center">
+          <p
+            className="text-[34px] font-semibold"
+            style={{ fontFamily: 'sans-serif' }}
+          >
+            Event Rules
+          </p>
+          <p className="mt-[1vw] text-[18px] text-[#D36CFF] ">
+            由概要、内容要求、输出格式三部分
+          </p>
         </div>
         <div className={styles.body}>
           <img className={styles.product} src={img6.src} />

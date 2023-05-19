@@ -2,16 +2,10 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 
 import '@/styles/home.css';
-import img0 from '@/assets/homeImg/img_0.png';
-import img1 from '@/assets/homeImg/img_1.png';
-import img2 from '@/assets/homeImg/img_2.png';
-import img3 from '@/assets/homeImg/img_3.png';
-import img4 from '@/assets/homeImg/img_4.png';
-import img5 from '@/assets/homeImg/img_5.png';
-import img6 from '@/assets/homeImg/img_6.png';
-import img7 from '@/assets/homeImg/img_7.png';
-import img8 from '@/assets/homeImg/img_8.png';
-import img9 from '@/assets/homeImg/img_9.png';
+
+import decorate from '@/assets/homeImg/decorate.svg';
+import img from '@/assets/homeImg/img.svg';
+import bg from '@/assets/homeImg/bg.svg';
 
 import styles from './index.module.css';
 import { url } from 'inspector';
@@ -80,7 +74,7 @@ const Index = memo((props: any) => {
         />
         <div className={styles.wrapper}>
           <div className={styles.group}>
-            <img src={img9.src} alt="" />
+            <img src={bg.src} alt="" />
             <span className={styles.eventRules}>Event Rules</span>
             <span className={styles.desc}>
               由概要、内容要求、输出格式三部分
@@ -116,8 +110,8 @@ const Index = memo((props: any) => {
             Cognitive <br />
             Locust Program
           </span>
-          <img className={styles.banner} src={img2.src} />
-          <img className={styles.cover} src={img5.src} />
+          <img className={styles.banner} src={img.src} />
+          <img className={styles.cover} src={decorate.src} />
           {/*报名倒计时*/}
           <div
             className="z-[99] h-12 w-[1000px] items-center whitespace-nowrap bg-white

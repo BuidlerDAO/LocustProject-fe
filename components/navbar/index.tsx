@@ -162,11 +162,9 @@ const Navbar = () => {
             </>
           )}
           {/*WalletConnect*/}
-          <div>
-            <span className="ml-[10vw] flex items-center">
-              <Wallet />
-            </span>
-          </div>
+          <span className="ml-[67vw] flex items-center">
+            <Wallet />
+          </span>
         </div>
       </div>
     </div>

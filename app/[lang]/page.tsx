@@ -60,7 +60,6 @@ const Index = memo((props: any) => {
           <span className={styles.eventRules}>Event Rules</span>
           <span className={styles.desc}>由概要、内容要求、输出格式三部分</span>
         </div>
-        <img className={styles.item} src={img0.src} alt="" />
         <div className={styles.empty} />
         <Button
           className={`${styles.group1} z-[9] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}

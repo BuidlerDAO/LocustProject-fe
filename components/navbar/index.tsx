@@ -154,7 +154,9 @@ const Navbar = () => {
                 </AutoComplete>
               </ConfigProvider>
               {/*Sign up for Locust*/}
-              {isLoggedIn ? null : (
+              {isLoggedIn ? (
+                <div className="ml-[28vw]"></div>
+              ) : (
                 <div className="ml-[20vw] flex font-medium text-white hover:text-[#6E62EE]">
                   <Link href="/">Sign up for Locust</Link>
                 </div>

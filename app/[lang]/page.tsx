@@ -22,6 +22,7 @@ import { getCurrentTime } from '@/utils/time';
 import { ConfigProvider, Modal } from 'antd';
 import Modalprop from '@/components/modal/modal';
 import ArrowRight from '@/components/icons/arrowRight';
+import Ellipse from '@/components/icons/ellipse';
 
 const Index = memo((props: any) => {
   const [month, daysLeft] = getCurrentTime();
@@ -141,7 +142,10 @@ const Index = memo((props: any) => {
             </p>
           </div>
           <div className={styles.body}>
-            <img className={styles.product} src={img6.src} />
+            {/*<img className={styles.product} src={img6.src} />*/}
+            <div className={styles.product}>
+              <Ellipse />
+            </div>
             <Button className={styles.outlineWrapper} color="secondary">
               Outline
             </Button>
@@ -174,7 +178,10 @@ const Index = memo((props: any) => {
             </span>
           </div>
           <div className={styles.main}>
-            <img className={styles.item1} src={img7.src} />
+            {/*<img className={styles.item1} src={img7.src} />*/}
+            <div className={styles.item1}>
+              <Ellipse />
+            </div>
             <Button
               className={styles.contentRequirementsWrapper}
               color="secondary"
@@ -197,7 +204,10 @@ const Index = memo((props: any) => {
             </span>
           </div>
           <div className={styles.footer}>
-            <img className={styles.product1} src={img8.src} />
+            <div className={styles.product1}>
+              <Ellipse />
+            </div>
+            {/*<img className={styles.product1} src={img8.src} />*/}
             <Button className={styles.outputFormatWrapper} color="secondary">
               Output format
             </Button>

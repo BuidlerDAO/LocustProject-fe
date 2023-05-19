@@ -12,7 +12,7 @@ const ArrowRight = () => {
         stroke="white"
         strokeWidth="3"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         fillRule="evenodd"

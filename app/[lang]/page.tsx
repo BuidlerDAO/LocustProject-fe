@@ -21,6 +21,7 @@ import Link from 'next/link';
 import { getCurrentTime } from '@/utils/time';
 import { ConfigProvider, Modal } from 'antd';
 import Modalprop from '@/components/modal/modal';
+import ArrowRight from '@/components/icons/arrowRight';
 
 const Index = memo((props: any) => {
   const [month, daysLeft] = getCurrentTime();
@@ -90,24 +91,24 @@ const Index = memo((props: any) => {
             onClick={showModal}
           >
             I want to register
-            <img
+            <div
               className={`${styles.iconRight}`}
               style={{ marginLeft: '0.5rem' }}
-              src={img1.src}
-              alt=""
-            />
+            >
+              <ArrowRight />
+            </div>
           </Button>
           <Link href="/home">
             <Button
               className={`${styles.group2}  z-[9] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
             >
               Past event articles
-              <img
+              <div
                 className={`${styles.iconRight}`}
                 style={{ marginLeft: '0.5rem' }}
-                src={img1.src}
-                alt=""
-              />
+              >
+                <ArrowRight />
+              </div>
             </Button>
           </Link>
           <span className={styles.info1}>

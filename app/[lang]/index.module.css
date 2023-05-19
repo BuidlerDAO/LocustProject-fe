@@ -101,7 +101,7 @@
 .group1::before {
   content: '📣';
 }
-.group1:hover img {
+.group1:hover div {
   /*display: none;*/
   visibility: hidden;
 }
@@ -140,15 +140,17 @@
   content: '👀';
   margin-bottom: 2px;
 }
-.group2:hover img {
-  display: none;
+.group2:hover div {
+  /*display: none;*/
+  visibility: hidden;
 }
 .group2:hover {
   background: #6e62ee;
   border: none;
 }
 .group2:hover::before {
-  content: '';
+  /*content: '';*/
+  visibility: hidden;
 }
 .info1 {
   position: absolute;

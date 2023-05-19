@@ -1,4 +1,4 @@
-import { ConfigProvider, Modal } from 'antd';
+import { Button, ConfigProvider, Modal } from 'antd';
 import './index.css';
 
 const Modalprop = (props: {
@@ -8,15 +8,18 @@ const Modalprop = (props: {
   handleCancel: () => void;
 }) => {
   let title = '',
-    content = '';
+    content = '',
+    okText = '';
   if (props.locate === 'home') {
     title = 'Registration';
     content = `There are less than 10 days left until the end of
     this month's locust activity. Can you confirm your
     registration?`;
+    okText = 'Confirm';
   } else if (props.locate === 'post') {
     title = 'Delete article';
     content = 'Are you sure? This article will be deleted.';
+    okText = 'Delete';
   }
   const { isModalOpen, handleOk, handleCancel } = props;
   return (
@@ -33,8 +36,15 @@ const Modalprop = (props: {
         open={isModalOpen}
         centered
         closable={false}
+        okText={okText}
         onOk={handleOk}
         onCancel={handleCancel}
+        // footer={[
+        //   <Button key="back" onClick={handleCancel}>
+        //     Cancel
+        //   </Button>
+
+        // ]}
         okButtonProps={{
           style: {
             padding: '8px 48px',

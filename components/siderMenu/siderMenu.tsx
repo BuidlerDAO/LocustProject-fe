@@ -1,7 +1,6 @@
 'use client';
 import React, { use, useEffect, useState } from 'react';
 
-import PropTypes from 'prop-types';
 import Logo from '../icons/logo';
 import { AppstoreOutlined, RiseOutlined } from '@ant-design/icons';
 import Link from 'next/link';
@@ -436,26 +435,6 @@ SideMenu.defaultProps = {
   Vector_alt1: 'VectorI444',
   Vector_alt2: 'VectorI444',
   Vector_src2: '/playground_assets/vectori444-cbyy.svg'
-};
-
-SideMenu.propTypes = {
-  rootClassName: PropTypes.string,
-  Vector_src3: PropTypes.string,
-  Vector_src4: PropTypes.string,
-  Vector_src5: PropTypes.string,
-  Vector_alt3: PropTypes.string,
-  Vector_src1: PropTypes.string,
-  Vector_alt: PropTypes.string,
-  Rectangle1_alt: PropTypes.string,
-  Rectangle1_src: PropTypes.string,
-  Frame_alt: PropTypes.string,
-  Frame_src: PropTypes.string,
-  Vector_alt5: PropTypes.string,
-  Vector_alt4: PropTypes.string,
-  Vector_src: PropTypes.string,
-  Vector_alt1: PropTypes.string,
-  Vector_alt2: PropTypes.string,
-  Vector_src2: PropTypes.string
 };
 
 export default SideMenu;

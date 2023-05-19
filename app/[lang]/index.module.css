@@ -130,6 +130,7 @@
 }
 .group2::before {
   content: '👀';
+  margin-bottom: 2px;
 }
 .group2:hover img {
   display: none;

@@ -1,7 +1,11 @@
 .page {
-  width: 90rem;
-  height: 132.44rem;
+  max-width: 90rem;
+  height: 115rem;
   font-family: Poppins;
+  background-color: black;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
 }
 .wrapper {
   position: relative;
@@ -10,7 +14,6 @@
   align-items: center;
   width: 90rem;
   bottom: 108px;
-  /*height: 132.44rem;*/
   background-color: #000000;
 }
 .group {

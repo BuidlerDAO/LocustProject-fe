@@ -2,7 +2,7 @@
   max-width: 90rem;
   height: 120rem;
   font-family: Poppins;
-  background-color: black;
+  background-color: #1e1e1e;
   overflow-x: hidden;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
@@ -106,6 +106,7 @@
 }
 .group1:hover {
   background: #6e62ee;
+  border: none;
 }
 .group1:hover::before {
   content: '';
@@ -141,6 +142,7 @@
 }
 .group2:hover {
   background: #6e62ee;
+  border: none;
 }
 .group2:hover::before {
   content: '';

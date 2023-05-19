@@ -1,7 +1,7 @@
 .page {
   width: 90rem;
   height: 132.44rem;
-  font-family: Poppins;
+  /*font-family: Poppins;*/
 }
 .wrapper {
   position: relative;
@@ -9,7 +9,8 @@
   flex-direction: column;
   align-items: center;
   width: 90rem;
-  height: 132.44rem;
+  bottom: 108px;
+  /*height: 132.44rem;*/
   background-color: #000000;
 }
 .group {

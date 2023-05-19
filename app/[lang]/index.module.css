@@ -222,7 +222,8 @@
   position: relative;
   width: 72.44rem;
   height: 33.75rem;
-  margin-top: 7.13rem;
+  top: 68px;
+  /*margin-top: 7.13rem;*/
 }
 .body {
   position: relative;

@@ -2,7 +2,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 
-//import PropTypes from 'prop-types';
 import { Button, ConfigProvider, Form, Input } from 'antd';
 import { usePostStore } from '@/store';
 import Link from 'next/link';

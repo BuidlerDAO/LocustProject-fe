@@ -1,5 +1,5 @@
 'use client';
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 
 import '@/styles/home.css';
 import img0 from '@/assets/homeImg/img_0.png';
@@ -19,6 +19,8 @@ import { Button } from '@/components/button';
 import Toast from '@/components/toast/toast';
 import Link from 'next/link';
 import { getCurrentTime } from '@/utils/time';
+import { ConfigProvider, Modal } from 'antd';
+import Modalprop from '@/components/modal/modal';
 
 const Index = memo((props: any) => {
   const [month, daysLeft] = getCurrentTime();
@@ -52,32 +54,42 @@ const Index = memo((props: any) => {
     }
   }, []);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
-    <div className={styles.page}>
-      <div className={styles.wrapper}>
-        <div className={styles.group}>
-          <img src={img9.src} alt="" />
-          <span className={styles.eventRules}>Event Rules</span>
-          <span className={styles.desc}>由概要、内容要求、输出格式三部分</span>
-        </div>
-        <div className={styles.empty} />
-        <Button
-          className={`${styles.group1} z-[9] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
-          onClick={Click}
-        >
-          I want to register
-          <img
-            className={`${styles.iconRight}`}
-            style={{ marginLeft: '0.5rem' }}
-            src={img1.src}
-            alt=""
-          />
-        </Button>
-        <Link href="/home">
+    <>
+      <div className={styles.page}>
+        <Modalprop
+          isModalOpen={isModalOpen}
+          handleOk={handleOk}
+          handleCancel={handleCancel}
+          locate="/"
+        />
+        <div className={styles.wrapper}>
+          <div className={styles.group}>
+            <img src={img9.src} alt="" />
+            <span className={styles.eventRules}>Event Rules</span>
+            <span className={styles.desc}>
+              由概要、内容要求、输出格式三部分
+            </span>
+          </div>
+          <div className={styles.empty} />
           <Button
-            className={`${styles.group2}  z-[9] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
+            className={`${styles.group1} z-[9] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
+            onClick={showModal}
           >
-            Past event articles
+            I want to register
             <img
               className={`${styles.iconRight}`}
               style={{ marginLeft: '0.5rem' }}
@@ -85,110 +97,123 @@ const Index = memo((props: any) => {
               alt=""
             />
           </Button>
-        </Link>
-        <span className={styles.info1}>
-          Cognitive <br />
-          Locust Program
-        </span>
-        <img className={styles.banner} src={img2.src} />
-        <img className={styles.cover} src={img5.src} />
-        {/*报名倒计时*/}
-        <div
-          className="z-[99]  h-12 w-[1000px] items-center whitespace-nowrap bg-white
+          <Link href="/home">
+            <Button
+              className={`${styles.group2}  z-[9] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
+            >
+              Past event articles
+              <img
+                className={`${styles.iconRight}`}
+                style={{ marginLeft: '0.5rem' }}
+                src={img1.src}
+                alt=""
+              />
+            </Button>
+          </Link>
+          <span className={styles.info1}>
+            Cognitive <br />
+            Locust Program
+          </span>
+          <img className={styles.banner} src={img2.src} />
+          <img className={styles.cover} src={img5.src} />
+          {/*报名倒计时*/}
+          <div
+            className="z-[99] h-12 w-[1000px] items-center whitespace-nowrap bg-white
                         bg-gradient-to-b from-white via-[#fff] to-[#343434] bg-clip-text text-center
                         text-[32px] font-medium capitalize not-italic leading-[48px] tracking-[12.5px] text-transparent"
-        >
-          {month}月蝗虫倒计时
-          <span className="bg-white bg-gradient-to-b from-white to-[#6E62EE] bg-clip-text tracking-[0px] text-transparent">
-            {daysLeft}
-          </span>{' '}
-          天
-        </div>
-        <div className="relative top-[13vw] flex flex-col items-center">
-          <p
-            className="text-[34px] font-semibold"
-            style={{ fontFamily: 'sans-serif' }}
           >
-            Event Rules
-          </p>
-          <p className="mt-[1vw] text-[18px] text-[#D36CFF] ">
-            由概要、内容要求、输出格式三部分
-          </p>
-        </div>
-        <div className={styles.body}>
-          <img className={styles.product} src={img6.src} />
-          <Button className={styles.outlineWrapper} color="secondary">
-            Outline
-          </Button>
-          <span className={styles.points}>1.Points</span>
-          <span className={styles.mechanismPrev}>
-            Each piece of content will be rewarded with 2 points (to be viewed
-            when the BuidlerDAO economic model is released)
-          </span>
-          <span className={styles.mechanism}>2.Mechanism</span>
-          <span className={styles.article}>
-            Adopt betting + POW mining, locust members pledge 100 RMB per month,
-            bet on 12 pieces of quality content to complete, monthly settlement
-            punch card, the winner according to the POW division Pool.-Pool: The
-            accumulated amount of all bets failed Locust & BuidlerDAO extra
-            incentive 200 RMB/month
-          </span>
-          <span className={styles.info2}>
-            Bug 1:9 / Betting failure Deduct 100
-          </span>
-          <span className={styles.info3}>
-            Bug 2:8 / Betting failure Deduct 100
-          </span>
-          <span className={styles.title}>
-            Bug 3:16 / Betting success Retained 100.Additional 16-12=4;
-            (4/6)*200=133.3 reward
-          </span>
-          <span className={styles.title1}>
-            Bug 4:14 / Betting success Keep 100, get 14-12=2 extra;
-            (2/6)*200=66.7 reward
-          </span>
-        </div>
-        <div className={styles.main}>
-          <img className={styles.item1} src={img7.src} />
-          <Button
-            className={styles.contentRequirementsWrapper}
-            color="secondary"
-          >
-            Content requirements
-          </Button>
-          <span className={styles.quantity}>1.Quantity</span>
-          <span className={styles.qualityPrev}>
-            At least 3 articles per week and at least 12 articles per month;
-          </span>
-          <span className={styles.quality}>2.Quality</span>
-          <span className={styles.auditPrev}>
-            invalidate the number of consecutive posts at the end of the month;
-            prohibit copy and paste without thinking;
-          </span>
-          <span className={styles.audit}>3.Audit</span>
-          <span className={styles.summary}>
-            no complaints will be accepted for the time being if the content
-            quality is not up to par/plagiarized;
-          </span>
-        </div>
-        <div className={styles.footer}>
-          <img className={styles.product1} src={img8.src} />
-          <Button className={styles.outputFormatWrapper} color="secondary">
-            Output format
-          </Button>
-          <span className={styles.output}>1.Output by</span>
-          <span className={styles.subject}>Subject</span>
-          <span className={styles.output1}>Output by</span>
-          <span className={styles.personalReflectionsPrev}>
-            Core Content Introduction
-          </span>
-          <span className={styles.personalReflections}>
-            Personal Reflections
-          </span>
-          <span className={styles.relatedLinks}>Related Links</span>
+            {month}月蝗虫倒计时
+            <span className="bg-white bg-gradient-to-b from-white to-[#6E62EE] bg-clip-text tracking-[0px] text-transparent">
+              {daysLeft}
+            </span>{' '}
+            天
+          </div>
+          <div className="relative top-[13vw] flex flex-col items-center">
+            <p
+              className="text-[34px] font-semibold"
+              style={{ fontFamily: 'sans-serif' }}
+            >
+              Event Rules
+            </p>
+            <p className="mt-[1vw] text-[18px] text-[#D36CFF] ">
+              由概要、内容要求、输出格式三部分
+            </p>
+          </div>
+          <div className={styles.body}>
+            <img className={styles.product} src={img6.src} />
+            <Button className={styles.outlineWrapper} color="secondary">
+              Outline
+            </Button>
+            <span className={styles.points}>1.Points</span>
+            <span className={styles.mechanismPrev}>
+              Each piece of content will be rewarded with 2 points (to be viewed
+              when the BuidlerDAO economic model is released)
+            </span>
+            <span className={styles.mechanism}>2.Mechanism</span>
+            <span className={styles.article}>
+              Adopt betting + POW mining, locust members pledge 100 RMB per
+              month, bet on 12 pieces of quality content to complete, monthly
+              settlement punch card, the winner according to the POW division
+              Pool.-Pool: The accumulated amount of all bets failed Locust &
+              BuidlerDAO extra incentive 200 RMB/month
+            </span>
+            <span className={styles.info2}>
+              Bug 1:9 / Betting failure Deduct 100
+            </span>
+            <span className={styles.info3}>
+              Bug 2:8 / Betting failure Deduct 100
+            </span>
+            <span className={styles.title}>
+              Bug 3:16 / Betting success Retained 100.Additional 16-12=4;
+              (4/6)*200=133.3 reward
+            </span>
+            <span className={styles.title1}>
+              Bug 4:14 / Betting success Keep 100, get 14-12=2 extra;
+              (2/6)*200=66.7 reward
+            </span>
+          </div>
+          <div className={styles.main}>
+            <img className={styles.item1} src={img7.src} />
+            <Button
+              className={styles.contentRequirementsWrapper}
+              color="secondary"
+            >
+              Content requirements
+            </Button>
+            <span className={styles.quantity}>1.Quantity</span>
+            <span className={styles.qualityPrev}>
+              At least 3 articles per week and at least 12 articles per month;
+            </span>
+            <span className={styles.quality}>2.Quality</span>
+            <span className={styles.auditPrev}>
+              invalidate the number of consecutive posts at the end of the
+              month; prohibit copy and paste without thinking;
+            </span>
+            <span className={styles.audit}>3.Audit</span>
+            <span className={styles.summary}>
+              no complaints will be accepted for the time being if the content
+              quality is not up to par/plagiarized;
+            </span>
+          </div>
+          <div className={styles.footer}>
+            <img className={styles.product1} src={img8.src} />
+            <Button className={styles.outputFormatWrapper} color="secondary">
+              Output format
+            </Button>
+            <span className={styles.output}>1.Output by</span>
+            <span className={styles.subject}>Subject</span>
+            <span className={styles.output1}>Output by</span>
+            <span className={styles.personalReflectionsPrev}>
+              Core Content Introduction
+            </span>
+            <span className={styles.personalReflections}>
+              Personal Reflections
+            </span>
+            <span className={styles.relatedLinks}>Related Links</span>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 });
 

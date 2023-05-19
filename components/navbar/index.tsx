@@ -163,7 +163,7 @@ const Navbar = () => {
           )}
           {/*WalletConnect*/}
           <span
-            className={`${flag ? 'ml-[67vw]' : 'ml-[2vw]'} flex items-center`}
+            className={`${flag ? 'ml-[65vw]' : 'ml-[2vw]'} flex items-center`}
           >
             <Wallet />
           </span>

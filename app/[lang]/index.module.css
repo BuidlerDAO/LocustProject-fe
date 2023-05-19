@@ -1,6 +1,6 @@
 .page {
   max-width: 90rem;
-  height: 115rem;
+  height: 120rem;
   font-family: Poppins;
   background-color: black;
   overflow-x: hidden;
@@ -235,7 +235,7 @@
   align-items: flex-start;
   width: 73.25rem;
   height: 25.88rem;
-  margin-top: 14.44rem;
+  margin-top: 13.94rem;
   border-radius: 2.88rem;
   border-width: 0.13rem;
   border-style: solid;

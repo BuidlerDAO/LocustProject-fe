@@ -104,6 +104,17 @@ const Index = memo((props: any) => {
           </span>{' '}
           天
         </div>
+        <div className="relative top-[13vw] flex flex-col items-center">
+          <p
+            className="text-[34px] font-semibold"
+            style={{ fontFamily: 'sans-serif' }}
+          >
+            Event Rules
+          </p>
+          <p className="mt-[1vw] text-[18px] text-[#D36CFF] ">
+            由概要、内容要求、输出格式三部分
+          </p>
+        </div>
         <div className={styles.body}>
           <img className={styles.product} src={img6.src} />
           <Button className={styles.outlineWrapper} color="secondary">

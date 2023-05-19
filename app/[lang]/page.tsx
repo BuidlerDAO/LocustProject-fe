@@ -18,10 +18,11 @@ import { url } from 'inspector';
 import { Button } from '@/components/button';
 import Toast from '@/components/toast/toast';
 import Link from 'next/link';
+import { getCurrentTime } from '@/utils/time';
 
 const Index = memo((props: any) => {
+  const [month, daysLeft] = getCurrentTime();
   const Click = useCallback(() => {
-    console.log(111);
     Toast.error('You have not signed up for locusts, please sign up first', {
       duration: 4000
     });
@@ -94,15 +95,13 @@ const Index = memo((props: any) => {
         <img className={styles.cover} src={img5.src} />
         {/*报名倒计时*/}
         <div
-          // bg-white bg-clip-text text-transparent bg-gradient-to-b from-white to-[#343434] via-transparent
-          // style={{background:"linear-gradient(180deg, #FFFFFF 0%, #343434 136.46%)"}}
           className="z-[99]  h-12 w-[1000px] items-center whitespace-nowrap bg-white
                         bg-gradient-to-b from-white via-[#fff] to-[#343434] bg-clip-text text-center
                         text-[32px] font-medium capitalize not-italic leading-[48px] tracking-[12.5px] text-transparent"
         >
-          4月蝗虫倒计时
+          {month}月蝗虫倒计时
           <span className="bg-white bg-gradient-to-b from-white to-[#6E62EE] bg-clip-text tracking-[0px] text-transparent">
-            15
+            {daysLeft}
           </span>{' '}
           天
         </div>

@@ -1,7 +1,7 @@
 .page {
   width: 90rem;
   height: 132.44rem;
-  /*font-family: Poppins;*/
+  font-family: Poppins;
 }
 .wrapper {
   position: relative;
@@ -222,7 +222,7 @@
   position: relative;
   width: 72.44rem;
   height: 33.75rem;
-  top: 68px;
+  top: 12rem;
   /*margin-top: 7.13rem;*/
 }
 .body {
@@ -263,6 +263,7 @@
   border-radius: 1.5rem;
   box-sizing: border-box;
   font-size: 12px;
+  cursor: default;
 }
 
 .points {
@@ -424,6 +425,7 @@
   border-radius: 1.5rem;
   box-sizing: border-box;
   font-size: 12px;
+  cursor: default;
 }
 
 .quantity {
@@ -554,6 +556,7 @@
   border-radius: 1.5rem;
   box-sizing: border-box;
   font-size: 12px;
+  cursor: default;
 }
 
 .output {

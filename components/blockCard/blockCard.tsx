@@ -77,6 +77,7 @@ const Block = (props: {
           isModalOpen={isModalOpen}
           handleOk={handleOk}
           handleCancel={handleCancel}
+          locate="post"
         />
         <span className="block-text">
           <span>{props.data.title}</span>

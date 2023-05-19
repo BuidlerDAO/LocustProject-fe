@@ -74,6 +74,7 @@ const Index = memo((props: any) => {
           isModalOpen={isModalOpen}
           handleOk={handleOk}
           handleCancel={handleCancel}
+          locate="/"
         />
         <div className={styles.wrapper}>
           <div className={styles.group}>

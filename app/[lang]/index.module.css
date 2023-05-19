@@ -102,14 +102,17 @@
   content: '📣';
 }
 .group1:hover img {
-  display: none;
+  /*display: none;*/
+  visibility: hidden;
 }
 .group1:hover {
   background: #6e62ee;
   border: none;
 }
 .group1:hover::before {
-  content: '';
+  /*content: "";*/
+  /*display: none;*/
+  visibility: hidden;
 }
 .iconRight {
   display: block;

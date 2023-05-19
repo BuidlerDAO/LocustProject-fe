@@ -309,7 +309,7 @@ const Block = (props: {
             gap: 8px;
             margin-top: 6rem;
             text-align: center;
-            width: 80rem;
+
             display: flex;
             align-items: flex-start;
             flex-shrink: 0;
@@ -373,7 +373,7 @@ const Block = (props: {
           }
           .block-text12 {
             color: rgba(165, 165, 165, 1);
-            width: 62.25rem;
+
             height: auto;
 
             font-size: 14px;
@@ -389,7 +389,7 @@ const Block = (props: {
             margin-top: 1rem;
             margin-left: -30px;
             position: relative;
-            width: 100%;
+            width: 110%;
             height: 1px;
             background-color: #434343;
           }

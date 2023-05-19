@@ -1,19 +1,6 @@
 'use client';
 import Link from 'next/link';
-import {
-  Avatar,
-  Button,
-  Card,
-  Form,
-  Input,
-  message,
-  Space,
-  Table,
-  Tag
-} from 'antd';
-import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons';
 import Twitter from '@/components/icons/twitter';
-import { TwitterIcon } from '@/components/icons/campaignTwitter';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { useRef, useState } from 'react';
 import type { UploadChangeParam } from 'antd/es/upload';
@@ -21,24 +8,25 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import img3 from '@/assets/homeImg/img_3.png';
 import Image from 'next/image';
 import Upload from '@/components/icons/upload';
-//import img404 from '@/assets/error.png'
+import { Button } from '@/components/button';
+
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
   const reader = new FileReader();
   reader.addEventListener('load', () => callback(reader.result as string));
   reader.readAsDataURL(img);
 };
 
-const beforeUpload = (file: RcFile) => {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-  if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!');
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
-  }
-  return isJpgOrPng && isLt2M;
-};
+// const beforeUpload = (file: RcFile) => {
+//   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+//   if (!isJpgOrPng) {
+//     message.error('You can only upload JPG/PNG file!');
+//   }
+//   const isLt2M = file.size / 1024 / 1024 < 2;
+//   if (!isLt2M) {
+//     message.error('Image must smaller than 2MB!');
+//   }
+//   return isJpgOrPng && isLt2M;
+// };
 
 // const PreviewImage = ({ imageUrl }: { imageUrl: string }) => {
 //   const [isHovering, setIsHovering] = useState(false);
@@ -144,8 +132,9 @@ const Profile: React.FC = () => {
         {/*输入框部分*/}
         <input
           type="text"
+          value="喵喵"
           className="mr-[-93px] mt-[14px] h-[37px] w-[401px] rounded-[6px] border-[1px] bg-black focus:outline-none"
-          style={{ borderColor: '#747474', textIndent: '12px' }}
+          style={{ borderColor: '#1d1d1d', textIndent: '12px' }}
         />
       </div>
       {/*推特部分*/}
@@ -154,7 +143,7 @@ const Profile: React.FC = () => {
         {/*绑定框部分*/}
         <div
           className="item-center mr-[-93px] mt-[14px] flex h-[37px] w-[401px] justify-between rounded-[6px] border-[1px] bg-black"
-          style={{ borderColor: '#747474' }}
+          style={{ borderColor: '#1d1d1d' }}
         >
           <div className="flex-raw item-center ml-[12px] mt-[4px] flex justify-center">
             <Twitter />
@@ -164,6 +153,13 @@ const Profile: React.FC = () => {
             Connect
           </span>
         </div>
+        {/*Submit*/}
+        <Button
+          color="secondary"
+          className="ml-[6.2vw] mt-[3.5vw] h-[2.5vw] w-[9vw] rounded-full text-[14px]"
+        >
+          Submit
+        </Button>
       </div>
     </div>
   );

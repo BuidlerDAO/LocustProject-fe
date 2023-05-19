@@ -254,7 +254,7 @@ const Block = (props: {
           }
           .block-frame5 {
             top: 27px;
-            left: 80rem;
+            left: 71vw;
             width: 18px;
             height: 18px;
             position: absolute;

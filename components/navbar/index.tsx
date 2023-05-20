@@ -140,7 +140,7 @@ const Navbar = () => {
                     backgroundColor: '#1f1f1f',
                     borderColor: 'rgba(255, 255, 255, 0.16)'
                   }}
-                  className="ml-[10vw] flex h-[52px] w-[30vw] rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+                  className="ml-[9vw] flex h-[52px] w-[30vw] rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
                 >
                   <Input
                     size="large"
@@ -158,18 +158,18 @@ const Navbar = () => {
               {isLoggedIn ? (
                 <div className="ml-[28vw]"></div>
               ) : (
-                <div className="ml-[20vw] flex font-medium text-white hover:text-[#6E62EE]">
-                  <Link href="/">Sign up for Locust</Link>
+                <div className="ml-[19vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
+                  <Link href="/" className="relative right-[3.6vw]">
+                    Sign up for Locust
+                  </Link>
                 </div>
               )}
             </>
           )}
           {/*WalletConnect*/}
-          <span
-            className={`${flag ? 'ml-[65vw]' : 'ml-[2vw]'} flex items-center`}
-          >
+          <div className={`${flag ? 'ml-[60vw]' : ''} flex items-center`}>
             <Wallet />
-          </span>
+          </div>
         </div>
       </div>
     </div>

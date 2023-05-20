@@ -77,9 +77,12 @@ const Profile: React.FC = () => {
     </div>
   );
   return (
-    <div style={{ backgroundColor: 'black', width: '100%', height: '100%' }}>
+    <div
+      style={{ backgroundColor: 'black', width: '100%', height: '100%' }}
+      className="ml-[1.7vw] mt-[3.8vw]"
+    >
       {/*Profile字样*/}
-      <div className="ml-[3.6vw] text-[28px]">Profile</div>
+      <div className="ml-[1.6vw] text-[28px]">Profile</div>
       {/*头像部分*/}
       <div className="mt-[17px] flex flex-col items-center">
         <div className="mb-[14px] mr-[36.3vw] text-[16px]">Avatar</div>

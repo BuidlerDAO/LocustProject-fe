@@ -3,9 +3,9 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 
 import '@/styles/home.css';
 
-import decorate from '@/assets/homeImg/decorate.svg';
-import img from '@/assets/homeImg/img.svg';
-import bg from '@/assets/homeImg/bg.svg';
+import decorate from '@/assets/homeSvg/decorate.svg';
+import img from '@/assets/homeSvg/img.svg';
+import bg from '@/assets/homeSvg/bg.svg';
 
 import styles from './index.module.css';
 import { url } from 'inspector';

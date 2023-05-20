@@ -25,6 +25,8 @@ import WebIcon from './web';
 import DiscordIcon from './discord';
 import TelegramIcon from './telegram';
 import CheckIcon from './check';
+import { TimeIcon } from './time';
+import LinkIcon from './link';
 
 export interface IconBaseProps extends React.SVGAttributes<SVGElement> {
   children?: React.ReactNode;
@@ -73,5 +75,7 @@ export {
   WebIcon,
   DiscordIcon,
   TelegramIcon,
-  CheckIcon
+  CheckIcon,
+  TimeIcon,
+  LinkIcon
 };

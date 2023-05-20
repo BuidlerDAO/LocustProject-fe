@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import {
   DeleteOutlined,
   EllipsisOutlined,
-  FieldTimeOutlined,
   LinkOutlined
 } from '@ant-design/icons';
 import {
@@ -21,6 +20,7 @@ import { on } from 'events';
 import { Colors } from '../../types/components/theme';
 import './index.css';
 import Modalprop from '../modal/modal';
+import { LinkIcon, TimeIcon } from '../icons';
 
 const Block = (props: {
   rootClassName: any;
@@ -85,7 +85,7 @@ const Block = (props: {
         <div className="block-frametab">
           <div className="block-frame">
             <div className="block-frame1 text-textGrey">
-              <FieldTimeOutlined />
+              <TimeIcon />
             </div>
             <span className="block-text02">
               <span>{props.data.time}</span>
@@ -105,7 +105,7 @@ const Block = (props: {
           </div>
           <div className="block-frame3">
             <span className="text-textGrey">
-              <LinkOutlined />
+              <LinkIcon />
             </span>
             <div className="block-text06">
               <a href={props.data.link} style={{ color: 'inherit' }}>
@@ -271,7 +271,7 @@ const Block = (props: {
             gap: 8px;
             margin-top: 6rem;
             text-align: center;
-
+            margin-left: 0.5rem;
             display: flex;
             align-items: flex-start;
             flex-shrink: 0;
@@ -293,10 +293,9 @@ const Block = (props: {
           .block-frame1171274787 {
             gap: 8px;
             margin-top: 1rem;
-
+            margin-left: 0.5rem;
             width: 62.25rem;
             display: flex;
-
             align-items: flex-center;
             flex-direction: column;
           }

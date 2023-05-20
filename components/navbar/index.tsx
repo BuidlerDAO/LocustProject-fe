@@ -139,7 +139,7 @@ const Navbar = () => {
                     backgroundColor: '#1f1f1f',
                     borderColor: 'rgba(255, 255, 255, 0.16)'
                   }}
-                  className="ml-[12vw] flex h-[52px] w-[30vw] rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+                  className="ml-[10vw] flex h-[52px] w-[30vw] rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
                 >
                   <Input
                     size="large"

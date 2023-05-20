@@ -93,7 +93,7 @@ const Navbar = () => {
   };
   return (
     <div
-      className={`relative z-50 flex h-[100px] w-full flex-wrap items-center bg-[#04070B]`}
+      className={`relative z-50 flex h-[100px] w-full flex-wrap items-center border-b-[1px] border-b-lineGrey bg-[#04070B]`}
     >
       <div className="sticky inset-0 z-10 flex h-full w-full max-w-full items-center px-8 py-2 lg:px-10 lg:py-4">
         <div className="text-blue-gray-900 dark:text-blue-gray-100 flex w-full items-center">
@@ -139,7 +139,7 @@ const Navbar = () => {
                     backgroundColor: '#1f1f1f',
                     borderColor: 'rgba(255, 255, 255, 0.16)'
                   }}
-                  className="ml-[12vw] flex h-[52px] w-[30vw] rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+                  className="ml-[10vw] flex h-[52px] w-[30vw] rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
                 >
                   <Input
                     size="large"

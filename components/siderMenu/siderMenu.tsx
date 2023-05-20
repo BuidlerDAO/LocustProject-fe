@@ -65,8 +65,8 @@ const SideMenu = (props: {
   }, [pathname]);
   return (
     <>
-      <div className={`side-menu-side-menu ${props.rootClassName} `}>
-        <div className="side-menu-frame1171274769">
+      <div className={`side-menu-side-menu ${props.rootClassName}`}>
+        <div className="side-menu-frame1171274769 ">
           <div className="side-menu-menu">
             {/* explore 按钮 */}
             <div
@@ -153,14 +153,19 @@ const SideMenu = (props: {
         {`
           .side-menu-side-menu {
             width: 18rem;
-            height: 100%;
+
             display: flex;
             position: relative;
             align-items: flex-start;
             flex-shrink: 0;
             background-color: #000000;
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: #262626;
           }
           .side-menu-frame1171274769 {
+            height: 100%;
+
             gap: 24px;
             left: 0px;
             width: 100%;
@@ -320,7 +325,7 @@ const SideMenu = (props: {
           .side-menu-frame10211 {
             gap: 8px;
             top: 0px;
-            left: 20px;
+            left: 1.5rem;
             width: 14.375rem;
             height: 52px;
             display: flex;

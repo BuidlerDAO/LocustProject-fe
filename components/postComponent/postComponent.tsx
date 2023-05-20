@@ -75,7 +75,7 @@ const postComponent = (props: { rootClassName: any }) => {
           <div className="component-frame15062">
             <ConfigProvider
               theme={{
-                token: { colorBgContainer: '#FFFFFF0F' }
+                token: { colorBgContainer: '#0f0f0f' }
               }}
             >
               <Form.Item
@@ -103,13 +103,13 @@ const postComponent = (props: { rootClassName: any }) => {
           <div className="component-frame15063">
             <ConfigProvider
               theme={{
-                token: { colorBgContainer: '#FFFFFF0F' }
+                token: { colorBgContainer: '#0f0f0f' }
               }}
             >
               <Form.Item
                 name="link"
                 rules={[
-                  { required: true, message: 'Please Enter The Original Link' }
+                  { required: true, message: 'Link input error', type: 'url' }
                 ]}
               >
                 <Input
@@ -170,7 +170,7 @@ const postComponent = (props: { rootClassName: any }) => {
               <div className="component-frame15064">
                 <ConfigProvider
                   theme={{
-                    token: { colorBgContainer: '#FFFFFF0F' }
+                    token: { colorBgContainer: '#0f0f0f' }
                   }}
                 >
                   <TextArea
@@ -204,7 +204,7 @@ const postComponent = (props: { rootClassName: any }) => {
               <div className="component-frame15066">
                 <ConfigProvider
                   theme={{
-                    token: { colorBgContainer: '#FFFFFF0F' }
+                    token: { colorBgContainer: '#0f0f0f' }
                   }}
                 >
                   <TextArea
@@ -230,7 +230,6 @@ const postComponent = (props: { rootClassName: any }) => {
           .frame1171274791-frame1171274791 {
             top: 100vh;
             left: 28vw;
-
             display: flex;
             padding: 0.75rem 4rem;
             position: absolute;
@@ -259,6 +258,8 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-container {
+            left: 2vw;
+            top: 2vh;
             width: 73vw;
             height: 110vh;
             display: flex;

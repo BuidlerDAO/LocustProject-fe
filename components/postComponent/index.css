@@ -9,26 +9,26 @@
   min-height: 7vh;
 }
 
-.ant-form-item-control-input-content .ant-input-affix-wrapper > input.ant-input {
+.ant-form-item-control-input-content
+  .ant-input-affix-wrapper
+  > input.ant-input {
   width: 70vw;
   height: 5.8vh;
   border: none;
-  background-color: #202020;
 }
 .ant-input-affix-wrapper .ant-input-suffix {
-    margin-inline-start: 4px;
-    height: 6vh;
+  margin-inline-start: 4px;
+  height: 6vh;
 }
 .ant-input-affix-wrapper .ant-input-show-count-suffix {
-    /* color: rgba(0, 0, 0, 0.45); */
-    color: #596069;
+  /* color: rgba(0, 0, 0, 0.45); */
+  color: #596069;
 }
 .ant-form-item-control-input-content textarea {
   height: 30vh !important;
-  background-color: #202020;
 }
 .ant-input-textarea-show-count .ant-input-data-count {
   color: #596069;
   bottom: 2px;
-  right:2px;
+  right: 2px;
 }

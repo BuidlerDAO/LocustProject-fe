@@ -70,7 +70,7 @@ const Index = memo((props: any) => {
           isModalOpen={isModalOpen}
           handleOk={handleOk}
           handleCancel={handleCancel}
-          locate="/"
+          locate="home"
         />
         <div className={styles.wrapper}>
           <div className={styles.group}>

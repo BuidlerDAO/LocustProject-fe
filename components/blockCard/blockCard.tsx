@@ -108,7 +108,7 @@ const Block = (props: {
               <LinkOutlined />
             </span>
             <div className="block-text06">
-              <a href={props.data.link} color="inherit">
+              <a href={props.data.link} style={{ color: 'inherit' }}>
                 {props.data.link}
               </a>
             </div>

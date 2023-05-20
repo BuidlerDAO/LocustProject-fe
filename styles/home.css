@@ -21,7 +21,7 @@
   align-self: center;
   width: 1440px;
   height: 865px;
-  background-image: url(../assets/homeImg/img_9.png);
+  /*background-image: url(../assets/homeImg/img_9.png);*/
   background-size: contain;
   font-weight: 500;
 }

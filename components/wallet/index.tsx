@@ -27,7 +27,10 @@ const Wallet: FC<MyProps> = (props) => {
     {
       key: '2',
       label: (
-        <Link href="/home" style={{ color: 'white', whiteSpace: 'nowrap' }}>
+        <Link
+          href="/home/participate"
+          style={{ color: 'white', whiteSpace: 'nowrap' }}
+        >
           Event Participation
         </Link>
       )

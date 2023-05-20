@@ -174,7 +174,7 @@ const items: MenuProps['items'] = [
 const dataV = () => {
   return (
     <>
-      <div className="flex flex-col">
+      <div className="ml-[1vw] mt-[2vh] flex flex-col ">
         {/* <Table columns={columns} dataSource={data} /> */}
         <DataCard />
         <div>
@@ -208,7 +208,6 @@ const dataV = () => {
             gap: 8px;
             top: 0px;
             left: 20px;
-
             height: 52px;
             display: flex;
             padding: 0.75rem 4rem;

@@ -258,7 +258,7 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-container {
-            left: 2vw;
+            left: 1vw;
             top: 2vh;
             width: 73vw;
             height: 110vh;

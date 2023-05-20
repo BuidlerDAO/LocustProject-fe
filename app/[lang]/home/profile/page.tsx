@@ -79,11 +79,11 @@ const Profile: React.FC = () => {
   return (
     <div style={{ backgroundColor: 'black', width: '100%', height: '100%' }}>
       {/*Profile字样*/}
-      <div className="ml-[140px] text-[28px]">Profile</div>
+      <div className="ml-[3.6vw] text-[28px]">Profile</div>
       {/*头像部分*/}
       <div className="mt-[17px] flex flex-col items-center">
-        <div className="size-[16px] mb-[14px] ml-[-263px]">Avatar</div>
-        <div className=" flex items-center">
+        <div className="mb-[14px] mr-[36.3vw] text-[16px]">Avatar</div>
+        <div className=" mr-[20vw] flex items-center">
           <div
             className="rounded-full"
             style={{
@@ -94,9 +94,11 @@ const Profile: React.FC = () => {
           >
             <div className="relative flex">
               <Image alt="" src={defaultAvatar}></Image>
-              <div className="absolute right-[-3.1px] top-[-1px] flex h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
+              {/*hover层*/}
+              <div className="absolute right-[-3.1px] top-[0.5px] flex h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
+                {/*上传图片*/}
                 <div
-                  className="relative right-[-27px] top-[18px] cursor-pointer"
+                  className="relative right-[-25px] top-[19px] cursor-pointer"
                   onClick={() => {
                     inputRef.current?.click();
                   }}
@@ -126,7 +128,7 @@ const Profile: React.FC = () => {
         </div>
       </div>
       {/*UserName部分*/}
-      <div className="flex flex-col items-center">
+      <div className="mr-[19vw] flex flex-col items-center">
         <div className="mr-[233px] mt-[38px] text-[16px]">UserName</div>
         {/*输入框部分*/}
         <input
@@ -137,7 +139,7 @@ const Profile: React.FC = () => {
         />
       </div>
       {/*推特部分*/}
-      <div className="relative flex flex-col items-center">
+      <div className="relative mr-[19vw] flex flex-col items-center">
         <div className="mr-[260px] mt-[38px] text-[16px]">Twitter</div>
         {/*绑定框部分*/}
         <div

@@ -54,7 +54,7 @@ const Wallet: FC<MyProps> = (props) => {
       {/*<button className="w-[50px] h-[50px] bg-white text-black" onClick={loginTest}>模拟登录</button>*/}
       <Button
         color="primary"
-        className={`w-[144px] whitespace-nowrap px-10 py-2 text-[16px] font-semibold ${
+        className={`w-[240px] whitespace-nowrap px-10 py-2 text-[16px] font-semibold ${
           isLoggedIn ? 'border-black bg-[#1A1A1A]' : 'hover:border-[#6E62EE]'
         }`}
       >
@@ -88,7 +88,12 @@ const Wallet: FC<MyProps> = (props) => {
             </div>
           </Dropdown>
         ) : (
-          <p onClick={loginTest}>Connect Wallet</p>
+          <p
+            onClick={loginTest}
+            style={{ fontFamily: 'Outfit', fontWeight: '600' }}
+          >
+            Connect Wallet
+          </p>
         )}
       </Button>
     </>

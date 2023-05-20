@@ -2,7 +2,7 @@
   max-width: 90rem;
   height: 120rem;
   font-family: Poppins;
-  background-color: black;
+  background-color: #1e1e1e;
   overflow-x: hidden;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
@@ -12,7 +12,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90rem;
+  width: 100%;
+  height: 200rem;
   bottom: 108px;
   background-color: #000000;
 }
@@ -101,14 +102,18 @@
 .group1::before {
   content: '📣';
 }
-.group1:hover img {
-  display: none;
+.group1:hover div {
+  /*display: none;*/
+  visibility: hidden;
 }
 .group1:hover {
   background: #6e62ee;
+  border: none;
 }
 .group1:hover::before {
-  content: '';
+  /*content: "";*/
+  /*display: none;*/
+  visibility: hidden;
 }
 .iconRight {
   display: block;
@@ -136,14 +141,17 @@
   content: '👀';
   margin-bottom: 2px;
 }
-.group2:hover img {
-  display: none;
+.group2:hover div {
+  /*display: none;*/
+  visibility: hidden;
 }
 .group2:hover {
   background: #6e62ee;
+  border: none;
 }
 .group2:hover::before {
-  content: '';
+  /*content: '';*/
+  visibility: hidden;
 }
 .info1 {
   position: absolute;
@@ -246,10 +254,8 @@
 }
 .product {
   position: absolute;
-  right: -0.63rem;
-  bottom: -2.13rem;
-  width: 10.13rem;
-  height: 10.13rem;
+  left: 58vw;
+  top: 7.2vw;
 }
 .outlineWrapper {
   position: relative;
@@ -408,10 +414,8 @@
 }
 .item1 {
   position: absolute;
-  top: 11.5rem;
-  right: -0.63rem;
-  width: 10.13rem;
-  height: 10.13rem;
+  left: 58vw;
+  top: -1.3vw;
 }
 .contentRequirementsWrapper {
   position: relative;
@@ -538,12 +542,7 @@
 }
 .product1 {
   position: absolute;
-  top: 11.5rem;
-  right: -0.63rem;
-  width: 10.13rem;
-  height: 10.13rem;
-  line-height: normal;
-  white-space: normal;
+  left: 58vw;
 }
 .outputFormatWrapper {
   position: relative;

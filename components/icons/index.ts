@@ -47,11 +47,9 @@ const OutlineComment = MdOutlineComment;
 const DevIcon = FaDev;
 const CommunityIcon = CgCommunity;
 const Close = MdOutlineClose;
-const ArrowRight = RxArrowRight;
 const OutlineScan = AiOutlineScan;
 
 export {
-  ArrowRight,
   DarkMode,
   LightMode,
   OutlineComment,

@@ -2,16 +2,10 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 
 import '@/styles/home.css';
-import img0 from '@/assets/homeImg/img_0.png';
-import img1 from '@/assets/homeImg/img_1.png';
-import img2 from '@/assets/homeImg/img_2.png';
-import img3 from '@/assets/homeImg/img_3.png';
-import img4 from '@/assets/homeImg/img_4.png';
-import img5 from '@/assets/homeImg/img_5.png';
-import img6 from '@/assets/homeImg/img_6.png';
-import img7 from '@/assets/homeImg/img_7.png';
-import img8 from '@/assets/homeImg/img_8.png';
-import img9 from '@/assets/homeImg/img_9.png';
+
+import decorate from '@/assets/homeImg/decorate.svg';
+import img from '@/assets/homeImg/img.svg';
+import bg from '@/assets/homeImg/bg.svg';
 
 import styles from './index.module.css';
 import { url } from 'inspector';
@@ -21,6 +15,8 @@ import Link from 'next/link';
 import { getCurrentTime } from '@/utils/time';
 import { ConfigProvider, Modal } from 'antd';
 import Modalprop from '@/components/modal/modal';
+import ArrowRight from '@/components/icons/arrowRight';
+import Ellipse from '@/components/icons/ellipse';
 
 const Index = memo((props: any) => {
   const [month, daysLeft] = getCurrentTime();
@@ -78,7 +74,7 @@ const Index = memo((props: any) => {
         />
         <div className={styles.wrapper}>
           <div className={styles.group}>
-            <img src={img9.src} alt="" />
+            <img src={bg.src} alt="" />
             <span className={styles.eventRules}>Event Rules</span>
             <span className={styles.desc}>
               由概要、内容要求、输出格式三部分
@@ -90,32 +86,32 @@ const Index = memo((props: any) => {
             onClick={showModal}
           >
             I want to register
-            <img
+            <div
               className={`${styles.iconRight}`}
               style={{ marginLeft: '0.5rem' }}
-              src={img1.src}
-              alt=""
-            />
+            >
+              <ArrowRight />
+            </div>
           </Button>
           <Link href="/home">
             <Button
               className={`${styles.group2}  z-[9] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
             >
               Past event articles
-              <img
+              <div
                 className={`${styles.iconRight}`}
                 style={{ marginLeft: '0.5rem' }}
-                src={img1.src}
-                alt=""
-              />
+              >
+                <ArrowRight />
+              </div>
             </Button>
           </Link>
           <span className={styles.info1}>
             Cognitive <br />
             Locust Program
           </span>
-          <img className={styles.banner} src={img2.src} />
-          <img className={styles.cover} src={img5.src} />
+          <img className={styles.banner} src={img.src} />
+          <img className={styles.cover} src={decorate.src} />
           {/*报名倒计时*/}
           <div
             className="z-[99] h-12 w-[1000px] items-center whitespace-nowrap bg-white
@@ -140,7 +136,10 @@ const Index = memo((props: any) => {
             </p>
           </div>
           <div className={styles.body}>
-            <img className={styles.product} src={img6.src} />
+            {/*<img className={styles.product} src={img6.src} />*/}
+            <div className={styles.product}>
+              <Ellipse />
+            </div>
             <Button className={styles.outlineWrapper} color="secondary">
               Outline
             </Button>
@@ -173,7 +172,10 @@ const Index = memo((props: any) => {
             </span>
           </div>
           <div className={styles.main}>
-            <img className={styles.item1} src={img7.src} />
+            {/*<img className={styles.item1} src={img7.src} />*/}
+            <div className={styles.item1}>
+              <Ellipse />
+            </div>
             <Button
               className={styles.contentRequirementsWrapper}
               color="secondary"
@@ -196,7 +198,10 @@ const Index = memo((props: any) => {
             </span>
           </div>
           <div className={styles.footer}>
-            <img className={styles.product1} src={img8.src} />
+            <div className={styles.product1}>
+              <Ellipse />
+            </div>
+            {/*<img className={styles.product1} src={img8.src} />*/}
             <Button className={styles.outputFormatWrapper} color="secondary">
               Output format
             </Button>

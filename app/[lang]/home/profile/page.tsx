@@ -5,7 +5,7 @@ import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { useRef, useState } from 'react';
 import type { UploadChangeParam } from 'antd/es/upload';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import img3 from '@/assets/homeImg/img_3.png';
+import defaultAvatar from '@/assets/profileSvg/defaultAvatar.svg';
 import Image from 'next/image';
 import Upload from '@/components/icons/upload';
 import { Button } from '@/components/button';
@@ -89,12 +89,11 @@ const Profile: React.FC = () => {
             style={{
               width: '64px',
               height: '64px',
-              borderColor: 'white',
-              borderWidth: '1px'
+              borderColor: 'white'
             }}
           >
             <div className="relative flex">
-              <Image alt="" src={img3}></Image>
+              <Image alt="" src={defaultAvatar}></Image>
               <div className="absolute right-[-3.1px] top-[-1px] flex h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
                 <div
                   className="relative right-[-27px] top-[18px] cursor-pointer"

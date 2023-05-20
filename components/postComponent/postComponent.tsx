@@ -109,7 +109,7 @@ const postComponent = (props: { rootClassName: any }) => {
               <Form.Item
                 name="link"
                 rules={[
-                  { required: true, message: 'Please Enter The Original Link' }
+                  { required: true, message: 'Link input error', type: 'url' }
                 ]}
               >
                 <Input

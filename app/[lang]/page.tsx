@@ -17,6 +17,7 @@ import { ConfigProvider, Modal } from 'antd';
 import Modalprop from '@/components/modal/modal';
 import ArrowRight from '@/components/icons/arrowRight';
 import Ellipse from '@/components/icons/ellipse';
+import Image from 'next/image';
 
 const Index = memo((props: any) => {
   const [month, daysLeft] = getCurrentTime();
@@ -74,7 +75,7 @@ const Index = memo((props: any) => {
         />
         <div className={styles.wrapper}>
           <div className={styles.group}>
-            <img src={bg.src} alt="" />
+            <Image src={bg} alt="" />
             <span className={styles.eventRules}>Event Rules</span>
             <span className={styles.desc}>
               由概要、内容要求、输出格式三部分
@@ -110,8 +111,8 @@ const Index = memo((props: any) => {
             Cognitive <br />
             Locust Program
           </span>
-          <img className={styles.banner} src={img.src} />
-          <img className={styles.cover} src={decorate.src} />
+          <Image className={styles.banner} src={img} alt="" />
+          <Image className={styles.cover} src={decorate} alt="" />
           {/*报名倒计时*/}
           <div
             className="z-[99] h-12 w-[1000px] items-center whitespace-nowrap bg-white
@@ -136,7 +137,6 @@ const Index = memo((props: any) => {
             </p>
           </div>
           <div className={styles.body}>
-            {/*<img className={styles.product} src={img6.src} />*/}
             <div className={styles.product}>
               <Ellipse />
             </div>
@@ -172,7 +172,6 @@ const Index = memo((props: any) => {
             </span>
           </div>
           <div className={styles.main}>
-            {/*<img className={styles.item1} src={img7.src} />*/}
             <div className={styles.item1}>
               <Ellipse />
             </div>
@@ -201,7 +200,6 @@ const Index = memo((props: any) => {
             <div className={styles.product1}>
               <Ellipse />
             </div>
-            {/*<img className={styles.product1} src={img8.src} />*/}
             <Button className={styles.outputFormatWrapper} color="secondary">
               Output format
             </Button>

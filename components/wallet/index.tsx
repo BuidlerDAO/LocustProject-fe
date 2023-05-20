@@ -64,7 +64,7 @@ const Wallet: FC<MyProps> = (props) => {
             placement="bottom"
             overlayStyle={{
               paddingTop: '14px',
-              width: '144px',
+              width: '240px',
               height: '136px'
             }}
             dropdownRender={(menu) => (
@@ -81,7 +81,7 @@ const Wallet: FC<MyProps> = (props) => {
                 className="flex justify-between"
               >
                 <Space>0x4c....3333</Space>
-                <div className="ml-[2px] mt-[8px]">
+                <div className="ml-[0.8vw] mt-[8px]">
                   <DownOutlined />
                 </div>
               </a>

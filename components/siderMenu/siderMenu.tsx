@@ -6,6 +6,7 @@ import { AppstoreOutlined, RiseOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSiderStore } from '@/store';
+import { Typography } from '../typography';
 
 const SideMenu = (props: {
   rootClassName: any;
@@ -153,7 +154,6 @@ const SideMenu = (props: {
         {`
           .side-menu-side-menu {
             width: 18rem;
-
             display: flex;
             position: relative;
             align-items: flex-start;

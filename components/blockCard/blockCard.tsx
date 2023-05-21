@@ -4,16 +4,20 @@ import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 import {
   DeleteOutlined,
+  DownOutlined,
   EllipsisOutlined,
-  LinkOutlined
+  LinkOutlined,
+  UpOutlined
 } from '@ant-design/icons';
 import {
+  Collapse,
   ConfigProvider,
   Divider,
   Dropdown,
   MenuProps,
   Modal,
-  Tooltip
+  Tooltip,
+  Typography
 } from 'antd';
 import { usePostStore } from '@/store';
 import { on } from 'events';

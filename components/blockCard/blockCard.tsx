@@ -25,6 +25,7 @@ import { Colors } from '../../types/components/theme';
 import './index.css';
 import Modalprop from '../modal/modal';
 import { LinkIcon, TimeIcon } from '../icons';
+import TextMore from '../textMore';
 
 const Block = (props: {
   rootClassName: any;
@@ -131,7 +132,7 @@ const Block = (props: {
               <span>Original Summary</span>
             </span>
             <span className="block-text08">
-              <span>{props.data.originalText}</span>
+              <TextMore text={props.data.originalText} />
             </span>
           </div>
           <div className="block-line18" />

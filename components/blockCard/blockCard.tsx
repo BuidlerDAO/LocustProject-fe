@@ -132,7 +132,7 @@ const Block = (props: {
               <span>Original Summary</span>
             </span>
             <span className="block-text08">
-              <TextMore text={props.data.originalText} />
+              <TextMore text={props.data.originalText} rows={4} />
             </span>
           </div>
           <div className="block-line18" />
@@ -142,7 +142,7 @@ const Block = (props: {
             </span>
             <div className="block-group1">
               <span className="block-text12">
-                <span>{props.data.personalThoughts}</span>
+                <TextMore text={props.data.personalThoughts} rows={6} />
               </span>
             </div>
           </div>

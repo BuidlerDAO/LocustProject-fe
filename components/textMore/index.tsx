@@ -57,7 +57,7 @@ const TextMore: React.FC<TextProps> = ({ text, rows = 2 }) => {
         <div style={{ position: 'absolute', bottom: 0, right: 0 }}>
           <a
             onClick={() => setVisible(true)}
-            style={{ textDecoration: 'underline' }}
+            style={{ textDecoration: 'underline', color: '#747474' }}
           >
             <DownOutlined />
             More

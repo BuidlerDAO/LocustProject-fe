@@ -5,34 +5,9 @@ import Logo from '../icons/logo';
 import { AppstoreOutlined, RiseOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useSiderStore } from '@/store';
-import { Typography } from '../typography';
+import { useSiderStore, useUserStore } from '@/store';
 
-const SideMenu = (props: {
-  rootClassName: any;
-  Vector_alt2: string | undefined;
-  Vector_src2: string | undefined;
-  Vector_alt3: string | undefined;
-  Vector_src3: string | undefined;
-  Vector_alt4: string | undefined;
-  Vector_src4: string | undefined;
-  Vector_alt5: string | undefined;
-  Vector_src5: string | undefined;
-  Rectangle1_alt: string | undefined;
-  Rectangle1_src: string | undefined;
-  Frame_alt: string | undefined;
-  Frame_src: string | undefined;
-  Vector_alt: string | undefined;
-  Vector_src: string | undefined;
-  Vector_alt1: string | undefined;
-  Vector_src1: string | undefined;
-}) => {
-  const pathname = usePathname();
-  //当用户点击按钮时，切换按钮的颜色
-  // const [isExplore, setIsExplore] = React.useState(true);
-  // const [isDataView, setIsDataView] = React.useState(false);
-  // const [isPost, setIsPost] = React.useState(false);
-  //从store中获取用户点击的按钮
+const SideMenu = (props: { rootClassName: any }) => {
   const {
     isExplore,
     setIsExplore,
@@ -41,6 +16,8 @@ const SideMenu = (props: {
     isPost,
     setIsPost
   } = useSiderStore();
+  const { isAdmin } = useUserStore();
+  const pathname = usePathname();
 
   useEffect(() => {
     console.log(pathname);
@@ -96,33 +73,35 @@ const SideMenu = (props: {
                 }}
               />
             </div>
-            {/* data view 按钮 */}
-            <div
-              className="side-menu-frame"
-              onClick={() => {
-                setIsExplore(false);
-                setIsDataView(true);
-                setIsPost(false);
-              }}
-              style={{
-                color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
-              }}
-            >
-              <Link href="/home/dataV">
-                <div className="side-menu-frame1021">
-                  <RiseOutlined />
-                  <span className="side-menu-text2">
-                    <span>Data View</span>
-                  </span>
-                </div>
-              </Link>
+            {/* data view 按钮,根据isAdmin判断有无 */}
+            {isAdmin ? (
               <div
-                className="side-menu-rectangle1"
-                style={{
-                  backgroundColor: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                className="side-menu-frame"
+                onClick={() => {
+                  setIsExplore(false);
+                  setIsDataView(true);
+                  setIsPost(false);
                 }}
-              />
-            </div>
+                style={{
+                  color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                }}
+              >
+                <Link href="/home/dataV">
+                  <div className="side-menu-frame1021">
+                    <RiseOutlined />
+                    <span className="side-menu-text2">
+                      <span>Data View</span>
+                    </span>
+                  </div>
+                </Link>
+                <div
+                  className="side-menu-rectangle1"
+                  style={{
+                    backgroundColor: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                  }}
+                />
+              </div>
+            ) : null}
           </div>
           <Link href="/home/post">
             <div

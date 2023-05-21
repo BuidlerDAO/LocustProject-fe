@@ -178,7 +178,16 @@ const dataV = () => {
         {/* <Table columns={columns} dataSource={data} /> */}
         <DataCard />
         <div>
-          <div className="text-lg">Statistics</div>
+          <div
+            className="mt-3 font-medium text-white"
+            style={{
+              fontFamily: 'Inter',
+              fontSize: '28px',
+              lineHeight: '34px'
+            }}
+          >
+            Statistics
+          </div>
           <Table1 />
           <Table2 />
         </div>

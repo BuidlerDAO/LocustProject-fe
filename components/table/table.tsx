@@ -1,12 +1,23 @@
 'use client';
 import React from 'react';
 
-import './index.css'
-import PropTypes from 'prop-types';
+import './index.css';
 import Logo from '../icons/logo';
-import { AppstoreOutlined, DownOutlined, DownloadOutlined, RiseOutlined } from '@ant-design/icons';
+import {
+  AppstoreOutlined,
+  DownloadOutlined,
+  DownOutlined,
+  RiseOutlined
+} from '@ant-design/icons';
 import Link from 'next/link';
-import { Dropdown, Space, ConfigProvider, Table, MenuProps, Select } from 'antd';
+import {
+  ConfigProvider,
+  Dropdown,
+  MenuProps,
+  Select,
+  Space,
+  Table
+} from 'antd';
 
 const Table2 = () => {
   const columns2 = [
@@ -41,34 +52,34 @@ const Table2 = () => {
       key: 'registrationTime'
     }
   ];
- const data2 = [
-   {
-     key: '1',
-     userName: 'John Doe',
-     walletAddress: '0x1234567890abcdef',
-     numContentSubmitted: 10,
-     numDeletedContent: 2,
-     bonusesReceived: 5,
-     registrationTime: '2021-01-01'
-   },
-   {
-     key: '2',
-     userName: 'Jane Smith',
-     walletAddress: '0xabcdef1234567890',
-     numContentSubmitted: 5,
-     numDeletedContent: 1,
-     bonusesReceived: 2,
-     registrationTime: '2021-02-01'
-   },
-   {
-     key: '3',
-     userName: 'Bob Johnson',
-     walletAddress: '0x0987654321fedcba',
-     numContentSubmitted: 20,
-     numDeletedContent: 0,
-     bonusesReceived: 10,
-     registrationTime: '2021-03-01'
-   }
+  const data2 = [
+    {
+      key: '1',
+      userName: 'John Doe',
+      walletAddress: '0x1234567890abcdef',
+      numContentSubmitted: 10,
+      numDeletedContent: 2,
+      bonusesReceived: 5,
+      registrationTime: '2021-01-01'
+    },
+    {
+      key: '2',
+      userName: 'Jane Smith',
+      walletAddress: '0xabcdef1234567890',
+      numContentSubmitted: 5,
+      numDeletedContent: 1,
+      bonusesReceived: 2,
+      registrationTime: '2021-02-01'
+    },
+    {
+      key: '3',
+      userName: 'Bob Johnson',
+      walletAddress: '0x0987654321fedcba',
+      numContentSubmitted: 20,
+      numDeletedContent: 0,
+      bonusesReceived: 10,
+      registrationTime: '2021-03-01'
+    }
   ];
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
@@ -78,11 +89,14 @@ const Table2 = () => {
   };
   return (
     <>
-      <div>
+      <div className="mt-4">
         <div className="flex justify-between">
-          <div>
+          <div className="mb-4">
             Schedule
-            <DownloadOutlined className='ml-6 cursor-pointer' onClick={onDownload}/>
+            <DownloadOutlined
+              className="ml-6 cursor-pointer"
+              onClick={onDownload}
+            />
           </div>
           <div>
             <ConfigProvider
@@ -148,7 +162,7 @@ const Table2 = () => {
           border-radius: 8px;
           padding: 0.5rem 1.5rem;
           gap: 0.25rem;
-        }   
+        }
       `}</style>
     </>
   );
@@ -191,9 +205,7 @@ const Table1 = () => {
       key: 'totalPrizePool'
     }
   ];
-  const data1: readonly any[] | undefined = [
-    
-  ];
+  const data1: readonly any[] | undefined = [];
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
@@ -202,9 +214,9 @@ const Table1 = () => {
   };
   return (
     <>
-      <div>
+      <div className="mt-3">
         <div className="flex justify-between">
-          <div>
+          <div className="mb-4">
             Overview Table
             <DownloadOutlined
               className="ml-6 cursor-pointer"
@@ -330,7 +342,7 @@ const TableUserOverview = () => {
       numValidArticles: 8,
       bonus: 100,
       totalPrizePool: 1000
-    },
+    }
   ];
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
@@ -415,8 +427,8 @@ const UserArticle = () => {
       articleTitle: 'Article Title',
       submitTime: '2021-01-01',
       status: 'Audit does not pass'
-    },
-  ]
+    }
+  ];
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
@@ -471,4 +483,4 @@ const UserArticle = () => {
     </>
   );
 };
-export {Table2,Table1,TableUserOverview,UserArticle};
+export { Table2, Table1, TableUserOverview, UserArticle };

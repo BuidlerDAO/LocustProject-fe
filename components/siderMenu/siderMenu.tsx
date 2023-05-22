@@ -27,7 +27,7 @@ const SideMenu = (props: any) => {
       return;
     } else {
       if (!isRegister) {
-        toast.error("You haven't signed up yet. Please sign up first");
+        toast.error('Please register first');
         return;
       } else {
         router.push('/home/post');

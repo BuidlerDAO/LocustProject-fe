@@ -20,7 +20,7 @@ import Image from 'next/image';
 import { useUserStore } from '@/store';
 
 const Index = memo((props: any) => {
-  const { isRegister, setIsRegister } = useUserStore();
+  const { isRegister, setIsRegister, isLogin } = useUserStore();
   const [month, daysLeft] = getCurrentTime();
   const onClickError = useCallback(() => {
     Toast.error('You have already signed up and cannot click', {
@@ -36,15 +36,21 @@ const Index = memo((props: any) => {
 
   //一个判断函数：判断是否已经报名
   const onJudge = () => {
-    if (isRegister) {
-      onClickError();
-    } else {
-      if (daysLeft < 10) {
-        showModal();
+    if (isLogin) {
+      if (isRegister) {
+        onClickError();
       } else {
-        onClickSuccess();
-        setIsRegister(true);
+        if (daysLeft < 10) {
+          showModal();
+        } else {
+          onClickSuccess();
+          setIsRegister(true);
+        }
       }
+    } else {
+      Toast.error('Please login first', {
+        duration: 4000
+      });
     }
   };
 

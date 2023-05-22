@@ -3,7 +3,7 @@
 import { Typography } from '@/components/typography';
 import LogoIconTop from '@/components/icons/logoIconTop';
 import Logo from '@/components/icons/logo';
-import Wallet from '@/components/wallet';
+import { WalletConnect } from '@/components/wallet';
 import { usePathname } from 'next/navigation';
 import {
   AutoComplete,
@@ -168,7 +168,8 @@ const Navbar = () => {
           )}
           {/*WalletConnect*/}
           <div className={`${flag ? 'ml-[60vw]' : ''} flex items-center`}>
-            <Wallet />
+            {/*<Wallet />*/}
+            <WalletConnect />
           </div>
         </div>
       </div>

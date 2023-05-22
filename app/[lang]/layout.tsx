@@ -5,6 +5,7 @@ import { Toaster } from '@/components/toast/toast';
 import Navbar from '@/components/navbar';
 import { Metadata } from 'next/types';
 import { DefaultMetadata } from '@/components/theme/metadata';
+import { WalletConfigWrapper } from '@/components/wallet';
 import { i18n } from '@/i18n/config';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -35,10 +36,12 @@ export default function RootLayout({
       <head />
       <body>
         <Toaster />
-        <RootLayoutClient>
-          <Navbar />
-          {children}
-        </RootLayoutClient>
+        <WalletConfigWrapper>
+          <RootLayoutClient>
+            <Navbar />
+            {children}
+          </RootLayoutClient>
+        </WalletConfigWrapper>
       </body>
     </html>
   );

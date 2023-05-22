@@ -5,16 +5,21 @@ import React, {
   forwardRef,
   HTMLAttributes,
   memo,
+  useEffect,
   useState
 } from 'react';
-import { useAccount, useConnect, useDisconnect, useEnsName } from 'wagmi';
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useEnsName,
+  useSignMessage
+} from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
-// import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
-
 import { ClassName } from '@/types/components/theme';
-
 import { Button } from '@/components/button';
 import ClientOnly from '@/components/clientOnly';
 import { Typography } from '@/components/typography';
@@ -28,11 +33,13 @@ import {
 import Profile from '../icons/profile';
 import Disconnect from '../icons/disconnect';
 import { getWeb3Account, getWeb3SignMessage } from '@/utils/web3';
-import { apiLogin } from '@/apis/login';
+import { apiLogin, apiLogout } from '@/services/login';
+import { deleteCookie, getCookie } from '@/utils/cookie';
 import { Dropdown, MenuProps, Space } from 'antd';
 import Link from 'next/link';
 import DownOutlined from '@/components/icons/downOutLined';
-
+import { useRouter } from 'next/navigation';
+import Toast from '@/components/toast/toast';
 interface ConnectProps extends HTMLAttributes<HTMLElement> {
   className?: ClassName;
   onData?: (type: number, data: any) => void;
@@ -49,12 +56,17 @@ export const MetaMaskConnect = ({
     onSuccess: (e) => onData(1, e),
     onError: (e) => onData(0, e)
   });
-
+  const { disconnect } = useDisconnect();
   return (
     <Button
       color="primary"
       className={`flex justify-between rounded-[10px] px-6 hover:bg-[#27272A] active:bg-[#27272A] ${className}`}
-      onClick={() => connect()}
+      onClick={() => {
+        disconnect();
+        setTimeout(() => {
+          connect();
+        }, 4);
+      }}
     >
       <div className="flex items-center">
         <MetamaskIcon className="mr-3" />
@@ -81,12 +93,17 @@ export const WalletConnectBtn = ({
     onSuccess: (e) => onData(1, e),
     onError: (e) => onData(0, e)
   });
-
+  const { disconnect } = useDisconnect();
   return (
     <Button
       color="primary"
       className={`flex justify-between rounded-[10px] px-6 hover:bg-[#27272A] active:bg-[#27272A] ${className}`}
-      onClick={() => connect()}
+      onClick={() => {
+        disconnect();
+        setTimeout(() => {
+          connect();
+        }, 4);
+      }}
     >
       <div className="flex items-center">
         <WalletConnectIcon className="mr-3" />
@@ -104,7 +121,7 @@ export const CoinbaseConnect = ({
 }: ConnectProps) => {
   const connector = new CoinbaseWalletConnector({
     options: {
-      appName: 'MindSeed'
+      appName: 'Locust'
       // jsonRpcUrl: 'https://ethereum.publicnode.com'
     }
   });
@@ -113,12 +130,17 @@ export const CoinbaseConnect = ({
     onSuccess: (e) => onData(1, e),
     onError: (e) => onData(0, e)
   });
-
+  const { disconnect } = useDisconnect();
   return (
     <Button
       color="primary"
       className={`flex justify-between rounded-[10px] px-6 hover:bg-[#27272A] active:bg-[#27272A] ${className}`}
-      onClick={() => connect()}
+      onClick={() => {
+        disconnect();
+        setTimeout(() => {
+          connect();
+        }, 4);
+      }}
     >
       <div className="flex items-center">
         <CoinbaseIcon className="mr-3" />
@@ -135,6 +157,89 @@ export interface WalletProps extends ComponentProps<'div'> {
 
 const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
   ({ className, ...rest }, ref) => {
+    const router = useRouter();
+    // State / Props
+    // 以太坊网络地址 & 是否链接
+    const { address, isConnected } = useAccount();
+    const { disconnect } = useDisconnect();
+    //  组件内缓存地址
+    const [currentAddress, setCurrentAddress] = useState('');
+    //  获取 ENS 名称
+    const { data: ensName } = useEnsName({
+      address: currentAddress as `0x${string}`
+    });
+    // TODO: 接口修改签名信息格式
+    const [msg, setMsg] = useState(
+      `Welcome to this. \n\nTimestamp: ${Math.ceil(
+        new Date().getTime()
+      )}\nnonce: ${Math.ceil(Math.random() * 1000000000000)}`
+    );
+
+    const {
+      data: msgData,
+      isSuccess,
+      signMessage
+    } = useSignMessage({
+      message: msg as any
+    });
+
+    //  弹窗 & Profile
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [showManageProfile, setShowManageProfile] = useState(false);
+    //  弹窗
+    const handleOpen = () => {
+      setDialogOpen(true);
+    };
+    //  根据 type 0/1 打开/关闭 弹窗
+    const handleData = (type: number, data: any) => {
+      console.log(type, data);
+      if (type) {
+        setDialogOpen(false);
+      }
+    };
+    // 退出登录 & 清空 state
+    const handleDisconnect = async () => {
+      await apiLogout();
+      disconnect();
+      setCurrentAddress('');
+      setShowManageProfile(false);
+    };
+    // 登录
+    const handleLogin = async () => {
+      try {
+        const res = await apiLogin({
+          address: address as string,
+          sig: msgData as string,
+          message: msg as any
+        });
+        if (res.code === 0) {
+          setCurrentAddress(address || '');
+          router.refresh();
+        } else {
+          Toast.error(res.message);
+          disconnect();
+        }
+        console.log(res);
+      } catch (error) {
+        Toast.error('login error');
+        disconnect();
+      }
+    };
+
+    const handleSign = () => {
+      try {
+        // TODO: 接口修改签名信息格式
+        const msg = `Weblocom to this, \n\nTimestamp: ${Math.ceil(
+          new Date().getTime()
+        )}`;
+        setMsg(msg);
+        signMessage({
+          message: msg
+        });
+      } catch (error) {
+        disconnect();
+      }
+    };
     // 下拉框
     const items: MenuProps['items'] = [
       {
@@ -159,13 +264,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       {
         key: '3',
         label: (
-          <p
-            style={{ color: 'white' }}
-            onClick={() => {
-              disconnect();
-              setShowManageProfile(false);
-            }}
-          >
+          <p style={{ color: 'white' }} onClick={handleDisconnect}>
             Disconnect
           </p>
         )
@@ -177,44 +276,21 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       borderRadius: '12px'
     };
 
-    // State / Props
-    // 以太坊网络地址 & 是否链接
-    const { address, isConnected } = useAccount();
-    const { disconnect } = useDisconnect();
-
-    //  获取 ENS 名称
-    const { data: ensName } = useEnsName({ address });
-
-    //  弹窗 & Profile
-    const [dialogOpen, setDialogOpen] = useState(false);
-    const [showManageProfile, setShowManageProfile] = useState(false);
-
-    //  弹窗
-    const handleOpen = () => {
-      setDialogOpen(true);
-    };
-
-    //  登录
-    const handleLogin = async () => {
-      const adds = await getWeb3Account();
-      // const address = checkAddress(adds[0]);
-      const address = adds[0];
-      const msg = 'Nice to meet you';
-      const sig = await getWeb3SignMessage(msg);
-      if (!sig) return;
-      const res: any = await apiLogin(address, sig, msg);
-      if (res.token) {
-        setDialogOpen(false);
+    useEffect(() => {
+      console.log('isSuccess', isSuccess);
+      if (isSuccess) {
+        handleLogin();
       }
-    };
+    }, [isSuccess]);
 
-    //  根据 type 的 0/1 判断是否登录成功
-    const handleData = async (type: number, data: any) => {
-      if (type) {
-        setDialogOpen(false);
+    useEffect(() => {
+      if (isConnected && !getCookie('token') && address) {
+        handleSign();
       }
-      handleLogin();
-    };
+      if (getCookie('token') && getCookie('address')) {
+        setCurrentAddress(getCookie('address') || '');
+      }
+    }, [address]);
 
     // Render
     return (

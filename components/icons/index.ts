@@ -47,6 +47,7 @@ const DarkMode = MdDarkMode;
 const LightMode = MdOutlineLightMode;
 const OutlineComment = MdOutlineComment;
 const DevIcon = FaDev;
+const ArrowRight = RxArrowRight;
 const CommunityIcon = CgCommunity;
 const Close = MdOutlineClose;
 const OutlineScan = AiOutlineScan;
@@ -67,6 +68,7 @@ export {
   WalletConnectIcon,
   OutlineScan,
   AddIcon,
+  ArrowRight,
   LockFilledIcon,
   LockStrokedIcon,
   DatabaseIcon,

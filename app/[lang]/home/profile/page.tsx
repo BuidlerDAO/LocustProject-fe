@@ -9,7 +9,8 @@ import defaultAvatar from '@/assets/profileSvg/defaultAvatar.svg';
 import Image from 'next/image';
 import Upload from '@/components/icons/upload';
 import { Button } from '@/components/button';
-
+import { apiTwitterToken } from '@/apis/user';
+import { useUserStore } from '@/store';
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
   const reader = new FileReader();
   reader.addEventListener('load', () => callback(reader.result as string));
@@ -55,6 +56,7 @@ const Profile: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
   const inputRef = useRef<HTMLInputElement>(null);
+  const { isConnectTwitter, setIsConnectTwitter } = useUserStore();
   const handleChange: UploadProps['onChange'] = (
     info: UploadChangeParam<UploadFile>
   ) => {
@@ -76,6 +78,12 @@ const Profile: React.FC = () => {
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
+  //  推特登录
+  const handleConnect = async () => {
+    const res = await apiTwitterToken(location.href);
+    window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
+    setIsConnectTwitter(true);
+  };
   return (
     <div
       style={{ backgroundColor: 'black', width: '100%', height: '100%' }}
@@ -136,7 +144,7 @@ const Profile: React.FC = () => {
         {/*输入框部分*/}
         <input
           type="text"
-          value="喵喵"
+          value="@SCaesar"
           className="mr-[-93px] mt-[14px] h-[37px] w-[401px] rounded-[6px] border-[1px] bg-black focus:outline-none"
           style={{ borderColor: '#1d1d1d', textIndent: '12px' }}
         />
@@ -150,10 +158,14 @@ const Profile: React.FC = () => {
           style={{ borderColor: '#1d1d1d' }}
         >
           <div className="flex-raw item-center ml-[12px] mt-[4px] flex justify-center">
-            <Twitter />
+            {isConnectTwitter ? <Twitter /> : <Upload />}
             <span className="ml-[8px] mt-[1.2px]">Twitter</span>
           </div>
-          <span className="mr-[12px] mt-[5.2px]" style={{ color: '#6E62EE' }}>
+          <span
+            className="mr-[12px] mt-[5.2px]"
+            style={{ color: '#6E62EE' }}
+            onClick={handleConnect}
+          >
             Connect
           </span>
         </div>

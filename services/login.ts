@@ -5,7 +5,9 @@ import request from '@/utils/request';
  */
 export const apiLogin = async (data: LoginReqType) => {
   const res: LoginResType = await request(
-    `/api/login?address=${data.address}&sig=${data.sig}&message=${data.message}`
+    `/api/login?address=${data.address}&signature=${
+      data.sig
+    }&message=${window.btoa(data.message)}`
   );
   return res;
 };

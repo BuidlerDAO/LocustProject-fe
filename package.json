@@ -22,10 +22,12 @@
   ],
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
+    "@floating-ui/react": "^0.23.0",
     "@formatjs/intl-localematcher": "^0.2.32",
     "@metamask/jazzicon": "^2.0.0",
     "@prisma/client": "^4.13.0",
     "antd": "^5.4.7",
+    "deepmerge": "^4.3.1",
     "ethers": "^5.7.2",
     "framer-motion": "^10.12.8",
     "http-proxy-middleware": "^2.0.6",
@@ -39,6 +41,7 @@
     "server-only": "^0.0.1",
     "tailwind-variants": "^0.1.5",
     "typescript": "^5.0.4",
+    "wagmi": "^1.0.5",
     "zustand": "^4.3.8"
   },
   "devDependencies": {

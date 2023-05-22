@@ -26,6 +26,7 @@ import './index.css';
 import Modalprop from '../modal/modal';
 import { LinkIcon, TimeIcon } from '../icons';
 import TextMore from '../textMore';
+import toast from '../toast/toast';
 
 const Block = (props: {
   rootClassName: any;
@@ -67,6 +68,9 @@ const Block = (props: {
   function onDelete() {
     console.log(props.data);
     decrease(props.data.title);
+    toast.success('Delete success', {
+      duration: 4000
+    });
   }
   const text = () => (
     <button className="hover:text-red-600" onClick={showModal}>

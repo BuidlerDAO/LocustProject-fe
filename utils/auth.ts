@@ -5,18 +5,13 @@ import { useUserStore } from '@/store';
 function withAuth<T extends object>(Component: React.ComponentType<T>) {
   const Router = useRouter();
   const { isAdmin } = useUserStore();
-  const AuthedComponent = (props: T) => {
-    // 在这里进行用户鉴权
-    const user = isAdmin;
-    if (!user) {
-      Router.push('/');
-      return null;
-    }
-    // 鉴权通过，返回改装后的子组件
-    //const returnCompnent = <Component {...props} />:;
+  console.log('isAdmin', isAdmin);
+  if (isAdmin) {
     return Component;
-  };
-  return AuthedComponent;
+  } else {
+    Router.replace('/');
+    return null;
+  }
 }
 
 export default withAuth;

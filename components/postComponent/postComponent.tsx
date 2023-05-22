@@ -7,6 +7,7 @@ import { usePostStore } from '@/store';
 import Link from 'next/link';
 import './index.css';
 import { useRouter } from 'next/navigation';
+import { apiPostData } from '@/apis/post';
 
 const { TextArea } = Input;
 
@@ -37,6 +38,7 @@ const postComponent = (props: { rootClassName: any }) => {
     e.time = getCurrentDate();
     console.log(e);
     increase(e);
+
     console.log(usePostStore.getState());
     //跳转到/home/explore页
     router.push('/home');

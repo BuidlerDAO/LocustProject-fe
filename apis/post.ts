@@ -10,11 +10,11 @@ import { usePostStore } from '@/store';
  * @api https://test-locust-api.buidlerdao.xyz/api/post
  */
 export const apiPostData = async (data: any) => {
-  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+  const headers = { 'Content-Type': 'application/json' };
   const res: any = await request(`/api/post`, {
     method: 'POST',
     headers,
-    body: new URLSearchParams(data)
+    body: data
   });
 
   if (res.code === 0) {

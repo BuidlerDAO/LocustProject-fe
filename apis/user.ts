@@ -28,29 +28,34 @@ export const apiUserAuthTwitter = async (
     return '';
   }
 };
-
-/**
- * @description discord
- * @params authorizationCode
- * @params redirectUri
- */
-export const apiUserAuthDiscord = async (
-  authorizationCode: string,
-  redirectUri: string
-) => {
-  const res: any = await request(
-    `/api/v1/oauth/discord-user?authorizationCode=${authorizationCode}&redirectUri=${redirectUri}`
-  );
-
+export const apiUserInfo = async () => {
+  const res: any = await request(`/api/be/user/profile`);
   if (res.code === 0) {
     return res.data;
   } else {
     if (+res.code === 401) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('address');
-      window.location.href = '/home';
+      deleteCookie('token');
+      deleteCookie('address');
+      window.location.href = '/';
     }
-    toast.error(`${res.msg}`, { id: `${res.msg}` });
+    toast.error(`${res.message}`, { id: `${res.message}` });
+    return '';
+  }
+};
+
+export const apiTwitterToken = async (url: string) => {
+  const res: any = await request(
+    `/api/be/twitter/oauth-token?callbackUrl=${url}`
+  );
+  if (res.code === 0) {
+    return res.data;
+  } else {
+    if (+res.code === 401) {
+      deleteCookie('token');
+      deleteCookie('address');
+      window.location.href = '/';
+    }
+    toast.error(`${res.message}`, { id: `${res.message}` });
     return '';
   }
 };

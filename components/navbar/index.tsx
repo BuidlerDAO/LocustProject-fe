@@ -92,6 +92,7 @@ const Navbar = () => {
               Locusts
             </Typography>
           </div>
+
           {/*搜索框 & sign up 是否出现 */}
           {flag ? (
             <>
@@ -99,6 +100,13 @@ const Navbar = () => {
             </>
           ) : (
             <>
+              {/*navbar中的淑贤*/}
+              <div
+                style={{ borderColor: '#262626' }}
+                className="relative left-[6.9vw] h-[100px] border-l-[1px]"
+              >
+                {' '}
+              </div>
               {/*搜索框*/}
               <ConfigProvider
                 theme={{

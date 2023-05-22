@@ -2,6 +2,11 @@ import { Button, ConfigProvider, Modal } from 'antd';
 import './index.css';
 
 const Modalprop = (props: {
+  ModalMaxWidth?: number;
+  BodyMaxWidth?: number;
+  okButtonPadding?: string;
+  cancelButtonPadding?: string;
+  cancelButtonMarginRight?: string;
   locate: string;
   isModalOpen: boolean;
   handleOk: () => void;
@@ -20,8 +25,22 @@ const Modalprop = (props: {
     title = 'Delete article';
     content = 'Are you sure? This article will be deleted.';
     okText = 'Delete';
+  } else if (props.locate === 'twitter') {
+    title = 'Disconnect Discord account';
+    content =
+      'Are you sure？This account will lose every Guild gated access on Discord.';
+    okText = 'Disconnet';
   }
-  const { isModalOpen, handleOk, handleCancel } = props;
+  const {
+    isModalOpen,
+    handleOk,
+    handleCancel,
+    ModalMaxWidth,
+    BodyMaxWidth,
+    okButtonPadding = '8px 48px',
+    cancelButtonPadding = '8px 48px',
+    cancelButtonMarginRight = '2rem'
+  } = props;
   return (
     <ConfigProvider
       theme={{
@@ -32,6 +51,7 @@ const Modalprop = (props: {
       }}
     >
       <Modal
+        style={{ maxWidth: `${props.ModalMaxWidth}px` }}
         title={title}
         open={isModalOpen}
         centered
@@ -47,30 +67,36 @@ const Modalprop = (props: {
         // ]}
         okButtonProps={{
           style: {
-            padding: '8px 48px',
+            display: 'flex',
+            padding: okButtonPadding,
             backgroundColor: '#E0E0E0',
             color: 'black',
             borderRadius: '32px',
             alignItems: 'center',
+            height: '34px',
             justifyContent: 'center'
           }
         }}
         cancelButtonProps={{
           style: {
-            padding: '8px 48px',
+            display: 'flex',
+            padding: cancelButtonPadding,
             backgroundColor: 'inherit',
             color: '#E0E0E0',
             borderRadius: '32px',
             border: '1px solid #E0E0E0',
             alignItems: 'center',
-            height: 'fix-content',
-            marginRight: '5rem',
+            height: '34px',
+            marginRight: cancelButtonMarginRight,
             justifyContent: 'center'
           }
         }}
       >
         <div className="h-[1px] w-[100%] bg-[#4d4d4e]"></div>
-        <div className="mt-4" style={{ color: '#B7B7B7' }}>
+        <div
+          className="mt-4"
+          style={{ color: '#B7B7B7', maxWidth: `${props.BodyMaxWidth}px` }}
+        >
           {content}
         </div>
       </Modal>

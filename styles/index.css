@@ -32,3 +32,6 @@
 .ant-input-lg::placeholder {
   color: rgba(255, 255, 255, 0.4);
 }
+.ant-modal-footer {
+  display: flex;
+}

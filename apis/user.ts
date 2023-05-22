@@ -54,29 +54,3 @@ export const apiUserAuthDiscord = async (
     return '';
   }
 };
-
-/**
- * @description org discord
- * @params authorizationCode
- * @params redirectUri
- */
-export const apiOrgAuthDiscord = async (
-  authorizationCode: string,
-  redirectUri: string
-) => {
-  const res: any = await request(
-    `/api/v1/oauth/discord-admin-guild?authorizationCode=${authorizationCode}&redirectUri=${redirectUri}`
-  );
-
-  if (res.code === 0) {
-    return res.data;
-  } else {
-    if (+res.code === 401) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('address');
-      window.location.href = '/home';
-    }
-    toast.error(`${res.msg}`, { id: `${res.msg}` });
-    return '';
-  }
-};

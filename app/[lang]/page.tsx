@@ -13,19 +13,46 @@ import { Button } from '@/components/button';
 import Toast from '@/components/toast/toast';
 import Link from 'next/link';
 import { getCurrentTime } from '@/utils/time';
-import { ConfigProvider, Modal } from 'antd';
 import Modalprop from '@/components/modal/modal';
 import ArrowRight from '@/components/icons/arrowRight';
 import Ellipse from '@/components/icons/ellipse';
 import Image from 'next/image';
+import { useUserStore } from '@/store';
 
 const Index = memo((props: any) => {
+  const { isRegister, setIsRegister, isLogin } = useUserStore();
   const [month, daysLeft] = getCurrentTime();
-  const Click = useCallback(() => {
-    Toast.error('You have not signed up for locusts, please sign up first', {
+  const onClickError = useCallback(() => {
+    Toast.error('You have already signed up and cannot click', {
       duration: 4000
     });
   }, []);
+
+  const onClickSuccess = useCallback(() => {
+    Toast.success('Enrollment success', {
+      duration: 4000
+    });
+  }, []);
+
+  //一个判断函数：判断是否已经报名
+  const onJudge = () => {
+    if (isLogin) {
+      if (isRegister) {
+        onClickError();
+      } else {
+        if (daysLeft < 10) {
+          showModal();
+        } else {
+          onClickSuccess();
+          setIsRegister(true);
+        }
+      }
+    } else {
+      Toast.error('Please login first', {
+        duration: 4000
+      });
+    }
+  };
 
   const resizeListener = () => {
     // 定义设计图的尺寸
@@ -59,6 +86,8 @@ const Index = memo((props: any) => {
 
   const handleOk = () => {
     setIsModalOpen(false);
+    onClickSuccess();
+    setIsRegister(true);
   };
 
   const handleCancel = () => {
@@ -84,7 +113,7 @@ const Index = memo((props: any) => {
           <div className={styles.empty} />
           <Button
             className={`${styles.group1} z-[9] mr-2 whitespace-pre text-[1.13rem] font-medium leading-[1.13rem]`}
-            onClick={showModal}
+            onClick={onJudge}
           >
             I want to register
             <div

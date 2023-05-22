@@ -4,10 +4,12 @@ import React, { use, useEffect, useState } from 'react';
 import Logo from '../icons/logo';
 import { AppstoreOutlined, RiseOutlined } from '@ant-design/icons';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useSiderStore, useUserStore } from '@/store';
+import toast from '../toast/toast';
 
-const SideMenu = (props: { rootClassName: any }) => {
+const SideMenu = (props: any) => {
+  const router = useRouter();
   const {
     isExplore,
     setIsExplore,
@@ -16,9 +18,22 @@ const SideMenu = (props: { rootClassName: any }) => {
     isPost,
     setIsPost
   } = useSiderStore();
-  const { isAdmin } = useUserStore();
+  const { isAdmin, isLogin, isRegister } = useUserStore();
   const pathname = usePathname();
 
+  const onJudge = () => {
+    if (!isLogin) {
+      toast.error('Please login first');
+      return;
+    } else {
+      if (!isRegister) {
+        toast.error('Please register first');
+        return;
+      } else {
+        router.push('/home/post');
+      }
+    }
+  };
   useEffect(() => {
     console.log(pathname);
     if (pathname === '/en/home' || pathname === '/zh-CN/home') {
@@ -103,30 +118,32 @@ const SideMenu = (props: { rootClassName: any }) => {
               </div>
             ) : null}
           </div>
-          <Link href="/home/post">
-            <div
-              className="side-menu-btn"
-              onClick={() => {
-                setIsExplore(false);
-                setIsDataView(false);
-                setIsPost(true);
-              }}
-            >
-              <div className="side-menu-frame10211">
-                <span className="side-menu-text4">
-                  <span
-                    onClick={() => {
-                      setIsExplore(true);
-                      setIsDataView(false);
-                      setIsPost(false);
-                    }}
-                  >
-                    New Post
-                  </span>
+          {/* <Link href="/home/post"> */}
+          <div
+            className="side-menu-btn"
+            onClick={() => {
+              setIsExplore(false);
+              setIsDataView(false);
+              setIsPost(true);
+              onJudge;
+            }}
+          >
+            <div className="side-menu-frame10211">
+              <span className="side-menu-text4">
+                <span
+                  onClick={() => {
+                    setIsExplore(true);
+                    setIsDataView(false);
+                    setIsPost(false);
+                    onJudge();
+                  }}
+                >
+                  New Post
                 </span>
-              </div>
+              </span>
             </div>
-          </Link>
+          </div>
+          {/* </Link> */}
         </div>
       </div>
       <style jsx>
@@ -399,26 +416,6 @@ const SideMenu = (props: { rootClassName: any }) => {
       </style>
     </>
   );
-};
-
-SideMenu.defaultProps = {
-  rootClassName: '',
-  Vector_src3: '/playground_assets/vectori444-s31r.svg',
-  Vector_src4: '/playground_assets/vectori444-4rx8.svg',
-  Vector_src5: '/playground_assets/vectori444-8zeg.svg',
-  Vector_alt3: 'VectorI444',
-  Vector_src1: '/playground_assets/vectori444-8twj.svg',
-  Vector_alt: 'VectorI444',
-  Rectangle1_alt: 'Rectangle1I444',
-  Rectangle1_src: '/playground_assets/rectangle1i444-eze-200w.png',
-  Frame_alt: 'FrameI444',
-  Frame_src: '/playground_assets/framei444-mtub.svg',
-  Vector_alt5: 'VectorI444',
-  Vector_alt4: 'VectorI444',
-  Vector_src: '/playground_assets/vectori444-e535.svg',
-  Vector_alt1: 'VectorI444',
-  Vector_alt2: 'VectorI444',
-  Vector_src2: '/playground_assets/vectori444-cbyy.svg'
 };
 
 export default SideMenu;

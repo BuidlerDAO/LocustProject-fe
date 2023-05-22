@@ -17,7 +17,7 @@ import {
 import { SearchIcon } from '@/components/icons/search';
 import Link from 'next/link';
 import { DownOutlined } from '@ant-design/icons';
-import { useLoginStore } from '@/store';
+import { useUserStore } from '@/store';
 import { Button } from '../button';
 import { useState } from 'react';
 
@@ -80,7 +80,7 @@ const Navbar = () => {
       )
     }
   ];
-  const { isLoggedIn } = useLoginStore();
+  const { isLogin, setIsLogin } = useUserStore();
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
 
   const handleSearch = (value: string) => {
@@ -155,7 +155,7 @@ const Navbar = () => {
                 </AutoComplete>
               </ConfigProvider>
               {/*Sign up for Locust*/}
-              {isLoggedIn ? (
+              {isLogin ? (
                 <div className="ml-[28vw]"></div>
               ) : (
                 <div className="ml-[19vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">

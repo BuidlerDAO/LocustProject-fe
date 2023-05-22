@@ -23,7 +23,7 @@ const Index = memo((props: any) => {
   const { isRegister, setIsRegister } = useUserStore();
   const [month, daysLeft] = getCurrentTime();
   const onClickError = useCallback(() => {
-    Toast.error('You have not signed up for locusts, please sign up first', {
+    Toast.error('You have already signed up and cannot click', {
       duration: 4000
     });
   }, []);

@@ -127,9 +127,9 @@ type UserStore = {
 };
 
 const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
-  isAdmin: false,
-  isLogin: false,
-  isRegister: false,
+  isAdmin: true,
+  isLogin: true,
+  isRegister: true,
   isConnectTwitter: false,
   username: '',
   avatar: '',

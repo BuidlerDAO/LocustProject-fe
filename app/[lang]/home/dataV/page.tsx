@@ -5,7 +5,6 @@ import { DownOutlined } from '@ant-design/icons';
 // import { Table2 } from '@/components/table/table';
 import { Table1, Table2 } from '@/components/table/table';
 import DataCard from '@/components/dataCard/dataCard';
-import withAuth from '@/utils/auth';
 import { useUserStore } from '@/store';
 
 // const pagination = {

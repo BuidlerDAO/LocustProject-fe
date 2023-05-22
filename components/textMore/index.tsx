@@ -7,7 +7,7 @@ interface TextProps {
   rows?: number;
 }
 const { Paragraph } = Typography;
-const TextMore: React.FC<TextProps> = ({ text, rows = 2 }) => {
+const TextMore: React.FC<TextProps> = ({ text, rows }) => {
   const [visible, setVisible] = useState(false);
   return (
     <div style={{ position: 'relative' }}>

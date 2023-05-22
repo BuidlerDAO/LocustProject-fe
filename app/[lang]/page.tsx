@@ -34,16 +34,17 @@ const Index = memo((props: any) => {
     });
   }, []);
 
-  //一个判断函数：判断是否已经报名，当daysLeft小于10天时，触发showModal,否则触发onClickSuccess,并且将isRegister设置为true。当isRegister为true时，再次点击触发onClickError
+  //一个判断函数：判断是否已经报名
   const onJudge = () => {
-    if (daysLeft < 10) {
-      showModal();
-    } else {
-      onClickSuccess();
-      setIsRegister(true);
-    }
     if (isRegister) {
       onClickError();
+    } else {
+      if (daysLeft < 10) {
+        showModal();
+      } else {
+        onClickSuccess();
+        setIsRegister(true);
+      }
     }
   };
 
@@ -79,6 +80,8 @@ const Index = memo((props: any) => {
 
   const handleOk = () => {
     setIsModalOpen(false);
+    onClickSuccess();
+    setIsRegister(true);
   };
 
   const handleCancel = () => {

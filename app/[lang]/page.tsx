@@ -144,7 +144,7 @@ const Index = memo((props: any) => {
           <Image className={styles.cover} src={decorate} alt="" />
           {/*报名倒计时*/}
           <div
-            className="z-[99] h-12 w-[1000px] items-center whitespace-nowrap bg-white
+            className="z-[9] h-12 w-[1000px] items-center whitespace-nowrap bg-white
                         bg-gradient-to-b from-white via-[#fff] to-[#343434] bg-clip-text text-center
                         text-[32px] font-medium capitalize not-italic leading-[48px] tracking-[12.5px] text-transparent"
           >

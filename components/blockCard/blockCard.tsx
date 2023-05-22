@@ -83,6 +83,9 @@ const Block = (props: {
     <>
       <div className={`block-block ${props.rootClassName} `}>
         <Modalprop
+          ModalMaxWidth={330}
+          BodyMaxWidth={300}
+          cancelButtonMarginRight="0"
           isModalOpen={isModalOpen}
           handleOk={handleOk}
           handleCancel={handleCancel}

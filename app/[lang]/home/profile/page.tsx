@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Twitter from '@/components/icons/twitter';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import type { UploadChangeParam } from 'antd/es/upload';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import defaultAvatar from '@/assets/profileSvg/defaultAvatar.svg';
@@ -11,6 +11,7 @@ import Upload from '@/components/icons/upload';
 import { Button } from '@/components/button';
 import { apiTwitterToken } from '@/apis/user';
 import { useUserStore } from '@/store';
+import Modalprop from '@/components/modal/modal';
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
   const reader = new FileReader();
   reader.addEventListener('load', () => callback(reader.result as string));
@@ -55,6 +56,7 @@ const getBase64 = (img: RcFile, callback: (url: string) => void) => {
 const Profile: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const { isConnectTwitter, setIsConnectTwitter } = useUserStore();
   const handleChange: UploadProps['onChange'] = (
@@ -78,11 +80,26 @@ const Profile: React.FC = () => {
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
-  //  推特登录
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  //  推特 登录
   const handleConnect = async () => {
-    const res = await apiTwitterToken(location.href);
-    window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
-    setIsConnectTwitter(true);
+    if (isConnectTwitter) {
+      const res = await apiTwitterToken(location.href);
+      window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
+      setIsConnectTwitter(true);
+    } else {
+      showModal();
+      setIsConnectTwitter(false);
+    }
   };
   return (
     <div
@@ -150,6 +167,15 @@ const Profile: React.FC = () => {
         />
       </div>
       {/*推特部分*/}
+      <Modalprop
+        ModalMaxWidth={350}
+        BodyMaxWidth={300}
+        cancelButtonMarginRight="0"
+        isModalOpen={isModalOpen}
+        handleOk={handleOk}
+        handleCancel={handleCancel}
+        locate="twitter"
+      />
       <div className="relative mr-[19vw] flex flex-col items-center">
         <div className="mr-[260px] mt-[38px] text-[16px]">Twitter</div>
         {/*绑定框部分*/}
@@ -158,21 +184,21 @@ const Profile: React.FC = () => {
           style={{ borderColor: '#1d1d1d' }}
         >
           <div className="flex-raw item-center ml-[12px] mt-[4px] flex justify-center">
-            {isConnectTwitter ? <Twitter /> : <Upload />}
+            {!isConnectTwitter ? <Twitter /> : <Upload />}
             <span className="ml-[8px] mt-[1.2px]">Twitter</span>
           </div>
           <span
-            className="mr-[12px] mt-[5.2px]"
+            className="mr-[12px] mt-[5.2px] cursor-pointer"
             style={{ color: '#6E62EE' }}
             onClick={handleConnect}
           >
-            Connect
+            {isConnectTwitter ? 'Connect' : 'DisConnect'}
           </span>
         </div>
         {/*Submit*/}
         <Button
           color="secondary"
-          className="ml-[6.2vw] mt-[3.5vw] h-[2.5vw] w-[9vw] rounded-full text-[14px]"
+          className="ml-[6.2vw] mt-[3.5vw] h-[2.5vw] w-[9vw] rounded-full text-[14px] "
         >
           Submit
         </Button>

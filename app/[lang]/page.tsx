@@ -97,6 +97,8 @@ const Index = memo((props: any) => {
     <>
       <div className={styles.page}>
         <Modalprop
+          ModalMaxWidth={360}
+          BodyMaxWidth={360}
           isModalOpen={isModalOpen}
           handleOk={handleOk}
           handleCancel={handleCancel}

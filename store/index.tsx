@@ -140,4 +140,4 @@ const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
     }))
 }));
 
-export { usePostStore, useLoginStore, useSiderStore, useUserStore };
+export { usePostStore, useSiderStore, useUserStore };

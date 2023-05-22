@@ -58,28 +58,6 @@ const searchResult = (query: string) =>
 const Navbar = () => {
   const path = usePathname();
   const flag = path == '/zh-CN' || path == '/en';
-  const items: MenuProps['items'] = [
-    {
-      key: '1',
-      label: <Link href="/home/profile">My Profile</Link>
-    },
-    {
-      key: '2',
-      label: <Link href="/home/participate">Event Participation</Link>
-    },
-    {
-      key: '3',
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.luohanacademy.com"
-        >
-          Disconnect
-        </a>
-      )
-    }
-  ];
   const { isLogin, setIsLogin } = useUserStore();
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
 

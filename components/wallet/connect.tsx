@@ -4,6 +4,7 @@ import React, {
   ComponentProps,
   forwardRef,
   HTMLAttributes,
+  memo,
   useState
 } from 'react';
 import { useAccount, useConnect, useDisconnect, useEnsName } from 'wagmi';
@@ -342,4 +343,4 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
 
 WalletConnect.displayName = 'WalletConnect';
 
-export default WalletConnect;
+export default memo(WalletConnect);

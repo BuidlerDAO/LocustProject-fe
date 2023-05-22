@@ -9,7 +9,7 @@ function withAuth<T extends object>(Component: React.ComponentType<T>) {
     // 在这里进行用户鉴权
     const user = isAdmin;
     if (!user) {
-      Router.replace('/login');
+      Router.push('/');
       return null;
     }
     // 鉴权通过，返回改装后的子组件

@@ -214,7 +214,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         });
         if (res.code === 0) {
           setCurrentAddress(address || '');
-          router.refresh();
+          router.replace('/home/profile');
         } else {
           Toast.error(res.message);
           disconnect();

@@ -4,7 +4,7 @@
 export const getApiUrl = (originUrl: string): string => {
   // const baseUrl = import.meta.env.VITE_BASE_API_URL;
   // if (process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'grey') {
-  const baseUrl = 'https://test-growlight-api.buidlerdao.xyz';
+  const baseUrl = 'https://test-locust-api.buidlerdao.xyz';
   return baseUrl + originUrl;
   // }
   // return originUrl;

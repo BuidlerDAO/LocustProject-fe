@@ -9,14 +9,11 @@ import defaultAvatar from '@/assets/profileSvg/defaultAvatar.svg';
 import Image from 'next/image';
 import Upload from '@/components/icons/upload';
 import { Button } from '@/components/button';
+import request from '@/utils/request';
 import { apiTwitterToken } from '@/apis/user';
 import { useUserStore } from '@/store';
 import Modalprop from '@/components/modal/modal';
-const getBase64 = (img: RcFile, callback: (url: string) => void) => {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result as string));
-  reader.readAsDataURL(img);
-};
+import { toBase64 } from '@/utils/file';
 
 // const beforeUpload = (file: RcFile) => {
 //   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -55,38 +52,53 @@ const getBase64 = (img: RcFile, callback: (url: string) => void) => {
 // };
 const Profile: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
+  const [uploadUrl, setUploadUrl] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { isConnectTwitter, setIsConnectTwitter } = useUserStore();
-  const handleChange: UploadProps['onChange'] = (
-    info: UploadChangeParam<UploadFile>
-  ) => {
-    if (info.file.status === 'uploading') {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj as RcFile, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
+  const {
+    username,
+    setUsername,
+    avatar,
+    setAvatar,
+    isConnectTwitter,
+    setIsConnectTwitter
+  } = useUserStore();
+  //  防止 onchange 事件用户每输入一次如果就调 setUsername 会频繁调用 put 方法，因此先在页面内进行 useState 缓存再在 submit 时只调用一次
+  const [userName, setUserName] = useState(username || '@StarMemory');
+  const handleUploadAvatar = async (e: any) => {
+    const file = e.target.files[0];
+    const base64Url = await toBase64(file);
+    setUploadUrl(base64Url || '');
+    const formData = new FormData();
+    formData.append('avatar', file);
+    const res = await request(`/user/profile`, {
+      method: 'PUT',
+      body: formData
+    });
+    if (res?.data) {
+      //  此处为返回图片地址
+      setAvatar(res?.data);
     }
   };
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
+  const handleUploadUserName = async () => {
+    if (userName !== '@StarMemory') {
+      const res = await request('/user/profile', {
+        method: 'PUT',
+        body: {
+          userName
+        }
+      });
+      if (res?.data) {
+        setUsername(username);
+      }
+    }
+  };
   const showModal = () => {
     setIsModalOpen(true);
   };
   const handleOk = () => {
     setIsModalOpen(false);
   };
-
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -101,6 +113,7 @@ const Profile: React.FC = () => {
       setIsConnectTwitter(false);
     }
   };
+
   return (
     <div
       style={{ backgroundColor: 'black', width: '100%', height: '100%' }}
@@ -138,6 +151,7 @@ const Profile: React.FC = () => {
                   type="file"
                   className="hidden"
                   style={{ borderColor: 'white', borderWidth: '1px' }}
+                  onChange={handleUploadAvatar}
                 />
               </div>
             </div>
@@ -161,9 +175,10 @@ const Profile: React.FC = () => {
         {/*输入框部分*/}
         <input
           type="text"
-          value="@SCaesar"
+          value={userName}
           className="mr-[-93px] mt-[14px] h-[37px] w-[401px] rounded-[6px] border-[1px] bg-black focus:outline-none"
           style={{ borderColor: '#1d1d1d', textIndent: '12px' }}
+          onChange={(e) => setUserName(e.target.value)}
         />
       </div>
       {/*推特部分*/}
@@ -199,6 +214,7 @@ const Profile: React.FC = () => {
         <Button
           color="secondary"
           className="ml-[6.2vw] mt-[3.5vw] h-[2.5vw] w-[9vw] rounded-full text-[14px] "
+          onClick={handleUploadUserName}
         >
           Submit
         </Button>

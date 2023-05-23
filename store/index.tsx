@@ -1,4 +1,5 @@
 import { create, SetState } from 'zustand';
+import usePostStore from './PostStore';
 
 type PostStore = {
   posts: {
@@ -21,7 +22,7 @@ type PostStore = {
   decrease: (title: string) => void;
 };
 
-const usePostStore = create<PostStore>((set: SetState<PostStore>) => ({
+const usePostStore1 = create<PostStore>((set: SetState<PostStore>) => ({
   // 数据
   posts: {
     0: {

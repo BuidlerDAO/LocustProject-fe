@@ -35,5 +35,6 @@ export const setCookie = (name: string, value: string) => {
   const Days = 30;
   const exp = new Date();
   exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-  document.cookie = name + '=' + value + ';expires=' + exp.toString();
+  const encodedValue = encodeURIComponent(value);
+  document.cookie = name + '=' + encodedValue + ';expires=' + exp.toString();
 };

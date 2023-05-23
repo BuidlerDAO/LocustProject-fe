@@ -16,14 +16,14 @@ export const apiPostData = async (data: any) => {
     headers,
     body: data
   });
-
-  if (res.code === 0) {
+  if (res.code === 10000) {
     return res.data;
   } else {
     if (+res.code === 401) {
-      deleteCookie('token');
-      deleteCookie('address');
-      window.location.href = '/';
+      // deleteCookie('token');
+      // deleteCookie('address');
+      // window.location.href = '/';
+      throw new Error('401');
     }
     toast.error(`${res.message}`, { id: `${res.message}` });
     return '';

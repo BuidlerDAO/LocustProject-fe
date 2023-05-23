@@ -18,35 +18,48 @@ import {
   Space,
   Table
 } from 'antd';
-
+import { getFullMonth } from '@/utils/time';
+type AlignType = 'left' | 'center' | 'right';
+interface ColumnItem {
+  title: string;
+  dataIndex: string;
+  key: string;
+  align?: AlignType;
+}
 const Table2 = () => {
-  const columns2 = [
+  const columns2: ColumnItem[] = [
     {
+      align: 'center',
       title: 'User Name',
       dataIndex: 'userName',
       key: 'userName'
     },
     {
+      align: 'center',
       title: 'Wallet Address',
       dataIndex: 'walletAddress',
       key: 'walletAddress'
     },
     {
+      align: 'center',
       title: 'Number of Content Submitted',
       dataIndex: 'numContentSubmitted',
       key: 'numContentSubmitted'
     },
     {
+      align: 'center',
       title: 'Number of Deleted Content',
       dataIndex: 'numDeletedContent',
       key: 'numDeletedContent'
     },
     {
+      align: 'center',
       title: 'Bonuses Received',
       dataIndex: 'bonusesReceived',
       key: 'bonusesReceived'
     },
     {
+      align: 'center',
       title: 'Registration Time',
       dataIndex: 'registrationTime',
       key: 'registrationTime'
@@ -79,6 +92,33 @@ const Table2 = () => {
       numDeletedContent: 0,
       bonusesReceived: 10,
       registrationTime: '2021-03-01'
+    },
+    {
+      key: '4',
+      userName: 'Jane Smith',
+      walletAddress: '0xabcdef1234567890',
+      numContentSubmitted: 5,
+      numDeletedContent: 1,
+      bonusesReceived: 2,
+      registrationTime: '2021-02-01'
+    },
+    {
+      key: '5',
+      userName: 'Jane Smith',
+      walletAddress: '0xabcdef1234567890',
+      numContentSubmitted: 5,
+      numDeletedContent: 1,
+      bonusesReceived: 2,
+      registrationTime: '2021-02-01'
+    },
+    {
+      key: '6',
+      userName: 'Jane Smith',
+      walletAddress: '0xabcdef1234567890',
+      numContentSubmitted: 5,
+      numDeletedContent: 1,
+      bonusesReceived: 2,
+      registrationTime: '2021-02-01'
     }
   ];
   const handleChange = (value: string) => {
@@ -110,7 +150,7 @@ const Table2 = () => {
               }}
             >
               <Select
-                defaultValue="lucy"
+                defaultValue="January"
                 style={{
                   width: 80,
                   borderRadius: '8px',
@@ -118,15 +158,9 @@ const Table2 = () => {
                   color: 'white',
                   outlineColor: '#29282f'
                 }}
-                className=""
                 bordered={false}
                 onChange={handleChange}
-                options={[
-                  { value: 'jack', label: 'Jack' },
-                  { value: 'lucy', label: 'Lucy' },
-                  { value: 'Yiminghe', label: 'yiminghe' },
-                  { value: 'disabled', label: 'Disabled', disabled: true }
-                ]}
+                options={getFullMonth()}
               />
             </ConfigProvider>
           </div>
@@ -150,14 +184,15 @@ const Table2 = () => {
             columns={columns2}
             dataSource={data2}
             pagination={{
-              position: ['bottomCenter']
+              position: ['bottomCenter'],
+              pageSize: 4
             }}
           />
         </ConfigProvider>
       </div>
       <style jsx>{`
         .month-border {
-          background: #0D0COF;
+          background: #ffffff;
           border: 1px solid #29282f;
           border-radius: 8px;
           padding: 0.5rem 1.5rem;
@@ -168,44 +203,130 @@ const Table2 = () => {
   );
 };
 const Table1 = () => {
-  const columns1 = [
+  const columns1: ColumnItem[] = [
     {
       title: 'Month',
       dataIndex: 'month',
-      key: 'month'
+      key: 'month',
+      align: 'center'
     },
     {
       title: 'Enrollment',
       dataIndex: 'enrollment',
-      key: 'enrollment'
+      key: 'enrollment',
+      align: 'center'
     },
     {
       title: 'Number of content submitted',
       dataIndex: 'numContentSubmitted',
-      key: 'numContentSubmitted'
+      key: 'numContentSubmitted',
+      align: 'center'
     },
     {
       title: 'Number of valid content',
       dataIndex: 'numValidContent',
-      key: 'numValidContent'
+      key: 'numValidContent',
+      align: 'center'
     },
     {
       title: 'Number of completed tasks',
       dataIndex: 'numCompletedTasks',
-      key: 'numCompletedTasks'
+      key: 'numCompletedTasks',
+      align: 'center'
     },
     {
       title: 'Number of incomplete',
       dataIndex: 'numIncomplete',
-      key: 'numIncomplete'
+      key: 'numIncomplete',
+      align: 'center'
     },
     {
       title: 'Total prize pool',
       dataIndex: 'totalPrizePool',
-      key: 'totalPrizePool'
+      key: 'totalPrizePool',
+      align: 'center'
     }
   ];
-  const data1: readonly any[] | undefined = [];
+  const data1: readonly any[] | undefined = [
+    {
+      month: 'December',
+      enrollment: 567,
+      numContentSubmitted: 876,
+      numValidContent: 381,
+      numCompletedTasks: 993,
+      numIncomplete: 98,
+      totalPrizePool: 604,
+      numDeletedContent: 68,
+      bonusesReceived: 98,
+      registrationTime: '2/23/2019',
+      walletAddress: '0x8e1c329f133e'
+    },
+    {
+      month: 'September',
+      enrollment: 998,
+      numContentSubmitted: 467,
+      numValidContent: 626,
+      numCompletedTasks: 119,
+      numIncomplete: 658,
+      totalPrizePool: 814,
+      numDeletedContent: 296,
+      bonusesReceived: 508,
+      registrationTime: '6/1/2018',
+      walletAddress: '0x1d9f5fc48a4'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'December',
+      enrollment: 567,
+      numContentSubmitted: 876,
+      numValidContent: 381,
+      numCompletedTasks: 993,
+      numIncomplete: 98,
+      totalPrizePool: 604,
+      numDeletedContent: 68,
+      bonusesReceived: 98,
+      registrationTime: '2/23/2019',
+      walletAddress: '0x8e1c329f133e'
+    },
+    {
+      month: 'September',
+      enrollment: 998,
+      numContentSubmitted: 467,
+      numValidContent: 626,
+      numCompletedTasks: 119,
+      numIncomplete: 658,
+      totalPrizePool: 814,
+      numDeletedContent: 296,
+      bonusesReceived: 508,
+      registrationTime: '6/1/2018',
+      walletAddress: '0x1d9f5fc48a4'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    }
+  ];
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
@@ -275,6 +396,7 @@ const Table1 = () => {
             columns={columns1}
             dataSource={data1}
             pagination={{
+              pageSize: 4,
               position: ['bottomCenter']
             }}
           />
@@ -282,7 +404,7 @@ const Table1 = () => {
       </div>
       <style jsx>{`
         .month-border {
-          background: #0D0COF;
+          background: #ffffff;
           border: 1px solid #29282f;
           border-radius: 8px;
           padding: 0.5rem 1.5rem;

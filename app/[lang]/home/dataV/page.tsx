@@ -30,7 +30,7 @@ const dataV = () => {
           <DataCard />
           <div>
             <div
-              className="mt-3 font-medium text-white"
+              className="mt-[1.75rem] font-medium text-white"
               style={{
                 fontFamily: 'Inter',
                 fontSize: '28px',

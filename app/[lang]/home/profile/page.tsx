@@ -51,10 +51,6 @@ import { toBase64 } from '@/utils/file';
 //   );
 // };
 const Profile: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const [uploadUrl, setUploadUrl] = useState<string>('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
   const {
     username,
     setUsername,
@@ -63,8 +59,13 @@ const Profile: React.FC = () => {
     isConnectTwitter,
     setIsConnectTwitter
   } = useUserStore();
+  const [loading, setLoading] = useState(false);
+  const [uploadUrl, setUploadUrl] = useState<string>('');
   //  防止 onchange 事件用户每输入一次如果就调 setUsername 会频繁调用 put 方法，因此先在页面内进行 useState 缓存再在 submit 时只调用一次
   const [userName, setUserName] = useState(username || '@StarMemory');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const handleUploadAvatar = async (e: any) => {
     const file = e.target.files[0];
     const base64Url = await toBase64(file);
@@ -93,15 +94,6 @@ const Profile: React.FC = () => {
       }
     }
   };
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
   //  推特 登录
   const handleConnect = async () => {
     if (isConnectTwitter) {
@@ -112,6 +104,15 @@ const Profile: React.FC = () => {
       showModal();
       setIsConnectTwitter(false);
     }
+  };
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -134,7 +135,10 @@ const Profile: React.FC = () => {
             }}
           >
             <div className="relative flex">
-              <Image alt="" src={defaultAvatar}></Image>
+              <Image
+                alt=""
+                src={uploadUrl ? uploadUrl : avatar ? avatar : defaultAvatar}
+              ></Image>
               {/*hover层*/}
               <div className="absolute right-[-3.1px] top-[0.5px] flex h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
                 {/*上传图片*/}

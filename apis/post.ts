@@ -10,22 +10,28 @@ import { usePostStore } from '@/store';
  * @api https://test-locust-api.buidlerdao.xyz/api/post
  */
 export const apiPostData = async (data: any) => {
-  const headers = { 'Content-Type': 'application/json' };
-  const res: any = await request(`/api/post`, {
-    method: 'POST',
-    headers,
-    body: data
-  });
-  if (res.code === 10000) {
-    return res.data;
-  } else {
-    if (+res.code === 401) {
-      // deleteCookie('token');
-      // deleteCookie('address');
-      // window.location.href = '/';
-      throw new Error('401');
+  try {
+    const response = await fetch('/api/post', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    if (result.code === 10000) {
+      return result.data;
+    } else {
+      if (+result.code === 401) {
+        // deleteCookie('token');
+        // deleteCookie('address');
+        // window.location.href = '/';
+        throw new Error('401');
+      }
+      toast.error(`${result.message}`, { id: `${result.message}` });
+      return '';
     }
-    toast.error(`${res.message}`, { id: `${res.message}` });
-    return '';
+  } catch (error) {
+    console.error(error);
   }
 };

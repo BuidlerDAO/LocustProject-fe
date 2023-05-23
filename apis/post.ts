@@ -1,5 +1,5 @@
 import toast from '@/components/toast/toast';
-import request from '@/utils/request';
+import axios from 'axios';
 import { deleteCookie } from '@/utils/cookie';
 import { usePostStore } from '@/store';
 
@@ -11,14 +11,17 @@ import { usePostStore } from '@/store';
  */
 export const apiPostData = async (data: any) => {
   try {
-    const response = await fetch('/api/post', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    const result = await response.json();
+    const response = await axios.post(
+      'https://test-locust-api.buidlerdao.xyz/api/post',
+      data,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    const result = response.data;
+    console.log(result);
     if (result.code === 10000) {
       return result.data;
     } else {

@@ -1,6 +1,7 @@
 import create from 'zustand';
 import axios, { AxiosResponse } from 'axios';
 import { persist } from 'zustand/middleware';
+import { apiPostData } from '@/apis/post';
 
 export type Post = {
   id: string;
@@ -27,7 +28,11 @@ const usePostStore = create<PostStore>((set, get) => ({
   posts: [],
   setPosts: (posts) => set({ posts }),
   // 设置数据的方法
-  increase: (post) => set(({ posts }) => ({ posts: [...posts, post] })),
+  increase: (post) => {
+    set(({ posts }) => ({ posts: [...posts, post] }));
+    //向后端发送数据
+    //apiPostData(post);
+  },
   decrease: (id) =>
     set(({ posts }) => ({ posts: posts.filter((p) => p.id !== id) })),
   updatePost: (id, post) =>

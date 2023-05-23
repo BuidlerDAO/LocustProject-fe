@@ -41,7 +41,7 @@ const postComponent = (props: { rootClassName: any }) => {
     e.id = UUID(8, 8);
     console.log(e);
     increase(e);
-
+    apiPostData(e);
     console.log(usePostStore.getState());
     //跳转到/home/explore页
     router.push('/home');

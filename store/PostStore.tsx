@@ -27,15 +27,19 @@ const usePostStore = create(
       posts: [],
       setPosts: (posts: Post[]) => set({ posts }),
       increase: (post: Post) => {
-        set(({ posts }) => ({ posts: [...posts, post] }));
+        set(({ posts }: any) => ({ posts: [...posts, post] }));
         //向后端发送数据
         //apiPostData(post);
       },
       decrease: (id: string) =>
-        set(({ posts }) => ({ posts: posts.filter((p) => p.id !== id) })),
+        set(({ posts }: any) => ({
+          posts: posts.filter((p: { id: string }) => p.id !== id)
+        })),
       updatePost: (id: string, post: Partial<Post>) =>
-        set(({ posts }) => ({
-          posts: posts.map((p) => (p.id === id ? { ...p, ...post } : p))
+        set(({ posts }: any) => ({
+          posts: posts.map((p: { id: string }) =>
+            p.id === id ? { ...p, ...post } : p
+          )
         })),
       fetchPostsFromBackend: async () => {
         try {

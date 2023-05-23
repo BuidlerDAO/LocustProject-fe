@@ -48,7 +48,7 @@ const Block = (props: {
     time: string;
   };
 }) => {
-  const decrease = usePostStore((state) => state.decrease);
+  const decrease = usePostStore((state: any) => state.decrease);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 

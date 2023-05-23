@@ -16,8 +16,8 @@ const postComponent = (props: { rootClassName: any }) => {
   const router = useRouter();
   const [form] = Form.useForm();
   const [isNull, setIsNull] = useState(true);
-  const increase = usePostStore((state) => state.increase);
-  const decrease = usePostStore((state) => state.decrease);
+  const increase = usePostStore((state: any) => state.increase);
+  const decrease = usePostStore((state: any) => state.decrease);
   function getCurrentDate() {
     const today = new Date();
     const year = today.getFullYear();

@@ -15,34 +15,24 @@ import Block from '@/components/blockCard/blockCard';
 import { usePostStore } from '@/store';
 
 const App: React.FC = () => {
-  type postData = [
-    {
-      id: string;
-      title: string;
-      link: string;
-      originalText: string;
-      personalThoughts: string;
-      time: string;
-    }
-  ];
-  type data = [
-    {
-      id: number;
-      title: string;
-      link: string;
-      originalText: string;
-      personalThoughts: string;
-      time: string;
-    }
-  ];
+  type post = {
+    id: string;
+    title: string;
+    link: string;
+    originalText: string;
+    personalThoughts: string;
+    time: string;
+  };
+  type postData = [post];
+  type data = [post];
   const onDelete = () => {
     console.log('delete');
   };
   useEffect(() => {
     console.log(data);
   }, []);
-  const postData = usePostStore((state) => state.posts);
-  const data = Array.from(Object.values(postData)).map((post) => ({
+  const postData = usePostStore((state: any) => state.posts);
+  const data = Array.from(Object.values(postData)).map((post: any) => ({
     title: post.title,
     link: post.link,
     originalText: post.originalText,

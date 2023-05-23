@@ -20,7 +20,7 @@ const SideMenu = (props: any) => {
   } = useSiderStore();
   const { isAdmin, isLogin, isRegister } = useUserStore();
   const pathname = usePathname();
-
+  const flag = pathname == '/zh-CN' || pathname == '/en';
   const onJudge = () => {
     if (!isLogin) {
       toast.error('Please login first');
@@ -59,6 +59,10 @@ const SideMenu = (props: any) => {
   return (
     <>
       <div className={`side-menu-side-menu ${props.rootClassName}`}>
+        <div
+          style={{ borderColor: '#000' }}
+          className={`${'relative bottom-[1px] z-[999] w-[18.9vw] border-t-[14px]'}`}
+        ></div>
         <div className="side-menu-frame1171274769 ">
           <div className="side-menu-menu">
             {/* explore 按钮 */}

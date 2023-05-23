@@ -9,21 +9,22 @@ import {
   StarOutlined
 } from '@ant-design/icons';
 import { Avatar, Button, Collapse, List, Space, Tooltip } from 'antd';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Paragraph from 'antd/es/typography/Paragraph';
 import Block from '@/components/blockCard/blockCard';
 import { usePostStore } from '@/store';
 
 const App: React.FC = () => {
-  type postData = {
-    [id: number]: {
+  type postData = [
+    {
+      id: string;
       title: string;
       link: string;
       originalText: string;
       personalThoughts: string;
       time: string;
-    };
-  };
+    }
+  ];
   type data = [
     {
       id: number;

@@ -1,62 +1,46 @@
 import create from 'zustand';
-import { apiPostData } from '@/apis/post';
+import axios, { AxiosResponse } from 'axios';
+import { persist } from 'zustand/middleware';
+
+export type Post = {
+  id: string;
+  title: string;
+  link: string;
+  originalText: string;
+  personalThoughts: string;
+  time: string;
+};
 
 type PostStore = {
-  posts: {
-    [id: number]: {
-      title: string;
-      link: string;
-      originalText: string;
-      personalThoughts: string;
-      time: string;
-    };
-  };
-  count: number;
-  increase: (post: {
-    title: string;
-    link: string;
-    originalText: string;
-    personalThoughts: string;
-    time: string;
-  }) => void;
-  decrease: (title: string) => void;
+  posts: Post[];
+  setPosts: (posts: Post[]) => void;
+  increase: (post: Post) => void;
+  decrease: (id: string) => void;
+  updatePost: (id: string, post: Post) => void;
+  fetchPostsFromBackend: () => Promise<void>;
 };
 
 const usePostStore = create<PostStore>((set, get) => ({
   // 从localStorage中获取数据
   //posts: JSON.parse(localStorage.getItem('posts') || '{}'),
   //count: parseInt(localStorage.getItem('count') || '0'),
-  posts: {},
-  count: 0,
+  posts: [],
+  setPosts: (posts) => set({ posts }),
   // 设置数据的方法
-  increase: (post) => {
-    const newCount = get().count + 1;
-    // 更新posts和count
-    set({
-      posts: {
-        ...get().posts,
-        [newCount]: {
-          ...post
-        }
-      },
-      count: newCount
-    });
-    // 保存数据到localStorage并传输到后端
-    //localStorage.setItem('posts', JSON.stringify(get().posts));
-    //localStorage.setItem('count', newCount.toString());
-    apiPostData(get().posts);
-  },
-  decrease: (title: string) => {
-    // 过滤掉标题为title的文章
-    const newPosts = Object.values(get().posts).filter(
-      (post) => post.title !== title
-    );
-    // 更新posts和count
-    set({ posts: newPosts, count: newPosts.length });
-    // 保存数据到localStorage并传输到后端
-    //localStorage.setItem('posts', JSON.stringify(newPosts));
-    //localStorage.setItem('count', newPosts.length.toString());
-    apiPostData(newPosts);
+  increase: (post) => set(({ posts }) => ({ posts: [...posts, post] })),
+  decrease: (id) =>
+    set(({ posts }) => ({ posts: posts.filter((p) => p.id !== id) })),
+  updatePost: (id, post) =>
+    set(({ posts }) => ({
+      posts: posts.map((p) => (p.id === id ? { ...p, ...post } : p))
+    })),
+  fetchPostsFromBackend: async () => {
+    try {
+      const response: AxiosResponse<Post[]> = await axios.get('/api/posts');
+      set({ posts: response.data });
+    } catch (error) {
+      console.error(error);
+    }
   }
 }));
 

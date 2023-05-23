@@ -8,6 +8,7 @@ import Link from 'next/link';
 import './index.css';
 import { useRouter } from 'next/navigation';
 import { apiPostData } from '@/apis/post';
+import { UUID } from '@/utils/uuid';
 
 const { TextArea } = Input;
 
@@ -27,6 +28,7 @@ const postComponent = (props: { rootClassName: any }) => {
     return `${year}-${formattedMonth}-${formattedDay}`;
   }
   const onFinish = (e: {
+    id: string;
     title: string;
     link: string;
     originalText: string;
@@ -36,6 +38,7 @@ const postComponent = (props: { rootClassName: any }) => {
     console.log(getCurrentDate());
     //Object.assign(e, { time: getCurrentDate() });
     e.time = getCurrentDate();
+    e.id = UUID(8, 8);
     console.log(e);
     increase(e);
 

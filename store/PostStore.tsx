@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import create from 'zustand';
 import axios, { AxiosResponse } from 'axios';
 import { persist } from 'zustand/middleware';
@@ -12,14 +13,19 @@ export type Post = {
   time: string;
 };
 
-type PostStore = {
+interface PostState {
   posts: Post[];
   setPosts: (posts: Post[]) => void;
   increase: (post: Post) => void;
   decrease: (id: string) => void;
-  updatePost: (id: string, post: Post) => void;
+  updatePost: (id: string, post: Partial<Post>) => void;
   fetchPostsFromBackend: () => Promise<void>;
-};
+  getStorage: () => {
+    getItem: (key: string) => Promise<any>;
+    setItem: (value: any) => Promise<void>;
+    removeItem: (key: string) => Promise<void>;
+  };
+}
 
 const usePostStore = create(
   persist(
@@ -43,7 +49,9 @@ const usePostStore = create(
         })),
       fetchPostsFromBackend: async () => {
         try {
-          const response: AxiosResponse<Post[]> = await axios.get('/api/posts');
+          const response: AxiosResponse<Post[]> = await axios.get(
+            'https://test-locust-api.buidlerdao.xyz/api/post'
+          );
           set({ posts: response.data });
         } catch (error) {
           console.error(error);
@@ -57,11 +65,21 @@ const usePostStore = create(
           const response = await axios.get(`/api/storage/${key}`);
           return response.data;
         },
-        setItem: async (key: string, value: any) => {
-          await axios.post(`/api/storage/${key}`, value);
+        /*
+      @param key: string
+      @description:保存发送数据
+      @use:await usePostStore.getState().getStorage().setItem(newPost);
+      */
+        setItem: async (value: any) => {
+          await axios.post(
+            `https://test-locust-api.buidlerdao.xyz/api/post`,
+            value
+          );
         },
         removeItem: async (key: string) => {
-          await axios.delete(`/api/storage/${key}`);
+          await axios.delete(
+            `https://test-locust-api.buidlerdao.xyz/api/post/${key}`
+          );
         }
       }) // use a custom storage engine that communicates with your server
     }

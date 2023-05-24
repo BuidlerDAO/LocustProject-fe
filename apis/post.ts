@@ -5,8 +5,7 @@ import { usePostStore } from '@/store';
 
 /**
  * @description post post data
- * @params authorizationCode
- * @params redirectUri
+ * @params post data
  * @api https://test-locust-api.buidlerdao.xyz/api/post
  */
 export const apiPostData = async (data: any) => {

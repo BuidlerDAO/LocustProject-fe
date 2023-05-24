@@ -51,7 +51,19 @@ const usePostStore = create(
       }
     }),
     {
-      name: 'post-storage' // name of the storage
+      name: 'post-storage', // name of the storage
+      getStorage: () => ({
+        getItem: async (key: string) => {
+          const response = await axios.get(`/api/storage/${key}`);
+          return response.data;
+        },
+        setItem: async (key: string, value: any) => {
+          await axios.post(`/api/storage/${key}`, value);
+        },
+        removeItem: async (key: string) => {
+          await axios.delete(`/api/storage/${key}`);
+        }
+      }) // use a custom storage engine that communicates with your server
     }
   )
 );

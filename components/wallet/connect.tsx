@@ -32,8 +32,7 @@ import {
 } from '@/components/icons';
 import Profile from '../icons/profile';
 import Disconnect from '../icons/disconnect';
-import { getWeb3Account, getWeb3SignMessage } from '@/utils/web3';
-import { apiLogin, apiLogout } from '@/services/login';
+import { apiLogin } from '@/apis/login';
 import { deleteCookie, getCookie } from '@/utils/cookie';
 import { Dropdown, MenuProps, Space } from 'antd';
 import Link from 'next/link';
@@ -185,7 +184,6 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
 
     //  弹窗 & Profile
     const [dialogOpen, setDialogOpen] = useState(false);
-    const [showManageProfile, setShowManageProfile] = useState(false);
     //  弹窗
     const handleOpen = () => {
       setDialogOpen(true);
@@ -199,19 +197,20 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
     };
     // 退出登录 & 清空 state
     const handleDisconnect = async () => {
-      await apiLogout();
+      // await apiLogout();
       disconnect();
+      deleteCookie('token');
+      deleteCookie('address');
       setCurrentAddress('');
-      setShowManageProfile(false);
     };
     // 登录
     const handleLogin = async () => {
       try {
-        const res = await apiLogin({
-          address: address as string,
-          sig: msgData as string,
-          message: msg as any
-        });
+        const res = await apiLogin(
+          address as string,
+          msgData as string,
+          msg as any
+        );
         if (res.code === 0) {
           setCurrentAddress(address || '');
           router.replace('/home/profile');
@@ -299,13 +298,13 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
           <Button
             color="primary"
             className={`w-[240px] whitespace-nowrap px-10 py-2 text-[16px] font-semibold ${
-              isConnected
+              currentAddress
                 ? 'border-black bg-[#1A1A1A]'
                 : 'hover:border-[#6E62EE]'
             }`}
             onClick={() => handleOpen()}
           >
-            {!isConnected ? (
+            {!currentAddress ? (
               // 未连接
               <div>
                 <p style={{ fontFamily: 'Outfit', fontWeight: '600' }}>
@@ -335,14 +334,19 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
                     onClick={(e) => e.preventDefault()}
                     className="flex justify-between"
                   >
-                    <Space>0x4c....3333</Space>
+                    <Space>
+                      {ensName
+                        ? ensName
+                        : currentAddress
+                        ? currentAddress.replace(/(\w{4})\w+(\w{4})/, '$1...$2')
+                        : ''}
+                    </Space>
                     <div className="ml-[0.8vw] mt-[8px]">
                       <DownOutlined />
                     </div>
                   </a>
                 </div>
               </Dropdown>
-
               // 原代码抽取功能
               // <div>
               //   <Typography
@@ -393,23 +397,27 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
               // </div>
             )}
             {/*弹窗组件以及三个钱包*/}
-            <Dialog
-              open={dialogOpen}
-              handler={(e) => setDialogOpen(e)}
-              size="sm"
-            >
-              <DialogHeader
-                subTitle="More wallet support is on the way"
-                title="Choose your wallet"
-                showClose={true}
-                onClose={setDialogOpen}
-              />
-              <div className="mx-9 mb-8 mt-3">
-                <MetaMaskConnect onData={handleData} className="mt-[14px]" />
-                <WalletConnectBtn onData={handleData} className="mt-[14px]" />
-                <CoinbaseConnect onData={handleData} className="mt-[14px]" />
-              </div>
-            </Dialog>
+            <div className="z-[1]">
+              <Dialog
+                open={dialogOpen}
+                handler={(e) => {
+                  setDialogOpen(e);
+                }}
+                size="sm"
+              >
+                <DialogHeader
+                  subTitle="More wallet support is on the way"
+                  title="Choose your wallet"
+                  showClose={true}
+                  onClose={setDialogOpen}
+                />
+                <div className="mx-9 mb-8 mt-3">
+                  <MetaMaskConnect onData={handleData} className="mt-[14px]" />
+                  <WalletConnectBtn onData={handleData} className="mt-[14px]" />
+                  <CoinbaseConnect onData={handleData} className="mt-[14px]" />
+                </div>
+              </Dialog>
+            </div>
           </Button>
         </ClientOnly>
       </div>

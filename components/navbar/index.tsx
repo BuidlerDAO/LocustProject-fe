@@ -20,6 +20,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { useUserStore } from '@/store';
 import { Button } from '../button';
 import { useState } from 'react';
+import './index.css';
 
 const getRandomInt = (max: number, min = 0) =>
   Math.floor(Math.random() * (max - min + 1)) + min;

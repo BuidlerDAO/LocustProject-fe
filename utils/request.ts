@@ -1,3 +1,4 @@
+import { getCookie } from './cookie';
 import { getApiUrl } from './helpers';
 import toast from '@/components/toast/toast';
 
@@ -23,9 +24,7 @@ const request = async (url: string, config?: RequestOptions) => {
     body: null,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: localStorage.getItem('token')
-        ? 'Bearer ' + localStorage.getItem('token')
-        : ''
+      Authorization: getCookie('token') ? 'Bearer ' + getCookie('token') : ''
     },
     credentials: 'include',
     cache: 'no-cache',
@@ -40,9 +39,7 @@ const request = async (url: string, config?: RequestOptions) => {
   if (config && config.headers)
     configs.headers = {
       ...inital.headers,
-      Authorization: localStorage.getItem('token')
-        ? 'Bearer ' + localStorage.getItem('token')
-        : '',
+      Authorization: getCookie('token') ? 'Bearer ' + getCookie('token') : '',
       ...config.headers
     };
 

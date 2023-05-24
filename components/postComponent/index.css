@@ -32,3 +32,6 @@
   bottom: 2px;
   right: 2px;
 }
+div > .ant-btn-default {
+  background-color: inherit;
+}

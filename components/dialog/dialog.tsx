@@ -114,7 +114,7 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(
     const appliedAnimation = merge(animation, animate ?? {});
 
     // 4. set @floating-ui
-    const { context } = useFloating({
+    const { refs, context } = useFloating({
       open,
       onOpenChange: handler ?? undefined
     });
@@ -129,7 +129,7 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       useDismiss(context, dismiss)
     ]);
 
-    // const mergedRef = useMergeRefs([ref, floating]);
+    const mergedRef = useMergeRefs([ref, refs.setFloating]);
 
     // 5. Create an instance of AnimatePresence because of the types issue with the children
     const NewAnimatePresence: FC<NewAnimatePresenceProps> = AnimatePresence;
@@ -159,7 +159,7 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(
                   <motion.div
                     {...getFloatingProps({
                       ...rest,
-                      // ref: mergedRef,
+                      ref: mergedRef,
                       className: `
                         ${dialogTV({
                           type: 'dialog',

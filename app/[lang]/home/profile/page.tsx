@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Twitter from '@/components/icons/twitter';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { UploadChangeParam } from 'antd/es/upload';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import defaultAvatar from '@/assets/profileSvg/defaultAvatar.svg';
@@ -10,7 +10,7 @@ import Image from 'next/image';
 import Upload from '@/components/icons/upload';
 import { Button } from '@/components/button';
 import request from '@/utils/request';
-import { apiTwitterToken } from '@/apis/user';
+import { apiTwitterToken, apiUserInfo } from '@/apis/user';
 import { useUserStore } from '@/store';
 import Modalprop from '@/components/modal/modal';
 import { toBase64 } from '@/utils/file';
@@ -59,13 +59,12 @@ const Profile: React.FC = () => {
     isConnectTwitter,
     setIsConnectTwitter
   } = useUserStore();
-  const [loading, setLoading] = useState(false);
-  const [uploadUrl, setUploadUrl] = useState<string>('');
+  const [uploadUrl, setUploadUrl] = useState<string>(avatar || '');
   //  防止 onchange 事件用户每输入一次如果就调 setUsername 会频繁调用 put 方法，因此先在页面内进行 useState 缓存再在 submit 时只调用一次
   const [userName, setUserName] = useState(username || '@StarMemory');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-
+  //  头像上传
   const handleUploadAvatar = async (e: any) => {
     const file = e.target.files[0];
     const base64Url = await toBase64(file);
@@ -78,12 +77,13 @@ const Profile: React.FC = () => {
     });
     if (res?.data) {
       //  此处为返回图片地址
-      setAvatar(res?.data);
+      setAvatar(res.data.avatar);
     }
   };
+  //  名字上传
   const handleUploadUserName = async () => {
     if (userName !== '@StarMemory') {
-      const res = await request('/user/profile', {
+      const res = await request('api/user/profile', {
         method: 'PUT',
         body: {
           userName
@@ -95,26 +95,40 @@ const Profile: React.FC = () => {
     }
   };
   //  推特 登录
-  const handleConnect = async () => {
-    if (isConnectTwitter) {
+  const handleTwitterConnect = async () => {
+    if (!isConnectTwitter) {
       const res = await apiTwitterToken(location.href);
       window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
       setIsConnectTwitter(true);
     } else {
       showModal();
+    }
+  };
+  //  推特 退出登录
+  const handleTwitterDisconnect = () => {
+    if (isConnectTwitter) {
       setIsConnectTwitter(false);
     }
   };
+  //  二次弹窗
   const showModal = () => {
     setIsModalOpen(true);
   };
   const handleOk = () => {
     setIsModalOpen(false);
+    handleTwitterDisconnect();
   };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-
+  const getUserInfo = async () => {
+    const res = await apiUserInfo();
+    setUploadUrl(res.data.avatar);
+    setUserName(res.data.username);
+  };
+  useEffect(() => {
+    getUserInfo();
+  });
   return (
     <div
       style={{ backgroundColor: 'black', width: '100%', height: '100%' }}
@@ -209,9 +223,9 @@ const Profile: React.FC = () => {
           <span
             className="mr-[12px] mt-[5.2px] cursor-pointer"
             style={{ color: '#6E62EE' }}
-            onClick={handleConnect}
+            onClick={handleTwitterConnect}
           >
-            {isConnectTwitter ? 'Connect' : 'DisConnect'}
+            {!isConnectTwitter ? 'Connect' : 'DisConnect'}
           </span>
         </div>
         {/*Submit*/}

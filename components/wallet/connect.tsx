@@ -30,8 +30,6 @@ import {
   MetamaskIcon,
   WalletConnectIcon
 } from '@/components/icons';
-import Profile from '../icons/profile';
-import Disconnect from '../icons/disconnect';
 import { apiLogin } from '@/apis/login';
 import { deleteCookie, getCookie } from '@/utils/cookie';
 import { Dropdown, MenuProps, Space } from 'antd';
@@ -173,7 +171,6 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         new Date().getTime()
       )}\nnonce: ${Math.ceil(Math.random() * 1000000000000)}`
     );
-
     const {
       data: msgData,
       isSuccess,
@@ -181,7 +178,6 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
     } = useSignMessage({
       message: msg as any
     });
-
     //  弹窗 & Profile
     const [dialogOpen, setDialogOpen] = useState(false);
     //  弹窗
@@ -197,7 +193,6 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
     };
     // 退出登录 & 清空 state
     const handleDisconnect = async () => {
-      // await apiLogout();
       disconnect();
       deleteCookie('token');
       deleteCookie('address');
@@ -224,7 +219,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         disconnect();
       }
     };
-
+    //  设置签名
     const handleSign = () => {
       try {
         // TODO: 接口修改签名信息格式
@@ -274,14 +269,12 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       backgroundColor: '#1A1A1A',
       borderRadius: '12px'
     };
-
     useEffect(() => {
       console.log('isSuccess', isSuccess);
       if (isSuccess) {
         handleLogin();
       }
     }, [isSuccess]);
-
     useEffect(() => {
       if (isConnected && !getCookie('token') && address) {
         handleSign();
@@ -290,7 +283,6 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         setCurrentAddress(getCookie('address') || '');
       }
     }, [address]);
-
     // Render
     return (
       <div {...rest} ref={ref} className={className}>

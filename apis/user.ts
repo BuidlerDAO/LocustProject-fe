@@ -29,7 +29,7 @@ export const apiUserAuthTwitter = async (
   }
 };
 export const apiUserInfo = async () => {
-  const res: any = await request(`/api/be/user/profile`);
+  const res: any = await request(`/api/user/profile`);
   if (res.code === 0) {
     return res.data;
   } else {
@@ -44,9 +44,7 @@ export const apiUserInfo = async () => {
 };
 
 export const apiTwitterToken = async (url: string) => {
-  const res: any = await request(
-    `/api/be/twitter/oauth-token?callbackUrl=${url}`
-  );
+  const res: any = await request(`/api/twitter/oauth-token?callbackUrl=${url}`);
   if (res.code === 0) {
     return res.data;
   } else {

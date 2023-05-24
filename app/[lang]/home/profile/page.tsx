@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+// import Link from 'next/link';
 import Twitter from '@/components/icons/twitter';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import React, { useEffect, useRef, useState } from 'react';
@@ -14,6 +14,10 @@ import { apiTwitterToken, apiUserInfo } from '@/apis/user';
 import { useUserStore } from '@/store';
 import Modalprop from '@/components/modal/modal';
 import { toBase64 } from '@/utils/file';
+import ImgCrop from '@/components/imgCrop';
+import Toast from '@/components/toast/toast';
+import { blobToFile, dataURLtoBlob, getStringWidth } from '@/utils/helpers';
+import { getCookie } from '@/utils/cookie';
 
 // const beforeUpload = (file: RcFile) => {
 //   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -64,6 +68,62 @@ const Profile: React.FC = () => {
   const [userName, setUserName] = useState(username || '@StarMemory');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [cropType, setCropType] = useState(1);
+  const [showCrop, setShowCrop] = useState(false);
+  const [cropper, setCropper] = useState<any>();
+  const [aspect, setAspect] = useState(1 / 1);
+  const [avatarLoading, setAvatarLoading] = useState(false);
+  const [bannerLoading, setBannerLoading] = useState(false);
+
+  const handleCrop = async (e: any, type: number) => {
+    e.preventDefault();
+    setCropType(type);
+    if (type === 1) {
+      setAspect(1 / 1);
+    } else {
+      // setAspect(1280 / 200);
+      setAspect(1400 / 350);
+    }
+    const input: any = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.jpg, .jpeg, .png';
+    input.click();
+    input.onchange = async () => {
+      try {
+        const reader: any = new FileReader();
+        reader.addEventListener('load', () => {
+          // setImgSrc(reader.result.toString() || '');
+          setShowCrop(true);
+        });
+        reader.readAsDataURL(input.files[0]);
+      } catch (error) {
+        Toast.error('Upload error');
+      }
+    };
+  };
+  const handleUpload = async () => {
+    setShowCrop(false);
+    const preview = cropper.getCroppedCanvas().toDataURL();
+    try {
+      cropType === 1 ? setAvatarLoading(true) : setBannerLoading(true);
+      const address = getCookie('address') || '';
+      const bodyBlob = dataURLtoBlob(preview);
+      const bodyFile = blobToFile(bodyBlob, address.slice(0, 8));
+      console.log(bodyBlob);
+      // const res: any = await upload({
+      //   key: address.slice(0, 8),
+      //   body: bodyFile
+      // });
+      // setValue('avatar', `${res.host}/${res.key}`);
+      setAvatarLoading(false);
+      Toast.success('upload success');
+    } catch (error) {
+      setAvatarLoading(false);
+      setBannerLoading(false);
+      Toast.error('upload error');
+    }
+  };
   //  头像上传
   const handleUploadAvatar = async (e: any) => {
     const file = e.target.files[0];
@@ -110,6 +170,7 @@ const Profile: React.FC = () => {
       setIsConnectTwitter(false);
     }
   };
+
   //  二次弹窗
   const showModal = () => {
     setIsModalOpen(true);

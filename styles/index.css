@@ -24,7 +24,7 @@
   color: #fff !important;
 }
 
-/*antd输入框*/
+/*antd 输入框*/
 .ant-input-lg {
   background-color: #1f1f1f;
   color: #ffffff;
@@ -35,6 +35,7 @@
 .ant-modal-footer {
   display: flex;
 }
+/* cropper 圆形裁剪框 */
 .cropper-view-box,
 .cropper-face {
   border-radius: 50%;

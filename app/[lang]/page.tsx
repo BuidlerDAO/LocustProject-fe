@@ -88,7 +88,7 @@ const Index = memo((props: any) => {
   return (
     <>
       <div
-        className={`page h-[120rem] max-w-[90rem] overflow-hidden bg-[#1e1e1e]`}
+        className={`page h-[120rem] max-w-[90rem] overflow-hidden bg-[#1e1e1e] `}
       >
         <Modalprop
           ModalMaxWidth={360}
@@ -98,7 +98,7 @@ const Index = memo((props: any) => {
           handleCancel={handleCancel}
           locate="home"
         />
-        <div className="relative bottom-[108px] flex h-[200rem] w-full flex-col items-center bg-black">
+        <div className="relative bottom-[108px] mt-[100px] flex h-[200rem] w-full flex-col items-center bg-black">
           <div className="absolute top-[16.69rem] flex h-[54.06rem] w-[90rem] flex-col items-center self-center font-medium">
             <Image src={bg} alt="" />
             <span className="relative mt-[35.13rem] h-[3.19rem] max-w-[89.25rem] overflow-hidden text-ellipsis whitespace-pre text-left text-[2.13rem] leading-[3.19rem] text-white">

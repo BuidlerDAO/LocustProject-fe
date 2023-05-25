@@ -461,7 +461,7 @@ const postComponent = (props: { rootClassName: any }) => {
             flex-shrink: 0;
            border-none;
             background-color: inherit;
-            
+
           }
           .component-text16 {
             top: 21px;

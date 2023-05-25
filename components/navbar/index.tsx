@@ -72,8 +72,8 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`absolute left-[18rem] z-50 float-right flex h-[100px] flex-wrap items-center bg-[#04070B]
-      ${!flag && 'border-b-[1px] border-b-lineGrey'} `}
+        className={` relative z-50 float-right flex h-[100px] flex-wrap items-center bg-[#04070B]
+      ${!flag && 'absolute left-[18rem] border-b-[1px] border-b-lineGrey'} `}
       >
         <div className="sticky inset-0 z-10 flex h-full w-full max-w-full items-center px-8 py-2 lg:px-10 lg:py-4">
           <div className="text-blue-gray-900 dark:text-blue-gray-100 flex w-full items-center">

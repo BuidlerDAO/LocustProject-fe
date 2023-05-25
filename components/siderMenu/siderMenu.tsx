@@ -134,6 +134,7 @@ const SideMenu = (props: any) => {
             ) : null}
           </div>
           {/* <Link href="/home/post"> */}
+          {/* post按钮，封装了onjudge函数  */}
           <div
             className="side-menu-btn"
             onClick={() => {

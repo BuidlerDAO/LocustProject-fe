@@ -1,14 +1,13 @@
 'use client';
 import Navbar from '@/components/navbar';
 import { ReactNode, Suspense } from 'react';
-import Sider from '@/components/sider/sider';
 import type { FC } from 'react';
 import { ConfigProvider } from 'antd';
 
 const HomeLayout: FC<{ children: ReactNode }> = (props) => {
   return (
     <div>
-      <main className="flex ">
+      <main className="mt-[100px] flex">
         <ConfigProvider
           theme={{
             token: {

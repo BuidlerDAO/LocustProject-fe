@@ -16,7 +16,7 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.guides.bracketPairs": "active",
-  "files.autoSave": "afterDelay",
+  "files.autoSave": "off",
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "i18next.i18nPaths": "/Users/vadxq/git/nextjs-web3-starter/i18n,/Users/vadxq/git/nextjs-web3-starter/i18n/locales"

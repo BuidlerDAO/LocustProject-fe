@@ -150,7 +150,7 @@ const Profile: React.FC = () => {
   return (
     <div
       style={{ backgroundColor: 'black', width: '100%', height: '100%' }}
-      className="ml-[1.7vw] mt-[3.8vw]"
+      className="ml-[1.7vw] mt-[calc(100px+3.8rem)]"
     >
       {/*Profile字样*/}
       <div className="ml-[1.6vw] text-[28px]">Profile</div>

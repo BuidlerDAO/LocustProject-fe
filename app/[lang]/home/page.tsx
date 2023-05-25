@@ -40,7 +40,7 @@ const App: React.FC = () => {
     time: post.time
   }));
   return (
-    <div className="mr-16">
+    <div className="mr-16 mt-[100px]">
       <List
         itemLayout="vertical"
         size="large"

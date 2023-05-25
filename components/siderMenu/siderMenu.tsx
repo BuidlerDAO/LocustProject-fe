@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSiderStore, useUserStore } from '@/store';
 import toast from '../toast/toast';
+import { LogoIconTop } from '../icons';
 
 const SideMenu = (props: any) => {
   const router = useRouter();
@@ -63,6 +64,15 @@ const SideMenu = (props: any) => {
           style={{ borderColor: '#000' }}
           className={`${'relative bottom-[1px] z-[999] w-[18.9vw] border-t-[14px]'}`}
         ></div>
+        <div className="flex items-center justify-center">
+          <div
+            className={`mr-[-5px] mt-[-18px]
+                            ${!flag && 'mr-[6px] mt-[0.2px]'}
+            } `}
+          >
+            {flag ? <LogoIconTop /> : <Logo />}
+          </div>
+        </div>
         <div className="side-menu-frame1171274769 ">
           <div className="side-menu-menu">
             {/* explore 按钮 */}

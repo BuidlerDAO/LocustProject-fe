@@ -18,42 +18,8 @@ import ImgCrop from '@/components/imgCrop';
 import Toast from '@/components/toast/toast';
 import { blobToFile, dataURLtoBlob, getStringWidth } from '@/utils/helpers';
 import { getCookie } from '@/utils/cookie';
+import { Dialog, DialogHeader } from '@/components/dialog';
 
-// const beforeUpload = (file: RcFile) => {
-//   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-//   if (!isJpgOrPng) {
-//     message.error('You can only upload JPG/PNG file!');
-//   }
-//   const isLt2M = file.size / 1024 / 1024 < 2;
-//   if (!isLt2M) {
-//     message.error('Image must smaller than 2MB!');
-//   }
-//   return isJpgOrPng && isLt2M;
-// };
-
-// const PreviewImage = ({ imageUrl }: { imageUrl: string }) => {
-//   const [isHovering, setIsHovering] = useState(false);
-//   return (
-//     <div
-//       className="preview-container relative inline-block h-28 w-28"
-//       onMouseEnter={() => setIsHovering(true)}
-//       onMouseLeave={() => setIsHovering(false)}
-//     >
-//       {!isHovering && (
-//         <img
-//           src={imageUrl}
-//           // alt="preview"
-//           className="preview-image h-full w-full rounded-full object-cover"
-//         />
-//       )}
-//       {/*{isHovering && (*/}
-//       {/*  <div className="preview-overlay absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center rounded-full bg-black bg-opacity-60 text-lg font-bold text-white">*/}
-//       {/*    Upload new*/}
-//       {/*  </div>*/}
-//       {/*)}*/}
-//     </div>
-//   );
-// };
 const Profile: React.FC = () => {
   const {
     username,
@@ -63,28 +29,20 @@ const Profile: React.FC = () => {
     isConnectTwitter,
     setIsConnectTwitter
   } = useUserStore();
-  const [uploadUrl, setUploadUrl] = useState<string>(avatar || '');
   //  防止 onchange 事件用户每输入一次如果就调 setUsername 会频繁调用 put 方法，因此先在页面内进行 useState 缓存再在 submit 时只调用一次
   const [userName, setUserName] = useState(username || '@StarMemory');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const [cropType, setCropType] = useState(1);
+  // 头像上传以及裁剪层
+  const [uploadUrl, setUploadUrl] = useState<string>(avatar || '');
   const [showCrop, setShowCrop] = useState(false);
   const [cropper, setCropper] = useState<any>();
   const [aspect, setAspect] = useState(1 / 1);
   const [avatarLoading, setAvatarLoading] = useState(false);
-  const [bannerLoading, setBannerLoading] = useState(false);
-
-  const handleCrop = async (e: any, type: number) => {
+  //  头像裁剪
+  const handleCrop = async (e: any) => {
     e.preventDefault();
-    setCropType(type);
-    if (type === 1) {
-      setAspect(1 / 1);
-    } else {
-      // setAspect(1280 / 200);
-      setAspect(1400 / 350);
-    }
+    setAspect(1 / 1);
     const input: any = document.createElement('input');
     input.type = 'file';
     input.accept = '.jpg, .jpeg, .png';
@@ -93,7 +51,7 @@ const Profile: React.FC = () => {
       try {
         const reader: any = new FileReader();
         reader.addEventListener('load', () => {
-          // setImgSrc(reader.result.toString() || '');
+          setUploadUrl(reader.result.toString() || '');
           setShowCrop(true);
         });
         reader.readAsDataURL(input.files[0]);
@@ -105,8 +63,9 @@ const Profile: React.FC = () => {
   const handleUpload = async () => {
     setShowCrop(false);
     const preview = cropper.getCroppedCanvas().toDataURL();
+    handleUploadAvatar(preview);
     try {
-      cropType === 1 ? setAvatarLoading(true) : setBannerLoading(true);
+      setAvatarLoading(true);
       const address = getCookie('address') || '';
       const bodyBlob = dataURLtoBlob(preview);
       const bodyFile = blobToFile(bodyBlob, address.slice(0, 8));
@@ -120,13 +79,12 @@ const Profile: React.FC = () => {
       Toast.success('upload success');
     } catch (error) {
       setAvatarLoading(false);
-      setBannerLoading(false);
       Toast.error('upload error');
     }
   };
   //  头像上传
-  const handleUploadAvatar = async (e: any) => {
-    const file = e.target.files[0];
+  const handleUploadAvatar = async (file: any) => {
+    // const file = e.target.files[0];
     const base64Url = await toBase64(file);
     setUploadUrl(base64Url || '');
     const formData = new FormData();
@@ -170,7 +128,6 @@ const Profile: React.FC = () => {
       setIsConnectTwitter(false);
     }
   };
-
   //  二次弹窗
   const showModal = () => {
     setIsModalOpen(true);
@@ -188,7 +145,7 @@ const Profile: React.FC = () => {
     setUserName(res.data.username);
   };
   useEffect(() => {
-    getUserInfo();
+    // getUserInfo();
   });
   return (
     <div
@@ -212,11 +169,39 @@ const Profile: React.FC = () => {
             <div className="relative flex">
               <Image
                 alt=""
-                src={uploadUrl ? uploadUrl : avatar ? avatar : defaultAvatar}
+                // src={uploadUrl ? uploadUrl : avatar ? avatar : defaultAvatar}
+                src={defaultAvatar}
               ></Image>
+              <div className="flex flex-col items-center space-y-8 px-16 pt-9">
+                <Dialog
+                  open={showCrop}
+                  handler={(e) => setShowCrop(e)}
+                  className="bg-[#191A27]"
+                >
+                  <DialogHeader
+                    title="What's the name of your DAO/project?"
+                    showClose={true}
+                    onClose={setShowCrop}
+                  />
+                  <ImgCrop
+                    className="m-auto my-4 flex h-[400px] w-[400px] items-center justify-center"
+                    imgsrc={uploadUrl}
+                    onCrop={setCropper}
+                    aspect={aspect}
+                  />
+                  <Button
+                    className="mx-auto mb-[54px] w-[130px]"
+                    color="primary"
+                    onClick={handleUpload}
+                  >
+                    Confrim
+                  </Button>
+                </Dialog>
+              </div>
               {/*hover层*/}
               <div className="absolute right-[-3.1px] top-[0.5px] flex h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
                 {/*上传图片*/}
+
                 <div
                   className="relative right-[-25px] top-[19px] cursor-pointer"
                   onClick={() => {
@@ -230,7 +215,7 @@ const Profile: React.FC = () => {
                   type="file"
                   className="hidden"
                   style={{ borderColor: 'white', borderWidth: '1px' }}
-                  onChange={handleUploadAvatar}
+                  onChange={handleCrop}
                 />
               </div>
             </div>

@@ -2,7 +2,7 @@
 @import './tailwind.css';
 @import 'nprogress/nprogress.css';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
-
+@import 'cropperjs/dist/cropper.css';
 /* 自定义全局 CssVar */
 :root {
   --pure-transition-duration: 0.016s;
@@ -34,4 +34,8 @@
 }
 .ant-modal-footer {
   display: flex;
+}
+.cropper-view-box,
+.cropper-face {
+  border-radius: 50%;
 }

@@ -22,7 +22,8 @@ const ImgCrop: FC<ImgCropProps> = memo((props: ImgCropProps) => {
 
   return (
     <Cropper
-      className={`imgCrop w-[100%] ${props.className}`}
+      className={`imgCrop ${props.className} `}
+      shape="round"
       zoomTo={0.5}
       zoomable={false} // 是否允许放大图像
       preview=".img-preview"
@@ -39,7 +40,7 @@ const ImgCrop: FC<ImgCropProps> = memo((props: ImgCropProps) => {
       onInitialized={(instance: any) => {
         props.onCrop ? props.onCrop(instance) : null;
       }}
-      guides={true} // 显示在裁剪框上方的虚线
+      // guides={true} // 显示在裁剪框上方的虚线
       {...props}
     />
   );

@@ -4,7 +4,7 @@ import Cropper from 'react-cropper';
 interface ImgCropProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
   className?: string;
-  imgSrc?: string;
+  imgsrc?: string;
   aspect?: number;
   onChange?: (e: any) => void;
   onCrop?: (e: any) => void;
@@ -26,7 +26,7 @@ const ImgCrop: FC<ImgCropProps> = memo((props: ImgCropProps) => {
       zoomTo={0.5}
       zoomable={false} // 是否允许放大图像
       preview=".img-preview"
-      src={props.imgSrc}
+      src={props.imgsrc}
       viewMode={1}
       minCropBoxHeight={10}
       minCropBoxWidth={10}

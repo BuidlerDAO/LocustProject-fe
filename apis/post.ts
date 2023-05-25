@@ -2,7 +2,7 @@ import toast from '@/components/toast/toast';
 import axios from 'axios';
 import { deleteCookie } from '@/utils/cookie';
 import { usePostStore } from '@/store';
-
+axios.defaults.baseURL = 'https://test-locust-api.buidlerdao.xyz';
 /**
  * @description post post data
  * @params post data
@@ -10,15 +10,11 @@ import { usePostStore } from '@/store';
  */
 export const apiPostData = async (data: any) => {
   try {
-    const response = await axios.post(
-      'https://test-locust-api.buidlerdao.xyz/api/post',
-      data,
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    const response = await axios.post('/api/post', data, {
+      headers: {
+        'Content-Type': 'application/json'
       }
-    );
+    });
     const result = response.data;
     console.log(result);
     if (result.code === 10000) {

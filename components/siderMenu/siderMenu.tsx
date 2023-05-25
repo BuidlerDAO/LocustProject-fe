@@ -59,14 +59,15 @@ const SideMenu = (props: any) => {
   }, [pathname]);
   return (
     <>
-      <div className={`side-menu-side-menu ${props.rootClassName}`}>
-        <div
+      {/* <div
           style={{ borderColor: '#000' }}
-          className={`${'relative bottom-[1px] z-[999] w-[18.9vw] border-t-[14px]'}`}
-        ></div>
-        <div className="flex items-center justify-center">
+          className={`${'relative bottom-[1px]  w-[18.9vw] border-t-[14px] z-[-1]'}`}
+        ></div> */}
+      <div className={`side-menu-side-menu ${props.rootClassName}`}>
+        {/* logo部分 */}
+        <div className="width-[18rem] ml-[30px] flex h-[100px] items-center justify-center">
           <div
-            className={`mr-[-5px] mt-[-18px]
+            className={`mr-[-5px] mt-[-18px] 
                             ${!flag && 'mr-[6px] mt-[0.2px]'}
             } `}
           >
@@ -175,7 +176,7 @@ const SideMenu = (props: any) => {
           }
           .side-menu-frame1171274769 {
             height: 100%;
-
+            top: 100px;
             gap: 24px;
             left: 0px;
             width: 100%;

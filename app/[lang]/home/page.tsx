@@ -29,10 +29,11 @@ const App = () => {
     console.log('delete');
   };
   useEffect(() => {
+    getData();
     console.log(data);
   }, []);
   const getData = async () => {
-    Promise.all([apiGetPostList({})]).then((postData) => {
+    Promise.all([apiGetPostList({ offset: 0, limit: 10 })]).then((postData) => {
       data = Array.from(Object.values(postData)).map((post: any) => ({
         title: post.title,
         link: post.link,

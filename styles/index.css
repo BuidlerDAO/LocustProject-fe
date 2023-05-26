@@ -35,6 +35,11 @@
 .ant-modal-footer {
   display: flex;
 }
+/* 隐藏分页器 x条/页 */
+.ant-pagination-options {
+  display: none !important;
+}
+
 /* cropper 圆形裁剪框 */
 .cropper-view-box,
 .cropper-face {

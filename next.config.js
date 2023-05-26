@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    domains: ['p4.music.126.net']
+  },
   experimental: {
     appDir: true
     // runtime: 'experimental-edge',

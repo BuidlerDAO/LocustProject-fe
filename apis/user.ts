@@ -5,6 +5,7 @@ import { deleteCookie } from '@/utils/cookie';
 interface userInfo {
   avatar: string;
   name: string;
+  oauthTokenSecret?: string;
   oauthToken?: string;
   verifier?: string;
 }
@@ -59,6 +60,7 @@ export const apiTwitterToken = async (url: string) => {
       deleteCookie('address');
       window.location.href = '/';
     }
+    console.log(res);
     toast.error(`${res.message}`, { id: `${res.message}` });
     return '';
   }

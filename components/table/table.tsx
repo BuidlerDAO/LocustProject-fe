@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './index.css';
 import Logo from '../icons/logo';
@@ -19,6 +19,7 @@ import {
   Table
 } from 'antd';
 import { getFullMonth } from '@/utils/time';
+import { apiGetPostData } from '@/apis/post';
 type AlignType = 'left' | 'center' | 'right';
 interface ColumnItem {
   title: string;
@@ -1112,6 +1113,7 @@ const TableUserOverview = () => {
   );
 };
 const UserArticle = () => {
+  const [data, setData] = useState<any[]>([]);
   //columns中有Article Title、Submit Time、Status
   const columns: ColumnItem[] = [
     {
@@ -1133,7 +1135,28 @@ const UserArticle = () => {
       align: 'center'
     }
   ];
-  const data: readonly any[] | undefined = [
+  const getData = async () => {
+    Promise.all([apiGetPostData('/api/post/user')]).then((values: any) => {
+      console.log(values);
+
+      const newData = values.flatMap((item: any) =>
+        item.items.map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          createdAt: item.createdAt
+          //status: item.status
+        }))
+      );
+      setData(newData);
+      console.log(newData);
+    });
+  };
+
+  useEffect(() => {
+    getData();
+    console.log(data);
+  }, []);
+  const data1: readonly any[] | undefined = [
     {
       articleTitle: 'Article Title',
       submitTime: '2021-01-01',

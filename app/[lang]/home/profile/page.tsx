@@ -1,14 +1,13 @@
 'use client';
 
 import Twitter from '@/components/icons/twitter';
-import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import React, { useEffect, useRef, useState } from 'react';
 import defaultAvatar from '@/assets/profileSvg/defaultAvatar.svg';
 import Image from 'next/image';
 import Upload from '@/components/icons/upload';
 import { Button } from '@/components/button';
 import request from '@/utils/request';
-import { apiTwitterToken, apiUserInfo } from '@/apis/user';
+import { apiPutUserInfo, apiTwitterToken, apiUserInfo } from '@/apis/user';
 import { useUserStore } from '@/store';
 import Modalprop from '@/components/modal/modal';
 import ImgCrop from '@/components/imgCrop';
@@ -17,6 +16,8 @@ import { blobToFile, dataURLtoBlob } from '@/utils/helpers';
 import { getCookie } from '@/utils/cookie';
 import { Dialog, DialogHeader } from '@/components/dialog';
 import { upload } from '@/utils/aws';
+import { useSearchParams } from 'next/navigation';
+
 const Profile: React.FC = () => {
   const {
     username,
@@ -26,6 +27,8 @@ const Profile: React.FC = () => {
     isConnectTwitter,
     setIsConnectTwitter
   } = useUserStore();
+  const oauthToken = useSearchParams()?.get('oauthToken') as string;
+  const verifier = useSearchParams()?.get('oauthVerifier') as string;
   //  防止 onchange 事件用户每输入一次如果就调 setUsername 会频繁调用 put 方法，因此先在页面内进行 useState 缓存再在 submit 时只调用一次
   const [userName, setUserName] = useState<string>(username);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -69,25 +72,35 @@ const Profile: React.FC = () => {
         key: address.slice(0, 8),
         body: bodyFile
       });
-      // setAvatar(`${res.host}/${res.key}`)
       setUploadUrl(`${res.host}/${res.key}`);
       Toast.success('upload success');
     } catch (error) {
       Toast.error('upload error');
     }
   };
-  //  名字上传
-  const handleUploadUserName = async () => {
-    if (userName !== '@StarMemory') {
-      const res = await request('api/user/profile', {
-        method: 'PUT',
-        body: {
-          userName
+  //  名字+头像上传
+  const handleUploadAll = async () => {
+    try {
+      if (
+        userName !== '@StarMemory' ||
+        avatar !==
+          'http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg?param=200y200'
+      ) {
+        const res = await apiPutUserInfo({
+          avatar: uploadUrl,
+          name: userName,
+          oauthToken,
+          verifier
+        });
+        if (res) {
+          Toast.success('Modify message success!');
+          setUsername(username);
+          setAvatar(res.avatar);
         }
-      });
-      if (res?.data) {
-        setUsername(username);
       }
+    } catch (error) {
+      Toast.success('Fail to Modify message!');
+      console.log(error);
     }
   };
   //  推特 登录
@@ -121,10 +134,10 @@ const Profile: React.FC = () => {
     const res = await apiUserInfo();
     console.log(res);
     if (res.avatar !== '') {
-      setUploadUrl(res.avatar);
+      setAvatar(res.avatar);
     }
     if (res.username !== '') {
-      setUserName(res.username);
+      setUsername(res.username);
     }
   };
   useEffect(() => {
@@ -262,7 +275,7 @@ const Profile: React.FC = () => {
         <Button
           color="secondary"
           className="ml-[6.2vw] mt-[3.5vw] h-[2.5vw] w-[9vw] rounded-full text-[14px] "
-          onClick={handleUploadUserName}
+          onClick={handleUploadAll}
         >
           Submit
         </Button>

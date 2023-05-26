@@ -3,7 +3,7 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import '@/styles/home.css';
+import '@/styles/font.css';
 
 import decorate from '@/assets/homeSvg/decorate.svg';
 import img from '@/assets/homeSvg/img.svg';

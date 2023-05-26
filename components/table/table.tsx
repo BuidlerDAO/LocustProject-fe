@@ -176,7 +176,6 @@ const Table2 = () => {
               colorBorderSecondary: '#26262675',
               colorSplit: '#26262675',
               colorBorder: '#29282F'
-              // colorBgDisabled: '#26262675',
             }
           }}
         >
@@ -993,7 +992,6 @@ const Table1 = () => {
               colorBorderSecondary: '#26262675',
               colorSplit: '#26262675',
               colorBorder: '#29282F'
-              // colorBgDisabled: '#26262675',
             }
           }}
         >
@@ -1007,15 +1005,6 @@ const Table1 = () => {
           />
         </ConfigProvider>
       </div>
-      <style jsx>{`
-        .month-border {
-          background: #ffffff;
-          border: 1px solid #29282f;
-          border-radius: 8px;
-          padding: 0.5rem 1.5rem;
-          gap: 0.25rem;
-        }
-      `}</style>
     </>
   );
 };
@@ -1119,15 +1108,6 @@ const TableUserOverview = () => {
           />
         </ConfigProvider>
       </div>
-      {/*<style jsx>{`*/}
-      {/*  .month-border {*/}
-      {/*    background: #0D0COF;*/}
-      {/*    border: 1px solid #29282f;*/}
-      {/*    border-radius: 8px;*/}
-      {/*    padding: 0.5rem 1.5rem;*/}
-      {/*    gap: 0.25rem;*/}
-      {/*  }*/}
-      {/*`}</style>*/}
     </>
   );
 };
@@ -1173,9 +1153,9 @@ const UserArticle = () => {
   };
   return (
     <>
-      <div>
-        <div className="flex justify-between">
-          <div>
+      <div className="ml-[5vw] w-[70vw]">
+        <div className="mt-[10px] flex justify-between">
+          <div className="mb-[24px]">
             Article Details
             <DownloadOutlined
               className="ml-6 cursor-pointer"
@@ -1207,16 +1187,8 @@ const UserArticle = () => {
           />
         </ConfigProvider>
       </div>
-      {/*<style jsx>{`*/}
-      {/*  .month-border {*/}
-      {/*    background: #0D0COF;*/}
-      {/*    border: 1px solid #29282f;*/}
-      {/*    border-radius: 8px;*/}
-      {/*    padding: 0.5rem 1.5rem;*/}
-      {/*    gap: 0.25rem;*/}
-      {/*  }*/}
-      {/*`}</style>*/}
     </>
   );
 };
+
 export { Table2, Table1, TableUserOverview, UserArticle };

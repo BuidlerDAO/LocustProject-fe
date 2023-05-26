@@ -2,7 +2,7 @@ import toast from '@/components/toast/toast';
 import axios from 'axios';
 import request from '@/utils/request';
 import { deleteCookie } from '@/utils/cookie';
-import { usePostStore } from '@/store';
+import { PostData, usePostStore } from '@/store';
 axios.defaults.baseURL = 'https://test-locust-api.buidlerdao.xyz';
 /**
  * @description post post data
@@ -11,10 +11,9 @@ axios.defaults.baseURL = 'https://test-locust-api.buidlerdao.xyz';
  */
 export const apiPostData = async (data: any) => {
   try {
-    const response = await axios.post('/api/post', data, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response = await request('/api/post', {
+      method: 'POST',
+      body: { ...data }
     });
     const result = response.data;
     console.log(result);
@@ -46,7 +45,8 @@ export const apiGetPostList = async (data: {
     `/api/post?offset=${data.offset}&limit=${data.limit}`
   );
   if (res.code === 0) {
-    return res.data;
+    const data: PostData = res.data;
+    return data;
   } else {
     toast.error(`${res.message}`, { id: `${res.message}` });
     return '';

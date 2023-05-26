@@ -981,38 +981,6 @@ const Table1 = () => {
               onClick={onDownload}
             />
           </div>
-          {/* <div>
-            <ConfigProvider
-              theme={{
-                token: {
-                  colorBgElevated: 'black',
-                  colorText: '#ffffff',
-                  colorIconHover: '#ffffff',
-                  colorIcon: '#ffffff'
-                }
-              }}
-            >
-              <Select
-                defaultValue="lucy"
-                style={{
-                  width: 80,
-                  borderRadius: '8px',
-                  border: '1px solid #29282f',
-                  color: 'white',
-                  outlineColor: '#29282f'
-                }}
-                className=""
-                bordered={false}
-                onChange={handleChange}
-                options={[
-                  { value: 'jack', label: 'Jack' },
-                  { value: 'lucy', label: 'Lucy' },
-                  { value: 'Yiminghe', label: 'yiminghe' },
-                  { value: 'disabled', label: 'Disabled', disabled: true }
-                ]}
-              />
-            </ConfigProvider>
-          </div> */}
         </div>
         <ConfigProvider
           theme={{
@@ -1053,36 +1021,42 @@ const Table1 = () => {
 };
 const TableUserOverview = () => {
   //columns含有Month、Number of articles submitted、Number of unsuccessful articles、Number of valid articles、Bonus、Total Prize Pool
-  const columns = [
+  const columns: ColumnItem[] = [
     {
       title: 'Month',
       dataIndex: 'month',
-      key: 'month'
+      key: 'month',
+      align: 'center'
     },
     {
       title: 'Number of articles submitted',
       dataIndex: 'numArticlesSubmitted',
-      key: 'numArticlesSubmitted'
+      key: 'numArticlesSubmitted',
+      align: 'center'
     },
     {
       title: 'Number of unsuccessful articles',
       dataIndex: 'numUnsuccessfulArticles',
-      key: 'numUnsuccessfulArticles'
+      key: 'numUnsuccessfulArticles',
+      align: 'center'
     },
     {
       title: 'Number of valid articles',
       dataIndex: 'numValidArticles',
-      key: 'numValidArticles'
+      key: 'numValidArticles',
+      align: 'center'
     },
     {
       title: 'Bonus',
       dataIndex: 'bonus',
-      key: 'bonus'
+      key: 'bonus',
+      align: 'center'
     },
     {
       title: 'Total Prize Pool',
       dataIndex: 'totalPrizePool',
-      key: 'totalPrizePool'
+      key: 'totalPrizePool',
+      align: 'center'
     }
   ];
   const data: readonly any[] | undefined = [
@@ -1111,9 +1085,9 @@ const TableUserOverview = () => {
   };
   return (
     <>
-      <div>
-        <div className="flex justify-between">
-          <div>
+      <div className="ml-[5vw] w-[70vw]">
+        <div className="mt-[38px] flex justify-between">
+          <div className="mb-[24px]">
             Overview
             <DownloadOutlined
               className="ml-6 cursor-pointer"
@@ -1145,35 +1119,38 @@ const TableUserOverview = () => {
           />
         </ConfigProvider>
       </div>
-      <style jsx>{`
-        .month-border {
-          background: #0D0COF;
-          border: 1px solid #29282f;
-          border-radius: 8px;
-          padding: 0.5rem 1.5rem;
-          gap: 0.25rem;
-        }
-      `}</style>
+      {/*<style jsx>{`*/}
+      {/*  .month-border {*/}
+      {/*    background: #0D0COF;*/}
+      {/*    border: 1px solid #29282f;*/}
+      {/*    border-radius: 8px;*/}
+      {/*    padding: 0.5rem 1.5rem;*/}
+      {/*    gap: 0.25rem;*/}
+      {/*  }*/}
+      {/*`}</style>*/}
     </>
   );
 };
 const UserArticle = () => {
   //columns中有Article Title、Submit Time、Status
-  const columns = [
+  const columns: ColumnItem[] = [
     {
       title: 'Article Title',
       dataIndex: 'articleTitle',
-      key: 'articleTitle'
+      key: 'articleTitle',
+      align: 'center'
     },
     {
       title: 'Submit Time',
       dataIndex: 'submitTime',
-      key: 'submitTime'
+      key: 'submitTime',
+      align: 'center'
     },
     {
       title: 'Status',
       dataIndex: 'status',
-      key: 'status'
+      key: 'status',
+      align: 'center'
     }
   ];
   const data: readonly any[] | undefined = [
@@ -1230,15 +1207,15 @@ const UserArticle = () => {
           />
         </ConfigProvider>
       </div>
-      <style jsx>{`
-        .month-border {
-          background: #0D0COF;
-          border: 1px solid #29282f;
-          border-radius: 8px;
-          padding: 0.5rem 1.5rem;
-          gap: 0.25rem;
-        }
-      `}</style>
+      {/*<style jsx>{`*/}
+      {/*  .month-border {*/}
+      {/*    background: #0D0COF;*/}
+      {/*    border: 1px solid #29282f;*/}
+      {/*    border-radius: 8px;*/}
+      {/*    padding: 0.5rem 1.5rem;*/}
+      {/*    gap: 0.25rem;*/}
+      {/*  }*/}
+      {/*`}</style>*/}
     </>
   );
 };

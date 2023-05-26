@@ -145,7 +145,7 @@ const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
   isConnectTwitter: false,
   username: '@StarMemory',
   avatar:
-    'http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg?param=200y200',
+    'http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg',
   setIsAdmin: (isAdmin: boolean) =>
     set(() => ({
       isAdmin: isAdmin

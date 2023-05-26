@@ -70,6 +70,7 @@ const Profile: React.FC = () => {
       });
       reader.readAsDataURL(e.target.files[0]);
     } catch (error) {
+      console.log('handleCrop --> ', error);
       Toast.error('Upload error');
     }
   };
@@ -90,7 +91,7 @@ const Profile: React.FC = () => {
       setUploadUrl(`${res.host}/${res.key}`);
       Toast.success('upload success');
     } catch (error) {
-      console.log(error);
+      console.log('handleUpload --> ', error);
       Toast.error('upload error');
     }
   };
@@ -180,14 +181,17 @@ const Profile: React.FC = () => {
               borderColor: 'white'
             }}
           >
-            <div className="relative flex">
-              <Image
-                alt=""
-                width="200"
-                height="200"
-                src={uploadUrl}
-                // src={defaultAvatar}
-              ></Image>
+            <div className="relative">
+              <div className=" h-[66px] w-[66px] rounded-full ">
+                <Image
+                  alt=""
+                  width="66"
+                  height="66"
+                  className="h-[100%] w-[100%] rounded-full"
+                  src={uploadUrl}
+                  // src={defaultAvatar}
+                ></Image>
+              </div>
               <div className="flex flex-col items-center space-y-8 px-16 pt-9">
                 <Dialog
                   open={showCrop}
@@ -215,7 +219,7 @@ const Profile: React.FC = () => {
                 </Dialog>
               </div>
               {/*hover层*/}
-              <div className="absolute right-[-3.1px] top-[0.5px] flex h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
+              <div className="absolute right-[-3.1px] top-[0.5px] flex h-[67px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
                 {/*上传图片*/}
                 <div
                   className="relative right-[-25px] top-[19px] cursor-pointer"

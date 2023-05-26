@@ -39,14 +39,15 @@ const Profile: React.FC = () => {
   const [cropper, setCropper] = useState<any>();
   const [aspect, setAspect] = useState<number>(1 / 1);
   //  头像裁剪
-  const handleCrop = async (e: any) => {
-    // e.preventDefault();
+  const handleCrop1 = async (e: any) => {
+    e.preventDefault();
+    // console.log(e.target);
     setAspect(1 / 1);
     const input: any = document.createElement('input');
     input.type = 'file';
-    input.accept = '.jpg, .jpeg, .png';
+    input.accept = '.jpg, .gif, .png';
     input.click();
-    input.onchange = async () => {
+    e.target.onchange = async () => {
       try {
         const reader: any = new FileReader();
         reader.addEventListener('load', () => {
@@ -58,6 +59,19 @@ const Profile: React.FC = () => {
         Toast.error('Upload error');
       }
     };
+  };
+  const handleCrop = async (e: any) => {
+    setAspect(1 / 1);
+    try {
+      const reader: any = new FileReader();
+      reader.addEventListener('load', () => {
+        setUploadUrl(reader.result.toString() || '');
+        setShowCrop(true);
+      });
+      reader.readAsDataURL(e.target.files[0]);
+    } catch (error) {
+      Toast.error('Upload error');
+    }
   };
   //  头像上传
   const handleUpload = async () => {
@@ -72,9 +86,11 @@ const Profile: React.FC = () => {
         key: address.slice(0, 8),
         body: bodyFile
       });
+      console.log(res);
       setUploadUrl(`${res.host}/${res.key}`);
       Toast.success('upload success');
     } catch (error) {
+      console.log(error);
       Toast.error('upload error');
     }
   };
@@ -96,6 +112,8 @@ const Profile: React.FC = () => {
           Toast.success('Modify message success!');
           setUsername(username);
           setAvatar(res.avatar);
+          const aa = await apiUserInfo();
+          console.log(aa);
         }
       }
     } catch (error) {
@@ -210,6 +228,7 @@ const Profile: React.FC = () => {
                 <input
                   ref={inputRef}
                   type="file"
+                  accept=".jpg, .gif, .png"
                   className="hidden"
                   style={{ borderColor: 'white', borderWidth: '1px' }}
                   onChange={handleCrop}

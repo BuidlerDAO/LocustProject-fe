@@ -11,10 +11,9 @@ axios.defaults.baseURL = 'https://test-locust-api.buidlerdao.xyz';
  */
 export const apiPostData = async (data: any) => {
   try {
-    const response = await axios.post('/api/post', data, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response = await request('/api/post', {
+      method: 'POST',
+      body: { ...data }
     });
     const result = response.data;
     console.log(result);

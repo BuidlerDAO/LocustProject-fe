@@ -1,14 +1,5 @@
 /* eslint-disable prefer-const */
 'use client';
-import {
-  DeleteOutlined,
-  EllipsisOutlined,
-  FieldTimeOutlined,
-  LikeOutlined,
-  LinkOutlined,
-  MessageOutlined,
-  StarOutlined
-} from '@ant-design/icons';
 import { Avatar, Button, Collapse, List, Space, Tooltip } from 'antd';
 import React, { useEffect, useState } from 'react';
 import Block from '@/components/blockCard/blockCard';
@@ -23,7 +14,7 @@ const App = () => {
   }, []);
 
   const getData = async () => {
-    Promise.all([apiGetPostList({ offset: 0, limit: 10 })]).then(
+    Promise.all([apiGetPostList({ offset: 5, limit: 30 })]).then(
       (values: any) => {
         const newData = values.map((item: any) => ({
           title: item.items[0].title,

@@ -1,10 +1,8 @@
 'use client';
-// import Link from 'next/link';
+
 import Twitter from '@/components/icons/twitter';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import React, { useEffect, useRef, useState } from 'react';
-import type { UploadChangeParam } from 'antd/es/upload';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import defaultAvatar from '@/assets/profileSvg/defaultAvatar.svg';
 import Image from 'next/image';
 import Upload from '@/components/icons/upload';
@@ -13,13 +11,12 @@ import request from '@/utils/request';
 import { apiTwitterToken, apiUserInfo } from '@/apis/user';
 import { useUserStore } from '@/store';
 import Modalprop from '@/components/modal/modal';
-import { toBase64 } from '@/utils/file';
 import ImgCrop from '@/components/imgCrop';
 import Toast from '@/components/toast/toast';
-import { blobToFile, dataURLtoBlob, getStringWidth } from '@/utils/helpers';
+import { blobToFile, dataURLtoBlob } from '@/utils/helpers';
 import { getCookie } from '@/utils/cookie';
 import { Dialog, DialogHeader } from '@/components/dialog';
-
+import { upload } from '@/utils/aws';
 const Profile: React.FC = () => {
   const {
     username,
@@ -30,18 +27,17 @@ const Profile: React.FC = () => {
     setIsConnectTwitter
   } = useUserStore();
   //  防止 onchange 事件用户每输入一次如果就调 setUsername 会频繁调用 put 方法，因此先在页面内进行 useState 缓存再在 submit 时只调用一次
-  const [userName, setUserName] = useState(username || '@StarMemory');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userName, setUserName] = useState<string>(username);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
   // 头像上传以及裁剪层
-  const [uploadUrl, setUploadUrl] = useState<string>(avatar || '');
-  const [showCrop, setShowCrop] = useState(false);
+  const [uploadUrl, setUploadUrl] = useState<string>(avatar);
+  const [showCrop, setShowCrop] = useState<boolean>(false);
   const [cropper, setCropper] = useState<any>();
-  const [aspect, setAspect] = useState(1 / 1);
-  const [avatarLoading, setAvatarLoading] = useState(false);
+  const [aspect, setAspect] = useState<number>(1 / 1);
   //  头像裁剪
   const handleCrop = async (e: any) => {
-    e.preventDefault();
+    // e.preventDefault();
     setAspect(1 / 1);
     const input: any = document.createElement('input');
     input.type = 'file';
@@ -60,42 +56,24 @@ const Profile: React.FC = () => {
       }
     };
   };
+  //  头像上传
   const handleUpload = async () => {
     setShowCrop(false);
     const preview = cropper.getCroppedCanvas().toDataURL();
-    handleUploadAvatar(preview);
     try {
-      setAvatarLoading(true);
       const address = getCookie('address') || '';
       const bodyBlob = dataURLtoBlob(preview);
       const bodyFile = blobToFile(bodyBlob, address.slice(0, 8));
       console.log(bodyBlob);
-      // const res: any = await upload({
-      //   key: address.slice(0, 8),
-      //   body: bodyFile
-      // });
-      // setValue('avatar', `${res.host}/${res.key}`);
-      setAvatarLoading(false);
+      const res: any = await upload({
+        key: address.slice(0, 8),
+        body: bodyFile
+      });
+      // setAvatar(`${res.host}/${res.key}`)
+      setUploadUrl(`${res.host}/${res.key}`);
       Toast.success('upload success');
     } catch (error) {
-      setAvatarLoading(false);
       Toast.error('upload error');
-    }
-  };
-  //  头像上传
-  const handleUploadAvatar = async (file: any) => {
-    // const file = e.target.files[0];
-    const base64Url = await toBase64(file);
-    setUploadUrl(base64Url || '');
-    const formData = new FormData();
-    formData.append('avatar', file);
-    const res = await request(`/user/profile`, {
-      method: 'PUT',
-      body: formData
-    });
-    if (res?.data) {
-      //  此处为返回图片地址
-      setAvatar(res.data.avatar);
     }
   };
   //  名字上传
@@ -141,12 +119,17 @@ const Profile: React.FC = () => {
   };
   const getUserInfo = async () => {
     const res = await apiUserInfo();
-    setUploadUrl(res.data.avatar);
-    setUserName(res.data.username);
+    console.log(res);
+    if (res.avatar !== '') {
+      setUploadUrl(res.avatar);
+    }
+    if (res.username !== '') {
+      setUserName(res.username);
+    }
   };
   useEffect(() => {
-    // getUserInfo();
-  });
+    getUserInfo();
+  }, [username, avatar, isConnectTwitter]);
   return (
     <div
       style={{ backgroundColor: 'black', width: '100%', height: '100%' }}
@@ -169,8 +152,10 @@ const Profile: React.FC = () => {
             <div className="relative flex">
               <Image
                 alt=""
-                // src={uploadUrl ? uploadUrl : avatar ? avatar : defaultAvatar}
-                src={defaultAvatar}
+                width="200"
+                height="200"
+                src={uploadUrl}
+                // src={defaultAvatar}
               ></Image>
               <div className="flex flex-col items-center space-y-8 px-16 pt-9">
                 <Dialog
@@ -179,7 +164,7 @@ const Profile: React.FC = () => {
                   className="bg-[#191A27]"
                 >
                   <DialogHeader
-                    title="What's the name of your DAO/project?"
+                    title="Please choose your avatar"
                     showClose={true}
                     onClose={setShowCrop}
                   />
@@ -201,7 +186,6 @@ const Profile: React.FC = () => {
               {/*hover层*/}
               <div className="absolute right-[-3.1px] top-[0.5px] flex h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
                 {/*上传图片*/}
-
                 <div
                   className="relative right-[-25px] top-[19px] cursor-pointer"
                   onClick={() => {

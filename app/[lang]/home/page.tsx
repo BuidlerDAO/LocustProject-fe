@@ -14,18 +14,21 @@ const App = () => {
   }, []);
 
   const getData = async () => {
-    Promise.all([apiGetPostList({ offset: 5, limit: 30 })]).then(
+    Promise.all([apiGetPostList({ offset: 0, limit: 30 })]).then(
       (values: any) => {
-        const newData = values.map((item: any) => ({
-          title: item.items[0].title,
-          link: item.items[0].link,
-          originalText: item.items[0].body,
-          personalThoughts: item.items[0].thought,
-          time: item.items[0].createdAt,
-          avatar: item.items[0].avatar,
-          username: item.items[0].username
-        }));
+        const newData = values.flatMap((item: any) =>
+          item.items.map((item: any) => ({
+            title: item.title,
+            link: item.link,
+            originalText: item.body,
+            personalThoughts: item.thought,
+            time: item.createdAt,
+            avatar: item.avatar,
+            username: item.username
+          }))
+        );
         setData(newData);
+        console.log(newData);
       }
     );
   };

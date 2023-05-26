@@ -10,7 +10,6 @@ import {
 } from '@ant-design/icons';
 import { Avatar, Button, Collapse, List, Space, Tooltip } from 'antd';
 import React, { useEffect, useState } from 'react';
-import Paragraph from 'antd/es/typography/Paragraph';
 import Block from '@/components/blockCard/blockCard';
 import { usePostStore } from '@/store';
 import { apiGetPostList } from '@/apis/post';

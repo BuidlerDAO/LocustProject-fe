@@ -88,7 +88,7 @@ const Index = memo((props: any) => {
   return (
     <>
       <div
-        className={`page h-[120rem] max-w-[90rem] overflow-hidden bg-[#1e1e1e] `}
+        className={`page h-[130rem] max-w-[90rem] overflow-hidden bg-[#1e1e1e] `}
       >
         <Modalprop
           ModalMaxWidth={360}

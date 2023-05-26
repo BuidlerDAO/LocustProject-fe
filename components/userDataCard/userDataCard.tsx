@@ -1,209 +1,54 @@
 import React from 'react';
-
-import PropTypes from 'prop-types';
+import '@/styles/font.css';
 import { DollarCircleOutlined } from '@ant-design/icons';
 
 const UserDataCard = () => {
   return (
-    <>
-      <div className={`component3-container `}>
-        <div className="component3-frame">
-          <span className="component3-text 14Semibold3">
-            <span>Awarded</span>
+    <div
+      className={`relative left-[5vw] mt-6 flex h-[113px] w-full items-start`}
+    >
+      {/* Awarded */}
+      <div className="relative flex h-28 w-[21vw] shrink-0 items-start overflow-hidden rounded-2xl bg-[rgba(227,245,255,1)]">
+        <span className="absolute left-6 top-6 h-auto text-left leading-5 text-[rgba(28,28,28,1)]">
+          <span>Awarded</span>
+        </span>
+        <span className="absolute left-6 top-[52px] h-auto text-left leading-9 text-[rgba(28,28,28,1)]">
+          <span>100 U</span>
+        </span>
+        <span className=" absolute right-[2vw] top-[22px] h-6 w-6">
+          <DollarCircleOutlined style={{ fontSize: '125%', color: 'black' }} />
+        </span>
+      </div>
+      {/* Points Earned */}
+      <div className=" relative ml-5 flex h-28 w-[23vw] shrink-0 items-start overflow-hidden rounded-2xl bg-[rgba(229,236,246,1)]">
+        <span className="absolute left-6 top-6 h-auto text-left leading-5 text-[rgba(28,28,28,1)]">
+          <span>Points Earned</span>
+        </span>
+        <span className="absolute left-6 top-[52px] h-auto text-left leading-9 text-[rgba(28,28,28,1)]">
+          <span>100</span>
+        </span>
+        <span className="absolute right-[2vw] top-[22px] h-6 w-6">
+          <DollarCircleOutlined style={{ fontSize: '125%', color: 'black' }} />
+        </span>
+      </div>
+      {/* Pending bonuses */}
+      <div className="relative ml-5 flex h-28 w-[23vw] shrink-0 items-start overflow-hidden rounded-2xl bg-[rgba(227,245,255,1)]">
+        <span className="absolute left-6 top-6 h-auto text-left leading-5 text-[rgba(28,28,28,1)]">
+          <span>Pending bonuses</span>
+        </span>
+        <span className="absolute left-6 top-14 h-auto text-left leading-9 text-[rgba(28,28,28,1)]">
+          <span>20 U</span>
+        </span>
+        <span className="absolute right-[2vw] top-[22px] h-6 w-6">
+          <DollarCircleOutlined style={{ fontSize: '125%', color: 'black' }} />
+        </span>
+        <div className="absolute right-[2vw] top-[60px] flex w-[81px] items-start gap-2 rounded-[44px] bg-[linear-gradient(_180deg,rgba(110,98,238,1)_2%,rgba(63,61,250,1)_100%_)] px-6 py-2">
+          <span className="text component3-text12 h-auto text-left text-xs font-medium leading-3 text-white no-underline">
+            <span>Claim</span>
           </span>
-          <span className="component3-text02 H24">
-            <span>100 U</span>
-          </span>
-          <span className="component3-currency-circle-dollar">
-            <DollarCircleOutlined style={{ fontSize: '125%' ,color:'black'}} />
-          </span>
-        </div>
-        <div className="component3-frame1">
-          <span className="component3-text04 14Semibold12">
-            <span>Points Earned</span>
-          </span>
-          <span className="component3-text06 H24">
-            <span>100</span>
-          </span>
-
-          <span className="component3-currency-circle-dollar1">
-            <DollarCircleOutlined style={{ fontSize: '125%',color:'black' }} />
-          </span>
-        </div>
-        <div className="component3-frame2">
-          <span className="component3-text08 14Semibold12">
-            <span>Pending bonuses</span>
-          </span>
-          <span className="component3-text10 H24">
-            <span>20 U</span>
-          </span>
-          <span className="component3-currency-circle-dollar2">
-            <DollarCircleOutlined style={{ fontSize: '125%' ,color:'black'}} />
-          </span>
-          <div className="component3-frame15065">
-            <span className="component3-text12">
-              <span>Claim</span>
-            </span>
-          </div>
         </div>
       </div>
-      <style jsx>
-        {`
-          .component3-container {
-            width: 100%;
-            height: 113px;
-            display: flex;
-            margin-top: 24px;
-            position: relative;
-            align-items: flex-start;
-          }
-          .component3-frame {
-            width: 24vw;
-            height: 112px;
-            display: flex;
-            overflow: hidden;
-            position: relative;
-            align-items: flex-start;
-            flex-shrink: 0;
-            border-radius: 16px;
-            background-color: rgba(227, 245, 255, 1);
-          }
-          .component3-text {
-            top: 24px;
-            left: 24px;
-            color: rgba(28, 28, 28, 1);
-            height: auto;
-            position: absolute;
-            text-align: left;
-            line-height: 20px;
-          }
-          .component3-text02 {
-            top: 52px;
-            left: 24px;
-            color: rgba(28, 28, 28, 1);
-            height: auto;
-            position: absolute;
-            text-align: left;
-            line-height: 36px;
-          }
-          .component3-currency-circle-dollar {
-            top: 22px;
-            right: 2vw;
-            width: 24px;
-            height: 24px;
-            position: absolute;
-          }
-          .component3-frame1 {
-           
-            margin-left:20px;
-            width: 24vw;
-            height: 112px;
-            display: flex;
-            overflow: hidden;
-           position: relative;
-            align-items: flex-start;
-            flex-shrink: 0;
-            border-radius: 16px;
-            background-color: rgba(229, 236, 246, 1);
-          }
-          .component3-text04 {
-            top: 24px;
-            left: 24px;
-            color: rgba(28, 28, 28, 1);
-            height: auto;
-            position: absolute;
-            text-align: left;
-            line-height: 20px;
-          }
-          .component3-text06 {
-            top: 52px;
-            left: 24px;
-            color: rgba(28, 28, 28, 1);
-            height: auto;
-            position: absolute;
-            text-align: left;
-            line-height: 36px;
-          }
-          .component3-currency-circle-dollar1 {
-            top: 22px;
-            right:2vw;
-            width: 24px;
-            height: 24px;
-            position: absolute;
-          }
-          .component3-frame2 {
-            margin-left:20px;
-            width: 24vw;
-            height: 112px;
-            display: flex;
-            overflow: hidden;   
-            align-items: flex-start;
-            position: relative;
-            flex-shrink: 0;
-            border-radius: 16px;
-            background-color: rgba(227, 245, 255, 1);
-          }
-          .component3-text08 {
-            top: 24px;
-            left: 24px;
-            color: rgba(28, 28, 28, 1);
-            height: auto;
-            position: absolute;
-            text-align: left;
-            line-height: 20px;
-          }
-          .component3-text10 {
-            top: 56px;
-            left: 24px;
-            color: rgba(28, 28, 28, 1);
-            height: auto;
-            position: absolute;
-            text-align: left;
-            line-height: 36px;
-          }
-          .component3-currency-circle-dollar2 {
-            top: 22px;
-            right:2vw;
-            width: 24px;
-            height: 24px;
-            position: absolute;
-          }
-          .component3-frame15065 {
-            gap: 8px;
-            top: 60px;
-            right:2vw;
-            width: 81px;
-            display: flex;
-            padding: 8px 24px;
-            position: absolute;
-            align-items: flex-start;
-            border-radius: 44px;
-            background-image: linear-gradient(
-              180deg,
-              rgba(110, 98, 238, 1) 2%,
-              rgba(63, 61, 250, 1) 100%
-            );
-          }
-          .component3-text12 {
-            color: rgba(255, 255, 255, 1);
-            height: auto;
-            font-size: 12px;
-            font-style: Medium;
-            text-align: left;
-            font-family: Inter;
-            font-weight: 500;
-            line-height: 12px;
-            font-stretch: normal;
-            text-decoration: none;
-          }
-          .component3-root-class-name {
-            top: 137px;
-            left: 340px;
-            position: absolute;
-          }
-        `}
-      </style>
-    </>
+    </div>
   );
 };
 

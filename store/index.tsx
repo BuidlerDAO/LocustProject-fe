@@ -65,6 +65,36 @@ expansion,modularization and other performance topics this year,we can probably 
     }))
 }));
 
+export type Post = {
+  id: number;
+  title: string;
+  link: string;
+  originalText: string;
+  personalThoughts: string;
+  time: string;
+  avatar: string;
+  username: string;
+};
+export type PostData = {
+  items: [
+    {
+      id: number;
+      title: string;
+      body: string;
+      link: string;
+      thought: string;
+      userAddress: string;
+      avatar: string;
+      username: string;
+      status: number;
+      createdAt: string;
+      deletedAt: string;
+      updatedAt: string;
+    }
+  ];
+  total: number;
+};
+
 type SiderStore = {
   isExplore: boolean;
   isDataView: boolean;

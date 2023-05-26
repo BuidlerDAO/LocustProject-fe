@@ -13,35 +13,34 @@ import React, { useEffect, useState } from 'react';
 import Block from '@/components/blockCard/blockCard';
 import { usePostStore } from '@/store';
 import { apiGetPostList } from '@/apis/post';
+import { Post, PostData } from '@/store';
 
 const App = () => {
-  type post = {
-    title: string;
-    link: string;
-    originalText: string;
-    personalThoughts: string;
-    time: string;
-  };
-  //type postData = [post];
-  let data: post[] = [];
+  const [data, setData] = useState<Post[]>([]);
   const onDelete = () => {
     console.log('delete');
   };
   useEffect(() => {
     getData();
-    console.log(data);
   }, []);
   const getData = async () => {
-    Promise.all([apiGetPostList({ offset: 0, limit: 10 })]).then((postData) => {
-      data = Array.from(Object.values(postData)).map((post: any) => ({
-        title: post.title,
-        link: post.link,
-        originalText: post.originalText,
-        personalThoughts: post.personalThoughts,
-        time: post.time
-      }));
-      //const postData = usePostStore((state: any) => state.posts);
-    });
+    Promise.all([apiGetPostList({ offset: 0, limit: 10 })]).then(
+      (values: any) => {
+        console.log(values[0].items[0]);
+        const arr = values.map((item: any) => ({
+          title: item.items[0].title,
+          link: item.items[0].link,
+          originalText: item.items[0].body,
+          personalThoughts: item.items[0].thought,
+          time: item.items[0].createdAt,
+          avatar: item.items[0].avatar,
+          username: item.items[0].username
+        }));
+        //console.log(postData);
+        console.log(arr);
+        setData(arr);
+      }
+    );
     return (
       <div className="mr-16 mt-[100px]">
         <List

@@ -11,6 +11,8 @@ export type Post = {
   originalText: string;
   personalThoughts: string;
   time: string;
+  // userName: string;
+  // avatar: string;
 };
 
 interface PostStore {

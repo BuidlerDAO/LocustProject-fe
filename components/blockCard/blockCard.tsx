@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 
 // import PropTypes from 'prop-types';
 import {
@@ -79,6 +79,9 @@ const Block = (props: {
       <span>Delete</span>
     </button>
   );
+  useEffect(() => {
+    console.log(props.data);
+  }, []);
   return (
     <>
       <div className={`block-block ${props.rootClassName} `}>

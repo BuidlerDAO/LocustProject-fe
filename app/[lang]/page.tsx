@@ -249,7 +249,7 @@ const Index = memo((props: any) => {
               <Ellipse />
             </div>
             <Button
-              className="rounded-3xl; relative ml-8 mt-8 box-border flex h-[2.38rem] cursor-default items-center px-6 text-xs font-medium leading-3"
+              className="relative ml-8 mt-8 box-border flex h-[2.38rem] cursor-default items-center rounded-3xl px-6 text-xs font-medium leading-3"
               color="secondary"
             >
               Output format

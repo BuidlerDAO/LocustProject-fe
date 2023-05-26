@@ -27,6 +27,7 @@ import Modalprop from '../modal/modal';
 import { LinkIcon, TimeIcon } from '../icons';
 import TextMore from '../textMore';
 import toast from '../toast/toast';
+import Image from 'next/image';
 
 const Block = (props: {
   rootClassName: any;
@@ -46,6 +47,8 @@ const Block = (props: {
     originalText: string;
     personalThoughts: string;
     time: string;
+    avatar: string;
+    username: string;
   };
 }) => {
   const decrease = usePostStore((state: any) => state.decrease);
@@ -108,14 +111,10 @@ const Block = (props: {
           </div>
           <div className="block-frame2">
             <div className="block-user-circle">
-              <img
-                alt={props.Ellipse2_alt}
-                src={props.Ellipse2_src}
-                className="block-ellipse2"
-              />
+              <Image src={''} width={24} height={24} alt="#" />
             </div>
             <span className="block-text04">
-              <span>@SCaesar</span>
+              <span>{props.data.username}</span>
             </span>
           </div>
           <div className="block-frame3">

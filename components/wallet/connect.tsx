@@ -178,11 +178,13 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
     } = useSignMessage({
       message: msg as any
     });
+    //  flag 在未登录时是 false，这时点击外部 Button 才会出现弹窗，
+    const flag = !!currentAddress;
     //  弹窗 & Profile
     const [dialogOpen, setDialogOpen] = useState(false);
     //  弹窗
-    const handleOpen = () => {
-      setDialogOpen(true);
+    const handleOpen = (flag: boolean) => {
+      !flag && setDialogOpen(true);
     };
     //  根据 type 0/1 打开/关闭 弹窗
     const handleData = (type: number, data: any) => {
@@ -294,7 +296,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
                 ? 'border-black bg-[#1A1A1A]'
                 : 'hover:border-[#6E62EE]'
             }`}
-            onClick={() => handleOpen()}
+            onClick={() => handleOpen(flag)}
           >
             {!currentAddress ? (
               // 未连接

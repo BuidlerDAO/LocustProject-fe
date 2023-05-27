@@ -8,11 +8,11 @@ const UserDataCard = () => {
       className={`relative left-[3vw] mt-6 flex h-[113px] w-full items-start`}
     >
       {/* Awarded */}
-      <div className="relative flex h-28 w-[21vw] shrink-0 items-start overflow-hidden rounded-2xl bg-[rgba(227,245,255,1)]">
-        <span className="absolute left-6 top-6 h-auto text-left leading-5 text-[rgba(28,28,28,1)]">
+      <div className="relative flex h-28 w-[21vw] shrink-0 items-start overflow-hidden rounded-2xl bg-[rgba(227,245,255,1)] font-semibold">
+        <span className="absolute left-6 top-6 h-auto text-left text-[14px] leading-5 text-[rgba(28,28,28,1)]">
           <span>Awarded</span>
         </span>
-        <span className="absolute left-6 top-[52px] h-auto text-left leading-9 text-[rgba(28,28,28,1)]">
+        <span className="absolute left-6 top-[52px] h-auto text-left text-[24px] leading-9 text-[rgba(28,28,28,1)]">
           <span>100 U</span>
         </span>
         <span className=" absolute right-[2vw] top-[22px] h-6 w-6">
@@ -20,11 +20,11 @@ const UserDataCard = () => {
         </span>
       </div>
       {/* Points Earned */}
-      <div className=" relative ml-5 flex h-28 w-[23vw] shrink-0 items-start overflow-hidden rounded-2xl bg-[rgba(229,236,246,1)]">
-        <span className="absolute left-6 top-6 h-auto text-left leading-5 text-[rgba(28,28,28,1)]">
+      <div className=" relative ml-5 flex h-28 w-[23vw] shrink-0 items-start overflow-hidden rounded-2xl bg-[rgba(229,236,246,1)] font-semibold">
+        <span className="absolute left-6 top-6 h-auto text-left text-[14px] leading-5 text-[rgba(28,28,28,1)]">
           <span>Points Earned</span>
         </span>
-        <span className="absolute left-6 top-[52px] h-auto text-left leading-9 text-[rgba(28,28,28,1)]">
+        <span className="absolute left-6 top-[52px] h-auto text-left text-[24px] leading-9 text-[rgba(28,28,28,1)]">
           <span>100</span>
         </span>
         <span className="absolute right-[2vw] top-[22px] h-6 w-6">
@@ -32,11 +32,11 @@ const UserDataCard = () => {
         </span>
       </div>
       {/* Pending bonuses */}
-      <div className="relative ml-5 flex h-28 w-[23vw] shrink-0 items-start overflow-hidden rounded-2xl bg-[rgba(227,245,255,1)]">
-        <span className="absolute left-6 top-6 h-auto text-left leading-5 text-[rgba(28,28,28,1)]">
+      <div className="relative ml-5 flex h-28 w-[23vw] shrink-0 items-start overflow-hidden rounded-2xl bg-[rgba(227,245,255,1)] font-semibold">
+        <span className="absolute left-6 top-6 h-auto text-left text-[14px] leading-5 text-[rgba(28,28,28,1)]">
           <span>Pending bonuses</span>
         </span>
-        <span className="absolute left-6 top-14 h-auto text-left leading-9 text-[rgba(28,28,28,1)]">
+        <span className="absolute left-6 top-14 h-auto text-left text-[24px] leading-9 text-[rgba(28,28,28,1)]">
           <span>20 U</span>
         </span>
         <span className="absolute right-[2vw] top-[22px] h-6 w-6">

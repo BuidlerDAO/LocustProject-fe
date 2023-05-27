@@ -1,4 +1,4 @@
-.ant-form-item .ant-form-item-explain-connected {
+div > .ant-form-item .ant-form-item-explain-connected {
   z-index: 1;
   /* margin-top: 14px; */
 }
@@ -9,14 +9,15 @@ div > .ant-form-item div > .ant-form-item-control-input {
   min-height: 7vh;
 }
 
-.ant-form-item-control-input-content
+div
+  > .ant-form-item-control-input-content
   .ant-input-affix-wrapper
   > input.ant-input {
   width: 70vw;
   height: 5.8vh;
   border: none;
 }
-.ant-input-affix-wrapper .ant-input-suffix {
+span > .ant-input-affix-wrapper .ant-input-suffix {
   margin-inline-start: 4px !important;
   height: 6vh;
 }
@@ -24,10 +25,10 @@ span > .ant-input-affix-wrapper .ant-input-show-count-suffix {
   /* color: rgba(0, 0, 0, 0.45); */
   color: #596069 !important;
 }
-.ant-form-item-control-input-content textarea {
+div > .ant-form-item-control-input-content textarea {
   height: 30vh !important;
 }
-.ant-input-textarea-show-count .ant-input-data-count {
+.ant-form-item .ant-input-textarea-show-count .ant-input-data-count {
   color: #596069 !important;
   bottom: 2px;
   right: 2px;

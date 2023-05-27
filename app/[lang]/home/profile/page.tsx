@@ -42,6 +42,11 @@ const Profile: React.FC = () => {
   //  头像裁剪
   const handleCrop = async (e: any) => {
     try {
+      const maxFileSize = 5 * 1024 * 1024;
+      if (e.target.files[0].size > maxFileSize) {
+        Toast.error('Size is above the 5M!');
+        return;
+      }
       const reader: any = new FileReader();
       reader.addEventListener('load', () => {
         setUploadUrl(reader.result.toString() || '');
@@ -62,12 +67,12 @@ const Profile: React.FC = () => {
       const bodyBlob = dataURLtoBlob(preview);
       const bodyFile = blobToFile(bodyBlob, address.slice(0, 8));
       console.log(bodyBlob);
-      const res: any = await upload({
-        key: address.slice(0, 8),
-        body: bodyFile
-      });
-      console.log(res);
-      setUploadUrl(`${res.host}/${res.key}`);
+      // const res: any = await upload({
+      //   key: address.slice(0, 8),
+      //   body: bodyFile
+      // });
+      // console.log(res);
+      // setUploadUrl(`${res.host}/${res.key}`);
       Toast.success('upload success');
     } catch (error) {
       console.log('handleUpload --> ', error);
@@ -276,6 +281,7 @@ const Profile: React.FC = () => {
                   ref={inputRef}
                   type="file"
                   accept=".jpg, .gif, .png"
+                  // size={5242880}
                   className="hidden"
                   style={{ borderColor: 'white', borderWidth: '1px' }}
                   onChange={handleCrop}

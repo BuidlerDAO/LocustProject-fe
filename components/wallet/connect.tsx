@@ -30,7 +30,7 @@ import {
   MetamaskIcon,
   WalletConnectIcon
 } from '@/components/icons';
-import { apiLogin } from '@/apis/login';
+import { apiLogin, apiLogout } from '@/services/login';
 import { deleteCookie, getCookie } from '@/utils/cookie';
 import { Dropdown, MenuProps, Space } from 'antd';
 import Link from 'next/link';
@@ -199,15 +199,16 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       deleteCookie('token');
       deleteCookie('address');
       setCurrentAddress('');
+      await apiLogout();
     };
     // 登录
     const handleLogin = async () => {
       try {
-        const res = await apiLogin(
-          address as string,
-          msgData as string,
-          msg as any
-        );
+        const res = await apiLogin({
+          address: address as string,
+          sig: msgData as string,
+          message: msg as any
+        });
         if (res.code === 0) {
           setCurrentAddress(address || '');
           router.replace('/home/profile');

@@ -17,6 +17,7 @@ import { getCookie } from '@/utils/cookie';
 import { Dialog, DialogHeader } from '@/components/dialog';
 import { upload } from '@/utils/aws';
 import { useSearchParams } from 'next/navigation';
+import { apiUploadS3 } from '@/services/uploads3';
 
 const Profile: React.FC = () => {
   const {
@@ -83,8 +84,7 @@ const Profile: React.FC = () => {
       const bodyBlob = dataURLtoBlob(preview);
       const bodyFile = blobToFile(bodyBlob, address.slice(0, 8));
       console.log(bodyBlob);
-      const res: any = await upload({
-        key: address.slice(0, 8),
+      const res: any = await apiUploadS3({
         body: bodyFile
       });
       console.log(res);

@@ -7,7 +7,9 @@ import { deleteCookie, setCookie } from '@/utils/cookie';
  * @params address 地址
  */
 export const apiGetSig = async (address: string) => {
-  const res: any = await request(`/api/v1/user/sig-message?address=${address}`);
+  const res: any = await request(
+    `/api/be/v1/user/sig-message?address=${address}`
+  );
   if (res.code === 0) {
     return res.data.message;
   } else {

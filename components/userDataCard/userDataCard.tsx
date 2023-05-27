@@ -6,7 +6,7 @@ import { DollarIcon } from '../icons';
 const UserDataCard = () => {
   return (
     <div
-      className={`relative left-[5vw] mt-6 flex h-[113px] w-full items-start`}
+      className={`relative left-[3vw] mt-6 flex h-[113px] w-full items-start`}
     >
       {/* Awarded */}
       <div className="relative flex h-28 w-[21vw] shrink-0 items-start overflow-hidden rounded-2xl bg-[rgba(227,245,255,1)]">

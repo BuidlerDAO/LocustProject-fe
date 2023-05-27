@@ -2,7 +2,6 @@
 
 import Twitter from '@/components/icons/twitter';
 import React, { useEffect, useRef, useState } from 'react';
-import defaultAvatar from '@/assets/profileSvg/defaultAvatar.svg';
 import Image from 'next/image';
 import Upload from '@/components/icons/upload';
 import { Button } from '@/components/button';
@@ -32,6 +31,7 @@ const Profile: React.FC = () => {
   const verifier = useSearchParams()?.get('oauth_verifier') as string;
   //  防止 onchange 事件用户每输入一次如果就调 setUsername 会频繁调用 put 方法，因此先在页面内进行 useState 缓存再在 submit 时只调用一次
   const [userName, setUserName] = useState<string>(username);
+  const [twitterName, setTwitterName] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
   // 头像上传以及裁剪层
@@ -113,13 +113,50 @@ const Profile: React.FC = () => {
         'http://localhost:3000/zh-CN/home/profile'
       );
       window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
+      const updateTwitterInfo = async () => {
+        if (oauthToken !== null) {
+          const res = await apiTwitterToken(
+            'http://localhost:3000/zh-CN/home/profile'
+          );
+          const { id } = await apiPutUserInfo({
+            avatar: uploadUrl,
+            name: userName,
+            twitter: {
+              oauthToken,
+              oauthTokenSecret: res.oauthTokenSecret,
+              verifier
+            }
+          });
+          if (id) {
+            Toast.success('Connect Success!');
+            setIsConnectTwitter(true);
+          } else {
+            Toast.error('Connect Error!');
+          }
+        }
+      };
+      if (!isConnectTwitter) {
+        updateTwitterInfo();
+      }
     } else {
       showModal();
     }
   };
   //  推特 退出登录
-  const handleTwitterDisconnect = () => {
+  const handleTwitterDisconnect = async () => {
     if (isConnectTwitter) {
+      const res = await apiPutUserInfo({
+        avatar: uploadUrl,
+        name: userName,
+        twitter: {
+          oauthToken: '',
+          oauthTokenSecret: '',
+          verifier: ''
+        }
+      });
+      console.log(res);
+      const res2 = await apiUserInfo();
+      console.log('apiUserInfo --> ', res2);
       setIsConnectTwitter(false);
     }
   };
@@ -144,34 +181,38 @@ const Profile: React.FC = () => {
       setUsername(res.username);
     }
     if (res.twitter !== '') {
+      setTwitterName(res.twitter);
       setIsConnectTwitter(true);
+      console.log(isConnectTwitter);
     }
   };
-  useEffect(() => {
-    const updateTwitterInfo = async () => {
-      if (oauthToken !== null) {
-        const res = await apiTwitterToken(
-          'http://localhost:3000/zh-CN/home/profile'
-        );
-        const { id } = await apiPutUserInfo({
-          avatar: uploadUrl,
-          name: userName,
-          twitter: {
-            oauthToken,
-            oauthTokenSecret: res.oauthTokenSecret,
-            verifier
-          }
-        });
-        if (id) {
-          Toast.success('Connect Success!');
-          setIsConnectTwitter(true);
-        } else {
-          Toast.error('Connect Error!');
-        }
-      }
-    };
-    updateTwitterInfo();
-  }, []);
+  // useEffect(() => {
+  //   const updateTwitterInfo = async () => {
+  //     if (oauthToken !== null) {
+  //       const res = await apiTwitterToken(
+  //         'http://localhost:3000/zh-CN/home/profile'
+  //       );
+  //       const { id } = await apiPutUserInfo({
+  //         avatar: uploadUrl,
+  //         name: userName,
+  //         twitter: {
+  //           oauthToken,
+  //           oauthTokenSecret: res.oauthTokenSecret,
+  //           verifier
+  //         }
+  //       });
+  //       if (id) {
+  //         Toast.success('Connect Success!');
+  //         setIsConnectTwitter(true);
+  //       } else {
+  //         Toast.error('Connect Error!');
+  //       }
+  //     }
+  //   };
+  //   if(!isConnectTwitter){
+  //     updateTwitterInfo();
+  //   }
+  // }, []);
   useEffect(() => {
     getUserInfo();
     console.log(oauthToken);
@@ -303,7 +344,8 @@ const Profile: React.FC = () => {
         >
           <div className="flex-raw item-center ml-[12px] mt-[4px] flex justify-center">
             {!isConnectTwitter ? <Twitter /> : <Upload />}
-            <span className="ml-[8px] mt-[1.2px]">Twitter</span>
+            {/*<Twitter />*/}
+            {/*<div className="ml-[8px] mt-[1.2px]">{!isConnectTwitter ? 'Twitter' : <a href={`https://twitter.com/${twitterName}`}>{`https://twitter.com/${twitterName}`}</a>}</div>*/}
           </div>
           <span
             className="mr-[12px] mt-[5.2px] cursor-pointer"

@@ -1137,16 +1137,21 @@ const UserArticle = () => {
   ];
   const getData = async () => {
     Promise.all([apiGetPostData('/api/post/user')]).then((values: any) => {
-      console.log(values);
-
-      const newData = values.flatMap((item: any) =>
-        item.items.map((item: any) => ({
+      console.log(values[0].items);
+      const newData = values[0].items.map((item: any) => {
+        console.log(item);
+        if (item.status === 0) {
+          item.status = 'Normal';
+        } else if (item.status === 1) {
+          item.status = 'Audit does not pass';
+        }
+        return {
           id: item.id,
-          title: item.title,
-          createdAt: item.createdAt
-          //status: item.status
-        }))
-      );
+          articleTitle: item.title,
+          submitTime: item.createdAt,
+          status: item.status
+        };
+      });
       setData(newData);
       console.log(newData);
     });

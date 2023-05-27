@@ -60,19 +60,14 @@ export const apiGetPostList = async (data: {
  * */
 export const apiGetPostData = async (url: string) => {
   try {
-    const response = await request(url, {
+    const res = await request(url, {
       method: 'GET'
       //body: { ...data }
     });
-    const result = response.data;
-    console.log(result);
-    if (result.code === 10000) {
-      return result.data;
+    if (res.code === 0) {
+      return res.data;
     } else {
-      if (+result.code === 401) {
-        throw new Error('401');
-      }
-      toast.error(`${result.message}`, { id: `${result.message}` });
+      toast.error(`${res.message}`, { id: `${res.message}` });
       return '';
     }
   } catch (error) {

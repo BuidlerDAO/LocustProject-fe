@@ -1105,7 +1105,7 @@ const TableUserOverview = () => {
   };
   return (
     <>
-      <div className="ml-[5vw] w-[70vw]">
+      <div className="ml-[3vw] w-[70vw]">
         <div className="mt-[38px] flex justify-between">
           <div className="mb-[24px]">
             Overview
@@ -1208,7 +1208,7 @@ const UserArticle = () => {
   };
   return (
     <>
-      <div className="ml-[5vw] w-[70vw]">
+      <div className="ml-[3vw] w-[70vw]">
         <div className="mt-[10px] flex justify-between">
           <div className="mb-[24px]">
             Article Details

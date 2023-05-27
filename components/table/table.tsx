@@ -1013,6 +1013,7 @@ const Table1 = () => {
   );
 };
 const TableUserOverview = () => {
+  const [data, setData] = useState<any[]>([]);
   //columns含有Month、Number of articles submitted、Number of unsuccessful articles、Number of valid articles、Bonus、Total Prize Pool
   const columns: ColumnItem[] = [
     {
@@ -1052,7 +1053,33 @@ const TableUserOverview = () => {
       align: 'center'
     }
   ];
-  const data: readonly any[] | undefined = [
+  const getData = async () => {
+    Promise.all([apiGetPostData('/api/user/campaign/count')]).then(
+      (values: any) => {
+        console.log(values[0].items);
+        const newData = values[0].items.map((item: any) => {
+          //console.log(item);
+          return {
+            id: item.id,
+            month: item.title,
+            numArticlesSubmitted: item.validPosts,
+            numUnsuccessfulArticles: item.unSuccessPosts,
+            numValidArticles: item.validPosts,
+            bonus: item.bonus,
+            totalPrizePool: item.prize
+          };
+        });
+        setData(newData);
+        console.log(newData);
+      }
+    );
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const data1: readonly any[] | undefined = [
     {
       month: '2021-01',
       numArticlesSubmitted: 10,
@@ -1149,9 +1176,9 @@ const UserArticle = () => {
   ];
   const getData = async () => {
     Promise.all([apiGetPostData('/api/post/user')]).then((values: any) => {
-      console.log(values[0].items);
+      //console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
-        console.log(item);
+        // console.log(item);
         if (item.status === 0) {
           item.status = 'Normal';
         } else if (item.status === 1) {
@@ -1165,7 +1192,7 @@ const UserArticle = () => {
         };
       });
       setData(newData);
-      console.log(newData);
+      //console.log(newData);
     });
   };
 

@@ -37,6 +37,7 @@ import Link from 'next/link';
 import DownOutlined from '@/components/icons/downOutLined';
 import { useRouter } from 'next/navigation';
 import Toast from '@/components/toast/toast';
+import { useUserStore } from '@/store';
 interface ConnectProps extends HTMLAttributes<HTMLElement> {
   className?: ClassName;
   onData?: (type: number, data: any) => void;
@@ -155,6 +156,7 @@ export interface WalletProps extends ComponentProps<'div'> {
 const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
   ({ className, ...rest }, ref) => {
     const router = useRouter();
+    const { setIsLogin } = useUserStore();
     // State / Props
     // 以太坊网络地址 & 是否链接
     const { address, isConnected } = useAccount();
@@ -210,6 +212,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         );
         if (res.code === 0) {
           setCurrentAddress(address || '');
+          setIsLogin(true);
           router.replace('/home/profile');
         } else {
           Toast.error(res.message);
@@ -271,6 +274,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       backgroundColor: '#1A1A1A',
       borderRadius: '12px'
     };
+    //  执行登录
     useEffect(() => {
       console.log('isSuccess', isSuccess);
       if (isSuccess) {
@@ -306,7 +310,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
                 </p>
               </div>
             ) : (
-              //  已链接
+              //  已连接
               <Dropdown
                 menu={{ items }}
                 placement="bottom"

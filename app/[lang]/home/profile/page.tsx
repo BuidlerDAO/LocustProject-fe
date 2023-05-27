@@ -28,8 +28,8 @@ const Profile: React.FC = () => {
     setIsConnectTwitter
   } = useUserStore();
 
-  const oauthToken = useSearchParams()?.get('oauthToken') as string;
-  const verifier = useSearchParams()?.get('oauthVerifier') as string;
+  const oauthToken = useSearchParams()?.get('oauth_token') as string;
+  const verifier = useSearchParams()?.get('oauth_verifier') as string;
   //  防止 onchange 事件用户每输入一次如果就调 setUsername 会频繁调用 put 方法，因此先在页面内进行 useState 缓存再在 submit 时只调用一次
   const [userName, setUserName] = useState<string>(username);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -83,15 +83,15 @@ const Profile: React.FC = () => {
         avatar !==
           'http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg'
       ) {
-        const twitterRes = await apiTwitterToken(location.href);
-        console.log('twitterRes', twitterRes);
+        //  单单修改用户信息不连接推特传空就行
         const res = await apiPutUserInfo({
           avatar: uploadUrl,
           name: userName,
-          oauthToken,
-          // oauthToken:twitterRes.oauthToken,
-          // oauthTokenSecret:twitterRes.oauthTokenSecret,
-          verifier
+          twitter: {
+            oauthToken: '',
+            oauthTokenSecret: '',
+            verifier: ''
+          }
         });
         if (res) {
           Toast.success('Modify message success!');
@@ -109,25 +109,10 @@ const Profile: React.FC = () => {
   //  推特 登录
   const handleTwitterConnect = async () => {
     if (!isConnectTwitter) {
-      const res = await apiTwitterToken('http://localhost:3000');
-      if (res) {
-        window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
-        const updateTwitter = await apiPutUserInfo({
-          avatar: uploadUrl,
-          name: userName,
-          oauthToken: res.oauthToken,
-          oauthTokenSecret: res.oauthTokenSecret,
-          // oauthToken:twitterRes.oauthToken,
-          // oauthTokenSecret:twitterRes.oauthTokenSecret,
-          verifier
-        });
-        if (updateTwitter.id) {
-          Toast.error('Connect Success!');
-          setIsConnectTwitter(true);
-        } else {
-          Toast.error('Connect Error!');
-        }
-      }
+      const res = await apiTwitterToken(
+        'http://localhost:3000/zh-CN/home/profile'
+      );
+      window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
     } else {
       showModal();
     }
@@ -163,7 +148,33 @@ const Profile: React.FC = () => {
     }
   };
   useEffect(() => {
+    const updateTwitterInfo = async () => {
+      if (oauthToken !== null) {
+        const res = await apiTwitterToken(
+          'http://localhost:3000/zh-CN/home/profile'
+        );
+        const { id } = await apiPutUserInfo({
+          avatar: uploadUrl,
+          name: userName,
+          twitter: {
+            oauthToken,
+            oauthTokenSecret: res.oauthTokenSecret,
+            verifier
+          }
+        });
+        if (id) {
+          Toast.success('Connect Success!');
+          setIsConnectTwitter(true);
+        } else {
+          Toast.error('Connect Error!');
+        }
+      }
+    };
+    updateTwitterInfo();
+  }, []);
+  useEffect(() => {
     getUserInfo();
+    console.log(oauthToken);
   }, [username, avatar, isConnectTwitter]);
   return (
     <div

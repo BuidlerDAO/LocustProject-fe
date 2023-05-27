@@ -43,7 +43,7 @@ const UserDataCard = () => {
           <DollarCircleOutlined style={{ fontSize: '125%', color: 'black' }} />
         </span>
         <div className="absolute right-[2vw] top-[60px] flex w-[81px] items-start gap-2 rounded-[44px] bg-[linear-gradient(_180deg,rgba(110,98,238,1)_2%,rgba(63,61,250,1)_100%_)] px-6 py-2">
-          <span className="text component3-text12 h-auto text-left text-xs font-medium leading-3 text-white no-underline">
+          <span className="h-auto  text-left text-[12px]  font-medium leading-3 text-white no-underline">
             <span>Claim</span>
           </span>
         </div>

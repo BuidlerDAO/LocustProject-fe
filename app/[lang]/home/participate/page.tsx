@@ -8,7 +8,7 @@ const participate = () => {
     <>
       <div className="mt-[100px] flex flex-col">
         <UserDataCard />
-        <div className="ml-[5vw] mt-[2.5vw] text-[28px] font-medium">
+        <div className="ml-[3vw] mt-[2.5vw] text-[28px] font-medium">
           Statistics
         </div>
         <TableUserOverview />

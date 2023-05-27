@@ -1,14 +1,13 @@
 'use client';
 
 import Twitter from '@/components/icons/twitter';
-import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import React, { useEffect, useRef, useState } from 'react';
 import defaultAvatar from '@/assets/profileSvg/defaultAvatar.svg';
 import Image from 'next/image';
 import Upload from '@/components/icons/upload';
 import { Button } from '@/components/button';
 import request from '@/utils/request';
-import { apiTwitterToken, apiUserInfo } from '@/apis/user';
+import { apiPutUserInfo, apiTwitterToken, apiUserInfo } from '@/apis/user';
 import { useUserStore } from '@/store';
 import Modalprop from '@/components/modal/modal';
 import ImgCrop from '@/components/imgCrop';
@@ -17,6 +16,8 @@ import { blobToFile, dataURLtoBlob } from '@/utils/helpers';
 import { getCookie } from '@/utils/cookie';
 import { Dialog, DialogHeader } from '@/components/dialog';
 import { upload } from '@/utils/aws';
+import { useSearchParams } from 'next/navigation';
+
 const Profile: React.FC = () => {
   const {
     username,
@@ -26,6 +27,8 @@ const Profile: React.FC = () => {
     isConnectTwitter,
     setIsConnectTwitter
   } = useUserStore();
+  const oauthToken = useSearchParams()?.get('oauthToken') as string;
+  const verifier = useSearchParams()?.get('oauthVerifier') as string;
   //  防止 onchange 事件用户每输入一次如果就调 setUsername 会频繁调用 put 方法，因此先在页面内进行 useState 缓存再在 submit 时只调用一次
   const [userName, setUserName] = useState<string>(username);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -36,14 +39,15 @@ const Profile: React.FC = () => {
   const [cropper, setCropper] = useState<any>();
   const [aspect, setAspect] = useState<number>(1 / 1);
   //  头像裁剪
-  const handleCrop = async (e: any) => {
-    // e.preventDefault();
+  const handleCrop1 = async (e: any) => {
+    e.preventDefault();
+    // console.log(e.target);
     setAspect(1 / 1);
     const input: any = document.createElement('input');
     input.type = 'file';
-    input.accept = '.jpg, .jpeg, .png';
+    input.accept = '.jpg, .gif, .png';
     input.click();
-    input.onchange = async () => {
+    e.target.onchange = async () => {
       try {
         const reader: any = new FileReader();
         reader.addEventListener('load', () => {
@@ -55,6 +59,20 @@ const Profile: React.FC = () => {
         Toast.error('Upload error');
       }
     };
+  };
+  const handleCrop = async (e: any) => {
+    setAspect(1 / 1);
+    try {
+      const reader: any = new FileReader();
+      reader.addEventListener('load', () => {
+        setUploadUrl(reader.result.toString() || '');
+        setShowCrop(true);
+      });
+      reader.readAsDataURL(e.target.files[0]);
+    } catch (error) {
+      console.log('handleCrop --> ', error);
+      Toast.error('Upload error');
+    }
   };
   //  头像上传
   const handleUpload = async () => {
@@ -69,25 +87,39 @@ const Profile: React.FC = () => {
         key: address.slice(0, 8),
         body: bodyFile
       });
-      // setAvatar(`${res.host}/${res.key}`)
+      console.log(res);
       setUploadUrl(`${res.host}/${res.key}`);
       Toast.success('upload success');
     } catch (error) {
+      console.log('handleUpload --> ', error);
       Toast.error('upload error');
     }
   };
-  //  名字上传
-  const handleUploadUserName = async () => {
-    if (userName !== '@StarMemory') {
-      const res = await request('api/user/profile', {
-        method: 'PUT',
-        body: {
-          userName
+  //  名字+头像上传
+  const handleUploadAll = async () => {
+    try {
+      if (
+        userName !== '@StarMemory' ||
+        avatar !==
+          'http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg?param=200y200'
+      ) {
+        const res = await apiPutUserInfo({
+          avatar: uploadUrl,
+          name: userName,
+          oauthToken,
+          verifier
+        });
+        if (res) {
+          Toast.success('Modify message success!');
+          setUsername(username);
+          setAvatar(res.avatar);
+          const aa = await apiUserInfo();
+          console.log(aa);
         }
-      });
-      if (res?.data) {
-        setUsername(username);
       }
+    } catch (error) {
+      Toast.success('Fail to Modify message!');
+      console.log(error);
     }
   };
   //  推特 登录
@@ -121,10 +153,10 @@ const Profile: React.FC = () => {
     const res = await apiUserInfo();
     console.log(res);
     if (res.avatar !== '') {
-      setUploadUrl(res.avatar);
+      setAvatar(res.avatar);
     }
     if (res.username !== '') {
-      setUserName(res.username);
+      setUsername(res.username);
     }
   };
   useEffect(() => {
@@ -149,14 +181,17 @@ const Profile: React.FC = () => {
               borderColor: 'white'
             }}
           >
-            <div className="relative flex">
-              <Image
-                alt=""
-                width="200"
-                height="200"
-                src={uploadUrl}
-                // src={defaultAvatar}
-              ></Image>
+            <div className="relative">
+              <div className=" h-[66px] w-[66px] rounded-full ">
+                <Image
+                  alt=""
+                  width="66"
+                  height="66"
+                  className="h-[100%] w-[100%] rounded-full"
+                  src={uploadUrl}
+                  // src={defaultAvatar}
+                ></Image>
+              </div>
               <div className="flex flex-col items-center space-y-8 px-16 pt-9">
                 <Dialog
                   open={showCrop}
@@ -184,7 +219,7 @@ const Profile: React.FC = () => {
                 </Dialog>
               </div>
               {/*hover层*/}
-              <div className="absolute right-[-3.1px] top-[0.5px] flex h-[64px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
+              <div className="absolute right-[-3.1px] top-[0.5px] flex h-[67px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
                 {/*上传图片*/}
                 <div
                   className="relative right-[-25px] top-[19px] cursor-pointer"
@@ -197,6 +232,7 @@ const Profile: React.FC = () => {
                 <input
                   ref={inputRef}
                   type="file"
+                  accept=".jpg, .gif, .png"
                   className="hidden"
                   style={{ borderColor: 'white', borderWidth: '1px' }}
                   onChange={handleCrop}
@@ -262,7 +298,7 @@ const Profile: React.FC = () => {
         <Button
           color="secondary"
           className="ml-[6.2vw] mt-[3.5vw] h-[2.5vw] w-[9vw] rounded-full text-[14px] "
-          onClick={handleUploadUserName}
+          onClick={handleUploadAll}
         >
           Submit
         </Button>

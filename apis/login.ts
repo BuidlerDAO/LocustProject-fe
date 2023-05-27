@@ -1,6 +1,6 @@
 import request from '@/utils/request';
 import toast from '@/components/toast/toast';
-import { setCookie } from '@/utils/cookie';
+import { deleteCookie, setCookie } from '@/utils/cookie';
 
 /**
  * @description GET 获取签名
@@ -58,8 +58,8 @@ export const apiGetStsToken = async () => {
     return res.data;
   } else {
     if (+res.code === 401) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('address');
+      deleteCookie('token');
+      deleteCookie('address');
       window.location.href = '/login';
     }
     toast.error(`${res.msg}`, { id: `${res.msg}` });

@@ -27,6 +27,7 @@ import TelegramIcon from './telegram';
 import CheckIcon from './check';
 import { TimeIcon } from './time';
 import LinkIcon from './link';
+import DollarIcon from './dollarIcon';
 
 export interface IconBaseProps extends React.SVGAttributes<SVGElement> {
   children?: React.ReactNode;
@@ -79,5 +80,6 @@ export {
   TelegramIcon,
   CheckIcon,
   TimeIcon,
-  LinkIcon
+  LinkIcon,
+  DollarIcon
 };

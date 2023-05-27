@@ -73,12 +73,14 @@ const Navbar = () => {
     <>
       <div
         className={`absolute z-50 float-right flex h-[100px] flex-wrap items-center bg-[#04070B]
-      ${!flag && 'left-[18rem] border-b-[1px] border-b-lineGrey'} `}
+      ${!flag && 'left-[18rem] border-b-[1px] border-b-lineGrey'} ${
+          flag && 'w-full'
+        }`}
       >
         <div className="sticky inset-0 z-10 flex h-full  max-w-full items-center px-8 py-2 lg:px-10 lg:py-4">
           <div className="text-blue-gray-900 dark:text-blue-gray-100 flex w-full items-center">
             {/*logo*/}
-            <div className="width-[18rem] ml-[30px] flex h-[100px] items-center justify-center">
+            <div className="width-[18rem] absolute  left-[4vw] top-[35px] h-[100px]">
               {flag ? (
                 <div className="z-100 flex items-center">
                   <LogoIconTop />
@@ -144,7 +146,7 @@ const Navbar = () => {
               </>
             )}
             {/*WalletConnect*/}
-            <div className={`${flag ? 'ml-[1vw]' : ''} flex items-center`}>
+            <div className={`${flag ? 'ml-[19vw]' : ''} flex items-center`}>
               {/*<Wallet />*/}
               <WalletConnect />
             </div>

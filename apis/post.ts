@@ -52,3 +52,25 @@ export const apiGetPostList = async (data: {
     return '';
   }
 };
+
+/**
+ * @description 获取post数据，可更改路径
+ * @params data，url
+ * @api https://test-locust-api.buidlerdao.xyz/api/post
+ * */
+export const apiGetPostData = async (url: string) => {
+  try {
+    const res = await request(url, {
+      method: 'GET'
+      //body: { ...data }
+    });
+    if (res.code === 0) {
+      return res.data;
+    } else {
+      toast.error(`${res.message}`, { id: `${res.message}` });
+      return '';
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};

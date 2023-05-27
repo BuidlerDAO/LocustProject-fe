@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './index.css';
 import Logo from '../icons/logo';
@@ -16,10 +16,14 @@ import {
   MenuProps,
   Select,
   Space,
-  Table
+  Table,
+  Typography
 } from 'antd';
 import { getFullMonth } from '@/utils/time';
+import { apiGetPostData } from '@/apis/post';
 type AlignType = 'left' | 'center' | 'right';
+
+const { Text } = Typography;
 interface ColumnItem {
   title: string;
   dataIndex: string;
@@ -1112,8 +1116,12 @@ const TableUserOverview = () => {
   );
 };
 const UserArticle = () => {
+  const [data, setData] = useState<any[]>([]);
   //columns中有Article Title、Submit Time、Status
-  const columns: ColumnItem[] = [
+  interface CustomColumnItem extends ColumnItem {
+    render?: (text: string) => string | React.JSX.Element;
+  }
+  const columns: CustomColumnItem[] = [
     {
       title: 'Article Title',
       dataIndex: 'articleTitle',
@@ -1130,21 +1138,41 @@ const UserArticle = () => {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
-      align: 'center'
+      align: 'center',
+      render: (text: string) => {
+        if (text === 'Audit does not pass') {
+          return <Text type="danger">{text}</Text>;
+        }
+        return text;
+      }
     }
   ];
-  const data: readonly any[] | undefined = [
-    {
-      articleTitle: 'Article Title',
-      submitTime: '2021-01-01',
-      status: 'Normal'
-    },
-    {
-      articleTitle: 'Article Title',
-      submitTime: '2021-01-01',
-      status: 'Audit does not pass'
-    }
-  ];
+  const getData = async () => {
+    Promise.all([apiGetPostData('/api/post/user')]).then((values: any) => {
+      console.log(values[0].items);
+      const newData = values[0].items.map((item: any) => {
+        console.log(item);
+        if (item.status === 0) {
+          item.status = 'Normal';
+        } else if (item.status === 1) {
+          item.status = 'Audit does not pass';
+        }
+        return {
+          id: item.id,
+          articleTitle: item.title,
+          submitTime: item.createdAt,
+          status: item.status
+        };
+      });
+      setData(newData);
+      console.log(newData);
+    });
+  };
+
+  useEffect(() => {
+    getData();
+    console.log(data);
+  }, []);
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };

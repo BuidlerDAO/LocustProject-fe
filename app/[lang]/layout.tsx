@@ -39,6 +39,7 @@ export default function RootLayout({
           <RootLayoutClient>
             <Navbar />
             {children}
+            <footer className="mb-[-100px] h-[100px] w-full bg-black" />
           </RootLayoutClient>
         </WalletConfigWrapper>
       </body>

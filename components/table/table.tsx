@@ -373,7 +373,7 @@ const TableUserOverview = () => {
           return {
             month: item.title,
             numArticlesSubmitted: item.posts,
-            numUnsuccessfulArticles: item.unSuccessPosts,
+            numUnsuccessfulArticles: item.unSuccessfulPosts,
             numValidArticles: item.validPosts,
             bonus: item.bonus,
             totalPrizePool: item.prize

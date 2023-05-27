@@ -167,7 +167,12 @@ const Profile: React.FC = () => {
   }, [username, avatar, isConnectTwitter]);
   return (
     <div
-      style={{ backgroundColor: 'black', width: '100%', height: '100%' }}
+      style={{
+        backgroundColor: 'black',
+        width: '100%',
+        height: '100%',
+        paddingBottom: '40vh'
+      }}
       className="ml-[1.7vw] mt-[calc(100px+3.8rem)]"
     >
       {/*Profile字样*/}

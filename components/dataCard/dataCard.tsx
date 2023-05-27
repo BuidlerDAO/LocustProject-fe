@@ -109,7 +109,7 @@ const DataCard = (props: object) => {
             text-decoration: none;
           }
           .component2-text04 {
-            margin-top: 8px;
+            margin-top: 15px;
             margin-left: 24px;
             color: rgba(255, 255, 255, 1);
             height: auto;
@@ -133,7 +133,7 @@ const DataCard = (props: object) => {
           }
           .component2-frame2 {
             margin-top: 1rem;
-            margin-left: 1rem;
+            margin-left: 7rem;
             width: 15rem;
             height: 112px;
             display: flex;
@@ -166,7 +166,7 @@ const DataCard = (props: object) => {
             text-decoration: none;
           }
           .component2-text08 {
-            margin-top: 4px;
+            margin-top: 9px;
             margin-left: 24px;
             color: rgba(255, 255, 255, 1);
             height: auto;

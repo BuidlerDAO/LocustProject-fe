@@ -1,26 +1,33 @@
 'use client';
-import React, { useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 
 // import PropTypes from 'prop-types';
 import {
   DeleteOutlined,
+  DownOutlined,
   EllipsisOutlined,
-  FieldTimeOutlined,
-  LinkOutlined
+  LinkOutlined,
+  UpOutlined
 } from '@ant-design/icons';
 import {
+  Collapse,
   ConfigProvider,
   Divider,
   Dropdown,
   MenuProps,
   Modal,
-  Tooltip
+  Tooltip,
+  Typography
 } from 'antd';
 import { usePostStore } from '@/store';
 import { on } from 'events';
 import { Colors } from '../../types/components/theme';
 import './index.css';
 import Modalprop from '../modal/modal';
+import { LinkIcon, TimeIcon } from '../icons';
+import TextMore from '../textMore';
+import toast from '../toast/toast';
+import Image from 'next/image';
 
 const Block = (props: {
   rootClassName: any;
@@ -40,9 +47,11 @@ const Block = (props: {
     originalText: string;
     personalThoughts: string;
     time: string;
+    avatar: string;
+    username: string;
   };
 }) => {
-  const decrease = usePostStore((state) => state.decrease);
+  const decrease = usePostStore((state: any) => state.decrease);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -62,6 +71,9 @@ const Block = (props: {
   function onDelete() {
     console.log(props.data);
     decrease(props.data.title);
+    toast.success('Delete success', {
+      duration: 4000
+    });
   }
   const text = () => (
     <button className="hover:text-red-600" onClick={showModal}>
@@ -70,10 +82,16 @@ const Block = (props: {
       <span>Delete</span>
     </button>
   );
+  useEffect(() => {
+    console.log(props.data);
+  }, []);
   return (
     <>
       <div className={`block-block ${props.rootClassName} `}>
         <Modalprop
+          ModalMaxWidth={330}
+          BodyMaxWidth={300}
+          cancelButtonMarginRight="0"
           isModalOpen={isModalOpen}
           handleOk={handleOk}
           handleCancel={handleCancel}
@@ -85,7 +103,7 @@ const Block = (props: {
         <div className="block-frametab">
           <div className="block-frame">
             <div className="block-frame1 text-textGrey">
-              <FieldTimeOutlined />
+              <TimeIcon />
             </div>
             <span className="block-text02">
               <span>{props.data.time}</span>
@@ -93,22 +111,18 @@ const Block = (props: {
           </div>
           <div className="block-frame2">
             <div className="block-user-circle">
-              <img
-                alt={props.Ellipse2_alt}
-                src={props.Ellipse2_src}
-                className="block-ellipse2"
-              />
+              <Image src={''} width={24} height={24} alt="#" />
             </div>
             <span className="block-text04">
-              <span>@SCaesar</span>
+              <span>{props.data.username}</span>
             </span>
           </div>
           <div className="block-frame3">
             <span className="text-textGrey">
-              <LinkOutlined />
+              <LinkIcon />
             </span>
             <div className="block-text06">
-              <a href={props.data.link} color="inherit">
+              <a href={props.data.link} style={{ color: 'inherit' }}>
                 {props.data.link}
               </a>
             </div>
@@ -127,7 +141,7 @@ const Block = (props: {
               <span>Original Summary</span>
             </span>
             <span className="block-text08">
-              <span>{props.data.originalText}</span>
+              <TextMore text={props.data.originalText} rows={2} />
             </span>
           </div>
           <div className="block-line18" />
@@ -137,7 +151,7 @@ const Block = (props: {
             </span>
             <div className="block-group1">
               <span className="block-text12">
-                <span>{props.data.personalThoughts}</span>
+                <TextMore text={props.data.personalThoughts} rows={4} />
               </span>
             </div>
           </div>
@@ -271,7 +285,7 @@ const Block = (props: {
             gap: 8px;
             margin-top: 6rem;
             text-align: center;
-
+            margin-left: 0.5rem;
             display: flex;
             align-items: flex-start;
             flex-shrink: 0;
@@ -293,10 +307,9 @@ const Block = (props: {
           .block-frame1171274787 {
             gap: 8px;
             margin-top: 1rem;
-
+            margin-left: 0.5rem;
             width: 62.25rem;
             display: flex;
-
             align-items: flex-center;
             flex-direction: column;
           }

@@ -2,7 +2,7 @@
 @import './tailwind.css';
 @import 'nprogress/nprogress.css';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
-
+@import 'cropperjs/dist/cropper.css';
 /* 自定义全局 CssVar */
 :root {
   --pure-transition-duration: 0.016s;
@@ -24,11 +24,24 @@
   color: #fff !important;
 }
 
-/*antd输入框*/
+/*antd 输入框*/
 .ant-input-lg {
   background-color: #1f1f1f;
   color: #ffffff;
 }
 .ant-input-lg::placeholder {
   color: rgba(255, 255, 255, 0.4);
+}
+.ant-modal-footer {
+  display: flex;
+}
+/* 隐藏分页器 x条/页 */
+.ant-pagination-options {
+  display: none !important;
+}
+
+/* cropper 圆形裁剪框 */
+.cropper-view-box,
+.cropper-face {
+  border-radius: 50%;
 }

@@ -4,34 +4,13 @@ import React, { use, useEffect, useState } from 'react';
 import Logo from '../icons/logo';
 import { AppstoreOutlined, RiseOutlined } from '@ant-design/icons';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useSiderStore } from '@/store';
+import { usePathname, useRouter } from 'next/navigation';
+import { useSiderStore, useUserStore } from '@/store';
+import toast from '../toast/toast';
+import { LogoIconTop } from '../icons';
 
-const SideMenu = (props: {
-  rootClassName: any;
-  Vector_alt2: string | undefined;
-  Vector_src2: string | undefined;
-  Vector_alt3: string | undefined;
-  Vector_src3: string | undefined;
-  Vector_alt4: string | undefined;
-  Vector_src4: string | undefined;
-  Vector_alt5: string | undefined;
-  Vector_src5: string | undefined;
-  Rectangle1_alt: string | undefined;
-  Rectangle1_src: string | undefined;
-  Frame_alt: string | undefined;
-  Frame_src: string | undefined;
-  Vector_alt: string | undefined;
-  Vector_src: string | undefined;
-  Vector_alt1: string | undefined;
-  Vector_src1: string | undefined;
-}) => {
-  const pathname = usePathname();
-  //当用户点击按钮时，切换按钮的颜色
-  // const [isExplore, setIsExplore] = React.useState(true);
-  // const [isDataView, setIsDataView] = React.useState(false);
-  // const [isPost, setIsPost] = React.useState(false);
-  //从store中获取用户点击的按钮
+const SideMenu = (props: any) => {
+  const router = useRouter();
   const {
     isExplore,
     setIsExplore,
@@ -40,7 +19,22 @@ const SideMenu = (props: {
     isPost,
     setIsPost
   } = useSiderStore();
-
+  const { isAdmin, isLogin, isRegister } = useUserStore();
+  const pathname = usePathname();
+  const flag = pathname == '/zh-CN' || pathname == '/en';
+  const onJudge = () => {
+    if (!isLogin) {
+      toast.error('Please login first');
+      return;
+    } else {
+      if (!isRegister) {
+        toast.error('Please register first');
+        return;
+      } else {
+        router.push('/home/post');
+      }
+    }
+  };
   useEffect(() => {
     console.log(pathname);
     if (pathname === '/en/home' || pathname === '/zh-CN/home') {
@@ -65,8 +59,22 @@ const SideMenu = (props: {
   }, [pathname]);
   return (
     <>
-      <div className={`side-menu-side-menu ${props.rootClassName} `}>
-        <div className="side-menu-frame1171274769">
+      {/* <div
+          style={{ borderColor: '#000' }}
+          className={`${'relative bottom-[1px]  w-[18.9vw] border-t-[14px] z-[-1]'}`}
+        ></div> */}
+      <div className={`side-menu-side-menu ${props.rootClassName}`}>
+        {/* logo部分 */}
+        <div className="width-[18rem] ml-[30px] flex h-[100px] items-center justify-center">
+          <div
+            className={`mr-[-5px] mt-[-18px] 
+                            ${!flag && 'mr-[6px] mt-[0.2px]'}
+            } `}
+          >
+            {flag ? <LogoIconTop /> : <Logo />}
+          </div>
+        </div>
+        <div className="side-menu-frame1171274769 ">
           <div className="side-menu-menu">
             {/* explore 按钮 */}
             <div
@@ -95,72 +103,81 @@ const SideMenu = (props: {
                 }}
               />
             </div>
-            {/* data view 按钮 */}
-            <div
-              className="side-menu-frame"
-              onClick={() => {
-                setIsExplore(false);
-                setIsDataView(true);
-                setIsPost(false);
-              }}
-              style={{
-                color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
-              }}
-            >
-              <Link href="/home/dataV">
-                <div className="side-menu-frame1021">
-                  <RiseOutlined />
-                  <span className="side-menu-text2">
-                    <span>Data View</span>
-                  </span>
-                </div>
-              </Link>
+            {/* data view 按钮,根据isAdmin判断有无 */}
+            {isAdmin ? (
               <div
-                className="side-menu-rectangle1"
-                style={{
-                  backgroundColor: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                className="side-menu-frame"
+                onClick={() => {
+                  setIsExplore(false);
+                  setIsDataView(true);
+                  setIsPost(false);
                 }}
-              />
+                style={{
+                  color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                }}
+              >
+                <Link href="/home/dataV">
+                  <div className="side-menu-frame1021">
+                    <RiseOutlined />
+                    <span className="side-menu-text2">
+                      <span>Data View</span>
+                    </span>
+                  </div>
+                </Link>
+                <div
+                  className="side-menu-rectangle1"
+                  style={{
+                    backgroundColor: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                  }}
+                />
+              </div>
+            ) : null}
+          </div>
+          {/* <Link href="/home/post"> */}
+          {/* post按钮，封装了onjudge函数  */}
+          <div
+            className="side-menu-btn"
+            onClick={() => {
+              setIsExplore(false);
+              setIsDataView(false);
+              setIsPost(true);
+              onJudge;
+            }}
+          >
+            <div className="side-menu-frame10211">
+              <span className="side-menu-text4">
+                <span
+                  onClick={() => {
+                    setIsExplore(true);
+                    setIsDataView(false);
+                    setIsPost(false);
+                    onJudge();
+                  }}
+                >
+                  New Post
+                </span>
+              </span>
             </div>
           </div>
-          <Link href="/home/post">
-            <div
-              className="side-menu-btn"
-              onClick={() => {
-                setIsExplore(false);
-                setIsDataView(false);
-                setIsPost(true);
-              }}
-            >
-              <div className="side-menu-frame10211">
-                <span className="side-menu-text4">
-                  <span
-                    onClick={() => {
-                      setIsExplore(true);
-                      setIsDataView(false);
-                      setIsPost(false);
-                    }}
-                  >
-                    New Post
-                  </span>
-                </span>
-              </div>
-            </div>
-          </Link>
+          {/* </Link> */}
         </div>
       </div>
       <style jsx>
         {`
           .side-menu-side-menu {
             width: 18rem;
-            height: 100%;
             display: flex;
             position: relative;
             align-items: flex-start;
             flex-shrink: 0;
             background-color: #000000;
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: #262626;
           }
           .side-menu-frame1171274769 {
+            height: 100%;
+            top: 100px;
             gap: 24px;
             left: 0px;
             width: 100%;
@@ -320,7 +337,7 @@ const SideMenu = (props: {
           .side-menu-frame10211 {
             gap: 8px;
             top: 0px;
-            left: 20px;
+            left: 1.5rem;
             width: 14.375rem;
             height: 52px;
             display: flex;
@@ -415,26 +432,6 @@ const SideMenu = (props: {
       </style>
     </>
   );
-};
-
-SideMenu.defaultProps = {
-  rootClassName: '',
-  Vector_src3: '/playground_assets/vectori444-s31r.svg',
-  Vector_src4: '/playground_assets/vectori444-4rx8.svg',
-  Vector_src5: '/playground_assets/vectori444-8zeg.svg',
-  Vector_alt3: 'VectorI444',
-  Vector_src1: '/playground_assets/vectori444-8twj.svg',
-  Vector_alt: 'VectorI444',
-  Rectangle1_alt: 'Rectangle1I444',
-  Rectangle1_src: '/playground_assets/rectangle1i444-eze-200w.png',
-  Frame_alt: 'FrameI444',
-  Frame_src: '/playground_assets/framei444-mtub.svg',
-  Vector_alt5: 'VectorI444',
-  Vector_alt4: 'VectorI444',
-  Vector_src: '/playground_assets/vectori444-e535.svg',
-  Vector_alt1: 'VectorI444',
-  Vector_alt2: 'VectorI444',
-  Vector_src2: '/playground_assets/vectori444-cbyy.svg'
 };
 
 export default SideMenu;

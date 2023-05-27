@@ -1,55 +1,40 @@
+/* eslint-disable prefer-const */
 'use client';
-import {
-  DeleteOutlined,
-  EllipsisOutlined,
-  FieldTimeOutlined,
-  LikeOutlined,
-  LinkOutlined,
-  MessageOutlined,
-  StarOutlined
-} from '@ant-design/icons';
 import { Avatar, Button, Collapse, List, Space, Tooltip } from 'antd';
-import React, { useState, useEffect } from 'react';
-import Paragraph from 'antd/es/typography/Paragraph';
+import React, { useEffect, useState } from 'react';
 import Block from '@/components/blockCard/blockCard';
-import { usePostStore } from '@/store';
+import { apiGetPostList } from '@/apis/post';
+import { Post } from '@/store';
 
-const App: React.FC = () => {
-  type postData = {
-    [id: number]: {
-      title: string;
-      link: string;
-      originalText: string;
-      personalThoughts: string;
-      time: string;
-    };
-  };
-  type data = [
-    {
-      id: number;
-      title: string;
-      link: string;
-      originalText: string;
-      personalThoughts: string;
-      time: string;
-    }
-  ];
-  const onDelete = () => {
-    console.log('delete');
-  };
+const App = () => {
+  const [data, setData] = useState<Post[]>([]);
+
   useEffect(() => {
-    console.log(data);
+    getData();
   }, []);
-  const postData = usePostStore((state) => state.posts);
-  const data = Array.from(Object.values(postData)).map((post) => ({
-    title: post.title,
-    link: post.link,
-    originalText: post.originalText,
-    personalThoughts: post.personalThoughts,
-    time: post.time
-  }));
+
+  const getData = async () => {
+    Promise.all([apiGetPostList({ offset: 0, limit: 30 })]).then(
+      (values: any) => {
+        const newData = values.flatMap((item: any) =>
+          item.items.map((item: any) => ({
+            title: item.title,
+            link: item.link,
+            originalText: item.body,
+            personalThoughts: item.thought,
+            time: item.createdAt,
+            avatar: item.avatar,
+            username: item.username
+          }))
+        );
+        setData(newData);
+        console.log(newData);
+      }
+    );
+  };
+
   return (
-    <div className="mr-16">
+    <div className="mr-16 mt-[100px]">
       <List
         itemLayout="vertical"
         size="large"
@@ -64,4 +49,5 @@ const App: React.FC = () => {
     </div>
   );
 };
+
 export default App;

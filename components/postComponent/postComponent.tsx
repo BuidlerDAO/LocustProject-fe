@@ -7,6 +7,8 @@ import { usePostStore } from '@/store';
 import Link from 'next/link';
 import './index.css';
 import { useRouter } from 'next/navigation';
+import { apiPostData } from '@/apis/post';
+import { UUID } from '@/utils/uuid';
 
 const { TextArea } = Input;
 
@@ -14,8 +16,8 @@ const postComponent = (props: { rootClassName: any }) => {
   const router = useRouter();
   const [form] = Form.useForm();
   const [isNull, setIsNull] = useState(true);
-  const increase = usePostStore((state) => state.increase);
-  const decrease = usePostStore((state) => state.decrease);
+  const increase = usePostStore((state: any) => state.increase);
+  const decrease = usePostStore((state: any) => state.decrease);
   function getCurrentDate() {
     const today = new Date();
     const year = today.getFullYear();
@@ -26,6 +28,7 @@ const postComponent = (props: { rootClassName: any }) => {
     return `${year}-${formattedMonth}-${formattedDay}`;
   }
   const onFinish = (e: {
+    id: string;
     title: string;
     link: string;
     originalText: string;
@@ -35,8 +38,10 @@ const postComponent = (props: { rootClassName: any }) => {
     console.log(getCurrentDate());
     //Object.assign(e, { time: getCurrentDate() });
     e.time = getCurrentDate();
+    e.id = UUID(8, 8);
     console.log(e);
     increase(e);
+    apiPostData(e);
     console.log(usePostStore.getState());
     //跳转到/home/explore页
     router.push('/home');
@@ -75,7 +80,7 @@ const postComponent = (props: { rootClassName: any }) => {
           <div className="component-frame15062">
             <ConfigProvider
               theme={{
-                token: { colorBgContainer: '#FFFFFF0F' }
+                token: { colorBgContainer: '#0f0f0f' }
               }}
             >
               <Form.Item
@@ -103,13 +108,13 @@ const postComponent = (props: { rootClassName: any }) => {
           <div className="component-frame15063">
             <ConfigProvider
               theme={{
-                token: { colorBgContainer: '#FFFFFF0F' }
+                token: { colorBgContainer: '#0f0f0f' }
               }}
             >
               <Form.Item
                 name="link"
                 rules={[
-                  { required: true, message: 'Please Enter The Original Link' }
+                  { required: true, message: 'Link input error', type: 'url' }
                 ]}
               >
                 <Input
@@ -170,7 +175,7 @@ const postComponent = (props: { rootClassName: any }) => {
               <div className="component-frame15064">
                 <ConfigProvider
                   theme={{
-                    token: { colorBgContainer: '#FFFFFF0F' }
+                    token: { colorBgContainer: '#0f0f0f' }
                   }}
                 >
                   <TextArea
@@ -204,7 +209,7 @@ const postComponent = (props: { rootClassName: any }) => {
               <div className="component-frame15066">
                 <ConfigProvider
                   theme={{
-                    token: { colorBgContainer: '#FFFFFF0F' }
+                    token: { colorBgContainer: '#0f0f0f' }
                   }}
                 >
                   <TextArea
@@ -230,7 +235,6 @@ const postComponent = (props: { rootClassName: any }) => {
           .frame1171274791-frame1171274791 {
             top: 100vh;
             left: 28vw;
-
             display: flex;
             padding: 0.75rem 4rem;
             position: absolute;
@@ -259,6 +263,8 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-container {
+            left: 1vw;
+            top: 2vh;
             width: 73vw;
             height: 110vh;
             display: flex;
@@ -455,7 +461,7 @@ const postComponent = (props: { rootClassName: any }) => {
             flex-shrink: 0;
            border-none;
             background-color: inherit;
-            
+
           }
           .component-text16 {
             top: 21px;

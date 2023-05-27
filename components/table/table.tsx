@@ -1,74 +1,129 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import './index.css'
-import PropTypes from 'prop-types';
+import './index.css';
 import Logo from '../icons/logo';
-import { AppstoreOutlined, DownOutlined, DownloadOutlined, RiseOutlined } from '@ant-design/icons';
+import {
+  AppstoreOutlined,
+  DownloadOutlined,
+  DownOutlined,
+  RiseOutlined
+} from '@ant-design/icons';
 import Link from 'next/link';
-import { Dropdown, Space, ConfigProvider, Table, MenuProps, Select } from 'antd';
+import {
+  ConfigProvider,
+  Dropdown,
+  MenuProps,
+  Select,
+  Space,
+  Table,
+  Typography
+} from 'antd';
+import { getFullMonth } from '@/utils/time';
+import { apiGetPostData } from '@/apis/post';
+type AlignType = 'left' | 'center' | 'right';
 
+const { Text } = Typography;
+interface ColumnItem {
+  title: string;
+  dataIndex: string;
+  key: string;
+  align?: AlignType;
+}
 const Table2 = () => {
-  const columns2 = [
+  const columns2: ColumnItem[] = [
     {
+      align: 'center',
       title: 'User Name',
       dataIndex: 'userName',
       key: 'userName'
     },
     {
+      align: 'center',
       title: 'Wallet Address',
       dataIndex: 'walletAddress',
       key: 'walletAddress'
     },
     {
+      align: 'center',
       title: 'Number of Content Submitted',
       dataIndex: 'numContentSubmitted',
       key: 'numContentSubmitted'
     },
     {
+      align: 'center',
       title: 'Number of Deleted Content',
       dataIndex: 'numDeletedContent',
       key: 'numDeletedContent'
     },
     {
+      align: 'center',
       title: 'Bonuses Received',
       dataIndex: 'bonusesReceived',
       key: 'bonusesReceived'
     },
     {
+      align: 'center',
       title: 'Registration Time',
       dataIndex: 'registrationTime',
       key: 'registrationTime'
     }
   ];
- const data2 = [
-   {
-     key: '1',
-     userName: 'John Doe',
-     walletAddress: '0x1234567890abcdef',
-     numContentSubmitted: 10,
-     numDeletedContent: 2,
-     bonusesReceived: 5,
-     registrationTime: '2021-01-01'
-   },
-   {
-     key: '2',
-     userName: 'Jane Smith',
-     walletAddress: '0xabcdef1234567890',
-     numContentSubmitted: 5,
-     numDeletedContent: 1,
-     bonusesReceived: 2,
-     registrationTime: '2021-02-01'
-   },
-   {
-     key: '3',
-     userName: 'Bob Johnson',
-     walletAddress: '0x0987654321fedcba',
-     numContentSubmitted: 20,
-     numDeletedContent: 0,
-     bonusesReceived: 10,
-     registrationTime: '2021-03-01'
-   }
+  const data2 = [
+    {
+      key: '1',
+      userName: 'John Doe',
+      walletAddress: '0x1234567890abcdef',
+      numContentSubmitted: 10,
+      numDeletedContent: 2,
+      bonusesReceived: 5,
+      registrationTime: '2021-01-01'
+    },
+    {
+      key: '2',
+      userName: 'Jane Smith',
+      walletAddress: '0xabcdef1234567890',
+      numContentSubmitted: 5,
+      numDeletedContent: 1,
+      bonusesReceived: 2,
+      registrationTime: '2021-02-01'
+    },
+    {
+      key: '3',
+      userName: 'Bob Johnson',
+      walletAddress: '0x0987654321fedcba',
+      numContentSubmitted: 20,
+      numDeletedContent: 0,
+      bonusesReceived: 10,
+      registrationTime: '2021-03-01'
+    },
+    {
+      key: '4',
+      userName: 'Jane Smith',
+      walletAddress: '0xabcdef1234567890',
+      numContentSubmitted: 5,
+      numDeletedContent: 1,
+      bonusesReceived: 2,
+      registrationTime: '2021-02-01'
+    },
+    {
+      key: '5',
+      userName: 'Jane Smith',
+      walletAddress: '0xabcdef1234567890',
+      numContentSubmitted: 5,
+      numDeletedContent: 1,
+      bonusesReceived: 2,
+      registrationTime: '2021-02-01'
+    },
+    {
+      key: '6',
+      userName: 'Jane Smith',
+      walletAddress: '0xabcdef1234567890',
+      numContentSubmitted: 5,
+      numDeletedContent: 1,
+      bonusesReceived: 2,
+      registrationTime: '2021-02-01'
+    }
   ];
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
@@ -78,11 +133,14 @@ const Table2 = () => {
   };
   return (
     <>
-      <div>
+      <div className="mt-4">
         <div className="flex justify-between">
-          <div>
+          <div className="mb-4">
             Schedule
-            <DownloadOutlined className='ml-6 cursor-pointer' onClick={onDownload}/>
+            <DownloadOutlined
+              className="ml-6 cursor-pointer"
+              onClick={onDownload}
+            />
           </div>
           <div>
             <ConfigProvider
@@ -96,7 +154,7 @@ const Table2 = () => {
               }}
             >
               <Select
-                defaultValue="lucy"
+                defaultValue="January"
                 style={{
                   width: 80,
                   borderRadius: '8px',
@@ -104,15 +162,9 @@ const Table2 = () => {
                   color: 'white',
                   outlineColor: '#29282f'
                 }}
-                className=""
                 bordered={false}
                 onChange={handleChange}
-                options={[
-                  { value: 'jack', label: 'Jack' },
-                  { value: 'lucy', label: 'Lucy' },
-                  { value: 'Yiminghe', label: 'yiminghe' },
-                  { value: 'disabled', label: 'Disabled', disabled: true }
-                ]}
+                options={getFullMonth()}
               />
             </ConfigProvider>
           </div>
@@ -128,7 +180,6 @@ const Table2 = () => {
               colorBorderSecondary: '#26262675',
               colorSplit: '#26262675',
               colorBorder: '#29282F'
-              // colorBgDisabled: '#26262675',
             }
           }}
         >
@@ -136,141 +187,15 @@ const Table2 = () => {
             columns={columns2}
             dataSource={data2}
             pagination={{
-              position: ['bottomCenter']
+              position: ['bottomCenter'],
+              pageSize: 4
             }}
           />
         </ConfigProvider>
       </div>
       <style jsx>{`
         .month-border {
-          background: #0D0COF;
-          border: 1px solid #29282f;
-          border-radius: 8px;
-          padding: 0.5rem 1.5rem;
-          gap: 0.25rem;
-        }   
-      `}</style>
-    </>
-  );
-};
-const Table1 = () => {
-  const columns1 = [
-    {
-      title: 'Month',
-      dataIndex: 'month',
-      key: 'month'
-    },
-    {
-      title: 'Enrollment',
-      dataIndex: 'enrollment',
-      key: 'enrollment'
-    },
-    {
-      title: 'Number of content submitted',
-      dataIndex: 'numContentSubmitted',
-      key: 'numContentSubmitted'
-    },
-    {
-      title: 'Number of valid content',
-      dataIndex: 'numValidContent',
-      key: 'numValidContent'
-    },
-    {
-      title: 'Number of completed tasks',
-      dataIndex: 'numCompletedTasks',
-      key: 'numCompletedTasks'
-    },
-    {
-      title: 'Number of incomplete',
-      dataIndex: 'numIncomplete',
-      key: 'numIncomplete'
-    },
-    {
-      title: 'Total prize pool',
-      dataIndex: 'totalPrizePool',
-      key: 'totalPrizePool'
-    }
-  ];
-  const data1: readonly any[] | undefined = [
-    
-  ];
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
-  const onDownload = () => {
-    console.log('download');
-  };
-  return (
-    <>
-      <div>
-        <div className="flex justify-between">
-          <div>
-            Overview Table
-            <DownloadOutlined
-              className="ml-6 cursor-pointer"
-              onClick={onDownload}
-            />
-          </div>
-          {/* <div>
-            <ConfigProvider
-              theme={{
-                token: {
-                  colorBgElevated: 'black',
-                  colorText: '#ffffff',
-                  colorIconHover: '#ffffff',
-                  colorIcon: '#ffffff'
-                }
-              }}
-            >
-              <Select
-                defaultValue="lucy"
-                style={{
-                  width: 80,
-                  borderRadius: '8px',
-                  border: '1px solid #29282f',
-                  color: 'white',
-                  outlineColor: '#29282f'
-                }}
-                className=""
-                bordered={false}
-                onChange={handleChange}
-                options={[
-                  { value: 'jack', label: 'Jack' },
-                  { value: 'lucy', label: 'Lucy' },
-                  { value: 'Yiminghe', label: 'yiminghe' },
-                  { value: 'disabled', label: 'Disabled', disabled: true }
-                ]}
-              />
-            </ConfigProvider>
-          </div> */}
-        </div>
-        <ConfigProvider
-          theme={{
-            token: {
-              colorBgContainer: '#0f0f0f',
-              colorText: '#ffffff',
-              colorBgTextActive: '#ffffff',
-              colorTextPlaceholder: '#ffffff',
-              colorTextHeading: ' #747474',
-              colorBorderSecondary: '#26262675',
-              colorSplit: '#26262675',
-              colorBorder: '#29282F'
-              // colorBgDisabled: '#26262675',
-            }
-          }}
-        >
-          <Table
-            columns={columns1}
-            dataSource={data1}
-            pagination={{
-              position: ['bottomCenter']
-            }}
-          />
-        </ConfigProvider>
-      </div>
-      <style jsx>{`
-        .month-border {
-          background: #0D0COF;
+          background: #ffffff;
           border: 1px solid #29282f;
           border-radius: 8px;
           padding: 0.5rem 1.5rem;
@@ -280,38 +205,851 @@ const Table1 = () => {
     </>
   );
 };
-const TableUserOverview = () => {
-  //columns含有Month、Number of articles submitted、Number of unsuccessful articles、Number of valid articles、Bonus、Total Prize Pool
-  const columns = [
+const Table1 = () => {
+  const columns1: ColumnItem[] = [
     {
       title: 'Month',
       dataIndex: 'month',
-      key: 'month'
+      key: 'month',
+      align: 'center'
+    },
+    {
+      title: 'Enrollment',
+      dataIndex: 'enrollment',
+      key: 'enrollment',
+      align: 'center'
+    },
+    {
+      title: 'Number of content submitted',
+      dataIndex: 'numContentSubmitted',
+      key: 'numContentSubmitted',
+      align: 'center'
+    },
+    {
+      title: 'Number of valid content',
+      dataIndex: 'numValidContent',
+      key: 'numValidContent',
+      align: 'center'
+    },
+    {
+      title: 'Number of completed tasks',
+      dataIndex: 'numCompletedTasks',
+      key: 'numCompletedTasks',
+      align: 'center'
+    },
+    {
+      title: 'Number of incomplete',
+      dataIndex: 'numIncomplete',
+      key: 'numIncomplete',
+      align: 'center'
+    },
+    {
+      title: 'Total prize pool',
+      dataIndex: 'totalPrizePool',
+      key: 'totalPrizePool',
+      align: 'center'
+    }
+  ];
+  const data1: readonly any[] | undefined = [
+    {
+      month: 'December',
+      enrollment: 567,
+      numContentSubmitted: 876,
+      numValidContent: 381,
+      numCompletedTasks: 993,
+      numIncomplete: 98,
+      totalPrizePool: 604,
+      numDeletedContent: 68,
+      bonusesReceived: 98,
+      registrationTime: '2/23/2019',
+      walletAddress: '0x8e1c329f133e'
+    },
+    {
+      month: 'September',
+      enrollment: 998,
+      numContentSubmitted: 467,
+      numValidContent: 626,
+      numCompletedTasks: 119,
+      numIncomplete: 658,
+      totalPrizePool: 814,
+      numDeletedContent: 296,
+      bonusesReceived: 508,
+      registrationTime: '6/1/2018',
+      walletAddress: '0x1d9f5fc48a4'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'December',
+      enrollment: 567,
+      numContentSubmitted: 876,
+      numValidContent: 381,
+      numCompletedTasks: 993,
+      numIncomplete: 98,
+      totalPrizePool: 604,
+      numDeletedContent: 68,
+      bonusesReceived: 98,
+      registrationTime: '2/23/2019',
+      walletAddress: '0x8e1c329f133e'
+    },
+    {
+      month: 'September',
+      enrollment: 998,
+      numContentSubmitted: 467,
+      numValidContent: 626,
+      numCompletedTasks: 119,
+      numIncomplete: 658,
+      totalPrizePool: 814,
+      numDeletedContent: 296,
+      bonusesReceived: 508,
+      registrationTime: '6/1/2018',
+      walletAddress: '0x1d9f5fc48a4'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    },
+    {
+      month: 'June',
+      enrollment: 649,
+      numContentSubmitted: 216,
+      numValidContent: 369,
+      numCompletedTasks: 80,
+      numIncomplete: 473,
+      totalPrizePool: 222,
+      numDeletedContent: 827,
+      bonusesReceived: 304,
+      registrationTime: '8/29/2019',
+      walletAddress: '0x450949f62c8'
+    }
+  ];
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
+  const onDownload = () => {
+    console.log('download');
+  };
+  return (
+    <>
+      <div className="mt-3">
+        <div className="flex justify-between">
+          <div className="mb-4">
+            Overview Table
+            <DownloadOutlined
+              className="ml-6 cursor-pointer"
+              onClick={onDownload}
+            />
+          </div>
+        </div>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorBgContainer: '#0f0f0f',
+              colorText: '#ffffff',
+              colorBgTextActive: '#ffffff',
+              colorTextPlaceholder: '#ffffff',
+              colorTextHeading: ' #747474',
+              colorBorderSecondary: '#26262675',
+              colorSplit: '#26262675',
+              colorBorder: '#29282F'
+            }
+          }}
+        >
+          <Table
+            columns={columns1}
+            dataSource={data1}
+            pagination={{
+              pageSize: 4,
+              position: ['bottomCenter']
+            }}
+          />
+        </ConfigProvider>
+      </div>
+    </>
+  );
+};
+const TableUserOverview = () => {
+  //columns含有Month、Number of articles submitted、Number of unsuccessful articles、Number of valid articles、Bonus、Total Prize Pool
+  const columns: ColumnItem[] = [
+    {
+      title: 'Month',
+      dataIndex: 'month',
+      key: 'month',
+      align: 'center'
     },
     {
       title: 'Number of articles submitted',
       dataIndex: 'numArticlesSubmitted',
-      key: 'numArticlesSubmitted'
+      key: 'numArticlesSubmitted',
+      align: 'center'
     },
     {
       title: 'Number of unsuccessful articles',
       dataIndex: 'numUnsuccessfulArticles',
-      key: 'numUnsuccessfulArticles'
+      key: 'numUnsuccessfulArticles',
+      align: 'center'
     },
     {
       title: 'Number of valid articles',
       dataIndex: 'numValidArticles',
-      key: 'numValidArticles'
+      key: 'numValidArticles',
+      align: 'center'
     },
     {
       title: 'Bonus',
       dataIndex: 'bonus',
-      key: 'bonus'
+      key: 'bonus',
+      align: 'center'
     },
     {
       title: 'Total Prize Pool',
       dataIndex: 'totalPrizePool',
-      key: 'totalPrizePool'
+      key: 'totalPrizePool',
+      align: 'center'
     }
   ];
   const data: readonly any[] | undefined = [
@@ -330,7 +1068,7 @@ const TableUserOverview = () => {
       numValidArticles: 8,
       bonus: 100,
       totalPrizePool: 1000
-    },
+    }
   ];
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
@@ -340,9 +1078,9 @@ const TableUserOverview = () => {
   };
   return (
     <>
-      <div>
-        <div className="flex justify-between">
-          <div>
+      <div className="ml-[5vw] w-[70vw]">
+        <div className="mt-[38px] flex justify-between">
+          <div className="mb-[24px]">
             Overview
             <DownloadOutlined
               className="ml-6 cursor-pointer"
@@ -374,49 +1112,67 @@ const TableUserOverview = () => {
           />
         </ConfigProvider>
       </div>
-      <style jsx>{`
-        .month-border {
-          background: #0D0COF;
-          border: 1px solid #29282f;
-          border-radius: 8px;
-          padding: 0.5rem 1.5rem;
-          gap: 0.25rem;
-        }
-      `}</style>
     </>
   );
 };
 const UserArticle = () => {
+  const [data, setData] = useState<any[]>([]);
   //columns中有Article Title、Submit Time、Status
-  const columns = [
+  interface CustomColumnItem extends ColumnItem {
+    render?: (text: string) => string | React.JSX.Element;
+  }
+  const columns: CustomColumnItem[] = [
     {
       title: 'Article Title',
       dataIndex: 'articleTitle',
-      key: 'articleTitle'
+      key: 'articleTitle',
+      align: 'center'
     },
     {
       title: 'Submit Time',
       dataIndex: 'submitTime',
-      key: 'submitTime'
+      key: 'submitTime',
+      align: 'center'
     },
     {
       title: 'Status',
       dataIndex: 'status',
-      key: 'status'
+      key: 'status',
+      align: 'center',
+      render: (text: string) => {
+        if (text === 'Audit does not pass') {
+          return <Text type="danger">{text}</Text>;
+        }
+        return text;
+      }
     }
   ];
-  const data: readonly any[] | undefined = [
-    {
-      articleTitle: 'Article Title',
-      submitTime: '2021-01-01',
-      status: 'Normal'
-    },
-    {
-      articleTitle: 'Article Title',
-      submitTime: '2021-01-01',
-      status: 'Audit does not pass'
-    },
-  ]
+  const getData = async () => {
+    Promise.all([apiGetPostData('/api/post/user')]).then((values: any) => {
+      console.log(values[0].items);
+      const newData = values[0].items.map((item: any) => {
+        console.log(item);
+        if (item.status === 0) {
+          item.status = 'Normal';
+        } else if (item.status === 1) {
+          item.status = 'Audit does not pass';
+        }
+        return {
+          id: item.id,
+          articleTitle: item.title,
+          submitTime: item.createdAt,
+          status: item.status
+        };
+      });
+      setData(newData);
+      console.log(newData);
+    });
+  };
+
+  useEffect(() => {
+    getData();
+    console.log(data);
+  }, []);
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
@@ -425,9 +1181,9 @@ const UserArticle = () => {
   };
   return (
     <>
-      <div>
-        <div className="flex justify-between">
-          <div>
+      <div className="ml-[5vw] w-[70vw]">
+        <div className="mt-[10px] flex justify-between">
+          <div className="mb-[24px]">
             Article Details
             <DownloadOutlined
               className="ml-6 cursor-pointer"
@@ -459,16 +1215,8 @@ const UserArticle = () => {
           />
         </ConfigProvider>
       </div>
-      <style jsx>{`
-        .month-border {
-          background: #0D0COF;
-          border: 1px solid #29282f;
-          border-radius: 8px;
-          padding: 0.5rem 1.5rem;
-          gap: 0.25rem;
-        }
-      `}</style>
     </>
   );
 };
-export {Table2,Table1,TableUserOverview,UserArticle};
+
+export { Table2, Table1, TableUserOverview, UserArticle };

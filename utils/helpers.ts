@@ -4,7 +4,8 @@
 export const getApiUrl = (originUrl: string): string => {
   // const baseUrl = import.meta.env.VITE_BASE_API_URL;
   // if (process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'grey') {
-  return originUrl;
+  const baseUrl = 'https://test-locust-api.buidlerdao.xyz';
+  return baseUrl + originUrl;
   // }
   // return originUrl;
 };
@@ -178,4 +179,23 @@ export const scrollToBottom = () => {
 export const uniqueArray = (arr: any[], uniId: string) => {
   const res = new Map();
   return arr.filter((item) => !res.has(item[uniId]) && res.set(item[uniId], 1));
+};
+
+/**
+ * 转换为表格数据
+ * @param {Array} values 数组
+ * @param {Object} props 返回数据类型
+ * @return {Array} 转换后的数组
+ * */
+export const convertToTableData = (values: any[], props: any) => {
+  const newData = values[0].items.map((item: any) => {
+    console.log(item);
+    return {
+      id: item.id,
+      articleTitle: item.title,
+      submitTime: item.createdAt,
+      status: item.status
+    };
+  });
+  return newData;
 };

@@ -34,7 +34,7 @@ interface ButtonProps extends HTMLAttributes<HTMLElement> {
   className?: string;
   size?: 'sm' | 'md';
   color?: 'primary' | 'secondary' | undefined;
-  onclick?: any;
+  onClick?: any;
 }
 
 export const Button = ({
@@ -46,12 +46,12 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <div
-      onClick={onClick}
       className={button({
         size,
         color,
         class: className
       })}
+      onClick={onClick}
     >
       {children}
     </div>

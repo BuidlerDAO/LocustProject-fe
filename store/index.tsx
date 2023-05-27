@@ -1,5 +1,5 @@
 import { create, SetState } from 'zustand';
-import Sider from '../components/sider/sider';
+import usePostStore from './PostStore';
 
 type PostStore = {
   posts: {
@@ -22,7 +22,7 @@ type PostStore = {
   decrease: (title: string) => void;
 };
 
-const usePostStore = create<PostStore>((set: SetState<PostStore>) => ({
+const usePostStore1 = create<PostStore>((set: SetState<PostStore>) => ({
   // 数据
   posts: {
     0: {
@@ -65,23 +65,35 @@ expansion,modularization and other performance topics this year,we can probably 
     }))
 }));
 
-type LoginStore = {
-  isLoggedIn: boolean;
+export type Post = {
+  id: number;
+  title: string;
+  link: string;
+  originalText: string;
+  personalThoughts: string;
+  time: string;
+  avatar: string;
   username: string;
-  loginTest: () => void;
-  login: (username: string) => void;
 };
-
-const useLoginStore = create<LoginStore>((set: SetState<LoginStore>) => ({
-  isLoggedIn: false,
-  username: '',
-  loginTest: () => set((state) => ({ isLoggedIn: !state.isLoggedIn })),
-  login: (username) =>
-    set(() => ({
-      isLoggedIn: false,
-      username: username
-    }))
-}));
+export type PostData = {
+  items: [
+    {
+      id: number;
+      title: string;
+      body: string;
+      link: string;
+      thought: string;
+      userAddress: string;
+      avatar: string;
+      username: string;
+      status: number;
+      createdAt: string;
+      deletedAt: string;
+      updatedAt: string;
+    }
+  ];
+  total: number;
+};
 
 type SiderStore = {
   isExplore: boolean;
@@ -127,12 +139,13 @@ type UserStore = {
 };
 
 const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
-  isAdmin: false,
-  isLogin: false,
-  isRegister: false,
+  isAdmin: true,
+  isLogin: true,
+  isRegister: true,
   isConnectTwitter: false,
-  username: '',
-  avatar: '',
+  username: '@StarMemory',
+  avatar:
+    'http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg',
   setIsAdmin: (isAdmin: boolean) =>
     set(() => ({
       isAdmin: isAdmin
@@ -159,4 +172,4 @@ const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
     }))
 }));
 
-export { usePostStore, useLoginStore, useSiderStore, useUserStore };
+export { usePostStore, useSiderStore, useUserStore };

@@ -102,7 +102,7 @@ export const TextMore: FC<Props> = ({ text, maxLines }) => {
     if (isExpanded) {
       return `${getContentHeight()}px`;
     } else {
-      return `${maxLines * 1.5}em`;
+      return `${maxLines * 1.9}em`;
     }
   };
 
@@ -121,18 +121,18 @@ export const TextMore: FC<Props> = ({ text, maxLines }) => {
       </div>
       {!isExpanded && isTextOverflowed() && (
         <button
-          className="text-blue-500 hover:underline"
+          className="text-moreBtnGrey hover:underline"
           onClick={handleToggle}
         >
-          展开更多
+          More
         </button>
       )}
       {isExpanded && (
         <button
-          className="text-blue-500 hover:underline"
+          className="text-moreBtnGrey hover:underline"
           onClick={handleToggle}
         >
-          收起
+          Collapse
         </button>
       )}
     </div>

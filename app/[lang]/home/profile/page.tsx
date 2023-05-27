@@ -343,9 +343,17 @@ const Profile: React.FC = () => {
           style={{ borderColor: '#1d1d1d' }}
         >
           <div className="flex-raw item-center ml-[12px] mt-[4px] flex justify-center">
-            {!isConnectTwitter ? <Twitter /> : <Upload />}
-            {/*<Twitter />*/}
-            {/*<div className="ml-[8px] mt-[1.2px]">{!isConnectTwitter ? 'Twitter' : <a href={`https://twitter.com/${twitterName}`}>{`https://twitter.com/${twitterName}`}</a>}</div>*/}
+            {/*{!isConnectTwitter ? <Twitter /> : <Upload />}*/}
+            <Twitter />
+            <div className="ml-[8px] mt-[1.2px]">
+              {!isConnectTwitter ? (
+                'Twitter'
+              ) : (
+                <a
+                  href={`https://twitter.com/${twitterName}`}
+                >{`https://twitter.com/${twitterName}`}</a>
+              )}
+            </div>
           </div>
           <span
             className="mr-[12px] mt-[5.2px] cursor-pointer"

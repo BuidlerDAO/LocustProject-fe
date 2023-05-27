@@ -179,6 +179,9 @@ const Profile: React.FC = () => {
     }
     if (res.username !== '') {
       setUsername(res.username);
+      setUserName(res.username);
+      console.log('zustand-->', username);
+      console.log('state-->', userName);
     }
     if (res.twitter !== '') {
       setTwitterName(res.twitter);
@@ -340,7 +343,7 @@ const Profile: React.FC = () => {
             style={{ color: '#6E62EE' }}
             onClick={handleTwitterConnect}
           >
-            {!isConnectTwitter ? 'Connect' : 'DisConnect'}
+            {!isConnectTwitter ? 'Connect' : 'Disconnect'}
           </span>
         </div>
         {/*Submit*/}

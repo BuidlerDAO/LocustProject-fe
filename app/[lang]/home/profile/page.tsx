@@ -158,6 +158,9 @@ const Profile: React.FC = () => {
     if (res.username !== '') {
       setUsername(res.username);
     }
+    if (res.twitter !== '') {
+      setIsConnectTwitter(true);
+    }
   };
   useEffect(() => {
     getUserInfo();

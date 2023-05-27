@@ -27,6 +27,7 @@ const Profile: React.FC = () => {
     isConnectTwitter,
     setIsConnectTwitter
   } = useUserStore();
+
   const oauthToken = useSearchParams()?.get('oauthToken') as string;
   const verifier = useSearchParams()?.get('oauthVerifier') as string;
   //  防止 onchange 事件用户每输入一次如果就调 setUsername 会频繁调用 put 方法，因此先在页面内进行 useState 缓存再在 submit 时只调用一次
@@ -39,27 +40,6 @@ const Profile: React.FC = () => {
   const [cropper, setCropper] = useState<any>();
   const [aspect, setAspect] = useState<number>(1 / 1);
   //  头像裁剪
-  const handleCrop1 = async (e: any) => {
-    e.preventDefault();
-    // console.log(e.target);
-    setAspect(1 / 1);
-    const input: any = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.jpg, .gif, .png';
-    input.click();
-    e.target.onchange = async () => {
-      try {
-        const reader: any = new FileReader();
-        reader.addEventListener('load', () => {
-          setUploadUrl(reader.result.toString() || '');
-          setShowCrop(true);
-        });
-        reader.readAsDataURL(input.files[0]);
-      } catch (error) {
-        Toast.error('Upload error');
-      }
-    };
-  };
   const handleCrop = async (e: any) => {
     setAspect(1 / 1);
     try {
@@ -101,12 +81,16 @@ const Profile: React.FC = () => {
       if (
         userName !== '@StarMemory' ||
         avatar !==
-          'http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg?param=200y200'
+          'http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg'
       ) {
+        const twitterRes = await apiTwitterToken(location.href);
+        console.log('twitterRes', twitterRes);
         const res = await apiPutUserInfo({
           avatar: uploadUrl,
           name: userName,
           oauthToken,
+          // oauthToken:twitterRes.oauthToken,
+          // oauthTokenSecret:twitterRes.oauthTokenSecret,
           verifier
         });
         if (res) {
@@ -118,7 +102,7 @@ const Profile: React.FC = () => {
         }
       }
     } catch (error) {
-      Toast.success('Fail to Modify message!');
+      Toast.error('Fail to Modify message!');
       console.log(error);
     }
   };
@@ -126,8 +110,24 @@ const Profile: React.FC = () => {
   const handleTwitterConnect = async () => {
     if (!isConnectTwitter) {
       const res = await apiTwitterToken('http://localhost:3000');
-      window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
-      setIsConnectTwitter(true);
+      if (res) {
+        window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
+        const updateTwitter = await apiPutUserInfo({
+          avatar: uploadUrl,
+          name: userName,
+          oauthToken: res.oauthToken,
+          oauthTokenSecret: res.oauthTokenSecret,
+          // oauthToken:twitterRes.oauthToken,
+          // oauthTokenSecret:twitterRes.oauthTokenSecret,
+          verifier
+        });
+        if (updateTwitter.id) {
+          Toast.error('Connect Success!');
+          setIsConnectTwitter(true);
+        } else {
+          Toast.error('Connect Error!');
+        }
+      }
     } else {
       showModal();
     }

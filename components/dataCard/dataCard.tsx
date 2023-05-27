@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { use, useEffect } from 'react';
 
 import { CopyOutlined, DollarCircleOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
 import toast from '../toast/toast';
+import { getCookie } from '@/utils/cookie';
 
 const DataCard = (props: object) => {
+  const [address, setAddress] = React.useState(''); // replace with the value you want to copy
   const onCopy = () => {
-    const value =
-      '0x3bd0fc9d34b3966ebe27c143e1926a522d4e9b78eff3c66553e00126977aca91'; // replace with the value you want to copy
+    const value = address;
     navigator.clipboard
       .writeText(value)
       .then(() =>
@@ -17,6 +18,15 @@ const DataCard = (props: object) => {
       )
       .catch((err) => console.error('failed to copy', err));
   };
+  //从cookie中获取用户的地址
+  useEffect(() => {
+    const onAddress: string | undefined = getCookie('address');
+    setAddress(onAddress || '');
+  }, [setAddress]);
+
+  useEffect(() => {
+    console.log('address', address);
+  }, [address]);
   return (
     <>
       <div className={`component2-container `}>
@@ -32,9 +42,7 @@ const DataCard = (props: object) => {
               <span>Address</span>
             </span>
             <span className="component2-text04">
-              <span className="flex w-9/12">
-                0x3bd0fc9d34b3966ebe27c143e1926a522d4e9b78eff3c66553e00126977aca91
-              </span>
+              <span className="flex w-9/12">{address}</span>
             </span>
           </div>
           <div className="component2-frame2">

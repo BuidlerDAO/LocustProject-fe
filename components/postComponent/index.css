@@ -2,7 +2,7 @@
   z-index: 1;
   /* margin-top: 14px; */
 }
-.ant-form-item .ant-form-item-control-input {
+div > .ant-form-item div > .ant-form-item-control-input {
   position: relative;
   display: flex;
   align-items: center;
@@ -17,18 +17,18 @@
   border: none;
 }
 .ant-input-affix-wrapper .ant-input-suffix {
-  margin-inline-start: 4px;
+  margin-inline-start: 4px !important;
   height: 6vh;
 }
-.ant-input-affix-wrapper .ant-input-show-count-suffix {
+span > .ant-input-affix-wrapper .ant-input-show-count-suffix {
   /* color: rgba(0, 0, 0, 0.45); */
-  color: #596069;
+  color: #596069 !important;
 }
 .ant-form-item-control-input-content textarea {
   height: 30vh !important;
 }
 .ant-input-textarea-show-count .ant-input-data-count {
-  color: #596069;
+  color: #596069 !important;
   bottom: 2px;
   right: 2px;
 }

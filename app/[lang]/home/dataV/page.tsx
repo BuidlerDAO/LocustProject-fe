@@ -25,7 +25,7 @@ const dataV = () => {
   if (isAdmin) {
     return (
       <>
-        <div className="ml-[1vw] mt-[2vh] flex flex-col ">
+        <div className="ml-[1vw] mt-[2vh] flex flex-col pb-[10vh]">
           {/* <Table columns={columns} dataSource={data} /> */}
           <DataCard />
           <div>

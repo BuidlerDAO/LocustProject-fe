@@ -125,7 +125,7 @@ const Profile: React.FC = () => {
   //  推特 登录
   const handleTwitterConnect = async () => {
     if (!isConnectTwitter) {
-      const res = await apiTwitterToken(location.href);
+      const res = await apiTwitterToken('http://localhost:3000');
       window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
       setIsConnectTwitter(true);
     } else {
@@ -164,7 +164,12 @@ const Profile: React.FC = () => {
   }, [username, avatar, isConnectTwitter]);
   return (
     <div
-      style={{ backgroundColor: 'black', width: '100%', height: '100%' }}
+      style={{
+        backgroundColor: 'black',
+        width: '100%',
+        height: '100%',
+        paddingBottom: '40vh'
+      }}
       className="ml-[1.7vw] mt-[calc(100px+3.8rem)]"
     >
       {/*Profile字样*/}

@@ -1,6 +1,6 @@
 import request from '@/utils/request';
-import toast from '@/components/toast/toast';
 import { deleteCookie, setCookie } from '@/utils/cookie';
+import Toast from '@/components/toast/toast';
 
 /**
  * @description GET 获取签名
@@ -11,7 +11,7 @@ export const apiGetSig = async (address: string) => {
   if (res.code === 0) {
     return res.data.message;
   } else {
-    toast.error(`${res.msg}`, { id: `${res.msg}` });
+    Toast.error(`${res.msg}`);
     return '';
   }
 };
@@ -39,10 +39,10 @@ export const apiLogin = async (
     // 这里直接塞localStorage。不需要在业务塞了
     setCookie('token', res.data.token);
     setCookie('address', address);
-    toast.success(`Login success`);
+    Toast.success(`Login success`);
     return res.data;
   } else {
-    toast.error(`${res.msg}`, { id: `${res.msg}` });
+    Toast.error(`${res.msg}`);
     return '';
   }
 };
@@ -54,15 +54,18 @@ export const apiLogin = async (
  */
 export const apiGetStsToken = async () => {
   const res: any = await request(`/api/sts/s3`);
+  console.log(res);
   if (res.code === 0) {
+    console.log(111);
     return res.data;
   } else {
+    console.log(222);
     if (+res.code === 401) {
       deleteCookie('token');
       deleteCookie('address');
       window.location.href = '/login';
     }
-    toast.error(`${res.msg}`, { id: `${res.msg}` });
+    Toast.error(`${res.msg}`);
     return '';
   }
 };
@@ -78,7 +81,7 @@ export const apiPopupPost = async () => {
   if (res.code === 0) {
     return res.data;
   } else {
-    toast.error(`${res.msg}`, { id: `${res.msg}` });
+    Toast.error(`${res.msg}`, { id: `${res.msg}` });
     return '';
   }
 };

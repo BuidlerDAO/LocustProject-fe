@@ -265,695 +265,6 @@ const Table1 = () => {
       walletAddress: '0x8e1c329f133e'
     },
     {
-      month: 'September',
-      enrollment: 998,
-      numContentSubmitted: 467,
-      numValidContent: 626,
-      numCompletedTasks: 119,
-      numIncomplete: 658,
-      totalPrizePool: 814,
-      numDeletedContent: 296,
-      bonusesReceived: 508,
-      registrationTime: '6/1/2018',
-      walletAddress: '0x1d9f5fc48a4'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'December',
-      enrollment: 567,
-      numContentSubmitted: 876,
-      numValidContent: 381,
-      numCompletedTasks: 993,
-      numIncomplete: 98,
-      totalPrizePool: 604,
-      numDeletedContent: 68,
-      bonusesReceived: 98,
-      registrationTime: '2/23/2019',
-      walletAddress: '0x8e1c329f133e'
-    },
-    {
-      month: 'September',
-      enrollment: 998,
-      numContentSubmitted: 467,
-      numValidContent: 626,
-      numCompletedTasks: 119,
-      numIncomplete: 658,
-      totalPrizePool: 814,
-      numDeletedContent: 296,
-      bonusesReceived: 508,
-      registrationTime: '6/1/2018',
-      walletAddress: '0x1d9f5fc48a4'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    },
-    {
       month: 'June',
       enrollment: 649,
       numContentSubmitted: 216,
@@ -1013,6 +324,7 @@ const Table1 = () => {
   );
 };
 const TableUserOverview = () => {
+  const [data, setData] = useState<any[]>([]);
   //columns含有Month、Number of articles submitted、Number of unsuccessful articles、Number of valid articles、Bonus、Total Prize Pool
   const columns: ColumnItem[] = [
     {
@@ -1052,7 +364,32 @@ const TableUserOverview = () => {
       align: 'center'
     }
   ];
-  const data: readonly any[] | undefined = [
+  const getData = async () => {
+    Promise.all([apiGetPostData('/api/user/campaign/count')]).then(
+      (values: any) => {
+        console.log(values[0].items);
+        const newData = values[0].items.map((item: any) => {
+          //console.log(item);
+          return {
+            month: item.title,
+            numArticlesSubmitted: item.posts,
+            numUnsuccessfulArticles: item.unSuccessfulPosts,
+            numValidArticles: item.validPosts,
+            bonus: item.bonus,
+            totalPrizePool: item.prize
+          };
+        });
+        setData(newData);
+        console.log(newData);
+      }
+    );
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const data1: readonly any[] | undefined = [
     {
       month: '2021-01',
       numArticlesSubmitted: 10,
@@ -1078,7 +415,7 @@ const TableUserOverview = () => {
   };
   return (
     <>
-      <div className="ml-[5vw] w-[70vw]">
+      <div className="ml-[3vw] w-[70vw]">
         <div className="mt-[38px] flex justify-between">
           <div className="mb-[24px]">
             Overview
@@ -1149,9 +486,9 @@ const UserArticle = () => {
   ];
   const getData = async () => {
     Promise.all([apiGetPostData('/api/post/user')]).then((values: any) => {
-      console.log(values[0].items);
+      //console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
-        console.log(item);
+        // console.log(item);
         if (item.status === 0) {
           item.status = 'Normal';
         } else if (item.status === 1) {
@@ -1165,7 +502,7 @@ const UserArticle = () => {
         };
       });
       setData(newData);
-      console.log(newData);
+      //console.log(newData);
     });
   };
 
@@ -1181,7 +518,7 @@ const UserArticle = () => {
   };
   return (
     <>
-      <div className="ml-[5vw] w-[70vw]">
+      <div className="ml-[3vw] w-[70vw]">
         <div className="mt-[10px] flex justify-between">
           <div className="mb-[24px]">
             Article Details

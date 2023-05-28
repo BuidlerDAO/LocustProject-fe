@@ -180,7 +180,7 @@ const postComponent = (props: { rootClassName: any }) => {
                 >
                   <TextArea
                     showCount
-                    maxLength={100}
+                    maxLength={5000}
                     placeholder="Please enter the core content of the original text"
                     style={{
                       width: '70vw',
@@ -214,6 +214,8 @@ const postComponent = (props: { rootClassName: any }) => {
                 >
                   <TextArea
                     placeholder="Please enter Personal thoughts"
+                    maxLength={5000}
+                    showCount
                     style={{
                       width: '70vw',
                       height: '30vh',

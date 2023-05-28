@@ -23,7 +23,8 @@ module.exports = withTV({
         Grey: '#27272A',
         GreyWord: '#747474',
         textGrey: 'rgba(116, 116, 116, 1)',
-        lineGrey: '#262626'
+        lineGrey: '#262626',
+        moreBtnGrey: '#645C5C'
       }
     }
   },

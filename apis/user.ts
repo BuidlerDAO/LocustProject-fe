@@ -2,12 +2,15 @@ import toast from '@/components/toast/toast';
 import request from '@/utils/request';
 import { deleteCookie } from '@/utils/cookie';
 
+interface TwitterObject {
+  oauthToken: string;
+  oauthTokenSecret: string;
+  verifier: string;
+}
 interface userInfo {
   avatar: string;
   name: string;
-  oauthTokenSecret?: string;
-  oauthToken?: string;
-  verifier?: string;
+  twitter: TwitterObject;
 }
 /**
  * @description auth twitter
@@ -67,10 +70,11 @@ export const apiTwitterToken = async (url: string) => {
 };
 export const apiPutUserInfo = async (data: userInfo) => {
   const res: any = await request(`/api/user/profile`, {
-    method: 'POST',
+    method: 'PUT',
     body: data
   });
   if (res.code === 0) {
+    console.log('000 --> ', res);
     return res.data;
   } else {
     if (+res.code === 401) {
@@ -78,6 +82,7 @@ export const apiPutUserInfo = async (data: userInfo) => {
       deleteCookie('address');
       window.location.href = '/';
     }
+    console.log('!!!!000 --> ', res);
     toast.error(`${res.message}`, { id: `${res.message}` });
     return '';
   }

@@ -23,6 +23,7 @@ const SideMenu = (props: any) => {
   const pathname = usePathname();
   const flag = pathname == '/zh-CN' || pathname == '/en';
   const onJudge = () => {
+    console.log('click');
     if (!isLogin) {
       toast.error('Please login first');
       return;
@@ -144,18 +145,17 @@ const SideMenu = (props: any) => {
               onJudge;
             }}
           >
-            <div className="side-menu-frame10211">
+            <div
+              className="side-menu-frame10211"
+              onClick={() => {
+                setIsExplore(true);
+                setIsDataView(false);
+                setIsPost(false);
+                onJudge();
+              }}
+            >
               <span className="side-menu-text4">
-                <span
-                  onClick={() => {
-                    setIsExplore(true);
-                    setIsDataView(false);
-                    setIsPost(false);
-                    onJudge();
-                  }}
-                >
-                  New Post
-                </span>
+                <span>New Post</span>
               </span>
             </div>
           </div>

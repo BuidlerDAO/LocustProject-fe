@@ -141,8 +141,8 @@ const DataCard = (props: object) => {
           }
           .component2-frame2 {
             margin-top: 1rem;
-            margin-left: 7rem;
-            width: 15rem;
+            margin-left: 6vw;
+            width: 16vw;
             height: 112px;
             display: flex;
             flex-direction: column;

@@ -2,8 +2,62 @@ import React from 'react';
 import '@/styles/font.css';
 import { DollarCircleOutlined } from '@ant-design/icons';
 import { DollarIcon } from '../icons';
+import { apiGetPostData } from '@/apis/post';
+import toast from '../toast/toast';
 
 const UserDataCard = () => {
+  const [countPoints, setCountPoints] = React.useState<number>(0);
+  const [Awarded, setAwarded] = React.useState<string>('0');
+  const [Pending, setPending] = React.useState<string>('0');
+
+  const getCountPoints = async () => {
+    Promise.all([apiGetPostData('/api/user/post/count')])
+      .then((values: any) => {
+        //console.log(values);
+        const newData = values[0].count * 2;
+        setCountPoints(newData);
+        console.log(newData);
+      })
+      .catch((err) => {
+        toast.error('Failed to get data', {
+          duration: 4000
+        });
+        console.log(err);
+      });
+  };
+  const getAwarded = async () => {
+    Promise.all([apiGetPostData('/api/user/bonus/total')])
+      .then((values: any) => {
+        // console.log(values);
+        setAwarded(values[0]);
+        console.log(values.awarded);
+      })
+      .catch((err) => {
+        toast.error('Failed to get data', {
+          duration: 4000
+        });
+        console.log(err);
+      });
+  };
+  const getPending = async () => {
+    Promise.all([apiGetPostData('/api/user/bonus/unclaimed')])
+      .then((values: any) => {
+        console.log(values);
+        setPending(values[0]);
+        console.log(values.pending);
+      })
+      .catch((err) => {
+        toast.error('Failed to get data', {
+          duration: 4000
+        });
+        console.log(err);
+      });
+  };
+  React.useEffect(() => {
+    getCountPoints();
+    getAwarded();
+    getPending();
+  }, []);
   return (
     <div
       className={`relative left-[3vw] mt-6 flex h-[113px] w-full items-start`}
@@ -14,7 +68,7 @@ const UserDataCard = () => {
           <span>Awarded</span>
         </span>
         <span className="absolute left-6 top-14 h-auto text-left leading-9 text-[rgba(28,28,28,1)]">
-          <span className="text-2xl font-semibold">100 U</span>
+          <span className="text-2xl font-semibold">{Awarded + ' ' + 'U'}</span>
         </span>
         <span className=" absolute right-[2vw] top-[22px] h-6 w-6">
           <DollarCircleOutlined style={{ fontSize: '125%', color: 'black' }} />
@@ -26,7 +80,7 @@ const UserDataCard = () => {
           <span>Points Earned</span>
         </span>
         <span className="absolute left-6 top-14 h-auto text-left leading-9 text-[rgba(28,28,28,1)]">
-          <span className="text-2xl font-semibold">100</span>
+          <span className="text-2xl font-semibold">{countPoints}</span>
         </span>
         <span className="absolute right-[2vw] top-[22px] h-6 w-6">
           <DollarIcon />
@@ -38,7 +92,7 @@ const UserDataCard = () => {
           <span>Pending bonuses</span>
         </span>
         <span className="absolute left-6 top-14 h-auto text-left leading-9 text-[rgba(28,28,28,1)]">
-          <span className="text-2xl font-semibold">20 U</span>
+          <span className="text-2xl font-semibold">{Pending + ' ' + 'U'}</span>
         </span>
         <span className="absolute right-[2vw] top-[22px] h-6 w-6">
           <DollarCircleOutlined style={{ fontSize: '125%', color: 'black' }} />

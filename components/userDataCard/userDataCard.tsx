@@ -16,7 +16,7 @@ const UserDataCard = () => {
         //console.log(values);
         const newData = values[0].count * 2;
         setCountPoints(newData);
-        console.log(newData);
+        // console.log(newData);
       })
       .catch((err) => {
         toast.error('Failed to get data', {
@@ -30,7 +30,7 @@ const UserDataCard = () => {
       .then((values: any) => {
         // console.log(values);
         setAwarded(values[0]);
-        console.log(values.awarded);
+        //console.log(values.awarded);
       })
       .catch((err) => {
         toast.error('Failed to get data', {
@@ -42,9 +42,9 @@ const UserDataCard = () => {
   const getPending = async () => {
     Promise.all([apiGetPostData('/api/user/bonus/unclaimed')])
       .then((values: any) => {
-        console.log(values);
+        // console.log(values);
         setPending(values[0]);
-        console.log(values.pending);
+        // console.log(values.pending);
       })
       .catch((err) => {
         toast.error('Failed to get data', {
@@ -68,7 +68,9 @@ const UserDataCard = () => {
           <span>Awarded</span>
         </span>
         <span className="absolute left-6 top-14 h-auto text-left leading-9 text-[rgba(28,28,28,1)]">
-          <span className="text-2xl font-semibold">{Awarded + ' ' + 'U'}</span>
+          <span className="text-2xl font-semibold">
+            {Awarded ? Awarded + ' U' : '0 U'}
+          </span>
         </span>
         <span className=" absolute right-[2vw] top-[22px] h-6 w-6">
           <DollarCircleOutlined style={{ fontSize: '125%', color: 'black' }} />
@@ -92,7 +94,9 @@ const UserDataCard = () => {
           <span>Pending bonuses</span>
         </span>
         <span className="absolute left-6 top-14 h-auto text-left leading-9 text-[rgba(28,28,28,1)]">
-          <span className="text-2xl font-semibold">{Pending + ' ' + 'U'}</span>
+          <span className="text-2xl font-semibold">
+            {Awarded ? Awarded + ' U' : '0 U'}
+          </span>
         </span>
         <span className="absolute right-[2vw] top-[22px] h-6 w-6">
           <DollarCircleOutlined style={{ fontSize: '125%', color: 'black' }} />

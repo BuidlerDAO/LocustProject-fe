@@ -83,7 +83,7 @@ const Block = (props: {
     </button>
   );
   useEffect(() => {
-    console.log(props.data);
+    console.log(props.data.avatar);
   }, []);
   return (
     <>

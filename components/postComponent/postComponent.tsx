@@ -94,8 +94,8 @@ const postComponent = (props: { rootClassName: any }) => {
                     width: '70vw',
                     height: '7vh'
                   }}
-                  showCount
-                  maxLength={20}
+                  // showCount
+                  // maxLength={20}
                   className="absolute left-0 top-0 flex shrink-0 items-start rounded-lg  border-none text-white hover:border-solid"
                 />
               </Form.Item>

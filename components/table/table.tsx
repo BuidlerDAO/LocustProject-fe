@@ -2,23 +2,8 @@
 import React, { useEffect, useState } from 'react';
 
 import './index.css';
-import Logo from '../icons/logo';
-import {
-  AppstoreOutlined,
-  DownloadOutlined,
-  DownOutlined,
-  RiseOutlined
-} from '@ant-design/icons';
-import Link from 'next/link';
-import {
-  ConfigProvider,
-  Dropdown,
-  MenuProps,
-  Select,
-  Space,
-  Table,
-  Typography
-} from 'antd';
+import { DownloadOutlined } from '@ant-design/icons';
+import { ConfigProvider, Select, Table, Typography } from 'antd';
 import { getFullMonth } from '@/utils/time';
 import { apiGetPostData } from '@/apis/post';
 type AlignType = 'left' | 'center' | 'right';

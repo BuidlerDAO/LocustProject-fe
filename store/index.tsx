@@ -126,13 +126,13 @@ const useSiderStore = create<SiderStore>((set: SetState<SiderStore>) => ({
 type UserStore = {
   isAdmin: boolean;
   isLogin: boolean;
-  isRegister: boolean;
+  isSignUp: boolean;
   isConnectTwitter: boolean;
   username: string;
   avatar: string;
   setIsAdmin: (isAdmin: boolean) => void;
   setIsLogin: (isLogin: boolean) => void;
-  setIsRegister: (isRegister: boolean) => void;
+  setIsSignUp: (isRegister: boolean) => void;
   setIsConnectTwitter: (isConnectTwitter: boolean) => void;
   setUsername: (username: string) => void;
   setAvatar: (avatar: string) => void;
@@ -141,7 +141,7 @@ type UserStore = {
 const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
   isAdmin: true,
   isLogin: true,
-  isRegister: true,
+  isSignUp: true,
   isConnectTwitter: false,
   username: '@StarMemory',
   avatar:
@@ -154,9 +154,9 @@ const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
     set(() => ({
       isLogin: isLogin
     })),
-  setIsRegister: (isRegister: boolean) =>
+  setIsSignUp: (isSignUp: boolean) =>
     set(() => ({
-      isRegister: isRegister
+      isSignUp: isSignUp
     })),
   setIsConnectTwitter: (isConnectTwitter: boolean) =>
     set(() => ({

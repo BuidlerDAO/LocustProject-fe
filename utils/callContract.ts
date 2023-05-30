@@ -26,7 +26,9 @@ export async function callContract() {
     const contractWithSigner = contract.connect(signer);
     try {
       await contractWithSigner.claim().then(() => {
-        Toast.success('succeed!');
+        Toast.success('Enrollment success', {
+          duration: 4000
+        });
       });
     } catch (error: any) {
       const message = error.message;

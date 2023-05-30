@@ -28,11 +28,12 @@ const Index = memo((props: any) => {
       duration: 4000
     });
   };
-  const onClickSuccess = () => {
-    // callContract()
-    Toast.success('Enrollment success', {
-      duration: 4000
-    });
+  const onClickSuccess = async () => {
+    try {
+      await callContract();
+    } catch (error) {
+      console.log(error);
+    }
   };
   //一个判断函数：判断是否已经报名
   const onJudge = () => {

@@ -94,14 +94,12 @@ const Index = memo((props: any) => {
   };
   //  已登录状况下先获取用户信息
   useEffect(() => {
-    async function initUseInfo() {
-      const res = await apiUserInfo();
-      setUsername(res.username);
-      setAvatar(res.avatar);
-      setTwitter(res.twitter);
-    }
     if (getCookie('token') && getCookie('address')) {
-      initUseInfo();
+      apiUserInfo().then((res) => {
+        setUsername(res.username);
+        setAvatar(res.avatar);
+        setTwitter(res.twitter);
+      });
     }
   }, []);
   return (

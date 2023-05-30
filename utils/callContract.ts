@@ -3,7 +3,8 @@ import { abi } from '@/apis/abi';
 import Toast from '@/components/toast/toast';
 import { ethers } from 'ethers';
 import { switchWeb3ChainId } from '@/utils/web3';
-export async function callContract(contractAddress: string) {
+export async function callContract() {
+  const contractAddress = '0xB8d30C0246d67Dc1aD419596f68d7a0cDad09060';
   // 连接到以太坊测试网络
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   provider.getNetwork().then(async (network) => {

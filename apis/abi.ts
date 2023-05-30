@@ -103,5 +103,12 @@ export const abi = [
     ],
     stateMutability: 'nonpayable',
     type: 'function'
+  },
+  {
+    inputs: [],
+    name: 'claim',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
   }
 ];

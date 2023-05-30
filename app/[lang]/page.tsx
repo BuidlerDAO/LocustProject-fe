@@ -18,20 +18,22 @@ import Modalprop from '@/components/modal/modal';
 import { getCurrentTime } from '@/utils/time';
 
 import { useUserStore } from '@/store';
+import { callContract } from '@/utils/callContract';
 
 const Index = memo((props: any) => {
   const { isSignUp, setIsSignUp, isLogin } = useUserStore();
   const [month, daysLeft] = getCurrentTime();
-  const onClickError = useCallback(() => {
+  const onClickError = () => {
     Toast.error('You have already signed up and cannot click', {
       duration: 4000
     });
-  }, []);
-  const onClickSuccess = useCallback(() => {
+  };
+  const onClickSuccess = () => {
+    // callContract()
     Toast.success('Enrollment success', {
       duration: 4000
     });
-  }, []);
+  };
   //一个判断函数：判断是否已经报名
   const onJudge = () => {
     if (isLogin) {
@@ -42,6 +44,7 @@ const Index = memo((props: any) => {
           showModal();
         } else {
           onClickSuccess();
+          // callContract()
           setIsSignUp(true);
         }
       }

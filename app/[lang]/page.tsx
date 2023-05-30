@@ -19,9 +19,12 @@ import { getCurrentTime } from '@/utils/time';
 
 import { useUserStore } from '@/store';
 import { callContract } from '@/utils/callContract';
+import { getCookie } from '@/utils/cookie';
+import { apiUserInfo } from '@/apis/user';
 
 const Index = memo((props: any) => {
-  const { isSignUp, setIsSignUp, isLogin } = useUserStore();
+  const { isSignUp, setIsSignUp, isLogin, setUsername, setAvatar, setTwitter } =
+    useUserStore();
   const [month, daysLeft] = getCurrentTime();
   const onClickError = () => {
     Toast.error('You have already signed up and cannot click', {
@@ -89,6 +92,18 @@ const Index = memo((props: any) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+  //  已登录状况下先获取用户信息
+  useEffect(() => {
+    async function initUseInfo() {
+      const res = await apiUserInfo();
+      setUsername(res.username);
+      setAvatar(res.avatar);
+      setTwitter(res.twitter);
+    }
+    if (getCookie('token') && getCookie('address')) {
+      initUseInfo();
+    }
+  }, []);
   return (
     <>
       <div

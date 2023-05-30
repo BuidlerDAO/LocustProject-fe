@@ -20,7 +20,7 @@ import { getCurrentTime } from '@/utils/time';
 import { useUserStore } from '@/store';
 
 const Index = memo((props: any) => {
-  const { isRegister, setIsRegister, isLogin } = useUserStore();
+  const { isSignUp, setIsSignUp, isLogin } = useUserStore();
   const [month, daysLeft] = getCurrentTime();
   const onClickError = useCallback(() => {
     Toast.error('You have already signed up and cannot click', {
@@ -35,14 +35,14 @@ const Index = memo((props: any) => {
   //一个判断函数：判断是否已经报名
   const onJudge = () => {
     if (isLogin) {
-      if (isRegister) {
+      if (isSignUp) {
         onClickError();
       } else {
         if (daysLeft < 10) {
           showModal();
         } else {
           onClickSuccess();
-          setIsRegister(true);
+          setIsSignUp(true);
         }
       }
     } else {
@@ -80,7 +80,7 @@ const Index = memo((props: any) => {
   const handleOk = () => {
     setIsModalOpen(false);
     onClickSuccess();
-    setIsRegister(true);
+    setIsSignUp(true);
   };
   const handleCancel = () => {
     setIsModalOpen(false);

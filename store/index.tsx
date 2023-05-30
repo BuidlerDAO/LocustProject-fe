@@ -130,20 +130,23 @@ type UserStore = {
   isConnectTwitter: boolean;
   username: string;
   avatar: string;
+  twitter: string;
   setIsAdmin: (isAdmin: boolean) => void;
   setIsLogin: (isLogin: boolean) => void;
   setIsSignUp: (isRegister: boolean) => void;
   setIsConnectTwitter: (isConnectTwitter: boolean) => void;
   setUsername: (username: string) => void;
   setAvatar: (avatar: string) => void;
+  setTwitter: (twitter: string) => void;
 };
 
 const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
   isAdmin: true,
   isLogin: true,
-  isSignUp: true,
+  isSignUp: false,
   isConnectTwitter: false,
   username: '@StarMemory',
+  twitter: '',
   avatar:
     'http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg',
   setIsAdmin: (isAdmin: boolean) =>
@@ -169,6 +172,10 @@ const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
   setAvatar: (avatar: string) =>
     set(() => ({
       avatar: avatar
+    })),
+  setTwitter: (twitter: string) =>
+    set(() => ({
+      twitter: twitter
     }))
 }));
 

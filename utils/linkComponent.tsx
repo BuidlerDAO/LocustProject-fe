@@ -9,7 +9,7 @@ interface MyProps {
 
 const LinkComponents = (props: MyProps) => {
   const { children, flag, path } = props;
-  return <>{flag ? <Link href={path}>{children}</Link> : { props }}</>;
+  return <>{flag ? <Link href={`/${path}`}>{children}</Link> : { props }}</>;
 };
 
 export default memo(LinkComponents);

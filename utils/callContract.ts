@@ -1,5 +1,5 @@
 import { getCookie } from '@/utils/cookie';
-import { abi } from '@/apis/abi';
+import { abi } from '@/apis/abi.json';
 import Toast from '@/components/toast/toast';
 import { ethers } from 'ethers';
 import { switchWeb3ChainId } from '@/utils/web3';

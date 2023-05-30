@@ -21,6 +21,7 @@ import { useUserStore } from '@/store';
 import { Button } from '../button';
 import { useState } from 'react';
 import './index.css';
+import SignUp from '@/components/signUp';
 
 const getRandomInt = (max: number, min = 0) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
@@ -139,7 +140,7 @@ const Navbar = () => {
                 ) : (
                   <div className="ml-[16vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
                     <Link href="/" className="relative right-[3.6vw]">
-                      Sign up for Locust
+                      <SignUp />
                     </Link>
                   </div>
                 )}

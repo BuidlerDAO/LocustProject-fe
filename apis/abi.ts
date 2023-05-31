@@ -42,44 +42,51 @@ export const abi = [
   {
     inputs: [
       {
-        internalType: 'bytes32',
-        name: '_campaignId',
-        type: 'bytes32'
-      },
-      {
         components: [
           {
+            internalType: 'bytes32',
+            name: 'campaignId',
+            type: 'bytes32'
+          },
+          {
+            components: [
+              {
+                internalType: 'uint256',
+                name: 'tokenType',
+                type: 'uint256'
+              },
+              {
+                internalType: 'address',
+                name: 'tokenAddress',
+                type: 'address'
+              },
+              {
+                internalType: 'uint256',
+                name: 'amount',
+                type: 'uint256'
+              }
+            ],
+            internalType: 'struct GrowlightVault.TokenInfo[]',
+            name: 'tokens',
+            type: 'tuple[]'
+          },
+          {
             internalType: 'uint256',
-            name: 'tokenType',
+            name: 'nonce',
             type: 'uint256'
           },
           {
-            internalType: 'address',
-            name: 'tokenAddress',
-            type: 'address'
-          },
-          {
-            internalType: 'uint256',
-            name: 'amount',
-            type: 'uint256'
+            internalType: 'bytes',
+            name: 'signature',
+            type: 'bytes'
           }
         ],
-        internalType: 'struct GrowlightVault.TokenInfo[]',
-        name: '_tokens',
+        internalType: 'struct GrowlightVault.ClaimRewardParam[]',
+        name: '_params',
         type: 'tuple[]'
-      },
-      {
-        internalType: 'uint256',
-        name: '_nonce',
-        type: 'uint256'
-      },
-      {
-        internalType: 'bytes',
-        name: '_signature',
-        type: 'bytes'
       }
     ],
-    name: 'claimReward',
+    name: 'batchClaimReward',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function'

@@ -40,7 +40,7 @@ const Index = memo((props: any) => {
   };
   const onClickSuccess = async () => {
     try {
-      await callContract();
+      await callContract('addReward');
     } catch (error) {
       console.log(error);
     }
@@ -55,7 +55,6 @@ const Index = memo((props: any) => {
           showModal();
         } else {
           onClickSuccess();
-          // callContract()
           setIsSignUp(true);
         }
       }

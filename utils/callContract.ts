@@ -1,5 +1,5 @@
 import { getCookie } from '@/utils/cookie';
-import { abi } from '@/apis/abi.json';
+import { abi } from '@/apis/abi';
 import Toast from '@/components/toast/toast';
 import { ethers } from 'ethers';
 import { switchWeb3ChainId } from '@/utils/web3';
@@ -11,6 +11,7 @@ export async function callContract() {
     if (network.chainId != 5) {
       await switchWeb3ChainId('5');
     }
+
     //  创建 Contract 实例
     const contract = new ethers.Contract(contractAddress, abi, provider);
     const signer = provider.getSigner();

@@ -44,8 +44,6 @@ export const apiUserInfo = async () => {
     return res.data;
   } else {
     if (+res.code === 401) {
-      deleteCookie('token');
-      deleteCookie('address');
       window.location.href = '/';
     }
     toast.error(`${res.message}`, { id: `${res.message}` });

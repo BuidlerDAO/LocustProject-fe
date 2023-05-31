@@ -38,6 +38,7 @@ import DownOutlined from '@/components/icons/downOutLined';
 import { useRouter } from 'next/navigation';
 import Toast from '@/components/toast/toast';
 import { useUserStore } from '@/store';
+import { apiUserInfo } from '@/apis/user';
 interface ConnectProps extends HTMLAttributes<HTMLElement> {
   className?: ClassName;
   onData?: (type: number, data: any) => void;
@@ -286,7 +287,10 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         handleSign();
       }
       if (getCookie('token') && getCookie('address')) {
-        setCurrentAddress(getCookie('address') || '');
+        //  自己设置 token & address 无法通过这层验证
+        apiUserInfo().then(() => {
+          setCurrentAddress(getCookie('address') || '');
+        });
       }
     }, [address]);
     // Render

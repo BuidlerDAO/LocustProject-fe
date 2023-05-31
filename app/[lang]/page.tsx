@@ -21,6 +21,7 @@ import { useUserStore } from '@/store';
 import { callContract } from '@/utils/callContract';
 import { getCookie } from '@/utils/cookie';
 import { apiUserInfo } from '@/apis/user';
+import { set } from 'nprogress';
 
 const Index = memo((props: any) => {
   const { isSignUp, setIsSignUp, isLogin, setUsername, setAvatar, setTwitter } =
@@ -72,6 +73,7 @@ const Index = memo((props: any) => {
     // console.log(clientW);
   };
   useEffect(() => {
+    console.log(isSignUp);
     if (typeof window !== undefined) {
       window.addEventListener('resize', resizeListener);
       window.dispatchEvent(new Event('resize')); // trigger resize on first mount
@@ -99,6 +101,7 @@ const Index = memo((props: any) => {
         setUsername(res.username);
         setAvatar(res.avatar);
         setTwitter(res.twitter);
+        setIsSignUp(true);
       });
     }
   }, []);

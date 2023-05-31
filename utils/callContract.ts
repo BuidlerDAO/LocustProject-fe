@@ -8,8 +8,8 @@ export async function callContract() {
   // 连接到以太坊测试网络
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   provider.getNetwork().then(async (network) => {
-    if (network.chainId != 5) {
-      await switchWeb3ChainId('5');
+    if (network.chainId != 80001) {
+      await switchWeb3ChainId('80001');
     }
 
     //  创建 Contract 实例

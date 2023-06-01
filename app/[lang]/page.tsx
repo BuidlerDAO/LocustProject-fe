@@ -24,8 +24,15 @@ import { apiUserInfo } from '@/apis/user';
 import { set } from 'nprogress';
 
 const Index = memo((props: any) => {
-  const { isSignUp, setIsSignUp, isLogin, setUsername, setAvatar, setTwitter } =
-    useUserStore();
+  const {
+    isSignUp,
+    setIsSignUp,
+    isLogin,
+    setUsername,
+    setAvatar,
+    setTwitter,
+    setIsLogin
+  } = useUserStore();
   const [month, daysLeft] = getCurrentTime();
   const onClickError = () => {
     Toast.error('You have already signed up and cannot click', {
@@ -101,7 +108,7 @@ const Index = memo((props: any) => {
         setUsername(res.username);
         setAvatar(res.avatar);
         setTwitter(res.twitter);
-        setIsSignUp(true);
+        setIsLogin(true);
       });
     }
   }, []);

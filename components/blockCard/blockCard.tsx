@@ -29,6 +29,7 @@ import { LinkIcon, TimeIcon } from '../icons';
 import TextMore from '../textMore';
 import toast from '../toast/toast';
 import Image from 'next/image';
+import { apiDeletePostData } from '@/apis/post';
 
 const Block = (props: {
   rootClassName: any;
@@ -62,9 +63,9 @@ const Block = (props: {
   };
 
   function onDelete() {
-    console.log(props.data);
+    console.log(props.data.id);
     decrease(props.data.id);
-
+    apiDeletePostData(props.data.id);
     toast.success('Delete success', {
       duration: 4000
     });

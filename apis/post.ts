@@ -80,11 +80,11 @@ export const apiGetPostData = async (url: string) => {
  * @params id，url
  * @api https://test-locust-api.buidlerdao.xyz/api/admin/post
  * */
-export const apiDeletePostData = async (url: string, id: number) => {
+export const apiDeletePostData = async (id: number) => {
   try {
-    const res = await request(url, {
+    const res = await request(`/api/admin/post/`, {
       method: 'DELETE',
-      body: { id }
+      body: id
     });
     if (res.code === 200) {
       toast.success('删除成功');

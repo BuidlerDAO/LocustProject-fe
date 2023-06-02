@@ -4,10 +4,11 @@ import { Avatar, Button, Collapse, List, Space, Tooltip } from 'antd';
 import React, { useEffect, useState } from 'react';
 import Block from '@/components/blockCard/blockCard';
 import { apiGetPostList } from '@/apis/post';
-import { Post } from '@/store';
+import { Post } from '@/store/PostStore';
+import { usePostStore } from '@/store';
 
 const App = () => {
-  const [data, setData] = useState<Post[]>([]);
+  const { setPosts, posts } = usePostStore();
 
   useEffect(() => {
     getData();
@@ -18,6 +19,7 @@ const App = () => {
       (values: any) => {
         const newData = values.flatMap((item: any) =>
           item.items.map((item: any) => ({
+            id: item.id,
             title: item.title,
             link: item.link,
             originalText: item.body,
@@ -27,7 +29,7 @@ const App = () => {
             username: item.username
           }))
         );
-        setData(newData);
+        setPosts(newData);
         console.log(newData);
       }
     );
@@ -39,7 +41,7 @@ const App = () => {
         itemLayout="vertical"
         size="large"
         style={{ color: 'white' }}
-        dataSource={data}
+        dataSource={posts}
         renderItem={(item) => (
           <List.Item title={item.title}>
             <Block data={item} />

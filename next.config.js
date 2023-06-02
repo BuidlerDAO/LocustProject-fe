@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['p4.music.126.net', 'cdn.vitae3.me']
+    domains: ['cdn.vitae3.me']
   },
   experimental: {
     appDir: true

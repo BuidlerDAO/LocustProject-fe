@@ -26,7 +26,7 @@ const Profile: React.FC = () => {
     isConnectTwitter,
     setIsConnectTwitter
   } = useUserStore();
-  //  页面重定向到个人页面时路径中带有 Twitter 返回的 oauth_token,oauth_verifier 狐猴去进行个人信息的修改
+  //  页面重定向到个人页面时路径中带有 Twitter 返回的 oauth_token,oauth_verifier 去进行个人信息的修改
   const oauthToken = useSearchParams()?.get('oauth_token') as string;
   const verifier = useSearchParams()?.get('oauth_verifier') as string;
   //  防止 onchange 事件用户每输入一次如果就调 setUsername 会频繁调用 put 方法，因此先在页面内进行 useState 缓存再在 submit 时只调用一次
@@ -67,12 +67,12 @@ const Profile: React.FC = () => {
       const bodyBlob = dataURLtoBlob(preview);
       const bodyFile = blobToFile(bodyBlob, address.slice(0, 8));
       console.log(bodyBlob);
-      // const res: any = await upload({
-      //   key: address.slice(0, 8),
-      //   body: bodyFile
-      // });
-      // console.log(res);
-      // setUploadUrl(`${res.host}/${res.key}`);
+      const res: any = await upload({
+        key: address.slice(0, 8),
+        body: bodyFile
+      });
+      console.log(res);
+      setUploadUrl(`${res.host}/${res.key}`);
       Toast.success('upload success');
     } catch (error) {
       console.log('handleUpload --> ', error);
@@ -90,15 +90,11 @@ const Profile: React.FC = () => {
         //  单单修改用户信息不连接推特传空就行
         const res = await apiPutUserInfo({
           avatar: uploadUrl,
-          name: userName,
-          twitter: {
-            oauthToken: '',
-            oauthTokenSecret: '',
-            verifier: ''
-          }
+          name: userName
         });
         if (res) {
           Toast.success('Modify message success!');
+          console.log(res);
           setUsername(username);
           setAvatar(res.avatar);
           //  测试是否成功更新数据
@@ -180,6 +176,7 @@ const Profile: React.FC = () => {
     const res = await apiUserInfo();
     console.log(res);
     if (res.avatar !== '') {
+      setUploadUrl(res.avatar);
       setAvatar(res.avatar);
     }
     if (res.username !== '') {

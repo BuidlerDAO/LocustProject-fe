@@ -18,31 +18,44 @@ import Modalprop from '@/components/modal/modal';
 import { getCurrentTime } from '@/utils/time';
 
 import { useUserStore } from '@/store';
+import { callContract } from '@/utils/callContract';
+import { getCookie } from '@/utils/cookie';
+import { apiUserInfo } from '@/apis/user';
 
 const Index = memo((props: any) => {
-  const { isRegister, setIsRegister, isLogin } = useUserStore();
+  const {
+    isSignUp,
+    setIsSignUp,
+    isLogin,
+    setUsername,
+    setAvatar,
+    setTwitter,
+    setIsLogin
+  } = useUserStore();
   const [month, daysLeft] = getCurrentTime();
-  const onClickError = useCallback(() => {
+  const onClickError = () => {
     Toast.error('You have already signed up and cannot click', {
       duration: 4000
     });
-  }, []);
-  const onClickSuccess = useCallback(() => {
-    Toast.success('Enrollment success', {
-      duration: 4000
-    });
-  }, []);
+  };
+  const onClickSuccess = async () => {
+    try {
+      await callContract('addReward');
+    } catch (error) {
+      console.log(error);
+    }
+  };
   //一个判断函数：判断是否已经报名
   const onJudge = () => {
     if (isLogin) {
-      if (isRegister) {
+      if (isSignUp) {
         onClickError();
       } else {
         if (daysLeft < 10) {
           showModal();
         } else {
           onClickSuccess();
-          setIsRegister(true);
+          setIsSignUp(true);
         }
       }
     } else {
@@ -80,11 +93,22 @@ const Index = memo((props: any) => {
   const handleOk = () => {
     setIsModalOpen(false);
     onClickSuccess();
-    setIsRegister(true);
+    setIsSignUp(true);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+  //  已登录状况下先获取用户信息
+  useEffect(() => {
+    if (getCookie('token') && getCookie('address')) {
+      apiUserInfo().then((res) => {
+        setUsername(res.username);
+        setAvatar(res.avatar);
+        setTwitter(res.twitter);
+        setIsLogin(true);
+      });
+    }
+  }, []);
   return (
     <>
       <div

@@ -19,6 +19,7 @@ import {
   Tooltip,
   Typography
 } from 'antd';
+import { Post } from '@/store/PostStore';
 import { usePostStore } from '@/store';
 import { on } from 'events';
 import { Colors } from '../../types/components/theme';
@@ -28,6 +29,7 @@ import { LinkIcon, TimeIcon } from '../icons';
 import TextMore from '../textMore';
 import toast from '../toast/toast';
 import Image from 'next/image';
+import { apiDeletePostData } from '@/apis/post';
 
 const Block = (props: {
   rootClassName: any;
@@ -41,15 +43,7 @@ const Block = (props: {
   Frame_src: string | undefined;
   Line18_alt: string | undefined;
   Line18_src: string | undefined;
-  data: {
-    title: string;
-    link: string;
-    originalText: string;
-    personalThoughts: string;
-    time: string;
-    avatar: string;
-    username: string;
-  };
+  data: Post;
 }) => {
   const decrease = usePostStore((state: any) => state.decrease);
 
@@ -69,8 +63,9 @@ const Block = (props: {
   };
 
   function onDelete() {
-    console.log(props.data);
-    decrease(props.data.title);
+    console.log(props.data.id);
+    decrease(props.data.id);
+    apiDeletePostData(props.data.id);
     toast.success('Delete success', {
       duration: 4000
     });
@@ -83,7 +78,7 @@ const Block = (props: {
     </button>
   );
   useEffect(() => {
-    console.log(props.data);
+    console.log(props.data.avatar);
   }, []);
   return (
     <>

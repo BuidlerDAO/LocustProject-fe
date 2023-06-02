@@ -2,23 +2,8 @@
 import React, { useEffect, useState } from 'react';
 
 import './index.css';
-import Logo from '../icons/logo';
-import {
-  AppstoreOutlined,
-  DownloadOutlined,
-  DownOutlined,
-  RiseOutlined
-} from '@ant-design/icons';
-import Link from 'next/link';
-import {
-  ConfigProvider,
-  Dropdown,
-  MenuProps,
-  Select,
-  Space,
-  Table,
-  Typography
-} from 'antd';
+import { DownloadOutlined } from '@ant-design/icons';
+import { ConfigProvider, Select, Table, Typography } from 'antd';
 import { getFullMonth } from '@/utils/time';
 import { apiGetPostData } from '@/apis/post';
 type AlignType = 'left' | 'center' | 'right';
@@ -31,6 +16,7 @@ interface ColumnItem {
   align?: AlignType;
 }
 const Table2 = () => {
+  const [data, setData] = useState([]);
   const columns2: ColumnItem[] = [
     {
       align: 'center',
@@ -125,6 +111,30 @@ const Table2 = () => {
       registrationTime: '2021-02-01'
     }
   ];
+  const getData = async () => {
+    Promise.all([apiGetPostData('/api/user/campaign/count')]).then(
+      (values: any) => {
+        console.log(values[0].items);
+        const newData = values[0].items.map((item: any) => {
+          //console.log(item);
+          return {
+            month: item.title,
+            numArticlesSubmitted: item.posts,
+            numUnsuccessfulArticles: item.unSuccessfulPosts,
+            numValidArticles: item.validPosts,
+            bonus: item.bonus,
+            totalPrizePool: item.prize
+          };
+        });
+        setData(newData);
+        console.log(newData);
+      }
+    );
+  };
+
+  useEffect(() => {
+    // getData();
+  }, []);
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
@@ -206,6 +216,7 @@ const Table2 = () => {
   );
 };
 const Table1 = () => {
+  const [data, setData] = useState<any>([]);
   const columns1: ColumnItem[] = [
     {
       title: 'Month',
@@ -250,34 +261,30 @@ const Table1 = () => {
       align: 'center'
     }
   ];
-  const data1: readonly any[] | undefined = [
-    {
-      month: 'December',
-      enrollment: 567,
-      numContentSubmitted: 876,
-      numValidContent: 381,
-      numCompletedTasks: 993,
-      numIncomplete: 98,
-      totalPrizePool: 604,
-      numDeletedContent: 68,
-      bonusesReceived: 98,
-      registrationTime: '2/23/2019',
-      walletAddress: '0x8e1c329f133e'
-    },
-    {
-      month: 'June',
-      enrollment: 649,
-      numContentSubmitted: 216,
-      numValidContent: 369,
-      numCompletedTasks: 80,
-      numIncomplete: 473,
-      totalPrizePool: 222,
-      numDeletedContent: 827,
-      bonusesReceived: 304,
-      registrationTime: '8/29/2019',
-      walletAddress: '0x450949f62c8'
-    }
-  ];
+  const getData = async () => {
+    Promise.all([apiGetPostData('/api/admin/data')]).then((values: any) => {
+      console.log(values);
+      console.log(values[0].Items);
+      const newData = values[0].Items.map((item: any) => {
+        //console.log(item);
+        return {
+          month: item.Title,
+          enrollment: item.Enrollment,
+          numContentSubmitted: item.ContentCount,
+          numValidContent: item.ContentValidCount,
+          numCompletedTasks: item.CompletedCount,
+          numIncomplete: item.UncompletedCount,
+          totalPrizePool: item.Prize
+        };
+      });
+      setData(newData);
+      console.log(newData);
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
@@ -312,7 +319,7 @@ const Table1 = () => {
         >
           <Table
             columns={columns1}
-            dataSource={data1}
+            dataSource={data}
             pagination={{
               pageSize: 4,
               position: ['bottomCenter']

@@ -2,7 +2,7 @@ import toast from '@/components/toast/toast';
 import axios from 'axios';
 import request from '@/utils/request';
 import { deleteCookie } from '@/utils/cookie';
-import { PostData, usePostStore } from '@/store';
+import { url } from 'inspector';
 axios.defaults.baseURL = 'https://test-locust-api.buidlerdao.xyz';
 /**
  * @description post post data
@@ -21,8 +21,8 @@ export const apiPostData = async (data: any) => {
       return result.data;
     } else {
       if (+result.code === 401) {
-        // deleteCookie('token');
-        // deleteCookie('address');
+        deleteCookie('token');
+        deleteCookie('address');
         // window.location.href = '/';
         throw new Error('401');
       }
@@ -45,7 +45,7 @@ export const apiGetPostList = async (data: {
     `/api/post?offset=${data.offset}&limit=${data.limit}`
   );
   if (res.code === 0) {
-    const data: PostData = res.data;
+    const data: any = res.data;
     return data;
   } else {
     toast.error(`${res.message}`, { id: `${res.message}` });
@@ -55,14 +55,59 @@ export const apiGetPostList = async (data: {
 
 /**
  * @description 获取post数据，可更改路径
- * @params data，url
+ * @params url,data
  * @api https://test-locust-api.buidlerdao.xyz/api/post
  * */
 export const apiGetPostData = async (url: string) => {
   try {
     const res = await request(url, {
       method: 'GET'
-      //body: { ...data }
+    });
+    if (res.code === 0) {
+      return res.data;
+    } else {
+      toast.error(`${res.message}`, { id: `${res.message}` });
+      return '';
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * @description 删除post数据
+ * @params id，url
+ * @api https://test-locust-api.buidlerdao.xyz/api/admin/post
+ * */
+export const apiDeletePostData = async (id: number) => {
+  try {
+    const res = await request(`/api/admin/post/`, {
+      method: 'DELETE',
+      body: { id }
+    });
+    if (res.code === 200) {
+      toast.success('删除成功');
+      return 'success';
+    } else {
+      toast.error(`${res.message}`, { id: `${res.message}` });
+      return '';
+    }
+  } catch (error) {
+    toast.error(`${error}`, { id: `${error}` });
+    console.error(error);
+  }
+};
+
+/**
+ * @description 获取搜索数据
+ * @params url,data
+ * @api https://test-locust-api.buidlerdao.xyz/api/post/search
+ * */
+export const apiGetSearchData = async (data: string) => {
+  try {
+    const res = await request(`/api/post/search/`, {
+      method: 'GET',
+      body: data
     });
     if (res.code === 0) {
       return res.data;

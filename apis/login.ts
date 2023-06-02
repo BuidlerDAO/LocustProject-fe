@@ -26,6 +26,8 @@ export const apiLogin = async (
   signature: string,
   message: string
 ) => {
+  deleteCookie('token');
+  deleteCookie('address');
   const res: any = await request(`/api/user/login`, {
     method: 'POST',
     body: {

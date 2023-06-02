@@ -38,6 +38,7 @@ import DownOutlined from '@/components/icons/downOutLined';
 import { useRouter } from 'next/navigation';
 import Toast from '@/components/toast/toast';
 import { useUserStore } from '@/store';
+import { apiUserInfo } from '@/apis/user';
 interface ConnectProps extends HTMLAttributes<HTMLElement> {
   className?: ClassName;
   onData?: (type: number, data: any) => void;
@@ -210,12 +211,12 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
           msgData as string,
           msg as any
         );
-        if (res.code === 0) {
+        if (res.token) {
           setCurrentAddress(address || '');
           setIsLogin(true);
           router.replace('/home/profile');
         } else {
-          Toast.error(res.message);
+          Toast.error('Something Error!');
           disconnect();
         }
         console.log(res);
@@ -281,12 +282,15 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         handleLogin();
       }
     }, [isSuccess]);
+    //  自己设置 token & address 无法通过这层验证
     useEffect(() => {
       if (isConnected && !getCookie('token') && address) {
         handleSign();
       }
       if (getCookie('token') && getCookie('address')) {
-        setCurrentAddress(getCookie('address') || '');
+        apiUserInfo().then(() => {
+          setCurrentAddress(getCookie('address') || '');
+        });
       }
     }, [address]);
     // Render

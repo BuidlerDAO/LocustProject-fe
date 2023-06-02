@@ -5,13 +5,13 @@ import { persist } from 'zustand/middleware';
 import { apiGetPostList, apiPostData } from '@/apis/post';
 
 export type Post = {
-  id: string;
+  id: number;
   title: string;
   link: string;
   originalText: string;
   personalThoughts: string;
   time: string;
-  userName: string;
+  username: string;
   avatar: string;
 };
 

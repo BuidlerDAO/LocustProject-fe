@@ -1,4 +1,4 @@
-import { getCookie } from './cookie';
+import { deleteCookie, getCookie } from './cookie';
 import { getApiUrl } from './helpers';
 import toast from '@/components/toast/toast';
 
@@ -104,9 +104,11 @@ const request = async (url: string, config?: RequestOptions) => {
           case 400:
             toast.error('Please verify your info!', { id: 'status400' });
             break;
-          // case 401:
-          //   toast.error('Please Login!', { id: 'status401' });
-          //   break;
+          case 401:
+            deleteCookie('token');
+            deleteCookie('address');
+            toast.error('Please Login!', { id: 'status401' });
+            break;
           case 403:
             toast.error('You have no access to this', { id: 'status403' });
             break;

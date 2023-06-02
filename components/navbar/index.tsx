@@ -1,32 +1,21 @@
 'use client';
 
-import { Typography } from '@/components/typography';
 import LogoIconTop from '@/components/icons/logoIconTop';
 import Logo from '@/components/icons/logo';
 import { WalletConnect } from '@/components/wallet';
 import { usePathname } from 'next/navigation';
-import {
-  AutoComplete,
-  ConfigProvider,
-  Dropdown,
-  Input,
-  MenuProps,
-  SelectProps,
-  Space
-} from 'antd';
+import { AutoComplete, ConfigProvider, Input, SelectProps } from 'antd';
 import { SearchIcon } from '@/components/icons/search';
 import Link from 'next/link';
-import { DownOutlined } from '@ant-design/icons';
 import { useUserStore } from '@/store';
-import { Button } from '../button';
 import { useState } from 'react';
 import './index.css';
+import { apiGetPostData, apiGetSearchData } from '@/apis/post';
 
-const getRandomInt = (max: number, min = 0) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
-
-const searchResult = (query: string) =>
-  new Array(getRandomInt(5))
+const searchResult = (query: string) => {
+  const res = apiGetSearchData(query);
+  console.log(res);
+  new Array(5)
     .join('.')
     .split('.')
     .map((_, idx) => {
@@ -50,16 +39,16 @@ const searchResult = (query: string) =>
                 {category}
               </a>
             </span>
-            <span>{getRandomInt(200, 100)} results</span>
+            <span> results</span>
           </div>
         )
       };
     });
-
+};
 const Navbar = () => {
   const path = usePathname();
   const flag = path == '/zh-CN' || path == '/en';
-  const { isLogin, setIsLogin } = useUserStore();
+  const { isSignUp, setIsLogin } = useUserStore();
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
 
   const handleSearch = (value: string) => {
@@ -68,6 +57,7 @@ const Navbar = () => {
 
   const onSelect = (value: string) => {
     console.log('onSelect', value);
+    //const res = apiGetPostData('/api/post/search', value);
   };
   return (
     <>
@@ -94,11 +84,6 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                {/* navbar中的竖线
-                <div
-                  style={{ borderColor: '#262626' }}
-                  className="relative left-[6.9vw] h-[100px] border-l-[1px]"
-                ></div> */}
                 {/*搜索框*/}
                 <ConfigProvider
                   theme={{
@@ -134,12 +119,12 @@ const Navbar = () => {
                   </AutoComplete>
                 </ConfigProvider>
                 {/*Sign up for Locust*/}
-                {isLogin ? (
+                {isSignUp ? (
                   <div className="ml-[24vw]"></div>
                 ) : (
                   <div className="ml-[16vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
                     <Link href="/" className="relative right-[3.6vw]">
-                      Sign up for Locust
+                      Sign Up for Locust
                     </Link>
                   </div>
                 )}

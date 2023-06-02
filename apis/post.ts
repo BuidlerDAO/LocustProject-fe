@@ -55,14 +55,13 @@ export const apiGetPostList = async (data: {
 
 /**
  * @description 获取post数据，可更改路径
- * @params data，url
+ * @params url,data
  * @api https://test-locust-api.buidlerdao.xyz/api/post
  * */
 export const apiGetPostData = async (url: string) => {
   try {
     const res = await request(url, {
       method: 'GET'
-      //body: { ...data }
     });
     if (res.code === 0) {
       return res.data;
@@ -84,7 +83,7 @@ export const apiDeletePostData = async (id: number) => {
   try {
     const res = await request(`/api/admin/post/`, {
       method: 'DELETE',
-      body: id
+      body: { id }
     });
     if (res.code === 200) {
       toast.success('删除成功');
@@ -95,6 +94,28 @@ export const apiDeletePostData = async (id: number) => {
     }
   } catch (error) {
     toast.error(`${error}`, { id: `${error}` });
+    console.error(error);
+  }
+};
+
+/**
+ * @description 获取搜索数据
+ * @params url,data
+ * @api https://test-locust-api.buidlerdao.xyz/api/post/search
+ * */
+export const apiGetSearchData = async (data: string) => {
+  try {
+    const res = await request('/api/post/search', {
+      method: 'GET',
+      body: { data }
+    });
+    if (res.code === 0) {
+      return res.data;
+    } else {
+      toast.error(`${res.message}`, { id: `${res.message}` });
+      return '';
+    }
+  } catch (error) {
     console.error(error);
   }
 };

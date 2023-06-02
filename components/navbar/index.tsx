@@ -10,12 +10,12 @@ import Link from 'next/link';
 import { useUserStore } from '@/store';
 import { useState } from 'react';
 import './index.css';
+import { apiGetPostData } from '@/apis/post';
 
-const getRandomInt = (max: number, min = 0) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
-
-const searchResult = (query: string) =>
-  new Array(getRandomInt(5))
+const searchResult = (query: string) => {
+  const res = apiGetPostData(query);
+  console.log(res);
+  new Array(5)
     .join('.')
     .split('.')
     .map((_, idx) => {
@@ -39,12 +39,12 @@ const searchResult = (query: string) =>
                 {category}
               </a>
             </span>
-            <span>{getRandomInt(200, 100)} results</span>
+            <span> results</span>
           </div>
         )
       };
     });
-
+};
 const Navbar = () => {
   const path = usePathname();
   const flag = path == '/zh-CN' || path == '/en';
@@ -57,6 +57,7 @@ const Navbar = () => {
 
   const onSelect = (value: string) => {
     console.log('onSelect', value);
+    //const res = apiGetPostData('/api/post/search', value);
   };
   return (
     <>

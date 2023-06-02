@@ -90,12 +90,7 @@ const Profile: React.FC = () => {
         //  单单修改用户信息不连接推特传空就行
         const res = await apiPutUserInfo({
           avatar: uploadUrl,
-          name: userName,
-          twitter: {
-            oauthToken: '',
-            oauthTokenSecret: '',
-            verifier: ''
-          }
+          name: userName
         });
         if (res) {
           Toast.success('Modify message success!');

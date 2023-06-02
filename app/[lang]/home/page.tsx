@@ -4,11 +4,11 @@ import { Avatar, Button, Collapse, List, Space, Tooltip } from 'antd';
 import React, { useEffect, useState } from 'react';
 import Block from '@/components/blockCard/blockCard';
 import { apiGetPostList } from '@/apis/post';
-import { Post } from '@/store';
+import { Post } from '@/store/PostStore';
 import { usePostStore } from '@/store';
 
 const App = () => {
-  const { setPosts, decrease, posts } = usePostStore();
+  const { setPosts, posts } = usePostStore();
 
   useEffect(() => {
     getData();

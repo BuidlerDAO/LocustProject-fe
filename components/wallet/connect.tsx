@@ -290,6 +290,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       if (getCookie('token') && getCookie('address')) {
         apiUserInfo().then(() => {
           setCurrentAddress(getCookie('address') || '');
+          setIsLogin(true);
         });
       }
     }, [address]);

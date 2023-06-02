@@ -16,6 +16,7 @@ interface ColumnItem {
   align?: AlignType;
 }
 const Table2 = () => {
+  const [data, setData] = useState([]);
   const columns2: ColumnItem[] = [
     {
       align: 'center',
@@ -110,6 +111,30 @@ const Table2 = () => {
       registrationTime: '2021-02-01'
     }
   ];
+  const getData = async () => {
+    Promise.all([apiGetPostData('/api/user/campaign/count')]).then(
+      (values: any) => {
+        console.log(values[0].items);
+        const newData = values[0].items.map((item: any) => {
+          //console.log(item);
+          return {
+            month: item.title,
+            numArticlesSubmitted: item.posts,
+            numUnsuccessfulArticles: item.unSuccessfulPosts,
+            numValidArticles: item.validPosts,
+            bonus: item.bonus,
+            totalPrizePool: item.prize
+          };
+        });
+        setData(newData);
+        console.log(newData);
+      }
+    );
+  };
+
+  useEffect(() => {
+    // getData();
+  }, []);
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
@@ -191,6 +216,7 @@ const Table2 = () => {
   );
 };
 const Table1 = () => {
+  const [data, setData] = useState<any>([]);
   const columns1: ColumnItem[] = [
     {
       title: 'Month',
@@ -263,6 +289,29 @@ const Table1 = () => {
       walletAddress: '0x450949f62c8'
     }
   ];
+  const getData = async () => {
+    Promise.all([apiGetPostData('/api/admin/data')]).then((values: any) => {
+      console.log(values[0].items);
+      const newData = values[0].items.map((item: any) => {
+        //console.log(item);
+        return {
+          month: item.Title,
+          enrollment: item.Enrollment,
+          numContentSubmitted: item.ContentCount,
+          numValidContent: item.ContentValidCount,
+          numCompletedTasks: item.CompletedCount,
+          numIncomplete: item.UncompletedCount,
+          totalPrizePool: item.Prize
+        };
+      });
+      setData(newData);
+      console.log(newData);
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };

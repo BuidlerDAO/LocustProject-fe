@@ -11,7 +11,7 @@ export type Post = {
   originalText: string;
   personalThoughts: string;
   time: string;
-  userName: string;
+  username: string;
   avatar: string;
 };
 

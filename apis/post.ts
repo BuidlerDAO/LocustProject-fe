@@ -2,7 +2,7 @@ import toast from '@/components/toast/toast';
 import axios from 'axios';
 import request from '@/utils/request';
 import { deleteCookie } from '@/utils/cookie';
-import { PostData, usePostStore } from '@/store';
+import { url } from 'inspector';
 axios.defaults.baseURL = 'https://test-locust-api.buidlerdao.xyz';
 /**
  * @description post post data
@@ -45,7 +45,7 @@ export const apiGetPostList = async (data: {
     `/api/post?offset=${data.offset}&limit=${data.limit}`
   );
   if (res.code === 0) {
-    const data: PostData = res.data;
+    const data: any = res.data;
     return data;
   } else {
     toast.error(`${res.message}`, { id: `${res.message}` });
@@ -71,6 +71,30 @@ export const apiGetPostData = async (url: string) => {
       return '';
     }
   } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * @description 删除post数据
+ * @params id，url
+ * @api https://test-locust-api.buidlerdao.xyz/api/admin/post
+ * */
+export const apiDeletePostData = async (url: string, id: number) => {
+  try {
+    const res = await request(url, {
+      method: 'DELETE',
+      body: { id }
+    });
+    if (res.code === 200) {
+      toast.success('删除成功');
+      return 'success';
+    } else {
+      toast.error(`${res.message}`, { id: `${res.message}` });
+      return '';
+    }
+  } catch (error) {
+    toast.error(`${error}`, { id: `${error}` });
     console.error(error);
   }
 };

@@ -19,6 +19,7 @@ import {
   Tooltip,
   Typography
 } from 'antd';
+import { Post } from '@/store/PostStore';
 import { usePostStore } from '@/store';
 import { on } from 'events';
 import { Colors } from '../../types/components/theme';
@@ -41,15 +42,7 @@ const Block = (props: {
   Frame_src: string | undefined;
   Line18_alt: string | undefined;
   Line18_src: string | undefined;
-  data: {
-    title: string;
-    link: string;
-    originalText: string;
-    personalThoughts: string;
-    time: string;
-    avatar: string;
-    username: string;
-  };
+  data: Post;
 }) => {
   const decrease = usePostStore((state: any) => state.decrease);
 
@@ -70,7 +63,8 @@ const Block = (props: {
 
   function onDelete() {
     console.log(props.data);
-    decrease(props.data.title);
+    decrease(props.data.id);
+
     toast.success('Delete success', {
       duration: 4000
     });

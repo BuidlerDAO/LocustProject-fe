@@ -211,12 +211,12 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
           msgData as string,
           msg as any
         );
-        if (res.code === 0) {
+        if (res.token) {
           setCurrentAddress(address || '');
           setIsLogin(true);
           router.replace('/home/profile');
         } else {
-          Toast.error(res.message);
+          Toast.error('Something Error!');
           disconnect();
         }
         console.log(res);
@@ -282,12 +282,12 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         handleLogin();
       }
     }, [isSuccess]);
+    //  自己设置 token & address 无法通过这层验证
     useEffect(() => {
       if (isConnected && !getCookie('token') && address) {
         handleSign();
       }
       if (getCookie('token') && getCookie('address')) {
-        //  自己设置 token & address 无法通过这层验证
         apiUserInfo().then(() => {
           setCurrentAddress(getCookie('address') || '');
         });

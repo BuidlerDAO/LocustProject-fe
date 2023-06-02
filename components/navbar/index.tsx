@@ -10,10 +10,10 @@ import Link from 'next/link';
 import { useUserStore } from '@/store';
 import { useState } from 'react';
 import './index.css';
-import { apiGetPostData } from '@/apis/post';
+import { apiGetPostData, apiGetSearchData } from '@/apis/post';
 
 const searchResult = (query: string) => {
-  const res = apiGetPostData(query);
+  const res = apiGetSearchData(query);
   console.log(res);
   new Array(5)
     .join('.')

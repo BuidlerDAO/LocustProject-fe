@@ -105,9 +105,9 @@ export const apiDeletePostData = async (id: number) => {
  * */
 export const apiGetSearchData = async (data: string) => {
   try {
-    const res = await request('/api/post/search', {
+    const res = await request(`/api/post/search/`, {
       method: 'GET',
-      body: { data }
+      body: data
     });
     if (res.code === 0) {
       return res.data;

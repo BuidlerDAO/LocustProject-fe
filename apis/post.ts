@@ -86,8 +86,8 @@ export const apiDeletePostData = async (id: number) => {
       method: 'DELETE'
       //body: { : id }
     });
-    if (res.code === 200) {
-      toast.success('删除成功');
+    if (res.code === 0) {
+      toast.success('DELETE SUCCESS');
       return 'success';
     } else {
       toast.error(`${res.message}`, { id: `${res.message}` });

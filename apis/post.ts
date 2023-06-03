@@ -82,9 +82,9 @@ export const apiGetPostData = async (url: string) => {
 export const apiDeletePostData = async (id: number) => {
   try {
     console.log(id);
-    const res = await request(`/api/admin/post/`, {
-      method: 'DELETE',
-      body: id
+    const res = await request(`/api/admin/post/?postID=${id}`, {
+      method: 'DELETE'
+      //body: { : id }
     });
     if (res.code === 200) {
       toast.success('删除成功');

@@ -86,14 +86,18 @@ const Profile: React.FC = () => {
   //  名字+头像上传
   const handleUploadAll = async () => {
     try {
+      const UserRes = await apiUserInfo();
       if (userName !== '' && avatar !== '') {
         //  单单修改用户信息不传推特
+        if (UserRes.name === userName && UserRes.avatar === uploadUrl) {
+          Toast.error("Don't upload the same info");
+        }
         const res = await apiPutUserInfo({
           avatar: uploadUrl,
           name: userName
         });
         if (res) {
-          // Toast.success('Modify message success!');
+          Toast.success('Modify message success!');
           // console.log(res);
           setUsername(username);
           setAvatar(res.avatar);

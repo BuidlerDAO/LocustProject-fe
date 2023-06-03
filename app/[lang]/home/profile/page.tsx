@@ -82,12 +82,8 @@ const Profile: React.FC = () => {
   //  名字+头像上传
   const handleUploadAll = async () => {
     try {
-      if (
-        userName !== '@StarMemory' ||
-        avatar !==
-          'http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg'
-      ) {
-        //  单单修改用户信息不连接推特传空就行
+      if (userName !== '' && avatar !== '') {
+        //  单单修改用户信息不传推特
         const res = await apiPutUserInfo({
           avatar: uploadUrl,
           name: userName
@@ -114,31 +110,31 @@ const Profile: React.FC = () => {
         'http://localhost:3000/zh-CN/home/profile'
       );
       window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
-      if (!isConnectTwitter) {
-        updateTwitterInfo();
-      }
+      updateTwitterInfo();
     } else {
       showModal();
     }
   };
   //  PUT 更新推特方法
   const updateTwitterInfo = async () => {
-    const res = await apiTwitterToken(
+    const TwitterToken = await apiTwitterToken(
       'http://localhost:3000/zh-CN/home/profile'
     );
-    const { id } = await apiPutUserInfo({
+    const res = await apiPutUserInfo({
       avatar: uploadUrl,
       name: userName,
       twitter: {
         oauthToken,
-        oauthTokenSecret: res.oauthTokenSecret,
+        oauthTokenSecret: TwitterToken.oauthTokenSecret,
         verifier
       }
     });
-    if (id) {
+    if (res.id) {
+      console.log(res);
       Toast.success('Connect Success!');
       setIsConnectTwitter(true);
     } else {
+      console.log(res);
       Toast.error('Connect Error!');
     }
   };
@@ -193,7 +189,7 @@ const Profile: React.FC = () => {
   };
   //  页面重定向回来的执行函数
   useEffect(() => {
-    if (oauthToken !== null) {
+    if (oauthToken !== null && !isConnectTwitter) {
       updateTwitterInfo();
     }
   }, []);

@@ -12,38 +12,36 @@ import { useState } from 'react';
 import './index.css';
 import { apiGetPostData, apiGetSearchData } from '@/apis/post';
 
-const searchResult = (query: string) => {
-  const res = apiGetSearchData(query);
-  console.log(res);
-  new Array(5)
-    .join('.')
-    .split('.')
-    .map((_, idx) => {
-      const category = `${query}${idx}`;
-      return {
-        value: category,
-        label: (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between'
-            }}
-          >
-            <span>
-              Found {query} on{' '}
-              <a
-                href={`https://s.taobao.com/search?q=${query}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {category}
-              </a>
-            </span>
-            <span> results</span>
-          </div>
-        )
-      };
-    });
+const searchResult = async (query: string) => {
+  const res = await apiGetSearchData(query);
+  const items = res.items;
+  const result = items.map((item: any, idx: any) => {
+    const category = `${query}${idx}`;
+    return {
+      value: category,
+      label: (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between'
+          }}
+        >
+          <span>
+            Found {query} on{' '}
+            {/* <a
+              href={`https://s.taobao.com/search?q=${query}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            > */}
+            {item.title}
+            {/* </a> */}
+          </span>
+          <span>results</span>
+        </div>
+      )
+    };
+  });
+  return result;
 };
 const Navbar = () => {
   const path = usePathname();
@@ -51,8 +49,9 @@ const Navbar = () => {
   const { isSignUp, setIsLogin } = useUserStore();
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
 
-  const handleSearch = (value: string) => {
-    setOptions(value ? searchResult(value) : []);
+  const handleSearch = async (value: string) => {
+    const result = value ? await searchResult(value) : [];
+    setOptions(result);
   };
 
   const onSelect = (value: string) => {

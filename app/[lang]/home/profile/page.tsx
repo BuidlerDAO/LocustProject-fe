@@ -42,9 +42,13 @@ const Profile: React.FC = () => {
   //  头像裁剪
   const handleCrop = async (e: any) => {
     try {
+      const file = e.target.files[0];
       const maxFileSize = 5 * 1024 * 1024;
-      if (e.target.files[0].size > maxFileSize) {
-        Toast.error('Size is above the 5M!');
+      const filetype = ['.jpg', '.png', '.gif'];
+      const extension = file.name.split('.').pop().toLowerCase();
+      const flag = filetype.includes('.' + extension);
+      if (file.size > maxFileSize || !flag) {
+        Toast.error("File don't be allowed!");
         return;
       }
       const reader: any = new FileReader();

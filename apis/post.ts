@@ -147,3 +147,19 @@ export const apiGetMonthData = async (data: {
     console.error(error);
   }
 };
+
+export const apiGetMonthList = async () => {
+  try {
+    const res = await request(`/api/admin/campaigns`, {
+      method: 'GET'
+    });
+    if (res.code === 0) {
+      return res.data;
+    } else {
+      toast.error(`${res.message}`, { id: `${res.message}` });
+      return '';
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};

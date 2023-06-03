@@ -5,7 +5,7 @@ import './index.css';
 import { DownloadOutlined } from '@ant-design/icons';
 import { ConfigProvider, Select, Table, Typography } from 'antd';
 import { getFullMonth } from '@/utils/time';
-import { apiGetMonthData, apiGetPostData } from '@/apis/post';
+import { apiGetMonthData, apiGetMonthList, apiGetPostData } from '@/apis/post';
 import { get } from 'http';
 type AlignType = 'left' | 'center' | 'right';
 
@@ -132,6 +132,23 @@ const Table2 = () => {
       }
     );
   };
+  const getMonthList = () => {
+    Promise.all([apiGetMonthList()]).then((values: any) => {
+      console.log(values[0].Items);
+      const newData = values[0].Items.map((item: any) => {
+        //console.log(item);
+        return {
+          userName: item.Username,
+          walletAddress: item.Address,
+          numContentSubmitted: item.ContentCount,
+          numDeletedContent: item.DeletedCount,
+          bonusesReceived: item.BonusReceived
+        };
+      });
+      console.log(newData);
+      return newData;
+    });
+  };
 
   useEffect(() => {
     getData('January');
@@ -176,7 +193,7 @@ const Table2 = () => {
                 }}
                 bordered={false}
                 onChange={handleChange}
-                options={getFullMonth()}
+                options={getMonthList()}
               />
             </ConfigProvider>
           </div>

@@ -39,7 +39,7 @@ const Profile: React.FC = () => {
   const [showCrop, setShowCrop] = useState<boolean>(false);
   const [cropper, setCropper] = useState<any>();
   const [aspect, setAspect] = useState<number>(1 / 1);
-  //  头像裁剪
+  //  头像裁剪加验证
   const handleCrop = async (e: any) => {
     try {
       const file = e.target.files[0];
@@ -117,15 +117,18 @@ const Profile: React.FC = () => {
   const handleTwitterConnect = async () => {
     if (!isConnectTwitter) {
       if (userName !== '' && avatar !== '') {
-        //  单单修改用户信息不传推特
-        const res = await apiPutUserInfo({
-          avatar: uploadUrl,
-          name: userName
-        });
-        if (res) {
-          Toast.success('Modify message success!');
-          setUsername(username);
-          setAvatar(res.avatar);
+        const UserRes = await apiUserInfo();
+        if (UserRes.username !== userName || UserRes.avatar !== avatar) {
+          //  单单修改用户信息不传推特
+          const res = await apiPutUserInfo({
+            avatar: uploadUrl,
+            name: userName
+          });
+          if (res) {
+            Toast.success('Modify message success!');
+            setUsername(username);
+            setAvatar(res.avatar);
+          }
         }
       }
       const res = await apiTwitterToken(
@@ -209,17 +212,17 @@ const Profile: React.FC = () => {
       console.log(isConnectTwitter);
     }
   };
+  //  初始进行用户个人信息的获取
+  useEffect(() => {
+    getUserInfo();
+    // console.log(oauthToken);
+  }, [username, avatar, isConnectTwitter]);
   //  页面重定向回来的执行函数
   useEffect(() => {
     if (oauthToken !== null && !isConnectTwitter) {
       updateTwitterInfo();
     }
   }, []);
-  //  初始进行用户个人信息的获取
-  useEffect(() => {
-    getUserInfo();
-    // console.log(oauthToken);
-  }, [username, avatar, isConnectTwitter]);
   return (
     <div
       style={{

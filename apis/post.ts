@@ -81,9 +81,10 @@ export const apiGetPostData = async (url: string) => {
  * */
 export const apiDeletePostData = async (id: number) => {
   try {
+    console.log(id);
     const res = await request(`/api/admin/post/`, {
       method: 'DELETE',
-      body: { id }
+      body: id
     });
     if (res.code === 200) {
       toast.success('删除成功');
@@ -107,7 +108,7 @@ export const apiGetSearchData = async (data: string) => {
   try {
     const res = await request(`/api/post/search/`, {
       method: 'GET',
-      body: data
+      body: { data }
     });
     if (res.code === 0) {
       return res.data;

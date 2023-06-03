@@ -6,16 +6,18 @@ import { usePathname } from 'next/navigation';
 import { AutoComplete, ConfigProvider, Input, SelectProps } from 'antd';
 import { SearchIcon } from '@/components/icons/search';
 import Link from 'next/link';
-import { useUserStore } from '@/store';
+import { useSearchStore, useUserStore } from '@/store';
 import { useState } from 'react';
 import './index.css';
 import { apiGetPostData, apiGetSearchData } from '@/apis/post';
 
 const searchResult = async (query: string) => {
+  const { setSearchValue } = useSearchStore();
   const res = await apiGetSearchData(query);
   const items = res.items;
   const result = items.map((item: any, idx: any) => {
     const category = `${query}${idx}`;
+    setSearchValue(item);
     return {
       value: category,
       label: (
@@ -26,14 +28,7 @@ const searchResult = async (query: string) => {
           }}
         >
           <span>
-            Found {query} on{' '}
-            {/* <a
-              href={`https://s.taobao.com/search?q=${query}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            > */}
-            {item.title}
-            {/* </a> */}
+            Found {query} on <Link href={`/home/search`}>{item.title}</Link>
           </span>
           {/* <span>results</span> */}
         </div>

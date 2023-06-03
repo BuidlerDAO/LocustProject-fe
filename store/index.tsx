@@ -95,6 +95,17 @@ import usePostStore from './PostStore';
 //   total: number;
 // };
 
+type Post = {
+  id: number;
+  title: string;
+  link: string;
+  originalText: string;
+  personalThoughts: string;
+  time: string;
+  username: string;
+  avatar: string;
+};
+
 type SiderStore = {
   isExplore: boolean;
   isDataView: boolean;
@@ -178,4 +189,17 @@ const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
     }))
 }));
 
-export { usePostStore, useSiderStore, useUserStore };
+type SearchStore = {
+  searchValue: Post[];
+  setSearchValue: (searchValue: Post[]) => void;
+};
+
+const useSearchStore = create<SearchStore>((set: SetState<SearchStore>) => ({
+  searchValue: [],
+  setSearchValue: (searchValue: Post[]) =>
+    set(() => ({
+      searchValue: searchValue
+    }))
+}));
+
+export { usePostStore, useSiderStore, useUserStore, useSearchStore };

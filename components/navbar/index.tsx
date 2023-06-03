@@ -1,7 +1,6 @@
 'use client';
 
 import LogoIconTop from '@/components/icons/logoIconTop';
-import Logo from '@/components/icons/logo';
 import { WalletConnect } from '@/components/wallet';
 import { usePathname } from 'next/navigation';
 import { AutoComplete, ConfigProvider, Input, SelectProps } from 'antd';

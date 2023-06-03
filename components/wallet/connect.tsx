@@ -202,6 +202,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       deleteCookie('token');
       deleteCookie('address');
       setCurrentAddress('');
+      router.replace('/');
     };
     // 登录
     const handleLogin = async () => {
@@ -288,11 +289,16 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         handleSign();
       }
       if (getCookie('token') && getCookie('address')) {
-        apiUserInfo().then((res) => {
-          setCurrentAddress(getCookie('address') || '');
-          setIsLogin(true);
-          setIsAdmin(res.isAdmin);
-        });
+        apiUserInfo()
+          .then((res) => {
+            setCurrentAddress(getCookie('address') || '');
+            setIsLogin(true);
+            setIsAdmin(res.isAdmin);
+          })
+          .catch((error) => {
+            console.log(error);
+            router.replace('/');
+          });
       }
     }, [address]);
     // Render

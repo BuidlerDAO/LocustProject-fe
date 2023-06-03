@@ -15,7 +15,7 @@ import { blobToFile, dataURLtoBlob } from '@/utils/helpers';
 import { getCookie } from '@/utils/cookie';
 import { Dialog, DialogHeader } from '@/components/dialog';
 import { upload } from '@/utils/aws';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const Profile: React.FC = () => {
   const {
@@ -26,6 +26,7 @@ const Profile: React.FC = () => {
     isConnectTwitter,
     setIsConnectTwitter
   } = useUserStore();
+  const router = useRouter();
   //  页面重定向到个人页面时路径中带有 Twitter 返回的 oauth_token,oauth_verifier 去进行个人信息的修改
   const oauthToken = useSearchParams()?.get('oauth_token') as string;
   const verifier = useSearchParams()?.get('oauth_verifier') as string;
@@ -194,22 +195,27 @@ const Profile: React.FC = () => {
   };
   //  获取个人信息
   const getUserInfo = async () => {
-    const res = await apiUserInfo();
-    console.log(res);
-    if (res.avatar !== '') {
-      setUploadUrl(res.avatar);
-      setAvatar(res.avatar);
-    }
-    if (res.username !== '') {
-      setUsername(res.username);
-      setUserName(res.username);
-      console.log('zustand-->', username);
-      console.log('state-->', userName);
-    }
-    if (res.twitter !== '') {
-      setTwitterName(res.twitter);
-      setIsConnectTwitter(true);
-      console.log(isConnectTwitter);
+    try {
+      const res = await apiUserInfo();
+      console.log(res);
+      if (res.avatar !== '') {
+        setUploadUrl(res.avatar);
+        setAvatar(res.avatar);
+      }
+      if (res.username !== '') {
+        setUsername(res.username);
+        setUserName(res.username);
+        console.log('zustand-->', username);
+        console.log('state-->', userName);
+      }
+      if (res.twitter !== '') {
+        setTwitterName(res.twitter);
+        setIsConnectTwitter(true);
+        console.log(isConnectTwitter);
+      }
+    } catch (error) {
+      console.log(error);
+      router.replace('/');
     }
   };
   //  初始进行用户个人信息的获取

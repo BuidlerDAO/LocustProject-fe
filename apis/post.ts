@@ -82,9 +82,9 @@ export const apiGetPostData = async (url: string) => {
 export const apiDeletePostData = async (id: number) => {
   try {
     console.log(id);
-    const res = await request(`/api/admin/post/`, {
-      method: 'DELETE',
-      body: id
+    const res = await request(`/api/admin/post/?postID=${id}`, {
+      method: 'DELETE'
+      //body: { : id }
     });
     if (res.code === 200) {
       toast.success('删除成功');
@@ -106,10 +106,37 @@ export const apiDeletePostData = async (id: number) => {
  * */
 export const apiGetSearchData = async (data: string) => {
   try {
-    const res = await request(`/api/post/search/`, {
-      method: 'GET',
-      body: { data }
+    const res = await request(`/api/post/search/?title=${data}`, {
+      method: 'GET'
     });
+    if (res.code === 0) {
+      return res.data;
+    } else {
+      toast.error(`${res.message}`, { id: `${res.message}` });
+      return '';
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * @description 获取某月数据
+ * @params url,offset,limit,title
+ * @api https://test-locust-api.buidlerdao.xyz/api/admin/campaign
+ * */
+export const apiGetMonthData = async (data: {
+  offset?: number;
+  limit?: number;
+  title?: string;
+}) => {
+  try {
+    const res = await request(
+      `/api/admin/campaign?offset=${data.offset}&limit=${data.limit}&title=${data.title}`,
+      {
+        method: 'GET'
+      }
+    );
     if (res.code === 0) {
       return res.data;
     } else {

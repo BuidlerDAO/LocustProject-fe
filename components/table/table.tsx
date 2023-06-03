@@ -5,7 +5,8 @@ import './index.css';
 import { DownloadOutlined } from '@ant-design/icons';
 import { ConfigProvider, Select, Table, Typography } from 'antd';
 import { getFullMonth } from '@/utils/time';
-import { apiGetPostData } from '@/apis/post';
+import { apiGetMonthData, apiGetPostData } from '@/apis/post';
+import { get } from 'http';
 type AlignType = 'left' | 'center' | 'right';
 
 const { Text } = Typography;
@@ -111,19 +112,19 @@ const Table2 = () => {
       registrationTime: '2021-02-01'
     }
   ];
-  const getData = async () => {
-    Promise.all([apiGetPostData('/api/user/campaign/count')]).then(
+  //为getdata传入参数
+  const getData = (value: string) => {
+    Promise.all([apiGetMonthData({ limit: 0, offset: 20, title: value })]).then(
       (values: any) => {
-        console.log(values[0].items);
-        const newData = values[0].items.map((item: any) => {
+        console.log(values[0].Items);
+        const newData = values[0].Items.map((item: any) => {
           //console.log(item);
           return {
-            month: item.title,
-            numArticlesSubmitted: item.posts,
-            numUnsuccessfulArticles: item.unSuccessfulPosts,
-            numValidArticles: item.validPosts,
-            bonus: item.bonus,
-            totalPrizePool: item.prize
+            userName: item.Username,
+            walletAddress: item.Address,
+            numContentSubmitted: item.ContentCount,
+            numDeletedContent: item.DeletedCount,
+            bonusesReceived: item.BonusReceived
           };
         });
         setData(newData);
@@ -137,6 +138,7 @@ const Table2 = () => {
   }, []);
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
+    getData(value);
   };
   const onDownload = () => {
     console.log('download');

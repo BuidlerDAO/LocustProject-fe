@@ -26,7 +26,6 @@ const Index = memo((props: any) => {
   const {
     setIsAdmin,
     isSignUp,
-    setIsSignUp,
     isLogin,
     setUsername,
     setAvatar,
@@ -56,7 +55,6 @@ const Index = memo((props: any) => {
           showModal();
         } else {
           onClickSuccess();
-          setIsSignUp(true);
         }
       }
     } else {
@@ -94,7 +92,6 @@ const Index = memo((props: any) => {
   const handleOk = () => {
     setIsModalOpen(false);
     onClickSuccess();
-    setIsSignUp(true);
   };
   const handleCancel = () => {
     setIsModalOpen(false);

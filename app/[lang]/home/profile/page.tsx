@@ -87,10 +87,12 @@ const Profile: React.FC = () => {
   const handleUploadAll = async () => {
     try {
       const UserRes = await apiUserInfo();
+      // console.log('UserRes-->',UserRes);
       if (userName !== '' && avatar !== '') {
         //  单单修改用户信息不传推特
-        if (UserRes.name === userName && UserRes.avatar === uploadUrl) {
+        if (UserRes.username === userName && UserRes.avatar === avatar) {
           Toast.error("Don't upload the same info");
+          return;
         }
         const res = await apiPutUserInfo({
           avatar: uploadUrl,

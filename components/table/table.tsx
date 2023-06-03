@@ -193,7 +193,7 @@ const Table2 = () => {
                 }}
                 bordered={false}
                 onChange={handleChange}
-                options={getMonthList()}
+                //options={getMonthList()}
               />
             </ConfigProvider>
           </div>

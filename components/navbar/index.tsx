@@ -11,37 +11,41 @@ import { useState } from 'react';
 import './index.css';
 import { apiGetPostData, apiGetSearchData } from '@/apis/post';
 
-const searchResult = async (query: string) => {
-  const { setSearchValue } = useSearchStore();
-  const res = await apiGetSearchData(query);
-  const items = res.items;
-  const result = items.map((item: any, idx: any) => {
-    const category = `${query}${idx}`;
-    setSearchValue(item);
-    return {
-      value: category,
-      label: (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between'
-          }}
-        >
-          <span>
-            Found {query} on <Link href={`/home/search`}>{item.title}</Link>
-          </span>
-          {/* <span>results</span> */}
-        </div>
-      )
-    };
-  });
-  return result;
-};
 const Navbar = () => {
   const path = usePathname();
   const flag = path == '/zh-CN' || path == '/en';
   const { isSignUp, setIsLogin } = useUserStore();
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
+
+  const { setSearchValue } = useSearchStore();
+  const searchResult = async (query: string) => {
+    const res = await apiGetSearchData(query);
+    const items = res.items;
+    const result = items.map((item: any, idx: any) => {
+      const category = `${query}${idx}`;
+      setSearchValue(item);
+      console.log(item);
+      return {
+        value: category,
+        label: (
+          <Link href={`/home/search`}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between'
+              }}
+            >
+              <span>
+                Found {query} on {item.title}
+              </span>
+              {/* <span>results</span> */}
+            </div>
+          </Link>
+        )
+      };
+    });
+    return result;
+  };
 
   const handleSearch = async (value: string) => {
     const result = value ? await searchResult(value) : [];

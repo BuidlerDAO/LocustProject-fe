@@ -9,24 +9,15 @@ import { useSearchStore } from '@/store';
 
 const App = () => {
   const { setSearchValue, searchValue } = useSearchStore();
-
+  const [search, setSearch] = useState([]);
   useEffect(() => {
-    //getData();
+    console.log(searchValue);
+    //setSearch(searchValue)
   }, []);
 
   return (
     <div className="mr-16 mt-[100px]">
-      <List
-        itemLayout="vertical"
-        size="large"
-        style={{ color: 'white' }}
-        dataSource={searchValue}
-        renderItem={(item) => (
-          <List.Item title={item.title}>
-            <Block data={item} />
-          </List.Item>
-        )}
-      />
+      <Block data={searchValue} />
     </div>
   );
 };

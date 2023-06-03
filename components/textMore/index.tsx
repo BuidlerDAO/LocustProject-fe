@@ -8,6 +8,7 @@ interface Props {
 export const TextMore: FC<Props> = ({ text, maxLines }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  console.log(text);
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
   };

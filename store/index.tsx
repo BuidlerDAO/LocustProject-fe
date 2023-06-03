@@ -190,13 +190,22 @@ const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
 }));
 
 type SearchStore = {
-  searchValue: Post[];
-  setSearchValue: (searchValue: Post[]) => void;
+  searchValue: Post;
+  setSearchValue: (searchValue: Post) => void;
 };
 
 const useSearchStore = create<SearchStore>((set: SetState<SearchStore>) => ({
-  searchValue: [],
-  setSearchValue: (searchValue: Post[]) =>
+  searchValue: {
+    id: 0,
+    title: '',
+    link: '',
+    originalText: '',
+    personalThoughts: '',
+    time: '',
+    username: '',
+    avatar: ''
+  },
+  setSearchValue: (searchValue: Post) =>
     set(() => ({
       searchValue: searchValue
     }))

@@ -10,7 +10,7 @@ interface TwitterObject {
 interface userInfo {
   avatar: string;
   name: string;
-  twitter: TwitterObject;
+  twitter?: TwitterObject;
 }
 /**
  * @description auth twitter

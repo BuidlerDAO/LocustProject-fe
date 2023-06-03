@@ -21,8 +21,8 @@ export const apiPostData = async (data: any) => {
       return result.data;
     } else {
       if (+result.code === 401) {
-        // deleteCookie('token');
-        // deleteCookie('address');
+        deleteCookie('token');
+        deleteCookie('address');
         // window.location.href = '/';
         throw new Error('401');
       }

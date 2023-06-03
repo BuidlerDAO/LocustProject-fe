@@ -24,6 +24,7 @@ import { apiUserInfo } from '@/apis/user';
 
 const Index = memo((props: any) => {
   const {
+    setIsAdmin,
     isSignUp,
     setIsSignUp,
     isLogin,
@@ -106,6 +107,7 @@ const Index = memo((props: any) => {
         setAvatar(res.avatar);
         setTwitter(res.twitter);
         setIsLogin(true);
+        setIsAdmin(res.isAdmin);
       });
     }
   }, []);

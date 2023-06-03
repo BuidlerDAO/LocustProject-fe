@@ -157,7 +157,7 @@ export interface WalletProps extends ComponentProps<'div'> {
 const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
   ({ className, ...rest }, ref) => {
     const router = useRouter();
-    const { setIsLogin } = useUserStore();
+    const { setIsLogin, setIsAdmin } = useUserStore();
     // State / Props
     // 以太坊网络地址 & 是否链接
     const { address, isConnected } = useAccount();
@@ -211,12 +211,12 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
           msgData as string,
           msg as any
         );
-        if (res.code === 0) {
+        if (res.token) {
           setCurrentAddress(address || '');
           setIsLogin(true);
           router.replace('/home/profile');
         } else {
-          Toast.error(res.message);
+          Toast.error('Something Error!');
           disconnect();
         }
         console.log(res);
@@ -282,14 +282,16 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         handleLogin();
       }
     }, [isSuccess]);
+    //  自己设置 token & address 无法通过这层验证
     useEffect(() => {
       if (isConnected && !getCookie('token') && address) {
         handleSign();
       }
       if (getCookie('token') && getCookie('address')) {
-        //  自己设置 token & address 无法通过这层验证
-        apiUserInfo().then(() => {
+        apiUserInfo().then((res) => {
           setCurrentAddress(getCookie('address') || '');
+          setIsLogin(true);
+          setIsAdmin(res.isAdmin);
         });
       }
     }, [address]);

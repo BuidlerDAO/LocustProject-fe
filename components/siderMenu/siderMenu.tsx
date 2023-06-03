@@ -19,7 +19,7 @@ const SideMenu = (props: any) => {
     isPost,
     setIsPost
   } = useSiderStore();
-  const { isAdmin, isLogin, isRegister } = useUserStore();
+  const { isAdmin, isLogin, isSignUp } = useUserStore();
   const pathname = usePathname();
   const flag = pathname == '/zh-CN' || pathname == '/en';
   const onJudge = () => {
@@ -28,8 +28,8 @@ const SideMenu = (props: any) => {
       toast.error('Please login first');
       return;
     } else {
-      if (!isRegister) {
-        toast.error('Please register first');
+      if (!isSignUp) {
+        toast.error('Please sign up first');
         return;
       } else {
         router.push('/home/post');
@@ -68,7 +68,7 @@ const SideMenu = (props: any) => {
         {/* logo部分 */}
         <div className="width-[18rem] ml-[30px] flex h-[100px] items-center justify-center">
           <div
-            className={`mr-[-5px] mt-[-18px] 
+            className={`mr-[-5px] mt-[-18px]
                             ${!flag && 'mr-[6px] mt-[0.2px]'}
             } `}
           >

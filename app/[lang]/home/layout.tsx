@@ -5,7 +5,6 @@ import Loading from './loading';
 import type { FC } from 'react';
 import { ConfigProvider } from 'antd';
 import SideMenu from '@/components/siderMenu/siderMenu';
-import { ClassName } from '../../../types/components/theme';
 
 const HomeLayout: FC<{ children: ReactNode }> = (props) => {
   return (

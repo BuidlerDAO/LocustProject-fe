@@ -24,7 +24,8 @@ const Profile: React.FC = () => {
     avatar,
     setAvatar,
     isConnectTwitter,
-    setIsConnectTwitter
+    setIsConnectTwitter,
+    isLogin
   } = useUserStore();
   const router = useRouter();
   //  页面重定向到个人页面时路径中带有 Twitter 返回的 oauth_token,oauth_verifier 去进行个人信息的修改
@@ -229,6 +230,10 @@ const Profile: React.FC = () => {
       updateTwitterInfo();
     }
   }, []);
+  // isLogin 为 false 时,跳转至登录页面
+  if (!isLogin) {
+    router.replace('/');
+  }
   return (
     <div
       style={{

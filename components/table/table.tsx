@@ -152,6 +152,7 @@ const Table2 = () => {
 
   useEffect(() => {
     getData('January');
+    getMonthList();
   }, []);
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);

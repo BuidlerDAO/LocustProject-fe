@@ -141,7 +141,7 @@ const DataCard = (props: object) => {
           }
           .component2-frame2 {
             margin-top: 1rem;
-            margin-left: 6vw;
+            margin-left: 5vw;
             width: 16vw;
             height: 112px;
             display: flex;
@@ -183,7 +183,7 @@ const DataCard = (props: object) => {
           }
           .component2-currency-circle-dollar {
             margin-top: 12px;
-            margin-left: 12rem;
+            margin-left: 11rem;
             position: absolute;
             width: 24px;
             height: 24px;

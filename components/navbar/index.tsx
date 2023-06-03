@@ -35,7 +35,7 @@ const searchResult = async (query: string) => {
             {item.title}
             {/* </a> */}
           </span>
-          <span>results</span>
+          {/* <span>results</span> */}
         </div>
       )
     };

@@ -93,8 +93,8 @@ const Profile: React.FC = () => {
           name: userName
         });
         if (res) {
-          Toast.success('Modify message success!');
-          console.log(res);
+          // Toast.success('Modify message success!');
+          // console.log(res);
           setUsername(username);
           setAvatar(res.avatar);
           //  测试是否成功更新数据
@@ -110,6 +110,18 @@ const Profile: React.FC = () => {
   //  推特登录 点击之后跳转至 Twitter 拿到授权,此时的 url 带有 oauthToken,verifier 参数,再执行页面的 useEffect 判断
   const handleTwitterConnect = async () => {
     if (!isConnectTwitter) {
+      if (userName !== '' && avatar !== '') {
+        //  单单修改用户信息不传推特
+        const res = await apiPutUserInfo({
+          avatar: uploadUrl,
+          name: userName
+        });
+        if (res) {
+          Toast.success('Modify message success!');
+          setUsername(username);
+          setAvatar(res.avatar);
+        }
+      }
       const res = await apiTwitterToken(
         'http://localhost:3000/zh-CN/home/profile'
       );

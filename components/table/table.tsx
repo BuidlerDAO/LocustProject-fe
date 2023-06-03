@@ -56,62 +56,62 @@ const Table2 = () => {
       key: 'registrationTime'
     }
   ];
-  const data2 = [
-    {
-      key: '1',
-      userName: 'John Doe',
-      walletAddress: '0x1234567890abcdef',
-      numContentSubmitted: 10,
-      numDeletedContent: 2,
-      bonusesReceived: 5,
-      registrationTime: '2021-01-01'
-    },
-    {
-      key: '2',
-      userName: 'Jane Smith',
-      walletAddress: '0xabcdef1234567890',
-      numContentSubmitted: 5,
-      numDeletedContent: 1,
-      bonusesReceived: 2,
-      registrationTime: '2021-02-01'
-    },
-    {
-      key: '3',
-      userName: 'Bob Johnson',
-      walletAddress: '0x0987654321fedcba',
-      numContentSubmitted: 20,
-      numDeletedContent: 0,
-      bonusesReceived: 10,
-      registrationTime: '2021-03-01'
-    },
-    {
-      key: '4',
-      userName: 'Jane Smith',
-      walletAddress: '0xabcdef1234567890',
-      numContentSubmitted: 5,
-      numDeletedContent: 1,
-      bonusesReceived: 2,
-      registrationTime: '2021-02-01'
-    },
-    {
-      key: '5',
-      userName: 'Jane Smith',
-      walletAddress: '0xabcdef1234567890',
-      numContentSubmitted: 5,
-      numDeletedContent: 1,
-      bonusesReceived: 2,
-      registrationTime: '2021-02-01'
-    },
-    {
-      key: '6',
-      userName: 'Jane Smith',
-      walletAddress: '0xabcdef1234567890',
-      numContentSubmitted: 5,
-      numDeletedContent: 1,
-      bonusesReceived: 2,
-      registrationTime: '2021-02-01'
-    }
-  ];
+  // const data2 = [
+  //   {
+  //     key: '1',
+  //     userName: 'John Doe',
+  //     walletAddress: '0x1234567890abcdef',
+  //     numContentSubmitted: 10,
+  //     numDeletedContent: 2,
+  //     bonusesReceived: 5,
+  //     registrationTime: '2021-01-01'
+  //   },
+  //   {
+  //     key: '2',
+  //     userName: 'Jane Smith',
+  //     walletAddress: '0xabcdef1234567890',
+  //     numContentSubmitted: 5,
+  //     numDeletedContent: 1,
+  //     bonusesReceived: 2,
+  //     registrationTime: '2021-02-01'
+  //   },
+  //   {
+  //     key: '3',
+  //     userName: 'Bob Johnson',
+  //     walletAddress: '0x0987654321fedcba',
+  //     numContentSubmitted: 20,
+  //     numDeletedContent: 0,
+  //     bonusesReceived: 10,
+  //     registrationTime: '2021-03-01'
+  //   },
+  //   {
+  //     key: '4',
+  //     userName: 'Jane Smith',
+  //     walletAddress: '0xabcdef1234567890',
+  //     numContentSubmitted: 5,
+  //     numDeletedContent: 1,
+  //     bonusesReceived: 2,
+  //     registrationTime: '2021-02-01'
+  //   },
+  //   {
+  //     key: '5',
+  //     userName: 'Jane Smith',
+  //     walletAddress: '0xabcdef1234567890',
+  //     numContentSubmitted: 5,
+  //     numDeletedContent: 1,
+  //     bonusesReceived: 2,
+  //     registrationTime: '2021-02-01'
+  //   },
+  //   {
+  //     key: '6',
+  //     userName: 'Jane Smith',
+  //     walletAddress: '0xabcdef1234567890',
+  //     numContentSubmitted: 5,
+  //     numDeletedContent: 1,
+  //     bonusesReceived: 2,
+  //     registrationTime: '2021-02-01'
+  //   }
+  // ];
   //为getdata传入参数
   const getData = (value: string) => {
     Promise.all([apiGetMonthData({ limit: 0, offset: 20, title: value })]).then(
@@ -134,7 +134,7 @@ const Table2 = () => {
   };
 
   useEffect(() => {
-    // getData();
+    getData('January');
   }, []);
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
@@ -197,7 +197,7 @@ const Table2 = () => {
         >
           <Table
             columns={columns2}
-            dataSource={data2}
+            dataSource={data}
             pagination={{
               position: ['bottomCenter'],
               pageSize: 4

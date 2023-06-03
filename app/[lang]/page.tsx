@@ -30,7 +30,8 @@ const Index = memo((props: any) => {
     setUsername,
     setAvatar,
     setTwitter,
-    setIsLogin
+    setIsLogin,
+    setIsSignUp
   } = useUserStore();
   const [month, daysLeft] = getCurrentTime();
   const onClickError = () => {
@@ -38,12 +39,14 @@ const Index = memo((props: any) => {
       duration: 4000
     });
   };
-  const onClickSuccess = async () => {
-    try {
-      await callContract('addReward');
-    } catch (error) {
-      console.log(error);
-    }
+  const onClickSuccess = () => {
+    callContract('addReward')
+      .then(() => {
+        setIsSignUp(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   //一个判断函数：判断是否已经报名
   const onJudge = () => {

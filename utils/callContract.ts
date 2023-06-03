@@ -27,7 +27,7 @@ export async function callContract(type: string) {
       }
     }
     const contractWithSigner = contract.connect(signer);
-    const { setIsSignUp } = useUserStore();
+    // const { setIsSignUp } = useUserStore();
     try {
       //  两个合约都所需的信息
       const campaignId = '';
@@ -57,7 +57,6 @@ export async function callContract(type: string) {
                   Toast.success('Enrollment success', {
                     duration: 4000
                   });
-                  setIsSignUp(true);
                 })
                 .catch(() => {
                   Toast.error('Fail to Enrollment ', {

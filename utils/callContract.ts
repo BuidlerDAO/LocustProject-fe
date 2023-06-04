@@ -34,7 +34,7 @@ export async function callContract(type: string) {
       const spender = '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2';
       const tokenType = 1;
       // const addRewardAmount = '';
-      const approveAmount = ethers.utils.parseUnits('1', 18);
+      const approveAmount = ethers.utils.parseUnits('0.001', 18);
       const tokens = [
         {
           tokenType: tokenType,

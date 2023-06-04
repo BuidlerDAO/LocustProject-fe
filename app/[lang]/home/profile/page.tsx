@@ -140,7 +140,7 @@ const Profile: React.FC = () => {
         'http://localhost:3000/zh-CN/home/profile'
       );
       window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
-      updateTwitterInfo();
+      // updateTwitterInfo();
     } else {
       showModal();
     }
@@ -166,7 +166,7 @@ const Profile: React.FC = () => {
       setTwitterName(res.twitterUsername);
     } else {
       console.log(res);
-      Toast.error('Connect Error!');
+      // Toast.error('Connect Error!');
     }
   };
   //  推特 退出登录
@@ -228,22 +228,18 @@ const Profile: React.FC = () => {
   };
   //  初始进行用户个人信息的获取
   useEffect(() => {
-    getUserInfo().then(() => {
-      console.log(isConnectTwitter);
-      if (oauthToken !== null && !isConnectTwitter) {
-        console.log(1111);
-        updateTwitterInfo();
-      }
-    });
+    getUserInfo();
   }, []);
   //  页面重定向回来的执行函数
-  // useEffect(() => {
-  //   console.log(isConnectTwitter);
-  //   if (oauthToken !== null && !isConnectTwitter) {
-  //     console.log(1111);
-  //     updateTwitterInfo();
-  //   }
-  // }, []);
+  useEffect(() => {
+    // console.log(isConnectTwitter);
+    if (oauthToken !== null && !isConnectTwitter) {
+      // console.log(1111);
+      updateTwitterInfo();
+      getUserInfo();
+      // router.replace('/home/profile')
+    }
+  }, []);
   // isLogin 为 false 时,跳转至登录页面
   if (!isLogin) {
     router.replace('/');

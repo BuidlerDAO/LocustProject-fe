@@ -80,8 +80,8 @@ export const apiPutUserInfo = async (data: userInfo) => {
       deleteCookie('address');
       window.location.href = '/';
     }
-    console.log('!!!!000 --> ', res);
-    toast.error(`${res.message}`, { id: `${res.message}` });
+    // console.log('!!!!000 --> ', res);
+    // toast.error(`${res.message}`, { id: `${res.message}` });
     return '';
   }
 };

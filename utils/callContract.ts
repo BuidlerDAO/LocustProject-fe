@@ -27,24 +27,22 @@ export async function callContract(type: string) {
       }
     }
     const contractWithSigner = contract.connect(signer);
-    // const { setIsSignUp } = useUserStore();
     try {
       //  两个合约都所需的信息
+      //  代币合约地址及数量
       const campaignId = '';
-      const tokenType = '';
-      const tokenAddress = '';
-      const addRewardAmount = '';
+      const spender = '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2';
+      const tokenType = 1;
+      // const addRewardAmount = '';
+      const approveAmount = ethers.utils.parseUnits('1', 18);
       const tokens = [
         {
           tokenType: tokenType,
-          tokenAddress: tokenAddress,
-          amount: addRewardAmount
+          tokenAddress: spender,
+          amount: approveAmount
         }
       ];
       if (type === 'addReward') {
-        //  代币合约地址及数量
-        const spender = '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2';
-        const approveAmount = ethers.utils.parseUnits('100', '');
         //  addReward 所需参数
         const createIfNotExists = true;
         await contractWithSigner

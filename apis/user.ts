@@ -8,8 +8,8 @@ interface TwitterObject {
   verifier: string;
 }
 interface userInfo {
-  avatar: string;
-  name: string;
+  avatar?: string;
+  name?: string;
   twitter?: TwitterObject;
 }
 /**

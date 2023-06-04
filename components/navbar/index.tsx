@@ -101,7 +101,8 @@ const Navbar = () => {
                       colorText: '#ffffff',
                       colorIconHover: '#ffffff',
                       colorIcon: '#ffffff',
-                      colorTextPlaceholder: '#FFFFFF66'
+                      colorTextPlaceholder: '#FFFFFF66',
+                      colorPrimary: '#ffffff'
                     }
                   }}
                 >

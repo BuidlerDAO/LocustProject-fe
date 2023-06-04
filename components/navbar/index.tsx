@@ -11,6 +11,7 @@ import { useState } from 'react';
 import './index.css';
 import { apiGetPostData, apiGetSearchData } from '@/apis/post';
 import { Post } from '@/store/PostStore';
+import { on } from 'events';
 
 const Navbar = () => {
   const path = usePathname();
@@ -29,12 +30,13 @@ const Navbar = () => {
       return {
         value: category,
         label: (
-          <Link href="/post/[id]" as={`/post/${item.id}`}>
+          <Link href={`/home/search/`}>
             <div
               style={{
                 display: 'flex',
                 justifyContent: 'space-between'
               }}
+              onClick={() => setSearchValue(item)}
             >
               <span>
                 Found {query} on {item.title}

@@ -10,6 +10,7 @@ import { useSearchStore, useUserStore } from '@/store';
 import { useState } from 'react';
 import './index.css';
 import { apiGetPostData, apiGetSearchData } from '@/apis/post';
+import { Post } from '@/store/PostStore';
 
 const Navbar = () => {
   const path = usePathname();
@@ -17,18 +18,23 @@ const Navbar = () => {
   const { isSignUp, setIsLogin } = useUserStore();
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
 
-  const { setSearchValue } = useSearchStore();
+  //const { setSearchValue, searchValue } = useSearchStore();
+  const setSearchValue = useSearchStore((state) => state.setSearchValue);
   const searchResult = async (query: string) => {
     const res = await apiGetSearchData(query);
     const items = res.items;
-    const result = items.map((item: any, idx: any) => {
+    const result = items.map((item: Post, idx: any) => {
       const category = `${query}${idx}`;
       setSearchValue(item);
-      console.log(item);
       return {
         value: category,
         label: (
-          <Link href={`/home/search`}>
+          <Link
+            href={{
+              pathname: '/home/search',
+              query: { id: item.id.toString() }
+            }}
+          >
             <div
               style={{
                 display: 'flex',

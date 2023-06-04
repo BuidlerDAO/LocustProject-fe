@@ -6,47 +6,52 @@ import { usePathname } from 'next/navigation';
 import { AutoComplete, ConfigProvider, Input, SelectProps } from 'antd';
 import { SearchIcon } from '@/components/icons/search';
 import Link from 'next/link';
-import { useUserStore } from '@/store';
+import { useSearchStore, useUserStore } from '@/store';
 import { useState } from 'react';
 import './index.css';
 import { apiGetPostData, apiGetSearchData } from '@/apis/post';
+import { Post } from '@/store/PostStore';
 
-const searchResult = async (query: string) => {
-  const res = await apiGetSearchData(query);
-  const items = res.items;
-  const result = items.map((item: any, idx: any) => {
-    const category = `${query}${idx}`;
-    return {
-      value: category,
-      label: (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between'
-          }}
-        >
-          <span>
-            Found {query} on{' '}
-            {/* <a
-              href={`https://s.taobao.com/search?q=${query}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            > */}
-            {item.title}
-            {/* </a> */}
-          </span>
-          {/* <span>results</span> */}
-        </div>
-      )
-    };
-  });
-  return result;
-};
 const Navbar = () => {
   const path = usePathname();
   const flag = path == '/zh-CN' || path == '/en';
   const { isSignUp, setIsLogin } = useUserStore();
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
+
+  //const { setSearchValue, searchValue } = useSearchStore();
+  const setSearchValue = useSearchStore((state) => state.setSearchValue);
+  const searchResult = async (query: string) => {
+    const res = await apiGetSearchData(query);
+    const items = res.items;
+    const result = items.map((item: Post, idx: any) => {
+      const category = `${query}${idx}`;
+      setSearchValue(item);
+      return {
+        value: category,
+        label: (
+          <Link
+            href={{
+              pathname: '/home/search',
+              query: { id: item.id.toString() }
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between'
+              }}
+            >
+              <span>
+                Found {query} on {item.title}
+              </span>
+              {/* <span>results</span> */}
+            </div>
+          </Link>
+        )
+      };
+    });
+    return result;
+  };
 
   const handleSearch = async (value: string) => {
     const result = value ? await searchResult(value) : [];

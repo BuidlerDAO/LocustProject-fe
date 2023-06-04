@@ -7,6 +7,7 @@ import { ConfigProvider, Select, Table, Typography } from 'antd';
 import { getFullMonth } from '@/utils/time';
 import { apiGetMonthData, apiGetMonthList, apiGetPostData } from '@/apis/post';
 import { get } from 'http';
+import { set } from 'nprogress';
 type AlignType = 'left' | 'center' | 'right';
 
 const { Text } = Typography;
@@ -17,6 +18,7 @@ interface ColumnItem {
   align?: AlignType;
 }
 const Table2 = () => {
+  const [monthOptions, setMonthOptions] = useState<any>([]);
   const [data, setData] = useState([]);
   const columns2: ColumnItem[] = [
     {
@@ -56,62 +58,6 @@ const Table2 = () => {
       key: 'registrationTime'
     }
   ];
-  // const data2 = [
-  //   {
-  //     key: '1',
-  //     userName: 'John Doe',
-  //     walletAddress: '0x1234567890abcdef',
-  //     numContentSubmitted: 10,
-  //     numDeletedContent: 2,
-  //     bonusesReceived: 5,
-  //     registrationTime: '2021-01-01'
-  //   },
-  //   {
-  //     key: '2',
-  //     userName: 'Jane Smith',
-  //     walletAddress: '0xabcdef1234567890',
-  //     numContentSubmitted: 5,
-  //     numDeletedContent: 1,
-  //     bonusesReceived: 2,
-  //     registrationTime: '2021-02-01'
-  //   },
-  //   {
-  //     key: '3',
-  //     userName: 'Bob Johnson',
-  //     walletAddress: '0x0987654321fedcba',
-  //     numContentSubmitted: 20,
-  //     numDeletedContent: 0,
-  //     bonusesReceived: 10,
-  //     registrationTime: '2021-03-01'
-  //   },
-  //   {
-  //     key: '4',
-  //     userName: 'Jane Smith',
-  //     walletAddress: '0xabcdef1234567890',
-  //     numContentSubmitted: 5,
-  //     numDeletedContent: 1,
-  //     bonusesReceived: 2,
-  //     registrationTime: '2021-02-01'
-  //   },
-  //   {
-  //     key: '5',
-  //     userName: 'Jane Smith',
-  //     walletAddress: '0xabcdef1234567890',
-  //     numContentSubmitted: 5,
-  //     numDeletedContent: 1,
-  //     bonusesReceived: 2,
-  //     registrationTime: '2021-02-01'
-  //   },
-  //   {
-  //     key: '6',
-  //     userName: 'Jane Smith',
-  //     walletAddress: '0xabcdef1234567890',
-  //     numContentSubmitted: 5,
-  //     numDeletedContent: 1,
-  //     bonusesReceived: 2,
-  //     registrationTime: '2021-02-01'
-  //   }
-  // ];
   //为getdata传入参数
   const getData = (value: string) => {
     Promise.all([apiGetMonthData({ limit: 0, offset: 20, title: value })]).then(
@@ -132,34 +78,31 @@ const Table2 = () => {
       }
     );
   };
-  const getMonthList = () => {
+  const getMonthList = async () => {
     Promise.all([apiGetMonthList()]).then((values: any) => {
       console.log(values[0].Items);
       const newData = values[0].Items.map((item: any) => {
-        //console.log(item);
+        console.log(item);
         return {
-          userName: item.Username,
-          walletAddress: item.Address,
-          numContentSubmitted: item.ContentCount,
-          numDeletedContent: item.DeletedCount,
-          bonusesReceived: item.BonusReceived
+          value: item,
+          label: item
         };
       });
       console.log(newData);
-      return newData;
+      setMonthOptions(newData);
     });
   };
 
   useEffect(() => {
-    getData('January');
     getMonthList();
+    console.log(monthOptions);
   }, []);
   const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
+    //console.log(`selected ${value}`);
     getData(value);
   };
   const onDownload = () => {
-    console.log('download');
+    // console.log('download');
   };
   return (
     <>
@@ -184,7 +127,7 @@ const Table2 = () => {
               }}
             >
               <Select
-                defaultValue="January"
+                defaultValue="June"
                 style={{
                   width: 80,
                   borderRadius: '8px',
@@ -194,7 +137,7 @@ const Table2 = () => {
                 }}
                 bordered={false}
                 onChange={handleChange}
-                //options={getMonthList()}
+                options={monthOptions}
               />
             </ConfigProvider>
           </div>
@@ -283,8 +226,8 @@ const Table1 = () => {
   ];
   const getData = async () => {
     Promise.all([apiGetPostData('/api/admin/data')]).then((values: any) => {
-      console.log(values);
-      console.log(values[0].Items);
+      //console.log(values);
+      //console.log(values[0].Items);
       const newData = values[0].Items.map((item: any) => {
         //console.log(item);
         return {
@@ -298,7 +241,7 @@ const Table1 = () => {
         };
       });
       setData(newData);
-      console.log(newData);
+      //console.log(newData);
     });
   };
 

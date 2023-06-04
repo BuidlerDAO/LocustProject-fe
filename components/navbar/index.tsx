@@ -54,7 +54,7 @@ const Navbar = () => {
   };
 
   const onSelect = (value: string) => {
-    console.log('onSelect', value);
+    //console.log('onSelect', value);
     //const res = apiGetPostData('/api/post/search', value);
   };
   return (

@@ -24,9 +24,18 @@ const Navbar = () => {
   const searchResult = async (query: string) => {
     const res = await apiGetSearchData(query);
     const items = res.items;
-    const result = items.map((item: Post, idx: any) => {
+    const result = items.map((item: any, idx: any) => {
       const category = `${query}${idx}`;
-      setSearchValue(item);
+      const newData = {
+        id: item.id,
+        title: item.title,
+        link: item.link,
+        originalText: item.body,
+        personalThoughts: item.thought,
+        time: item.createdAt,
+        avatar: item.avatar,
+        username: item.username
+      };
       return {
         value: category,
         label: (
@@ -36,7 +45,7 @@ const Navbar = () => {
                 display: 'flex',
                 justifyContent: 'space-between'
               }}
-              onClick={() => setSearchValue(item)}
+              onClick={() => setSearchValue(newData)}
             >
               <span>
                 Found {query} on {item.title}

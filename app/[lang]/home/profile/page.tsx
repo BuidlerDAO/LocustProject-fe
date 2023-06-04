@@ -90,12 +90,13 @@ const Profile: React.FC = () => {
     try {
       const UserRes = await apiUserInfo();
       // console.log('UserRes-->',UserRes);
-      if (userName !== '' && avatar !== '') {
+      if (userName !== '' && uploadUrl !== '') {
         //  单单修改用户信息不传推特
-        if (UserRes.username === userName && UserRes.avatar === avatar) {
+        if (UserRes.username === userName && UserRes.avatar === uploadUrl) {
           Toast.error("Don't upload the same info");
           return;
         }
+        console.log(uploadUrl);
         const res = await apiPutUserInfo({
           avatar: uploadUrl,
           name: userName
@@ -103,12 +104,14 @@ const Profile: React.FC = () => {
         if (res) {
           Toast.success('Modify message success!');
           // console.log(res);
-          setUsername(username);
+          setUsername(res.username);
           setAvatar(res.avatar);
           //  测试是否成功更新数据
           // const testInfo = await apiUserInfo();
           // console.log(testInfo);
         }
+      } else {
+        Toast.error("Can't be empty!");
       }
     } catch (error) {
       Toast.error('Fail to Modify message!');
@@ -118,9 +121,9 @@ const Profile: React.FC = () => {
   //  推特登录 点击之后跳转至 Twitter 拿到授权,此时的 url 带有 oauthToken,verifier 参数,再执行页面的 useEffect 判断
   const handleTwitterConnect = async () => {
     if (!isConnectTwitter) {
-      if (userName !== '' && avatar !== '') {
+      if (userName !== '' && uploadUrl !== '') {
         const UserRes = await apiUserInfo();
-        if (UserRes.username !== userName || UserRes.avatar !== avatar) {
+        if (UserRes.username !== userName || UserRes.avatar !== uploadUrl) {
           //  单单修改用户信息不传推特
           const res = await apiPutUserInfo({
             avatar: uploadUrl,
@@ -128,7 +131,7 @@ const Profile: React.FC = () => {
           });
           if (res) {
             Toast.success('Modify message success!');
-            setUsername(username);
+            setUsername(res.username);
             setAvatar(res.avatar);
           }
         }
@@ -148,8 +151,6 @@ const Profile: React.FC = () => {
       'http://localhost:3000/zh-CN/home/profile'
     );
     const res = await apiPutUserInfo({
-      avatar: uploadUrl,
-      name: userName,
       twitter: {
         oauthToken,
         oauthTokenSecret: TwitterToken.oauthTokenSecret,
@@ -159,7 +160,10 @@ const Profile: React.FC = () => {
     if (res.id) {
       console.log(res);
       Toast.success('Connect Success!');
+      console.log('163', isConnectTwitter);
       setIsConnectTwitter(true);
+      console.log('165', isConnectTwitter);
+      setTwitterName(res.twitterUsername);
     } else {
       console.log(res);
       Toast.error('Connect Error!');
@@ -178,9 +182,10 @@ const Profile: React.FC = () => {
         }
       });
       console.log(res);
-      const testInfo = await apiUserInfo();
-      console.log('apiUserInfo --> ', testInfo);
+      // const testInfo = await apiUserInfo();
+      // console.log('apiUserInfo --> ', testInfo);
       setIsConnectTwitter(false);
+      Toast.success('Disconnect success!');
     }
   };
   //  二次弹窗
@@ -211,6 +216,8 @@ const Profile: React.FC = () => {
       }
       if (res.twitter !== '') {
         setTwitterName(res.twitter);
+        console.log(res.twitter);
+        console.log(isConnectTwitter);
         setIsConnectTwitter(true);
         console.log(isConnectTwitter);
       }
@@ -221,15 +228,22 @@ const Profile: React.FC = () => {
   };
   //  初始进行用户个人信息的获取
   useEffect(() => {
-    getUserInfo();
-    // console.log(oauthToken);
-  }, [username, avatar, isConnectTwitter]);
-  //  页面重定向回来的执行函数
-  useEffect(() => {
-    if (oauthToken !== null && !isConnectTwitter) {
-      updateTwitterInfo();
-    }
+    getUserInfo().then(() => {
+      console.log(isConnectTwitter);
+      if (oauthToken !== null && !isConnectTwitter) {
+        console.log(1111);
+        updateTwitterInfo();
+      }
+    });
   }, []);
+  //  页面重定向回来的执行函数
+  // useEffect(() => {
+  //   console.log(isConnectTwitter);
+  //   if (oauthToken !== null && !isConnectTwitter) {
+  //     console.log(1111);
+  //     updateTwitterInfo();
+  //   }
+  // }, []);
   // isLogin 为 false 时,跳转至登录页面
   if (!isLogin) {
     router.replace('/');

@@ -29,12 +29,7 @@ const Navbar = () => {
       return {
         value: category,
         label: (
-          <Link
-            href={{
-              pathname: '/home/search',
-              query: { id: item.id.toString() }
-            }}
-          >
+          <Link href="/post/[id]" as={`/post/${item.id}`}>
             <div
               style={{
                 display: 'flex',

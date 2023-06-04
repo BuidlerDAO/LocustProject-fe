@@ -3,6 +3,7 @@ import { abi } from '@/apis/abi';
 import Toast from '@/components/toast/toast';
 import { ethers } from 'ethers';
 import { switchWeb3ChainId } from '@/utils/web3';
+import { useUserStore } from '@/store';
 
 export async function callContract(type: string) {
   //  addReward 合约地址
@@ -13,7 +14,7 @@ export async function callContract(type: string) {
     if (network.chainId != 80001) {
       await switchWeb3ChainId('80001');
     }
-    //  创建 Contract 实例
+    //  创建 Contract
     const contract = new ethers.Contract(contractAddress, abi, provider);
     const signer = provider.getSigner();
     const cookieAddress = getCookie('address');
@@ -26,6 +27,7 @@ export async function callContract(type: string) {
       }
     }
     const contractWithSigner = contract.connect(signer);
+    // const { setIsSignUp } = useUserStore();
     try {
       //  两个合约都所需的信息
       const campaignId = '';
@@ -42,21 +44,25 @@ export async function callContract(type: string) {
       if (type === 'addReward') {
         //  代币合约地址及数量
         const spender = '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2';
-        const approveAmount = 15;
+        const approveAmount = ethers.utils.parseUnits('100', '');
         //  addReward 所需参数
-        const createIfNotExists = false;
+        const createIfNotExists = true;
         await contractWithSigner
           .approve(spender, approveAmount)
           .then(async (res: boolean) => {
             if (res) {
-              await contractWithSigner.addReward(
-                campaignId,
-                tokens,
-                createIfNotExists
-              );
-              Toast.success('Enrollment success', {
-                duration: 4000
-              });
+              await contractWithSigner
+                .addReward(campaignId, tokens, createIfNotExists)
+                .then((res: any) => {
+                  Toast.success('Enrollment success', {
+                    duration: 4000
+                  });
+                })
+                .catch(() => {
+                  Toast.error('Fail to Enrollment ', {
+                    duration: 4000
+                  });
+                });
             } else {
               Toast.error('Fail to Enrollment ', {
                 duration: 4000

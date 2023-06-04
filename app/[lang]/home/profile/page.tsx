@@ -15,7 +15,7 @@ import { blobToFile, dataURLtoBlob } from '@/utils/helpers';
 import { getCookie } from '@/utils/cookie';
 import { Dialog, DialogHeader } from '@/components/dialog';
 import { upload } from '@/utils/aws';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const Profile: React.FC = () => {
   const {
@@ -24,8 +24,10 @@ const Profile: React.FC = () => {
     avatar,
     setAvatar,
     isConnectTwitter,
-    setIsConnectTwitter
+    setIsConnectTwitter,
+    isLogin
   } = useUserStore();
+  const router = useRouter();
   //  页面重定向到个人页面时路径中带有 Twitter 返回的 oauth_token,oauth_verifier 去进行个人信息的修改
   const oauthToken = useSearchParams()?.get('oauth_token') as string;
   const verifier = useSearchParams()?.get('oauth_verifier') as string;
@@ -39,12 +41,16 @@ const Profile: React.FC = () => {
   const [showCrop, setShowCrop] = useState<boolean>(false);
   const [cropper, setCropper] = useState<any>();
   const [aspect, setAspect] = useState<number>(1 / 1);
-  //  头像裁剪
+  //  头像裁剪加验证
   const handleCrop = async (e: any) => {
     try {
+      const file = e.target.files[0];
       const maxFileSize = 5 * 1024 * 1024;
-      if (e.target.files[0].size > maxFileSize) {
-        Toast.error('Size is above the 5M!');
+      const filetype = ['.jpg', '.png', '.gif'];
+      const extension = file.name.split('.').pop().toLowerCase();
+      const flag = filetype.includes('.' + extension);
+      if (file.size > maxFileSize || !flag) {
+        Toast.error("File don't be allowed!");
         return;
       }
       const reader: any = new FileReader();
@@ -82,25 +88,30 @@ const Profile: React.FC = () => {
   //  名字+头像上传
   const handleUploadAll = async () => {
     try {
-      if (
-        userName !== '@StarMemory' ||
-        avatar !==
-          'http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg'
-      ) {
-        //  单单修改用户信息不连接推特传空就行
+      const UserRes = await apiUserInfo();
+      // console.log('UserRes-->',UserRes);
+      if (userName !== '' && uploadUrl !== '') {
+        //  单单修改用户信息不传推特
+        if (UserRes.username === userName && UserRes.avatar === uploadUrl) {
+          Toast.error("Don't upload the same info");
+          return;
+        }
+        console.log(uploadUrl);
         const res = await apiPutUserInfo({
           avatar: uploadUrl,
           name: userName
         });
         if (res) {
           Toast.success('Modify message success!');
-          console.log(res);
-          setUsername(username);
+          // console.log(res);
+          setUsername(res.username);
           setAvatar(res.avatar);
           //  测试是否成功更新数据
           // const testInfo = await apiUserInfo();
           // console.log(testInfo);
         }
+      } else {
+        Toast.error("Can't be empty!");
       }
     } catch (error) {
       Toast.error('Fail to Modify message!');
@@ -110,36 +121,52 @@ const Profile: React.FC = () => {
   //  推特登录 点击之后跳转至 Twitter 拿到授权,此时的 url 带有 oauthToken,verifier 参数,再执行页面的 useEffect 判断
   const handleTwitterConnect = async () => {
     if (!isConnectTwitter) {
+      if (userName !== '' && uploadUrl !== '') {
+        const UserRes = await apiUserInfo();
+        if (UserRes.username !== userName || UserRes.avatar !== uploadUrl) {
+          //  单单修改用户信息不传推特
+          const res = await apiPutUserInfo({
+            avatar: uploadUrl,
+            name: userName
+          });
+          if (res) {
+            Toast.success('Modify message success!');
+            setUsername(res.username);
+            setAvatar(res.avatar);
+          }
+        }
+      }
       const res = await apiTwitterToken(
         'http://localhost:3000/zh-CN/home/profile'
       );
       window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
-      if (!isConnectTwitter) {
-        updateTwitterInfo();
-      }
+      // updateTwitterInfo();
     } else {
       showModal();
     }
   };
   //  PUT 更新推特方法
   const updateTwitterInfo = async () => {
-    const res = await apiTwitterToken(
+    const TwitterToken = await apiTwitterToken(
       'http://localhost:3000/zh-CN/home/profile'
     );
-    const { id } = await apiPutUserInfo({
-      avatar: uploadUrl,
-      name: userName,
+    const res = await apiPutUserInfo({
       twitter: {
         oauthToken,
-        oauthTokenSecret: res.oauthTokenSecret,
+        oauthTokenSecret: TwitterToken.oauthTokenSecret,
         verifier
       }
     });
-    if (id) {
+    if (res.id) {
+      console.log(res);
       Toast.success('Connect Success!');
+      console.log('163', isConnectTwitter);
       setIsConnectTwitter(true);
+      console.log('165', isConnectTwitter);
+      setTwitterName(res.twitterUsername);
     } else {
-      Toast.error('Connect Error!');
+      console.log(res);
+      // Toast.error('Connect Error!');
     }
   };
   //  推特 退出登录
@@ -155,9 +182,10 @@ const Profile: React.FC = () => {
         }
       });
       console.log(res);
-      const testInfo = await apiUserInfo();
-      console.log('apiUserInfo --> ', testInfo);
+      // const testInfo = await apiUserInfo();
+      // console.log('apiUserInfo --> ', testInfo);
       setIsConnectTwitter(false);
+      Toast.success('Disconnect success!');
     }
   };
   //  二次弹窗
@@ -173,35 +201,49 @@ const Profile: React.FC = () => {
   };
   //  获取个人信息
   const getUserInfo = async () => {
-    const res = await apiUserInfo();
-    console.log(res);
-    if (res.avatar !== '') {
-      setUploadUrl(res.avatar);
-      setAvatar(res.avatar);
-    }
-    if (res.username !== '') {
-      setUsername(res.username);
-      setUserName(res.username);
-      console.log('zustand-->', username);
-      console.log('state-->', userName);
-    }
-    if (res.twitter !== '') {
-      setTwitterName(res.twitter);
-      setIsConnectTwitter(true);
-      console.log(isConnectTwitter);
+    try {
+      const res = await apiUserInfo();
+      console.log(res);
+      if (res.avatar !== '') {
+        setUploadUrl(res.avatar);
+        setAvatar(res.avatar);
+      }
+      if (res.username !== '') {
+        setUsername(res.username);
+        setUserName(res.username);
+        console.log('zustand-->', username);
+        console.log('state-->', userName);
+      }
+      if (res.twitter !== '') {
+        setTwitterName(res.twitter);
+        console.log(res.twitter);
+        console.log(isConnectTwitter);
+        setIsConnectTwitter(true);
+        console.log(isConnectTwitter);
+      }
+    } catch (error) {
+      console.log(error);
+      router.replace('/');
     }
   };
-  //  页面重定向回来的执行函数
-  useEffect(() => {
-    if (oauthToken !== null) {
-      updateTwitterInfo();
-    }
-  }, []);
   //  初始进行用户个人信息的获取
   useEffect(() => {
     getUserInfo();
-    // console.log(oauthToken);
-  }, [username, avatar, isConnectTwitter]);
+  }, []);
+  //  页面重定向回来的执行函数
+  useEffect(() => {
+    // console.log(isConnectTwitter);
+    if (oauthToken !== null && !isConnectTwitter) {
+      // console.log(1111);
+      updateTwitterInfo();
+      getUserInfo();
+      // router.replace('/home/profile')
+    }
+  }, []);
+  // isLogin 为 false 时,跳转至登录页面
+  if (!isLogin) {
+    router.replace('/');
+  }
   return (
     <div
       style={{

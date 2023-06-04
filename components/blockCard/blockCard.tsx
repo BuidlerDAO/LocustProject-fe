@@ -66,9 +66,9 @@ const Block = (props: {
     console.log(props.data.id);
     decrease(props.data.id);
     apiDeletePostData(props.data.id);
-    toast.success('Delete success', {
-      duration: 4000
-    });
+    // toast.success('Delete success', {
+    //   duration: 4000
+    // });
   }
   const text = () => (
     <button className="hover:text-red-600" onClick={showModal}>

@@ -157,7 +157,7 @@ export interface WalletProps extends ComponentProps<'div'> {
 const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
   ({ className, ...rest }, ref) => {
     const router = useRouter();
-    const { setIsLogin } = useUserStore();
+    const { setIsLogin, setIsAdmin } = useUserStore();
     // State / Props
     // 以太坊网络地址 & 是否链接
     const { address, isConnected } = useAccount();
@@ -202,6 +202,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       deleteCookie('token');
       deleteCookie('address');
       setCurrentAddress('');
+      router.replace('/');
     };
     // 登录
     const handleLogin = async () => {
@@ -288,9 +289,16 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         handleSign();
       }
       if (getCookie('token') && getCookie('address')) {
-        apiUserInfo().then(() => {
-          setCurrentAddress(getCookie('address') || '');
-        });
+        apiUserInfo()
+          .then((res) => {
+            setCurrentAddress(getCookie('address') || '');
+            setIsLogin(true);
+            setIsAdmin(res.isAdmin);
+          })
+          .catch((error) => {
+            console.log(error);
+            router.replace('/');
+          });
       }
     }, [address]);
     // Render

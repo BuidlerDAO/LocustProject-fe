@@ -1,33 +1,13 @@
-import {
-  MdDarkMode,
-  MdOutlineClose,
-  MdOutlineComment,
-  MdOutlineLightMode
-} from 'react-icons/md';
-import { FaDev } from 'react-icons/fa';
-import { CgCommunity } from 'react-icons/cg';
-import { RxArrowRight } from 'react-icons/rx';
-import { AiOutlineScan } from 'react-icons/ai';
+import { MdOutlineClose } from 'react-icons/md';
 import LogoIconTop from './logoIconTop';
-import AmountIcon from './amount';
-import HookIcon from './hook';
+import WalletConnectIcon from './walletConnect';
 import TwitterIcon from './twitter';
 import MetamaskIcon from './metamask';
 import CoinbaseIcon from './coinbase';
-import AddIcon from './add';
-import WalletConnectIcon from './walletConnect';
-import LockFilledIcon from './lockFilled';
-import LockStrokedIcon from './lockStroked';
-import DatabaseIcon from './database';
-import RankIcon from './rank';
-import VerifiedIcon from './verified';
-import WebIcon from './web';
-import DiscordIcon from './discord';
-import TelegramIcon from './telegram';
-import CheckIcon from './check';
 import { TimeIcon } from './time';
 import LinkIcon from './link';
 import DollarIcon from './dollarIcon';
+import ArrowRight from '@/components/icons/arrowRight';
 
 export interface IconBaseProps extends React.SVGAttributes<SVGElement> {
   children?: React.ReactNode;
@@ -44,41 +24,16 @@ style	undefined	Can overwrite size and color
 attr	undefined	Overwritten by other attributes
 title	undefined	Icon description for accessibility
  */
-const DarkMode = MdDarkMode;
-const LightMode = MdOutlineLightMode;
-const OutlineComment = MdOutlineComment;
-const DevIcon = FaDev;
-const ArrowRight = RxArrowRight;
-const CommunityIcon = CgCommunity;
 const Close = MdOutlineClose;
-const OutlineScan = AiOutlineScan;
 
 export {
-  DarkMode,
-  LightMode,
-  OutlineComment,
-  DevIcon,
-  CommunityIcon,
+  ArrowRight,
   LogoIconTop,
-  AmountIcon,
-  HookIcon,
   TwitterIcon,
   Close,
   MetamaskIcon,
   CoinbaseIcon,
   WalletConnectIcon,
-  OutlineScan,
-  AddIcon,
-  ArrowRight,
-  LockFilledIcon,
-  LockStrokedIcon,
-  DatabaseIcon,
-  RankIcon,
-  VerifiedIcon,
-  WebIcon,
-  DiscordIcon,
-  TelegramIcon,
-  CheckIcon,
   TimeIcon,
   LinkIcon,
   DollarIcon

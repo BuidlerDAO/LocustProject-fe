@@ -24,13 +24,14 @@ import { apiUserInfo } from '@/apis/user';
 
 const Index = memo((props: any) => {
   const {
+    setIsAdmin,
     isSignUp,
-    setIsSignUp,
     isLogin,
     setUsername,
     setAvatar,
     setTwitter,
-    setIsLogin
+    setIsLogin,
+    setIsSignUp
   } = useUserStore();
   const [month, daysLeft] = getCurrentTime();
   const onClickError = () => {
@@ -38,12 +39,14 @@ const Index = memo((props: any) => {
       duration: 4000
     });
   };
-  const onClickSuccess = async () => {
-    try {
-      await callContract('addReward');
-    } catch (error) {
-      console.log(error);
-    }
+  const onClickSuccess = () => {
+    callContract('addReward')
+      .then(() => {
+        setIsSignUp(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   //一个判断函数：判断是否已经报名
   const onJudge = () => {
@@ -55,7 +58,6 @@ const Index = memo((props: any) => {
           showModal();
         } else {
           onClickSuccess();
-          setIsSignUp(true);
         }
       }
     } else {
@@ -93,7 +95,6 @@ const Index = memo((props: any) => {
   const handleOk = () => {
     setIsModalOpen(false);
     onClickSuccess();
-    setIsSignUp(true);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -106,6 +107,7 @@ const Index = memo((props: any) => {
         setAvatar(res.avatar);
         setTwitter(res.twitter);
         setIsLogin(true);
+        setIsAdmin(res.isAdmin);
       });
     }
   }, []);

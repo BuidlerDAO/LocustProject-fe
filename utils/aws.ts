@@ -1,5 +1,6 @@
 import { apiGetStsToken } from '@/apis/login';
 import { UUID } from './uuid';
+import { PutObjectCommand } from '@aws-sdk/client-s3';
 
 /**
  * @description 获取client3实例
@@ -36,7 +37,7 @@ export const s3Instance = async () => {
  * @description 上传方法
  */
 export const upload = async (req: { key: string; body: any }) => {
-  const { PutObjectCommand } = await import('@aws-sdk/client-s3');
+  // const { PutObjectCommand } = await import('@aws-sdk/client-s3');
   try {
     const instance = await s3Instance();
     return new Promise((resolve) => {

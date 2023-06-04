@@ -1,12 +1,13 @@
 import { apiGetStsToken } from '@/apis/login';
 import { UUID } from './uuid';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client } from '@aws-sdk/client-s3';
 
 /**
  * @description 获取client3实例
  */
 export const s3Instance = async () => {
-  const { S3Client } = await import('@aws-sdk/client-s3');
+  //const { S3Client } = await import('@aws-sdk/client-s3');
   const tokenData: {
     credential: {
       accessKeyId: string;

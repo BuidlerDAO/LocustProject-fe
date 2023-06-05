@@ -111,6 +111,11 @@ async function approveTokens(
   try {
     // 连接到以太坊
     const provider = new ethers.providers.Web3Provider(window.ethereum);
+    provider.getNetwork().then(async (network) => {
+      if (network.chainId != 80001) {
+        await switchWeb3ChainId('80001');
+      }
+    });
     const signer = provider.getSigner();
     // 创建合约实例
     const contract = new ethers.Contract(
@@ -139,6 +144,11 @@ async function addReward(
   try {
     // 连接到以太坊
     const provider = new ethers.providers.Web3Provider(window.ethereum);
+    provider.getNetwork().then(async (network) => {
+      if (network.chainId != 80001) {
+        await switchWeb3ChainId('80001');
+      }
+    });
     const signer = provider.getSigner();
     // 创建合约实例
     const contract = new ethers.Contract(contractAddress, abi, signer);
@@ -179,6 +189,11 @@ async function claimReward(
   try {
     // 连接到以太坊
     const provider = new ethers.providers.Web3Provider(window.ethereum);
+    provider.getNetwork().then(async (network) => {
+      if (network.chainId != 80001) {
+        await switchWeb3ChainId('80001');
+      }
+    });
     const signer = provider.getSigner();
     // 创建合约实例
     const contract = new ethers.Contract(contractAddress, abi, signer);

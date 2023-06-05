@@ -4,6 +4,7 @@ import Toast from '@/components/toast/toast';
 import { ethers } from 'ethers';
 import { switchWeb3ChainId } from '@/utils/web3';
 import { useUserStore } from '@/store';
+import { apiGetCampaignId } from '@/apis/Campaign';
 
 export async function callContract(type: string) {
   //  addReward 合约地址
@@ -27,10 +28,12 @@ export async function callContract(type: string) {
       }
     }
     const contractWithSigner = contract.connect(signer);
+    console.log(111);
     try {
       //  两个合约都所需的信息
       //  代币合约地址及数量
-      const campaignId = '';
+      const campaignId = await apiGetCampaignId();
+      console.log(campaignId);
       const spender = '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2';
       const tokenType = 1;
       // const addRewardAmount = '';
@@ -43,15 +46,18 @@ export async function callContract(type: string) {
         }
       ];
       if (type === 'addReward') {
+        console.log(222);
         //  addReward 所需参数
         const createIfNotExists = true;
         await contractWithSigner
-          .approve(spender, approveAmount)
+          .approve(spender, approveAmount, { gasLimit: 100000 })
           .then(async (res: boolean) => {
+            console.log('approve-->', res);
             if (res) {
               await contractWithSigner
                 .addReward(campaignId, tokens, createIfNotExists)
                 .then((res: any) => {
+                  console.log('addReward-->', res);
                   Toast.success('Enrollment success', {
                     duration: 4000
                   });
@@ -85,8 +91,9 @@ export async function callContract(type: string) {
         });
       }
     } catch (error: any) {
+      console.log(error);
       const message = error.message;
-      console.log(message);
+      // console.log(message);
       if (message.includes('execution reverted')) {
         const start = message.indexOf('execution reverted:') + 19;
         const end = message.indexOf(',', start);

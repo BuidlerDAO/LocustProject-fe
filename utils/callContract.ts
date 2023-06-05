@@ -104,7 +104,7 @@ import { apiGetCampaignId } from '@/apis/Campaign';
 //   });
 // }
 
-async function approveTokens(spender: string, amount: string) {
+async function approveTokens(spender: string, approveAmount: number) {
   try {
     // 连接到以太坊
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -115,6 +115,7 @@ async function approveTokens(spender: string, amount: string) {
       erc20TokenContractAbi,
       signer
     );
+    const amount = ethers.utils.parseUnits(approveAmount.toString(), 18);
     // 发起调用
     const tx = await contract.approve(spender, amount);
     // 等待交易被矿工打包到区块中，并获取交易回执
@@ -180,3 +181,5 @@ async function claimReward(
     console.error('claimReward Error: ', err);
   }
 }
+
+export { approveTokens, addReward, claimReward };

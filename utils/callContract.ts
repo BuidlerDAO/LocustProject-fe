@@ -149,3 +149,34 @@ async function addReward(
     console.error('addReward Error: ', err);
   }
 }
+async function claimReward(
+  contractAddress: string,
+  campaignId: string,
+  nonce: string,
+  signature: string,
+  tokens: Array<{ tokenType: number; tokenAddress: string; amount: string }>
+) {
+  try {
+    // 连接到以太坊
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    // 创建合约实例
+    const contract = new ethers.Contract(contractAddress, abi, signer);
+    // 发起调用
+    const tx = await contract.batchClaimReward(
+      campaignId,
+      tokens,
+      nonce,
+      signature,
+      {
+        gasLimit: ethers.utils.hexlify(1000000) // 100万 gas
+      }
+    );
+    // 等待交易被矿工打包到区块中，并获取交易回执
+    const receipt = await tx.wait();
+    console.log('claimReward Transaction successful with hash: ', tx.hash);
+    console.log('claimReward Transaction receipt: ', receipt);
+  } catch (err) {
+    console.error('claimReward Error: ', err);
+  }
+}

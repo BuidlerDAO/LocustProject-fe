@@ -9,14 +9,14 @@ div > .ant-form-item div > .ant-form-item-control-input {
   min-height: 7vh;
 }
 
-/* div
+div
   > .ant-form-item-control-input-content
   .ant-input-affix-wrapper
   > input.ant-input {
   width: 70vw;
   height: 5.8vh;
   border: none;
-} */
+}
 span > .ant-input-affix-wrapper .ant-input-suffix {
   margin-inline-start: 4px !important;
   height: 6vh;
@@ -35,4 +35,10 @@ div > .ant-form-item-control-input-content textarea {
 }
 div > .ant-btn-default {
   background-color: inherit;
+}
+div > .ant-input-affix-wrapper {
+  border-color: #2b2828;
+}
+div > .ant-input {
+  border-color: #2b2828;
 }

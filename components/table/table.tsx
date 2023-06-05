@@ -60,7 +60,7 @@ const Table2 = () => {
   ];
   //为getdata传入参数
   const getData = (value: string) => {
-    Promise.all([apiGetMonthData({ limit: 0, offset: 20, title: value })]).then(
+    Promise.all([apiGetMonthData({ limit: 20, offset: 0, title: value })]).then(
       (values: any) => {
         console.log(values[0].Items);
         const newData = values[0].Items.map((item: any) => {

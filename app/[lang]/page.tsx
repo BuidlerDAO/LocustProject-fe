@@ -18,9 +18,11 @@ import Modalprop from '@/components/modal/modal';
 import { getCurrentTime } from '@/utils/time';
 
 import { useUserStore } from '@/store';
-import { callContract } from '@/utils/callContract';
+import { addReward, approveTokens } from '@/utils/callContract';
 import { getCookie } from '@/utils/cookie';
+
 import { apiUserInfo } from '@/apis/user';
+import { apiGetCampaignId } from '@/apis/Campaign';
 
 const Index = memo((props: any) => {
   const {
@@ -39,13 +41,32 @@ const Index = memo((props: any) => {
       duration: 4000
     });
   };
-  const onClickSuccess = () => {
-    callContract('addReward')
-      .then(() => {
-        setIsSignUp(true);
+  //  报名函数
+  const onClickSuccess = async () => {
+    await approveTokens(
+      '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 先拉代币合约允许质押
+      '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 目标质押合约(奖金池合约)
+      0.001 //  允许最大吱质押数
+    )
+      .then(async (data: any) => {
+        const campaignId = await apiGetCampaignId();
+        await addReward(
+          '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
+          campaignId,
+          [
+            {
+              tokenType: 1,
+              tokenAddress: '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98',
+              amount: 0.001
+            }
+          ],
+          true
+        ).catch((e) => {
+          console.log('onClickSuccess-addReward', e);
+        });
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((e) => {
+        console.log('onClickSuccess-approveTokens', e);
       });
   };
   //一个判断函数：判断是否已经报名

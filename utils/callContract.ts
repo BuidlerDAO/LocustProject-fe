@@ -4,7 +4,6 @@ import Toast from '@/components/toast/toast';
 import { ethers } from 'ethers';
 import { switchWeb3ChainId } from '@/utils/web3';
 import { useUserStore } from '@/store';
-import { apiGetCampaignId } from '@/apis/Campaign';
 
 // export async function callContract(type: string) {
 //   //  addReward 合约地址
@@ -104,24 +103,29 @@ import { apiGetCampaignId } from '@/apis/Campaign';
 //   });
 // }
 
-async function approveTokens(spender: string, approveAmount: number) {
+async function approveTokens(
+  tokenAddress: string,
+  targetSpenderAddress: string,
+  approveAmount: number
+) {
   try {
     // 连接到以太坊
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     // 创建合约实例
     const contract = new ethers.Contract(
-      spender,
+      tokenAddress,
       erc20TokenContractAbi,
       signer
     );
     const amount = ethers.utils.parseUnits(approveAmount.toString(), 18);
     // 发起调用
-    const tx = await contract.approve(spender, amount);
+    const tx = await contract.approve(targetSpenderAddress, amount);
     // 等待交易被矿工打包到区块中，并获取交易回执
     const receipt = await tx.wait();
     console.log('approve Transaction successful with hash: ', tx.hash);
     console.log('approve Transaction receipt: ', receipt);
+    Toast.success('Approval successful!');
   } catch (err) {
     console.error('approve Error: ', err);
   }
@@ -129,7 +133,7 @@ async function approveTokens(spender: string, approveAmount: number) {
 async function addReward(
   contractAddress: string,
   campaignId: string,
-  tokens: Array<{ tokenType: number; tokenAddress: string; amount: string }>,
+  tokens: Array<{ tokenType: number; tokenAddress: string; amount: number }>,
   createIfNotExists: boolean
 ) {
   try {
@@ -160,6 +164,7 @@ async function addReward(
     const receipt = await tx.wait();
     console.log('addReward Transaction successful with hash: ', tx.hash);
     console.log('addReward Transaction receipt: ', receipt);
+    Toast.success('addReward successful!');
   } catch (err) {
     console.error('addReward Error: ', err);
   }
@@ -191,6 +196,7 @@ async function claimReward(
     const receipt = await tx.wait();
     console.log('claimReward Transaction successful with hash: ', tx.hash);
     console.log('claimReward Transaction receipt: ', receipt);
+    Toast.success('claimReward successful!');
   } catch (err) {
     console.error('claimReward Error: ', err);
   }

@@ -202,6 +202,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       deleteCookie('token');
       deleteCookie('address');
       setCurrentAddress('');
+      setIsLogin(false);
       router.replace('/');
     };
     // 登录

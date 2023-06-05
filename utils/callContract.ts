@@ -138,10 +138,24 @@ async function addReward(
     const signer = provider.getSigner();
     // 创建合约实例
     const contract = new ethers.Contract(contractAddress, abi, signer);
-    // 发起调用
-    const tx = await contract.addReward(campaignId, tokens, createIfNotExists, {
-      gasLimit: ethers.utils.hexlify(1000000) // 100万 gas
+    // 格式化输入参数
+    const formattedTokens = tokens.map((token) => {
+      const tokenAmount = ethers.utils.parseUnits(token.amount.toString(), 18);
+      return {
+        tokenType: ethers.BigNumber.from(token.tokenType), // 0 is native token, 1 is ERC20, 2 is ERC721
+        tokenAddress: token.tokenAddress,
+        amount: tokenAmount
+      };
     });
+    // 发起调用
+    const tx = await contract.addReward(
+      campaignId,
+      formattedTokens,
+      createIfNotExists,
+      {
+        gasLimit: ethers.utils.hexlify(1000000) // 100万 gas
+      }
+    );
     // 等待交易被矿工打包到区块中，并获取交易回执
     const receipt = await tx.wait();
     console.log('addReward Transaction successful with hash: ', tx.hash);

@@ -238,7 +238,7 @@ const postComponent = (props: { rootClassName: any }) => {
             top: 100vh;
             left: 28vw;
             display: flex;
-            padding: 0.75rem 4rem;
+            padding: 12px 64px;
             position: absolute;
             gap: 8px;
             height: auto;
@@ -303,7 +303,7 @@ const postComponent = (props: { rootClassName: any }) => {
           }
           .component-text02 {
             top: 26px;
-            left: 60rem;
+            left: 960px;
             color: rgba(89, 96, 105, 1);
             height: auto;
             position: absolute;
@@ -348,7 +348,7 @@ const postComponent = (props: { rootClassName: any }) => {
             gap: 8px;
             left: 28vw;
             display: flex;
-            padding: 0.75rem 4rem;
+            padding: 12px 64px;
             position: absolute;
             align-items: flex-center;
             border-color: rgba(41, 40, 47, 1);
@@ -418,7 +418,7 @@ const postComponent = (props: { rootClassName: any }) => {
           }
           .component-text12 {
             top: 233px;
-            left: 60rem;
+            left: 960px;
             color: rgba(89, 96, 105, 1);
             height: auto;
             position: absolute;
@@ -481,8 +481,8 @@ const postComponent = (props: { rootClassName: any }) => {
             text-decoration: none;
           }
           .component-root-class-name {
-            top: 8.625rem;
-            left: 21.25rem;
+            top: 138px;
+            left: 340px;
             position: absolute;
           }
         `}

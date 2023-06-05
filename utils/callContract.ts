@@ -1,5 +1,5 @@
 import { getCookie } from '@/utils/cookie';
-import { abi } from '@/apis/abi';
+import { abi, erc20TokenContractAbi } from '@/apis/abi';
 import Toast from '@/components/toast/toast';
 import { ethers } from 'ethers';
 import { switchWeb3ChainId } from '@/utils/web3';
@@ -102,4 +102,26 @@ export async function callContract(type: string) {
       }
     }
   });
+}
+
+async function approveTokens(spender: string, amount: string) {
+  try {
+    // 连接到以太坊
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    // 创建合约实例
+    const contract = new ethers.Contract(
+      spender,
+      erc20TokenContractAbi,
+      signer
+    );
+    // 发起调用
+    const tx = await contract.approve(spender, amount);
+    // 等待交易被矿工打包到区块中，并获取交易回执
+    const receipt = await tx.wait();
+    console.log('Transaction successful with hash: ', tx.hash);
+    console.log('Transaction receipt: ', receipt);
+  } catch (err) {
+    console.error('Error: ', err);
+  }
 }

@@ -1,9 +1,7 @@
-import { getCookie } from '@/utils/cookie';
 import { abi, erc20TokenContractAbi } from '@/apis/abi';
 import Toast from '@/components/toast/toast';
 import { ethers } from 'ethers';
 import { switchWeb3ChainId } from '@/utils/web3';
-import { useUserStore } from '@/store';
 
 // export async function callContract(type: string) {
 //   //  addReward 合约地址
@@ -102,7 +100,22 @@ import { useUserStore } from '@/store';
 //     }
 //   });
 // }
+interface CampaignInfo {
+  campaignId: number;
+  nonce: number;
+}
+async function getCampaignIdHash(info: CampaignInfo): Promise<string> {
+  // 设置 nonce 的默认值为 0
+  if (!info.nonce) {
+    info.nonce = 0;
+  }
 
+  // 使用 ethers 的 solidityKeccak256 函数生成哈希
+  return ethers.utils.solidityKeccak256(
+    ['uint256', 'uint256'],
+    [info.campaignId, info.nonce]
+  );
+}
 async function approveTokens(
   tokenAddress: string,
   targetSpenderAddress: string,
@@ -137,7 +150,7 @@ async function approveTokens(
 }
 async function addReward(
   contractAddress: string,
-  campaignId: string,
+  campaignIdHash: string,
   tokens: Array<{ tokenType: number; tokenAddress: string; amount: number }>,
   createIfNotExists: boolean
 ) {
@@ -163,7 +176,7 @@ async function addReward(
     });
     // 发起调用
     const tx = await contract.addReward(
-      campaignId,
+      campaignIdHash,
       formattedTokens,
       createIfNotExists,
       {
@@ -181,7 +194,7 @@ async function addReward(
 }
 async function claimReward(
   contractAddress: string,
-  campaignId: string,
+  campaignIdHash: string,
   nonce: string,
   signature: string,
   tokens: Array<{ tokenType: number; tokenAddress: string; amount: string }>
@@ -199,7 +212,7 @@ async function claimReward(
     const contract = new ethers.Contract(contractAddress, abi, signer);
     // 发起调用
     const tx = await contract.batchClaimReward(
-      campaignId,
+      campaignIdHash,
       tokens,
       nonce,
       signature,

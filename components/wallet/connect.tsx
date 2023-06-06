@@ -247,7 +247,16 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       {
         key: '1',
         label: (
-          <Link href="/home/profile" style={{ color: 'white' }}>
+          <Link
+            href="/home/profile"
+            style={{
+              color: 'white',
+              fontFamily: 'Poppins',
+              fontSize: '16px',
+              lineHeight: '22px'
+            }}
+            className="ml-[32px] font-medium"
+          >
             My Profile
           </Link>
         )
@@ -257,7 +266,13 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         label: (
           <Link
             href="/home/participate"
-            style={{ color: 'white', whiteSpace: 'nowrap' }}
+            style={{
+              color: 'white',
+              fontFamily: 'Poppins',
+              fontSize: '16px',
+              lineHeight: '22px'
+            }}
+            className="ml-[32px] font-medium"
           >
             Event Participation
           </Link>
@@ -266,9 +281,18 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       {
         key: '3',
         label: (
-          <p style={{ color: 'white' }} onClick={handleDisconnect}>
+          <div
+            style={{
+              color: 'white',
+              fontFamily: 'Poppins',
+              fontSize: '16px',
+              lineHeight: '22px'
+            }}
+            className="ml-[32px] font-medium"
+            onClick={handleDisconnect}
+          >
             Disconnect
-          </p>
+          </div>
         )
       }
     ];
@@ -308,11 +332,12 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         <ClientOnly>
           <Button
             color="primary"
-            className={`w-[240px] whitespace-nowrap px-10 py-2 text-[16px] font-semibold ${
+            className={`w-[240px] whitespace-nowrap px-10 py-2 text-[16px] font-medium ${
               currentAddress
                 ? 'border-black bg-[#1A1A1A]'
                 : 'hover:border-[#6E62EE]'
             }`}
+            style={{ fontFamily: 'Poppins' }}
             onClick={() => handleOpen(flag)}
           >
             {!currentAddress ? (

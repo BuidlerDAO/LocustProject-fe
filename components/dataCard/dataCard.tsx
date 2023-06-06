@@ -36,7 +36,7 @@ const DataCard = (props: object) => {
         <div className="flex">
           <div className="component2-frame">
             <span className="component2-frame1">
-              <CopyOutlined style={{ fontSize: '125%' }} onClick={onCopy} />
+              <CopyOutlined style={{ fontSize: '150%' }} onClick={onCopy} />
             </span>
             <span className="component2-text02">
               <span>Address</span>
@@ -53,7 +53,7 @@ const DataCard = (props: object) => {
               <span>$300</span>
             </span>
             <span className="component2-currency-circle-dollar">
-              <DollarCircleOutlined style={{ fontSize: '125%' }} />
+              <DollarCircleOutlined style={{ fontSize: '150%' }} />
             </span>
           </div>
         </div>
@@ -72,12 +72,11 @@ const DataCard = (props: object) => {
             margin-left: 0px;
             color: rgba(255, 255, 255, 1);
             height: auto;
-
             font-size: 28px;
             font-style: Medium;
             text-align: left;
             font-family: Inter;
-            font-weight: 500;
+            font-weight: 400;
             line-height: normal;
             font-stretch: normal;
             text-decoration: none;
@@ -86,7 +85,7 @@ const DataCard = (props: object) => {
             flex-direction: column;
             margin-top: 16px;
             margin-left: 0px;
-            width: 50vw;
+            width: 52vw;
             height: 112px;
             display: flex;
             overflow: hidden;
@@ -135,14 +134,14 @@ const DataCard = (props: object) => {
             display: flex;
             width: 24px;
             height: 24px;
-            margin-top: 12px;
-            margin-left: 45vw;
+            margin-top: 22px;
+            margin-left: 48vw;
             position: absolute;
           }
           .component2-frame2 {
             margin-top: 16px;
-            margin-left: 5vw;
-            width: 16vw;
+            margin-left: 42px;
+            width: 19vw;
             height: 112px;
             display: flex;
             flex-direction: column;
@@ -180,10 +179,14 @@ const DataCard = (props: object) => {
             height: auto;
             text-align: left;
             line-height: 36px;
+            font-size: 24px;
+            font-style: normal;
+            font-family: Inter;
+            font-weight: 600;
           }
           .component2-currency-circle-dollar {
-            margin-top: 12px;
-            margin-left: 176px;
+            margin-top: 22px;
+            margin-left: 16vw;
             position: absolute;
             width: 24px;
             height: 24px;

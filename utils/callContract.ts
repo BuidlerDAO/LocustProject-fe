@@ -8,32 +8,34 @@ async function approveTokens(
   targetSpenderAddress: string,
   approveAmount: number
 ) {
-  try {
-    // 连接到以太坊
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    provider.getNetwork().then(async (network) => {
-      if (network.chainId != 80001) {
-        await switchWeb3ChainId('80001');
-      }
-    });
-    const signer = provider.getSigner();
-    // 创建合约实例
-    const contract = new ethers.Contract(
-      tokenAddress,
-      erc20TokenContractAbi,
-      signer
-    );
-    const amount = ethers.utils.parseUnits(approveAmount.toString(), 18);
-    // 发起调用
-    const tx = await contract.approve(targetSpenderAddress, amount);
-    // 等待交易被矿工打包到区块中，并获取交易回执
-    const receipt = await tx.wait();
-    console.log('approve Transaction successful with hash: ', tx.hash);
-    console.log('approve Transaction receipt: ', receipt);
-    Toast.success('Approval successful!');
-  } catch (err) {
-    console.error('approve Error: ', err);
-  }
+  // try {
+  // 连接到以太坊
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  provider.getNetwork().then(async (network) => {
+    if (network.chainId != 80001) {
+      await switchWeb3ChainId('80001');
+    }
+  });
+  const signer = provider.getSigner();
+  // 创建合约实例
+  const contract = new ethers.Contract(
+    tokenAddress,
+    erc20TokenContractAbi,
+    signer
+  );
+  const amount = ethers.utils.parseUnits(approveAmount.toString(), 18);
+  // 发起调用
+  const tx = await contract.approve(targetSpenderAddress, amount);
+  // 等待交易被矿工打包到区块中，并获取交易回执
+  const receipt = await tx.wait();
+  console.log('approve Transaction successful with hash: ', tx.hash);
+  console.log('approve Transaction receipt: ', receipt);
+  Toast.success('Approval successful!');
+  // }
+  // catch (err) {
+  //   Toast.error('approve Error!')
+  //   console.error('approve Error: ', err);
+  // }
 }
 async function addReward(
   contractAddress: string,
@@ -41,43 +43,45 @@ async function addReward(
   tokens: Array<{ tokenType: number; tokenAddress: string; amount: number }>,
   createIfNotExists: boolean
 ) {
-  try {
-    // 连接到以太坊
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    provider.getNetwork().then(async (network) => {
-      if (network.chainId != 80001) {
-        await switchWeb3ChainId('80001');
-      }
-    });
-    const signer = provider.getSigner();
-    // 创建合约实例
-    const contract = new ethers.Contract(contractAddress, abi, signer);
-    // 格式化输入参数
-    const formattedTokens = tokens.map((token) => {
-      const tokenAmount = ethers.utils.parseUnits(token.amount.toString(), 18);
-      return {
-        tokenType: ethers.BigNumber.from(token.tokenType), // 0 is native token, 1 is ERC20, 2 is ERC721
-        tokenAddress: token.tokenAddress,
-        amount: tokenAmount
-      };
-    });
-    // 发起调用
-    const tx = await contract.addReward(
-      campaignIdHash,
-      formattedTokens,
-      createIfNotExists,
-      {
-        gasLimit: ethers.utils.hexlify(1000000) // 100万 gas
-      }
-    );
-    // 等待交易被矿工打包到区块中，并获取交易回执
-    const receipt = await tx.wait();
-    console.log('addReward Transaction successful with hash: ', tx.hash);
-    console.log('addReward Transaction receipt: ', receipt);
-    Toast.success('addReward successful!');
-  } catch (err) {
-    console.error('addReward Error: ', err);
-  }
+  // try {
+  // 连接到以太坊
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  provider.getNetwork().then(async (network) => {
+    if (network.chainId != 80001) {
+      await switchWeb3ChainId('80001');
+    }
+  });
+  const signer = provider.getSigner();
+  // 创建合约实例
+  const contract = new ethers.Contract(contractAddress, abi, signer);
+  // 格式化输入参数
+  const formattedTokens = tokens.map((token) => {
+    const tokenAmount = ethers.utils.parseUnits(token.amount.toString(), 18);
+    return {
+      tokenType: ethers.BigNumber.from(token.tokenType), // 0 is native token, 1 is ERC20, 2 is ERC721
+      tokenAddress: token.tokenAddress,
+      amount: tokenAmount
+    };
+  });
+  // 发起调用
+  const tx = await contract.addReward(
+    campaignIdHash,
+    formattedTokens,
+    createIfNotExists,
+    {
+      gasLimit: ethers.utils.hexlify(1000000) // 100万 gas
+    }
+  );
+  // 等待交易被矿工打包到区块中，并获取交易回执
+  const receipt = await tx.wait();
+  console.log('addReward Transaction successful with hash: ', tx.hash);
+  console.log('addReward Transaction receipt: ', receipt);
+  Toast.success('addReward successful!');
+  // }
+  // catch (err) {
+  //   Toast.error('addReward Error!')
+  //   console.error('addReward Error: ', err);
+  // }
 }
 async function claimReward(
   contractAddress: string,
@@ -113,6 +117,7 @@ async function claimReward(
     console.log('claimReward Transaction receipt: ', receipt);
     Toast.success('claimReward successful!');
   } catch (err) {
+    Toast.error('claimReward Error!');
     console.error('claimReward Error: ', err);
   }
 }

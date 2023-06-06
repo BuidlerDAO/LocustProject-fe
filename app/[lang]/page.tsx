@@ -46,27 +46,28 @@ const Index = memo((props: any) => {
     await approveTokens(
       '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 先拉代币合约允许质押
       '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 目标质押合约(奖金池合约)
-      0.001 //  允许最大吱质押数
+      0.001 //  允许最大质押数
     )
       .then(async (data: any) => {
-        const campaignId = await apiGetCampaignId();
+        const campaignId: string = await apiGetCampaignId();
+        console.log(campaignId);
         await addReward(
           '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
           campaignId,
           [
             {
               tokenType: 1,
-              tokenAddress: '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98',
+              tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
               amount: 0.001
             }
           ],
           true
         ).catch((e) => {
-          console.log('onClickSuccess-addReward', e);
+          console.log('onClickError-addReward', e);
         });
       })
       .catch((e) => {
-        console.log('onClickSuccess-approveTokens', e);
+        console.log('onClickError-approveTokens', e);
       });
   };
   //一个判断函数：判断是否已经报名

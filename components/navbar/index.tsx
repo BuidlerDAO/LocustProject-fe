@@ -71,7 +71,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`absolute z-50 float-right flex h-[100px] flex-wrap items-center bg-[#04070B]
+        className={`absolute z-50 float-right flex h-[80px] flex-wrap items-center bg-[#04070B]
       ${!flag && 'left-[18rem] border-b-[1px] border-b-lineGrey'} ${
           flag && 'w-full'
         }`}

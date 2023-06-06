@@ -82,9 +82,9 @@ async function addReward(
 async function claimReward(
   contractAddress: string,
   campaignIdHash: string,
+  tokens: Array<{ tokenType: number; tokenAddress: string; amount: number }>,
   nonce: string,
-  signature: string,
-  tokens: Array<{ tokenType: number; tokenAddress: string; amount: string }>
+  signature: string
 ) {
   try {
     // 连接到以太坊

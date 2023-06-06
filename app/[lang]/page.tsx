@@ -62,9 +62,13 @@ const Index = memo((props: any) => {
             }
           ],
           true
-        ).catch((e) => {
-          console.log('onClickError-addReward', e);
-        });
+        )
+          .then(() => {
+            setIsSignUp(true);
+          })
+          .catch((e) => {
+            console.log('onClickError-addReward', e);
+          });
       })
       .catch((e) => {
         console.log('onClickError-approveTokens', e);

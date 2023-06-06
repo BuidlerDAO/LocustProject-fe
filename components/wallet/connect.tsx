@@ -157,7 +157,7 @@ export interface WalletProps extends ComponentProps<'div'> {
 const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
   ({ className, ...rest }, ref) => {
     const router = useRouter();
-    const { setIsLogin, setIsAdmin } = useUserStore();
+    const { isSignUp, setIsLogin, setIsAdmin } = useUserStore();
     // State / Props
     // 以太坊网络地址 & 是否链接
     const { address, isConnected } = useAccount();
@@ -243,7 +243,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       }
     };
     // 下拉框
-    const items: MenuProps['items'] = [
+    const showItems: MenuProps['items'] = [
       {
         key: '1',
         label: (
@@ -296,6 +296,9 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         )
       }
     ];
+    const items: MenuProps['items'] = isSignUp
+      ? showItems
+      : showItems.filter((item: any) => item.key === '1' || item.key === '3');
     // 下拉框样式
     const menuStyle = {
       backgroundColor: '#1A1A1A',

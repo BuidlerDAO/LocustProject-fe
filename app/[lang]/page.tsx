@@ -140,7 +140,7 @@ const Index = memo((props: any) => {
   return (
     <>
       <div
-        className={`page h-[2080px] max-w-[1440px] overflow-hidden bg-[#1e1e1e] `}
+        className={`page h-[130rem] max-w-[90rem] overflow-hidden bg-[#1e1e1e] `}
       >
         <Modalprop
           ModalMaxWidth={360}
@@ -150,25 +150,25 @@ const Index = memo((props: any) => {
           handleCancel={handleCancel}
           locate="home"
         />
-        <div className="relative bottom-[108px] mt-[100px] flex h-[3200px] w-full flex-col items-center bg-black">
-          <div className="absolute top-[267.04px] flex h-[864.96px] w-[1440px] flex-col items-center self-center font-medium">
+        <div className="relative bottom-[108px] mt-[100px] flex h-[200rem] w-full flex-col items-center bg-black">
+          <div className="absolute top-[16.69rem] flex h-[54.06rem] w-[90rem] flex-col items-center self-center font-medium">
             <Image src={bg} alt="" />
-            <span className="relative mt-[562.08px] h-[51.04px] max-w-[1428px] overflow-hidden text-ellipsis whitespace-pre text-left text-[2.13rem] leading-[3.19rem] text-white">
+            <span className="relative mt-[35.13rem] h-[3.19rem] max-w-[89.25rem] overflow-hidden text-ellipsis whitespace-pre text-left text-[2.13rem] leading-[3.19rem] text-white">
               Event Rules
             </span>
-            <span className="relative mt-2 h-[27.04px] max-w-[1428px] overflow-hidden text-ellipsis whitespace-nowrap text-left text-[18.08px] leading-[1.69rem] text-[#d36cff]">
+            <span className="relative mt-2 h-[1.69rem] max-w-[89.25rem] overflow-hidden text-ellipsis whitespace-nowrap text-left text-[1.13rem] leading-[1.69rem] text-[#d36cff]">
               由概要、内容要求、输出格式三部分
             </span>
           </div>
-          <div className="absolute top-[532.96px] h-12 w-[386.08px] self-center" />
+          <div className="absolute top-[33.31rem] h-12 w-[24.13rem] self-center" />
           <Button
-            className={`group absolute left-[376px] top-[612.96px] z-[9] mr-2 flex h-[63.04px] w-[311.04px] items-center justify-center self-center whitespace-pre rounded-[2.88rem] border-[0.06rem] border-solid border-[rgba(51,51,53,1)] bg-black text-[1.13rem] font-medium leading-[1.13rem] before:content-['📣'] hover:border-[none] hover:bg-[#6e62ee] hover:before:invisible`}
+            className={`group absolute left-[23.5rem] top-[38.31rem] z-[9] mr-2 flex h-[3.94rem] w-[19.44rem] items-center justify-center self-center whitespace-pre rounded-[2.88rem] border-[0.06rem] border-solid border-[rgba(51,51,53,1)] bg-black text-[1.13rem] font-medium leading-[1.13rem] before:content-['📣'] hover:border-[none] hover:bg-[#6e62ee] hover:before:invisible`}
             onClick={onJudge}
             style={{ fontFamily: 'Poppins', fontWeight: '500' }}
           >
             I want to register
             <div
-              className="mt-[-2.08px] block h-6 w-6 group-hover:invisible"
+              className="mt-[-0.13rem] block h-6 w-6 group-hover:invisible"
               style={{ marginLeft: '0.5rem' }}
             >
               <ArrowRight />

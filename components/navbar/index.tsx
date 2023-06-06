@@ -133,7 +133,11 @@ const Navbar = () => {
                   <div className="ml-[24vw]"></div>
                 ) : (
                   <div className="ml-[16vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
-                    <Link href="/" className="relative right-[3.6vw]">
+                    <Link
+                      href="/"
+                      className="relative right-[3.7vw]"
+                      style={{ fontFamily: 'Poppins', fontWeight: '500' }}
+                    >
                       Sign Up for Locust
                     </Link>
                   </div>

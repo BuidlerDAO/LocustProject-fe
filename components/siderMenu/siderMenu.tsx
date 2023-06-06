@@ -93,7 +93,9 @@ const SideMenu = (props: any) => {
                     <AppstoreOutlined />
                   </span>
                   <span className="side-menu-text">
-                    <span>Explore</span>
+                    <span style={{ fontFamily: 'Poppins', fontWeight: '500' }}>
+                      Explore
+                    </span>
                   </span>
                 </div>
               </Link>
@@ -121,7 +123,11 @@ const SideMenu = (props: any) => {
                   <div className="side-menu-frame1021">
                     <RiseOutlined />
                     <span className="side-menu-text2">
-                      <span>Data View</span>
+                      <span
+                        style={{ fontFamily: 'Poppins', fontWeight: '500' }}
+                      >
+                        Data View
+                      </span>
                     </span>
                   </div>
                 </Link>
@@ -155,7 +161,9 @@ const SideMenu = (props: any) => {
               }}
             >
               <span className="side-menu-text4">
-                <span>New Post</span>
+                <span style={{ fontFamily: 'Poppins', fontWeight: '500' }}>
+                  New Post
+                </span>
               </span>
             </div>
           </div>

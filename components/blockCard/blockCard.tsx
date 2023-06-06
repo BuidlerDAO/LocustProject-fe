@@ -180,7 +180,7 @@ const Block = (props: {
             font-style: Semi Bold;
             text-align: left;
             font-family: Inter;
-            font-weight: 700;
+            font-weight: 600;
             line-height: 24px;
             font-stretch: normal;
             text-decoration: none;

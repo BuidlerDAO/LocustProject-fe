@@ -160,9 +160,7 @@ const Profile: React.FC = () => {
     if (res.id) {
       console.log(res);
       Toast.success('Connect Success!');
-      console.log('163', isConnectTwitter);
       setIsConnectTwitter(true);
-      console.log('165', isConnectTwitter);
       setTwitterName(res.twitterUsername);
     } else {
       console.log(res);
@@ -240,10 +238,6 @@ const Profile: React.FC = () => {
       // router.replace('/home/profile')
     }
   }, []);
-  // isLogin 为 false 时,跳转至登录页面
-  if (!isLogin) {
-    router.replace('/');
-  }
   return (
     <div
       style={{

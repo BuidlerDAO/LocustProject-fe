@@ -48,12 +48,12 @@ const Index = memo((props: any) => {
       '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 目标质押合约(奖金池合约)
       0.001 //  允许最大质押数
     )
-      .then(async (data: any) => {
+      .then(async () => {
         const campaignId: string = await apiGetCampaignId();
-        console.log(campaignId);
+        const campaignIdHash = `0x${campaignId}`;
         await addReward(
           '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
-          campaignId,
+          campaignIdHash,
           [
             {
               tokenType: 1,

@@ -318,7 +318,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             {!currentAddress ? (
               // 未连接
               <div>
-                <p style={{ fontFamily: 'Outfit', fontWeight: '600' }}>
+                <p style={{ fontFamily: 'Poppins', fontWeight: '600' }}>
                   Connect Wallet
                 </p>
               </div>

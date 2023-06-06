@@ -4,7 +4,8 @@ import { DollarCircleOutlined } from '@ant-design/icons';
 import { DollarIcon } from '../icons';
 import { apiGetPostData } from '@/apis/post';
 import toast from '../toast/toast';
-
+import { claimReward } from '@/utils/callContract';
+import Toast from '../toast/toast';
 const UserDataCard = () => {
   const [countPoints, setCountPoints] = React.useState<number>(0);
   const [Awarded, setAwarded] = React.useState<string>('0');
@@ -51,6 +52,31 @@ const UserDataCard = () => {
           duration: 4000
         });
         console.log(err);
+      });
+  };
+  const handleClaimOnclick = async () => {
+    const campaignId = 'aaaaaa';
+    const campaignIdHash = `0x${campaignId}`;
+    const nonce = '';
+    const signature = '';
+    await claimReward(
+      '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
+      campaignIdHash,
+      [
+        {
+          tokenType: 1,
+          tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
+          amount: 0.001
+        }
+      ],
+      nonce,
+      signature
+    )
+      .then(() => {
+        Toast.success('claimReward successful!');
+      })
+      .catch((e) => {
+        console.log('claimReward Error', e);
       });
   };
   React.useEffect(() => {
@@ -103,7 +129,7 @@ const UserDataCard = () => {
         </span>
         <div className="absolute right-[2vw] top-14 flex w-[81px] items-start gap-2 rounded-[44px] bg-[linear-gradient(_180deg,rgba(110,98,238,1)_2%,rgba(63,61,250,1)_100%_)] px-6 py-2">
           <span className="text component3-text12 h-auto text-left text-xs font-medium leading-3 text-white no-underline">
-            <button>Claim</button>
+            <button onClick={handleClaimOnclick}>Claim</button>
           </span>
         </div>
       </div>

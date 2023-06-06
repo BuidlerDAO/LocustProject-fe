@@ -29,7 +29,9 @@ const SideMenu = (props: any) => {
       return;
     } else {
       if (!isSignUp) {
-        toast.error('Please sign up first');
+        toast.error(
+          'Error! You cannot post without signing up for the activity first.'
+        );
         return;
       } else {
         router.push('/home/post');
@@ -93,7 +95,9 @@ const SideMenu = (props: any) => {
                     <AppstoreOutlined />
                   </span>
                   <span className="side-menu-text">
-                    <span>Explore</span>
+                    <span style={{ fontFamily: 'Poppins', fontWeight: '500' }}>
+                      Explore
+                    </span>
                   </span>
                 </div>
               </Link>
@@ -121,7 +125,11 @@ const SideMenu = (props: any) => {
                   <div className="side-menu-frame1021">
                     <RiseOutlined />
                     <span className="side-menu-text2">
-                      <span>Data View</span>
+                      <span
+                        style={{ fontFamily: 'Poppins', fontWeight: '500' }}
+                      >
+                        Data View
+                      </span>
                     </span>
                   </div>
                 </Link>
@@ -155,7 +163,9 @@ const SideMenu = (props: any) => {
               }}
             >
               <span className="side-menu-text4">
-                <span>New Post</span>
+                <span style={{ fontFamily: 'Poppins', fontWeight: '500' }}>
+                  New Post
+                </span>
               </span>
             </div>
           </div>

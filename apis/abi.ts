@@ -90,7 +90,10 @@ export const abi = [
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function'
-  },
+  }
+];
+
+export const erc20TokenContractAbi = [
   {
     inputs: [
       {

@@ -157,7 +157,7 @@ export interface WalletProps extends ComponentProps<'div'> {
 const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
   ({ className, ...rest }, ref) => {
     const router = useRouter();
-    const { setIsLogin, setIsAdmin } = useUserStore();
+    const { isSignUp, setIsLogin, setIsAdmin } = useUserStore();
     // State / Props
     // 以太坊网络地址 & 是否链接
     const { address, isConnected } = useAccount();
@@ -202,6 +202,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       deleteCookie('token');
       deleteCookie('address');
       setCurrentAddress('');
+      setIsLogin(false);
       router.replace('/');
     };
     // 登录
@@ -242,11 +243,20 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       }
     };
     // 下拉框
-    const items: MenuProps['items'] = [
+    const showItems: MenuProps['items'] = [
       {
         key: '1',
         label: (
-          <Link href="/home/profile" style={{ color: 'white' }}>
+          <Link
+            href="/home/profile"
+            style={{
+              color: 'white',
+              fontFamily: 'Poppins',
+              fontSize: '16px',
+              lineHeight: '22px'
+            }}
+            className="ml-[32px] font-medium"
+          >
             My Profile
           </Link>
         )
@@ -256,7 +266,13 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         label: (
           <Link
             href="/home/participate"
-            style={{ color: 'white', whiteSpace: 'nowrap' }}
+            style={{
+              color: 'white',
+              fontFamily: 'Poppins',
+              fontSize: '16px',
+              lineHeight: '22px'
+            }}
+            className="ml-[32px] font-medium"
           >
             Event Participation
           </Link>
@@ -265,12 +281,24 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       {
         key: '3',
         label: (
-          <p style={{ color: 'white' }} onClick={handleDisconnect}>
+          <div
+            style={{
+              color: 'white',
+              fontFamily: 'Poppins',
+              fontSize: '16px',
+              lineHeight: '22px'
+            }}
+            className="ml-[32px] font-medium"
+            onClick={handleDisconnect}
+          >
             Disconnect
-          </p>
+          </div>
         )
       }
     ];
+    const items: MenuProps['items'] = isSignUp
+      ? showItems
+      : showItems.filter((item: any) => item.key === '1' || item.key === '3');
     // 下拉框样式
     const menuStyle = {
       backgroundColor: '#1A1A1A',
@@ -307,17 +335,18 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         <ClientOnly>
           <Button
             color="primary"
-            className={`w-[240px] whitespace-nowrap px-10 py-2 text-[16px] font-semibold ${
+            className={`w-[240px] whitespace-nowrap px-10 py-2 text-[16px] font-medium ${
               currentAddress
                 ? 'border-black bg-[#1A1A1A]'
                 : 'hover:border-[#6E62EE]'
             }`}
+            style={{ fontFamily: 'Poppins' }}
             onClick={() => handleOpen(flag)}
           >
             {!currentAddress ? (
               // 未连接
               <div>
-                <p style={{ fontFamily: 'Outfit', fontWeight: '600' }}>
+                <p style={{ fontFamily: 'Poppins', fontWeight: '600' }}>
                   Connect Wallet
                 </p>
               </div>

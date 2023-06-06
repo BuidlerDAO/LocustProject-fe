@@ -106,7 +106,13 @@ const Block = (props: {
           </div>
           <div className="block-frame2">
             <div className="block-user-circle">
-              <Image src={props.data.avatar} width={24} height={24} alt="#" />
+              <Image
+                src={props.data.avatar}
+                width={24}
+                height={24}
+                className="rounded-full"
+                alt="#"
+              />
             </div>
             <span className="block-text04">
               <span>{props.data.username}</span>
@@ -155,7 +161,7 @@ const Block = (props: {
       <style jsx>
         {`
           .block-block {
-            gap: 0.5rem;
+            gap: 8px;
             width: 73vw;
             display: flex;
             padding: 12px 12px 8px 12px;
@@ -171,8 +177,8 @@ const Block = (props: {
             background-color: #1a1a1a;
           }
           .block-text {
-            top: 1.5rem;
-            left: 1.5rem;
+            top: 24px;
+            left: 24px;
             color: rgba(255, 255, 255, 1);
             height: 24px;
             position: absolute;
@@ -180,16 +186,16 @@ const Block = (props: {
             font-style: Semi Bold;
             text-align: left;
             font-family: Inter;
-            font-weight: 700;
+            font-weight: 600;
             line-height: 24px;
             font-stretch: normal;
             text-decoration: none;
           }
           .block-frametab {
-            height: 1.5rem;
-            gap: 1.125rem;
-            top: 4.125rem;
-            left: 1.5rem;
+            height: 24px;
+            gap: 18px;
+            top: 66px;
+            left: 24px;
 
             display: flex;
             position: absolute;
@@ -278,9 +284,9 @@ const Block = (props: {
           }
           .block-frame6 {
             gap: 8px;
-            margin-top: 6rem;
+            margin-top: 96px;
             text-align: center;
-            margin-left: 0.5rem;
+            margin-left: 8px;
             display: flex;
             align-items: flex-start;
             flex-shrink: 0;
@@ -301,16 +307,16 @@ const Block = (props: {
           }
           .block-frame1171274787 {
             gap: 8px;
-            margin-top: 1rem;
-            margin-left: 0.5rem;
-            width: 62.25rem;
+            margin-top: 16px;
+            margin-left: 8px;
+            width: 996px;
             display: flex;
             align-items: flex-center;
             flex-direction: column;
           }
           .block-text10 {
             color: rgba(255, 255, 255, 1);
-            height: 1.75rem;
+            height: 28px;
             font-size: 18px;
             font-style: Semi Bold;
             text-align: left;
@@ -322,7 +328,7 @@ const Block = (props: {
           }
           .block-text10-1 {
             color: rgba(255, 255, 255, 1);
-            height: 1.75rem;
+            height: 28px;
             font-size: 18px;
             font-style: Semi Bold;
             text-align: left;
@@ -356,7 +362,7 @@ const Block = (props: {
             text-decoration: none;
           }
           .block-line18 {
-            margin-top: 1rem;
+            margin-top: 16px;
             margin-left: -30px;
             position: relative;
             width: 110%;
@@ -364,8 +370,8 @@ const Block = (props: {
             background-color: #434343;
           }
           .block-root-class-name {
-            top: 8.625rem;
-            left: 21.25rem;
+            top: 138px;
+            left: 340px;
             position: absolute;
           }
         `}

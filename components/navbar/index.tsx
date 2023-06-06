@@ -71,7 +71,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`absolute z-50 float-right flex h-[100px] flex-wrap items-center bg-[#04070B]
+        className={`absolute z-50 float-right flex h-[80px] flex-wrap items-center bg-[#04070B]
       ${!flag && 'left-[18rem] border-b-[1px] border-b-lineGrey'} ${
           flag && 'w-full'
         }`}
@@ -125,6 +125,7 @@ const Navbar = () => {
                       }}
                       bordered={false}
                       className="flex h-[52px] w-fit items-center rounded-full"
+                      style={{ fontFamily: 'Poppins', fontWeight: '400' }}
                     />
                   </AutoComplete>
                 </ConfigProvider>
@@ -133,7 +134,11 @@ const Navbar = () => {
                   <div className="ml-[24vw]"></div>
                 ) : (
                   <div className="ml-[16vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
-                    <Link href="/" className="relative right-[3.6vw]">
+                    <Link
+                      href="/"
+                      className="relative right-[3.7vw]"
+                      style={{ fontFamily: 'Poppins', fontWeight: '500' }}
+                    >
                       Sign Up for Locust
                     </Link>
                   </div>

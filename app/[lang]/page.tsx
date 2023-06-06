@@ -67,10 +67,16 @@ const Index = memo((props: any) => {
             setIsSignUp(true);
           })
           .catch((e) => {
+            setIsSignUp(false);
+            Toast.error('AddReward Error!');
+            Toast.error('See your account!');
             console.log('onClickError-addReward', e);
           });
       })
       .catch((e) => {
+        setIsSignUp(false);
+        Toast.error('approve Error!');
+        Toast.error('See your account!');
         console.log('onClickError-approveTokens', e);
       });
   };

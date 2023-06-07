@@ -298,10 +298,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
     ];
     const items: MenuProps['items'] = isSignUp
       ? showItems
-      : showItems.filter(
-          (item: any) =>
-            item.key === '1' || item.key === '3' || item.key === '2'
-        );
+      : showItems.filter((item: any) => item.key === '1' || item.key === '3');
     // 下拉框样式
     const menuStyle = {
       backgroundColor: '#1A1A1A',

@@ -296,6 +296,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         )
       }
     ];
+    //  是否报名来渲染参与活动页面
     const items: MenuProps['items'] = isSignUp
       ? showItems
       : showItems.filter((item: any) => item.key === '1' || item.key === '3');

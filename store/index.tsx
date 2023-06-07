@@ -1,6 +1,6 @@
 import { create, SetState } from 'zustand';
 import usePostStore from './PostStore';
-
+import { persist } from 'zustand/middleware';
 // type PostStore = {
 //   posts: {
 //     [id: number]: {
@@ -134,60 +134,67 @@ const useSiderStore = create<SiderStore>((set: SetState<SiderStore>) => ({
 }));
 
 //存储登录用户状态和信息
-type UserStore = {
-  isAdmin: boolean;
-  isLogin: boolean;
-  isSignUp: boolean;
-  isConnectTwitter: boolean;
-  username: string;
-  avatar: string;
-  twitter: string;
-  setIsAdmin: (isAdmin: boolean) => void;
-  setIsLogin: (isLogin: boolean) => void;
-  setIsSignUp: (isRegister: boolean) => void;
-  setIsConnectTwitter: (isConnectTwitter: boolean) => void;
-  setUsername: (username: string) => void;
-  setAvatar: (avatar: string) => void;
-  setTwitter: (twitter: string) => void;
-};
+// type UserStore = {
+//   isAdmin: boolean;
+//   isLogin: boolean;
+//   isSignUp: boolean;
+//   isConnectTwitter: boolean;
+//   username: string;
+//   avatar: string;
+//   twitter: string;
+//   setIsAdmin: (isAdmin: boolean) => void;
+//   setIsLogin: (isLogin: boolean) => void;
+//   setIsSignUp: (isRegister: boolean) => void;
+//   setIsConnectTwitter: (isConnectTwitter: boolean) => void;
+//   setUsername: (username: string) => void;
+//   setAvatar: (avatar: string) => void;
+//   setTwitter: (twitter: string) => void;
+// };
 
-const useUserStore = create<UserStore>((set: SetState<UserStore>) => ({
-  isAdmin: false,
-  isLogin: false,
-  isSignUp: false,
-  isConnectTwitter: false,
-  username: '',
-  twitter: '',
-  avatar: '',
-  setIsAdmin: (isAdmin: boolean) =>
-    set(() => ({
-      isAdmin: isAdmin
-    })),
-  setIsLogin: (isLogin: boolean) =>
-    set(() => ({
-      isLogin: isLogin
-    })),
-  setIsSignUp: (isSignUp: boolean) =>
-    set(() => ({
-      isSignUp: isSignUp
-    })),
-  setIsConnectTwitter: (isConnectTwitter: boolean) =>
-    set(() => ({
-      isConnectTwitter: isConnectTwitter
-    })),
-  setUsername: (username: string) =>
-    set(() => ({
-      username: username
-    })),
-  setAvatar: (avatar: string) =>
-    set(() => ({
-      avatar: avatar
-    })),
-  setTwitter: (twitter: string) =>
-    set(() => ({
-      twitter: twitter
-    }))
-}));
+const useUserStore = create<any>(
+  persist(
+    (set) => ({
+      isAdmin: false,
+      isLogin: false,
+      isSignUp: false,
+      isConnectTwitter: false,
+      username: '',
+      twitter: '',
+      avatar: '',
+      setIsAdmin: (isAdmin: boolean) =>
+        set(() => ({
+          isAdmin: isAdmin
+        })),
+      setIsLogin: (isLogin: boolean) =>
+        set(() => ({
+          isLogin: isLogin
+        })),
+      setIsSignUp: (isSignUp: boolean) =>
+        set(() => ({
+          isSignUp: isSignUp
+        })),
+      setIsConnectTwitter: (isConnectTwitter: boolean) =>
+        set(() => ({
+          isConnectTwitter: isConnectTwitter
+        })),
+      setUsername: (username: string) =>
+        set(() => ({
+          username: username
+        })),
+      setAvatar: (avatar: string) =>
+        set(() => ({
+          avatar: avatar
+        })),
+      setTwitter: (twitter: string) =>
+        set(() => ({
+          twitter: twitter
+        }))
+    }),
+    {
+      name: 'user-store' // name of the key in localStorage
+    }
+  )
+);
 
 type SearchStore = {
   searchValue: Post;

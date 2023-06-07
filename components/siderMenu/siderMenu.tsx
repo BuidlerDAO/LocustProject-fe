@@ -29,7 +29,9 @@ const SideMenu = (props: any) => {
       return;
     } else {
       if (!isSignUp) {
-        toast.error('Please sign up first');
+        toast.error(
+          'Error! You cannot post without signing up for the activity first.'
+        );
         return;
       } else {
         router.push('/home/post');

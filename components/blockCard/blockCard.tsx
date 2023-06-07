@@ -106,7 +106,13 @@ const Block = (props: {
           </div>
           <div className="block-frame2">
             <div className="block-user-circle">
-              <Image src={props.data.avatar} width={24} height={24} alt="#" />
+              <Image
+                src={props.data.avatar}
+                width={24}
+                height={24}
+                className="rounded-full"
+                alt="#"
+              />
             </div>
             <span className="block-text04">
               <span>{props.data.username}</span>

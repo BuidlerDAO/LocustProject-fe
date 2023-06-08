@@ -63,8 +63,8 @@ export const apiGetStsToken = async () => {
   } else {
     console.log(222);
     if (+res.code === 401) {
-      deleteCookie('token');
-      deleteCookie('address');
+      // deleteCookie('token');
+      // deleteCookie('address');
       window.location.href = '/login';
     }
     Toast.error(`${res.msg}`);

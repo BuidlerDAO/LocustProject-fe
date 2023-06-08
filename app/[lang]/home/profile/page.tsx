@@ -249,7 +249,7 @@ const Profile: React.FC = () => {
           <div className="flex items-center">
             <div className="h-[64px] w-[64px] rounded-full">
               <div className="">
-                <div className=" m-0 h-[64px] w-[64px] rounded-full p-0 ">
+                <div className="m-0 h-[64px] w-[64px] rounded-full p-0">
                   <Image
                     alt=""
                     width="64"
@@ -314,7 +314,7 @@ const Profile: React.FC = () => {
         </div>
         {/*UserName部分*/}
         <div className="flex flex-col items-start">
-          <div className="mt-[38px] text-[16px]">UserName</div>
+          <div className="mt-[38px] text-[16px]">User Name</div>
           {/*输入框部分*/}
           <input
             type="text"

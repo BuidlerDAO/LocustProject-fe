@@ -37,7 +37,6 @@ const postComponent = (props: { rootClassName: any }) => {
   }) => {
     e.time = getCurrentDate();
     e.id = UUID(8, 8);
-    console.log(e);
     increase(e);
     apiPostData(e);
     router.push('/home');

@@ -245,7 +245,9 @@ const Profile: React.FC = () => {
       <div className="mx-auto w-[402px] items-start text-left">
         {/*头像部分*/}
         <div className="mt-[17px]">
-          <div className="mb-[14px] w-full text-left text-[16px]">Avatar</div>
+          <div className="mb-[14px] w-full text-left text-[16px] font-[500]">
+            Avatar
+          </div>
           <div className="flex items-center">
             <div className="h-[64px] w-[64px] rounded-full">
               <div className="relative">
@@ -314,7 +316,7 @@ const Profile: React.FC = () => {
         </div>
         {/*UserName部分*/}
         <div className="flex flex-col items-start">
-          <div className="mt-[38px] text-[16px]">User Name</div>
+          <div className="mt-[38px] text-[16px] font-[500]">User Name</div>
           {/*输入框部分*/}
           <input
             type="text"
@@ -335,7 +337,7 @@ const Profile: React.FC = () => {
           locate="twitter"
         />
         <div className="relative flex flex-col items-start">
-          <div className="mt-[38px] text-[16px]">Twitter</div>
+          <div className="mt-[38px] text-[16px] font-[500]">Twitter</div>
           {/*绑定框部分*/}
           <div
             className="item-center mr-[-93px] mt-[14px] flex h-[37px] w-[401px] justify-between rounded-[6px] border-[1px] bg-black"

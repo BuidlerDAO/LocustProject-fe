@@ -13,8 +13,8 @@
   color: #8bc2d3;
   background-color: transparent;
 }
-.ant-auto-complete.ant-select-dropdown.drop .ant-select-item-option {
-  color: #fff;
-  border: solid 1px #fff;
-  background-color: transparent;
+.ant-auto-complete-dropdown {
+  background: #1f1f1f;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
 }

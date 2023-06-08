@@ -110,7 +110,7 @@ const Navbar = () => {
                     options={options}
                     onSelect={onSelect}
                     onSearch={handleSearch}
-                    popupClassName="backgroundColor: '#1f1f1f', border: 2px solid rgba(255, 255, 255, 0.16);"
+                    popupClassName="ant-auto-complete-dropdown"
                     style={{
                       backgroundColor: '#1f1f1f',
                       borderColor: 'rgba(255, 255, 255, 0.16)'

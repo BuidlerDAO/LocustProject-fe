@@ -5,7 +5,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Upload from '@/components/icons/upload';
 import { Button } from '@/components/button';
-import request from '@/utils/request';
 import { apiPutUserInfo, apiTwitterToken, apiUserInfo } from '@/apis/user';
 import { useUserStore } from '@/store';
 import Modalprop from '@/components/modal/modal';
@@ -203,7 +202,6 @@ const Profile: React.FC = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-
   //  获取个人信息
   const getUserInfo = async () => {
     try {
@@ -240,29 +238,21 @@ const Profile: React.FC = () => {
     }
     getUserInfo().then(() => {
       if (localStorage.getItem('name') && localStorage.getItem('avatarUrl')) {
-        const name = getCookie('name');
-        const avatarUrl = getCookie('avatarUrl');
+        const name = localStorage.getItem('name');
+        const avatarUrl = localStorage.getItem('avatarUrl');
         if (typeof name === 'string' && typeof avatarUrl === 'string') {
           setUserName(name);
           setUsername(name);
-          console.log(userName);
+          // console.log(userName);
           setUploadUrl(avatarUrl);
           setAvatar(avatarUrl);
-          console.log(uploadUrl);
-          // localStorage.removeItem('name')
-          // localStorage.removeItem('avatarUrl')
+          // console.log(uploadUrl);
+          localStorage.removeItem('name');
+          localStorage.removeItem('avatarUrl');
         }
       }
     });
   }, []);
-  //  页面重定向回来的执行函数
-  // useEffect(() => {
-  //   if (oauthToken !== null && !isConnectTwitter) {
-  //     updateTwitterInfo();
-  //     // getUserInfo();
-  //     // router.replace('/home/profile')
-  //   }
-  // }, []);
   return (
     <div className="h-full w-full pt-[68px]">
       {/*Profile字样*/}

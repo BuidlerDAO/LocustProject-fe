@@ -94,7 +94,12 @@ const SideMenu = (props: any) => {
               <Link href="/home/">
                 <div className="side-menu-frame1013">
                   <span>
-                    <SideExplore style={{ fontSize: '125%' }} />
+                    <SideExplore
+                      style={{
+                        fontSize: '125%',
+                        color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                      }}
+                    />
                   </span>
                   <span className="side-menu-text">
                     <span style={{ fontFamily: 'Poppins', fontWeight: '500' }}>
@@ -125,7 +130,12 @@ const SideMenu = (props: any) => {
               >
                 <Link href="/home/dataV">
                   <div className="side-menu-frame1021">
-                    <SideData style={{ fontSize: '125%' }} />
+                    <SideData
+                      style={{
+                        fontSize: '125%',
+                        color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                      }}
+                    />
                     <span className="side-menu-text2">
                       <span
                         style={{ fontFamily: 'Poppins', fontWeight: '500' }}

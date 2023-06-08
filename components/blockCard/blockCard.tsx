@@ -131,7 +131,7 @@ const Block = (props: {
         </div>
         <Tooltip title={text} placement="bottom">
           <span className="block-frame5">
-            <span className="text-textGrey">
+            <span className="text-white">
               <EllipsisOutlined />
             </span>
           </span>
@@ -277,7 +277,7 @@ const Block = (props: {
           }
           .block-frame5 {
             top: 27px;
-            left: 71vw;
+            left: 70vw;
             width: 18px;
             height: 18px;
             position: absolute;

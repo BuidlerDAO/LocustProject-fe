@@ -248,7 +248,7 @@ const Profile: React.FC = () => {
           <div className="mb-[14px] w-full text-left text-[16px]">Avatar</div>
           <div className="flex items-center">
             <div className="h-[64px] w-[64px] rounded-full">
-              <div className="">
+              <div className="relative">
                 <div className="m-0 h-[64px] w-[64px] rounded-full p-0">
                   <Image
                     alt=""
@@ -284,7 +284,7 @@ const Profile: React.FC = () => {
                     </Button>
                   </Dialog>
                 </div>
-                {/*hover层*/}
+                {/* hover 层*/}
                 <div
                   className="absolute left-0 top-[0.5px] flex h-[64px] w-[64px] cursor-pointer items-center justify-center rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50"
                   onClick={() => {

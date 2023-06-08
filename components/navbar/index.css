@@ -1,3 +1,20 @@
-/* div > .ant-select {
-  margin-left: 9vw;
-} */
+.ant-select-dropdown.drop {
+  background-color: #000;
+}
+.ant-select-dropdown.drop .ant-empty-small {
+  color: #fff;
+}
+.ant-select-dropdown.drop .ant-select-item.ant-select-item-option {
+  color: #fff;
+  background-color: transparent;
+}
+.ant-select-dropdown.drop
+  .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+  color: #8bc2d3;
+  background-color: transparent;
+}
+.ant-auto-complete.ant-select-dropdown.drop .ant-select-item-option {
+  color: #fff;
+  border: solid 1px #fff;
+  background-color: transparent;
+}

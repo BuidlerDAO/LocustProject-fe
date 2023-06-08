@@ -39,13 +39,12 @@ import { useRouter } from 'next/navigation';
 import Toast from '@/components/toast/toast';
 import { useUserStore } from '@/store';
 import { apiUserInfo } from '@/apis/user';
-
 interface ConnectProps extends HTMLAttributes<HTMLElement> {
   className?: ClassName;
   onData?: (type: number, data: any) => void;
 }
 
-export const MetaMaskConnect = ({
+const MetaMaskConnect = ({
   onData = () => null,
   className,
   ...reset
@@ -77,7 +76,7 @@ export const MetaMaskConnect = ({
   );
 };
 
-export const WalletConnectBtn = ({
+const WalletConnectBtn = ({
   onData = () => null,
   className,
   ...reset
@@ -114,7 +113,7 @@ export const WalletConnectBtn = ({
   );
 };
 
-export const CoinbaseConnect = ({
+const CoinbaseConnect = ({
   onData = () => null,
   className,
   ...reset

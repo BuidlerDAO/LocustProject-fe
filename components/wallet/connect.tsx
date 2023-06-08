@@ -39,6 +39,7 @@ import { useRouter } from 'next/navigation';
 import Toast from '@/components/toast/toast';
 import { useUserStore } from '@/store';
 import { apiUserInfo } from '@/apis/user';
+import { ethers } from 'ethers';
 interface ConnectProps extends HTMLAttributes<HTMLElement> {
   className?: ClassName;
   onData?: (type: number, data: any) => void;
@@ -309,6 +310,9 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       border: '1px solid rgba(255, 255, 255, 0.16)',
       borderRadius: '12px'
     };
+    const handleAccountChange = (...args: any[]) => {
+      console.log(222);
+    };
     //  执行登录
     useEffect(() => {
       console.log('isSuccess', isSuccess);
@@ -334,6 +338,16 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
           });
       }
     }, [address]);
+    //  切换账户
+    useEffect(() => {
+      const provider = new ethers.providers.JsonRpcProvider(window.ethereum);
+      console.log(provider);
+      provider.addListener('accountsChanged', handleAccountChange);
+      // provider.connection.on('accountsChanged', handleAccountChange);
+      return () => {
+        provider.removeListener('accountsChanged', handleAccountChange);
+      };
+    }, []);
     // Render
     return (
       <div {...rest} ref={ref} className={className}>

@@ -160,6 +160,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
     const router = useRouter();
     const { isSignUp, setIsLogin, setIsAdmin } = useUserStore();
     // State / Props
+    const [updateState, setUpdateState] = useState(0);
     // 以太坊网络地址 & 是否链接
     const { address, isConnected } = useAccount();
     const { disconnect } = useDisconnect();
@@ -310,8 +311,19 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       border: '1px solid rgba(255, 255, 255, 0.16)',
       borderRadius: '12px'
     };
+    // function forceUpdate(){
+    //   this.forceUpdate()
+    // }
     const handleAccountChange = (...args: any[]) => {
-      console.log(222);
+      const accounts = args[0];
+      if (accounts.length === 0) {
+        console.log('Please connect to metamask');
+      } else if (accounts[0] !== getCookie('address')) {
+        Toast.success('Account changed! Please verify account on metamask!');
+        setTimeout(() => {
+          setUpdateState(updateState + 1);
+        }, 2500);
+      }
     };
     //  执行登录
     useEffect(() => {
@@ -340,12 +352,9 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
     }, [address]);
     //  切换账户
     useEffect(() => {
-      const provider = new ethers.providers.JsonRpcProvider(window.ethereum);
-      console.log(provider);
-      provider.addListener('accountsChanged', handleAccountChange);
-      // provider.connection.on('accountsChanged', handleAccountChange);
+      window.ethereum.addListener('accountsChanged', handleAccountChange);
       return () => {
-        provider.removeListener('accountsChanged', handleAccountChange);
+        window.ethereum.removeListener('accountsChanged', handleAccountChange);
       };
     }, []);
     // Render
@@ -484,4 +493,4 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
 
 WalletConnect.displayName = 'WalletConnect';
 
-export default memo(WalletConnect);
+export default WalletConnect;

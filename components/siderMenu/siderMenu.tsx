@@ -94,10 +94,9 @@ const SideMenu = (props: any) => {
               <Link href="/home/">
                 <div className="side-menu-frame1013">
                   <span>
-                    <SideExplore
+                    <AppstoreOutlined
                       style={{
-                        fontSize: '125%',
-                        color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                        fontSize: '125%'
                       }}
                     />
                   </span>
@@ -130,10 +129,9 @@ const SideMenu = (props: any) => {
               >
                 <Link href="/home/dataV">
                   <div className="side-menu-frame1021">
-                    <SideData
+                    <RiseOutlined
                       style={{
-                        fontSize: '125%',
-                        color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                        fontSize: '125%'
                       }}
                     />
                     <span className="side-menu-text2">

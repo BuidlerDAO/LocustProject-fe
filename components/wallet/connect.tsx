@@ -355,7 +355,6 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
               //  已连接
               <Dropdown
                 menu={{ items }}
-                // className="w-[240px] "
                 placement="bottom"
                 overlayStyle={{
                   marginTop: '14px',
@@ -363,7 +362,6 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
                   width: '240px'
                   //height: '136px'
                 }}
-                className="h-[41.45px]"
                 overlayClassName="overlay-drop"
                 dropdownRender={(menu) => (
                   <div>

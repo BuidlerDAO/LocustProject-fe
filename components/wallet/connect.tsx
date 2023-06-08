@@ -216,7 +216,6 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         if (res.token) {
           setCurrentAddress(address || '');
           setIsLogin(true);
-          router.replace('/home/profile');
         } else {
           Toast.error('Something Error!');
           disconnect();

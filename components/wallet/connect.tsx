@@ -340,7 +340,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             color="primary"
             className={`w-[240px] whitespace-nowrap px-10 py-2 text-[16px] font-medium ${
               currentAddress
-                ? 'border-[1px] border-solid border-black bg-[#1A1A1A]'
+                ? 'border-[1px] border-solid border-[#434343] bg-[#1A1A1A]'
                 : 'hover:border-[#6E62EE]'
             }`}
             style={{ fontFamily: 'Poppins' }}

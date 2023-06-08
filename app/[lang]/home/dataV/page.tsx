@@ -8,18 +8,6 @@ import DataCard from '@/components/dataCard/dataCard';
 import { useUserStore } from '@/store';
 import router from 'next/router';
 
-// const pagination = {
-//   pageSize: 10,
-//   showSizeChanger: true,
-//   pageSizeOptions: ['10', '20', '30', '40'],
-//   showTotal: (total: any, range: any[]) => `${range[0]}-${range[1]} of ${total} items`,
-//   style: {
-//     marginTop: 16,
-//     color: '#ffffff',
-//     backgroundColor: '#000000'
-//   }
-// };
-
 const dataV = () => {
   const { isAdmin } = useUserStore();
   //进行判断，如果是则显示，否则跳转到首页/home
@@ -93,10 +81,10 @@ const dataV = () => {
           .side-menu-text4 {
             color: rgba(255, 255, 255, 1);
             height: auto;
-            font-size: 1.125rem;
-            font-style: Medium;
+            font-size: 14px;
+            line-height: 24px;
             text-align: left;
-            font-family: Poppins;
+            font-family: Inter;
             font-weight: 500;
             line-height: normal;
             font-stretch: normal;

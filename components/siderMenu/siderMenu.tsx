@@ -8,8 +8,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useSiderStore, useUserStore } from '@/store';
 import toast from '../toast/toast';
 import { LogoIconTop } from '../icons';
-import { SideData } from '../icons/sideData';
-import { SideExplore } from '../icons/sideExplore';
 
 const SideMenu = (props: any) => {
   const router = useRouter();

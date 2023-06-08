@@ -115,7 +115,8 @@ const Table2 = () => {
               onClick={onDownload}
             />
           </div>
-          <div>
+          <div className="flex items-center justify-center">
+            <div className="mr-[25px] font-medium text-white">2023</div>
             <ConfigProvider
               theme={{
                 token: {
@@ -133,7 +134,8 @@ const Table2 = () => {
                   borderRadius: '8px',
                   border: '1px solid #29282f',
                   color: 'white',
-                  outlineColor: '#29282f'
+                  outlineColor: '#29282f',
+                  marginRight: '10px'
                 }}
                 bordered={false}
                 onChange={handleChange}
@@ -166,15 +168,6 @@ const Table2 = () => {
           />
         </ConfigProvider>
       </div>
-      <style jsx>{`
-        .month-border {
-          background: #ffffff;
-          border: 1px solid #29282f;
-          border-radius: 8px;
-          padding: 0.5rem 1.5rem;
-          gap: 0.25rem;
-        }
-      `}</style>
     </>
   );
 };

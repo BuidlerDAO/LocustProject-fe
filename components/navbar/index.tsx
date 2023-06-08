@@ -110,6 +110,7 @@ const Navbar = () => {
                     options={options}
                     onSelect={onSelect}
                     onSearch={handleSearch}
+                    popupClassName="ant-auto-complete-dropdown"
                     style={{
                       backgroundColor: '#1f1f1f',
                       borderColor: 'rgba(255, 255, 255, 0.16)'
@@ -124,7 +125,7 @@ const Navbar = () => {
                         return null;
                       }}
                       bordered={false}
-                      className="flex h-[52px] w-fit items-center rounded-full"
+                      className="ml-[5px] flex h-[52px] w-fit items-center rounded-full"
                       style={{ fontFamily: 'Poppins', fontWeight: '400' }}
                     />
                   </AutoComplete>

@@ -35,9 +35,12 @@ const dataV = () => {
           <Table1 />
           <Table2 />
         </div>
-        <div className="side-menu-btn">
+        <div className="relative ml-[25vw] mt-[2vh] flex shrink-0 cursor-pointer items-center gap-1 rounded-lg py-1 pl-0 pr-2">
           <div className="side-menu-frame10211">
-            <span className="side-menu-text4">
+            <span
+              className="h-auto text-left text-sm font-medium leading-6 text-white no-underline"
+              style={{ fontFamily: 'Inter' }}
+            >
               <span>Bonus Confirmation</span>
             </span>
           </div>
@@ -45,18 +48,6 @@ const dataV = () => {
       </div>
       <style jsx>
         {`
-          .side-menu-btn {
-            gap: 4px;
-            margin-top: 2vh;
-            margin-left: 25vw;
-            padding: 4px 8px 4px 0;
-            position: relative;
-            flex-shrink: 0;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-          }
           .side-menu-frame10211 {
             gap: 8px;
             top: 0px;
@@ -77,18 +68,6 @@ const dataV = () => {
           }
           .side-menu-frame10211:hover {
             background: linear-gradient(180deg, #8377ff -67.27%, #504ef0 100%);
-          }
-          .side-menu-text4 {
-            color: rgba(255, 255, 255, 1);
-            height: auto;
-            font-size: 14px;
-            line-height: 24px;
-            text-align: left;
-            font-family: Inter;
-            font-weight: 500;
-            line-height: normal;
-            font-stretch: normal;
-            text-decoration: none;
           }
         `}
       </style>

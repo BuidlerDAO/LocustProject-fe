@@ -156,7 +156,7 @@ const useUserStore = create<any>(
     (set) => ({
       isAdmin: false,
       isLogin: false,
-      isSignUp: false,
+      isSignUp: true,
       isConnectTwitter: false,
       username: '',
       twitter: '',

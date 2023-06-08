@@ -39,13 +39,12 @@ import { useRouter } from 'next/navigation';
 import Toast from '@/components/toast/toast';
 import { useUserStore } from '@/store';
 import { apiUserInfo } from '@/apis/user';
-import './index.css';
 interface ConnectProps extends HTMLAttributes<HTMLElement> {
   className?: ClassName;
   onData?: (type: number, data: any) => void;
 }
 
-export const MetaMaskConnect = ({
+const MetaMaskConnect = ({
   onData = () => null,
   className,
   ...reset
@@ -77,7 +76,7 @@ export const MetaMaskConnect = ({
   );
 };
 
-export const WalletConnectBtn = ({
+const WalletConnectBtn = ({
   onData = () => null,
   className,
   ...reset
@@ -114,7 +113,7 @@ export const WalletConnectBtn = ({
   );
 };
 
-export const CoinbaseConnect = ({
+const CoinbaseConnect = ({
   onData = () => null,
   className,
   ...reset
@@ -217,7 +216,6 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         if (res.token) {
           setCurrentAddress(address || '');
           setIsLogin(true);
-          router.replace('/home/profile');
         } else {
           Toast.error('Something Error!');
           disconnect();
@@ -253,8 +251,9 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             style={{
               color: 'white',
               fontFamily: 'Poppins',
+              fontWeight: '500',
               fontSize: '16px',
-              lineHeight: '22px'
+              lineHeight: '21px'
             }}
             className="ml-[32px] font-medium"
           >
@@ -270,8 +269,9 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             style={{
               color: 'white',
               fontFamily: 'Poppins',
+              fontWeight: '500',
               fontSize: '16px',
-              lineHeight: '22px'
+              lineHeight: '21px'
             }}
             className="ml-[32px] font-medium"
           >
@@ -286,8 +286,9 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             style={{
               color: 'white',
               fontFamily: 'Poppins',
+              fontWeight: '500',
               fontSize: '16px',
-              lineHeight: '22px'
+              lineHeight: '21px'
             }}
             className="ml-[32px] font-medium"
             onClick={handleDisconnect}
@@ -297,12 +298,15 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         )
       }
     ];
+    //  是否报名来渲染参与活动页面
     const items: MenuProps['items'] = isSignUp
       ? showItems
       : showItems.filter((item: any) => item.key === '1' || item.key === '3');
     // 下拉框样式
     const menuStyle = {
+      marginTop: '19px',
       backgroundColor: '#1A1A1A',
+      border: '1px solid rgba(255, 255, 255, 0.16)',
       borderRadius: '12px'
     };
     //  执行登录
@@ -338,7 +342,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             color="primary"
             className={`w-[240px] whitespace-nowrap px-10 py-2 text-[16px] font-medium ${
               currentAddress
-                ? 'border-[1px] border-solid border-black bg-[#1A1A1A]'
+                ? 'border-[1px] border-solid border-[#434343] bg-[#1A1A1A]'
                 : 'hover:border-[#6E62EE]'
             }`}
             style={{ fontFamily: 'Poppins' }}
@@ -357,12 +361,9 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
                 menu={{ items }}
                 placement="bottom"
                 overlayStyle={{
-                  marginTop: '14px',
-                  //paddingTop: '14px',
-                  width: '240px'
-                  //height: '136px'
+                  width: '240px',
+                  height: 'auto'
                 }}
-                overlayClassName="overlay-drop"
                 dropdownRender={(menu) => (
                   <div>
                     {React.cloneElement(menu as React.ReactElement, {

@@ -252,8 +252,9 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             style={{
               color: 'white',
               fontFamily: 'Poppins',
+              fontWeight: '500',
               fontSize: '16px',
-              lineHeight: '22px'
+              lineHeight: '21px'
             }}
             className="ml-[32px] font-medium"
           >
@@ -269,8 +270,9 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             style={{
               color: 'white',
               fontFamily: 'Poppins',
+              fontWeight: '500',
               fontSize: '16px',
-              lineHeight: '22px'
+              lineHeight: '21px'
             }}
             className="ml-[32px] font-medium"
           >
@@ -285,8 +287,9 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             style={{
               color: 'white',
               fontFamily: 'Poppins',
+              fontWeight: '500',
               fontSize: '16px',
-              lineHeight: '22px'
+              lineHeight: '21px'
             }}
             className="ml-[32px] font-medium"
             onClick={handleDisconnect}

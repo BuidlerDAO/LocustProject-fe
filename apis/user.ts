@@ -30,8 +30,9 @@ export const apiUserAuthTwitter = async (
     return res.data;
   } else {
     if (+res.code === 401) {
-      deleteCookie('token');
-      deleteCookie('address');
+      // deleteCookie('token');
+      // deleteCookie('address');
+      toast.error(`401`);
       window.location.href = '/';
     }
     toast.error(`${res.message}`, { id: `${res.message}` });

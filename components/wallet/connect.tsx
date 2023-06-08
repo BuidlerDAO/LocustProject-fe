@@ -39,7 +39,7 @@ import { useRouter } from 'next/navigation';
 import Toast from '@/components/toast/toast';
 import { useUserStore } from '@/store';
 import { apiUserInfo } from '@/apis/user';
-import './index.css';
+
 interface ConnectProps extends HTMLAttributes<HTMLElement> {
   className?: ClassName;
   onData?: (type: number, data: any) => void;
@@ -302,7 +302,9 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       : showItems.filter((item: any) => item.key === '1' || item.key === '3');
     // 下拉框样式
     const menuStyle = {
+      marginTop: '19px',
       backgroundColor: '#1A1A1A',
+      border: '1px solid rgba(255, 255, 255, 0.16)',
       borderRadius: '12px'
     };
     //  执行登录
@@ -357,12 +359,9 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
                 menu={{ items }}
                 placement="bottom"
                 overlayStyle={{
-                  marginTop: '14px',
-                  //paddingTop: '14px',
-                  width: '240px'
-                  //height: '136px'
+                  width: '240px',
+                  height: 'auto'
                 }}
-                overlayClassName="overlay-drop"
                 dropdownRender={(menu) => (
                   <div>
                     {React.cloneElement(menu as React.ReactElement, {

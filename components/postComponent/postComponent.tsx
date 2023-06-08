@@ -95,12 +95,8 @@ const postComponent = (props: { rootClassName: any }) => {
                 />
               </Form.Item>
             </ConfigProvider>
-
-            {/* <span className="component-text">
-            <span>+ Enter the article</span>
-          </span> */}
           </div>
-          <div className="component-frame15063">
+          <div className="absolute left-0 top-[10vh] flex h-[7vh] w-[70vw] shrink-0 items-start bg-inherit">
             <ConfigProvider
               theme={{
                 token: { colorBgContainer: '#0f0f0f' }
@@ -140,22 +136,30 @@ const postComponent = (props: { rootClassName: any }) => {
                   style={{ border: 'none', zIndex: 1 }}
                   disabled
                 >
-                  <span className="component-text06">Submit</span>
+                  <span
+                    style={{ fontFamily: 'Inter', fontStyle: 'Medium' }}
+                    className="h-auto text-center text-sm font-medium leading-6 text-[rgba(255,255,255,0.4000000059604645)] no-underline"
+                  >
+                    Submit
+                  </span>
                 </Button>
               ) : (
                 <Button htmlType="submit" style={{ border: 'none', zIndex: 1 }}>
-                  <span className="frame1171274791-text">Submit</span>
+                  <span
+                    style={{ fontFamily: 'Inter', fontStyle: 'Medium' }}
+                    className="h-auto text-left text-sm font-medium leading-6 text-white no-underline"
+                  >
+                    Submit
+                  </span>
                 </Button>
               )}
-              {/* <div className="frame1171274791-frame1171274791">
-                <span className="frame1171274791-text">
-                  <span>Submit</span>
-                </span>
-              </div> */}
             </div>
           </Form.Item>
-          <div className="component-frame1171274789">
-            <span className="component-text08">
+          <div className="absolute left-0 top-[20vh] flex w-[70vw] flex-col items-start gap-[18px]">
+            <span
+              style={{ fontFamily: 'Inter', fontStyle: 'Medium' }}
+              className="h-auto text-left text-xl font-medium leading-5 text-white no-underline"
+            >
               <span>Original Summary</span>
             </span>
             <Form.Item
@@ -167,7 +171,7 @@ const postComponent = (props: { rootClassName: any }) => {
                 }
               ]}
             >
-              <div className="component-frame15064">
+              <div className="relative flex h-[30vh] w-[70vw] shrink-0 items-start bg-inherit">
                 <ConfigProvider
                   theme={{
                     token: { colorBgContainer: '#0f0f0f' }
@@ -185,14 +189,14 @@ const postComponent = (props: { rootClassName: any }) => {
                     className="absolute left-0 top-0 flex items-start rounded-lg  border-none text-white hover:border-solid"
                   />
                 </ConfigProvider>
-                {/* <span className="component-text10">
-                <span>please enter the core content of the original text</span>
-              </span> */}
               </div>
             </Form.Item>
           </div>
-          <div className="component-frame1171274790">
-            <span className="component-text14">
+          <div className="absolute bottom-[10vh] left-0 top-[58vh] flex w-[70vw] flex-col items-start gap-[18px]">
+            <span
+              style={{ fontFamily: 'Inter', fontStyle: 'Medium' }}
+              className="h-auto text-left text-xl font-medium leading-5 text-white no-underline"
+            >
               <span>Personal Thoughts</span>
             </span>
             <Form.Item
@@ -201,7 +205,7 @@ const postComponent = (props: { rootClassName: any }) => {
                 { required: true, message: 'Please Enter Personal Thoughts' }
               ]}
             >
-              <div className="component-frame15066">
+              <div className="relative flex h-[30vh] w-[70vw] shrink-0 items-start bg-inherit">
                 <ConfigProvider
                   theme={{
                     token: { colorBgContainer: '#0f0f0f' }
@@ -247,18 +251,7 @@ const postComponent = (props: { rootClassName: any }) => {
             );
             cursor: pointer;
           }
-          .frame1171274791-text {
-            color: rgba(255, 255, 255, 1);
-            height: auto;
-            font-size: 14px;
-            font-style: Medium;
-            text-align: left;
-            font-family: Inter;
-            font-weight: 500;
-            line-height: 24px;
-            font-stretch: normal;
-            text-decoration: none;
-          }
+          
           .component-container {
             left: 1vw;
             top: 2vh;
@@ -295,49 +288,7 @@ const postComponent = (props: { rootClassName: any }) => {
             line-height: 24px;
             font-stretch: normal;
             text-decoration: none;
-          }
-          .component-text02 {
-            top: 26px;
-            left: 960px;
-            color: rgba(89, 96, 105, 1);
-            height: auto;
-            position: absolute;
-            font-size: 14px;
-            font-style: Medium;
-            text-align: right;
-            font-family: Roboto;
-            font-weight: 500;
-            line-height: 14px;
-            font-stretch: normal;
-            text-decoration: none;
-          }
-          .component-frame15063 {
-            top: 10vh;
-            left: 0px;
-            width: 70vw;
-            height: 7vh;
-            display: flex;
-            position: absolute;
-            align-items: flex-start;
-            flex-shrink: 0;
-            border-none;
-            background-color: inherit;
-          }
-          .component-text04 {
-            top: 21px;
-            left: 20px;
-            color: rgba(255, 255, 255, 0.4000000059604645);
-            height: auto;
-            position: absolute;
-            font-size: 16px;
-            font-style: Regular;
-            text-align: left;
-            font-family: Inter;
-            font-weight: 400;
-            line-height: 24px;
-            font-stretch: normal;
-            text-decoration: none;
-          }
+          }      
           .component-frame15065 {
             top: 100vh;
             gap: 8px;
@@ -351,114 +302,6 @@ const postComponent = (props: { rootClassName: any }) => {
             border-width: 2px;
             border-radius: 44px;
             background-color: var(--dl-color-maincolors-backgrounddark);
-          }
-          .component-text06 {
-            color: rgba(255, 255, 255, 0.4000000059604645);
-            height: auto;
-            font-size: 14px;
-            font-style: Medium;
-            text-align: center;
-            font-family: Inter;
-            font-weight: 500;
-            line-height: 24px;
-            font-stretch: normal;
-            text-decoration: none;
-          }
-          .component-frame1171274789 {
-            gap: 18px;
-            top: 20vh;
-            left: 0px;
-            width: 70vw;
-            display: flex;
-            position: absolute;
-            align-items: flex-start;
-            flex-direction: column;
-          }
-          .component-text08 {
-            color: rgba(255, 255, 255, 1);
-            height: auto;
-            font-size: 20px;
-            font-style: Medium;
-            text-align: left;
-            font-family: Inter;
-            font-weight: 500;
-            line-height: 20px;
-            font-stretch: normal;
-            text-decoration: none;
-          }
-          .component-frame15064 {
-            width: 70vw;
-            height: 30vh;
-            display: flex;
-            position: relative;
-            align-items: flex-start;
-            flex-shrink: 0;
-            border-none;
-            background-color: inherit;
-          }
-          .component-text10 {
-            top: 21px;
-            left: 20px;
-            color: rgba(255, 255, 255, 0.4000000059604645);
-            height: auto;
-            position: absolute;
-            font-size: 16px;
-            font-style: Regular;
-            text-align: left;
-            font-family: Inter;
-            font-weight: 400;
-            line-height: 24px;
-            font-stretch: normal;
-            text-decoration: none;
-          }
-          .component-text12 {
-            top: 233px;
-            left: 960px;
-            color: rgba(89, 96, 105, 1);
-            height: auto;
-            position: absolute;
-            font-size: 14px;
-            font-style: Medium;
-            text-align: right;
-            font-family: Inter;
-            font-weight: 500;
-            line-height: 14px;
-            font-stretch: normal;
-            text-decoration: none;
-          }
-          .component-frame1171274790 {
-            top: 58vh;
-            gap: 18px;
-            left: 0px;
-            width: 70vw;
-            bottom: 10vh;
-            display: flex;
-            position: absolute;
-            align-items: flex-start;
-            flex-direction: column;
-          }
-          .component-text14 {
-            color: rgba(255, 255, 255, 1);
-            height: auto;
-            font-size: 20px;
-            font-style: Medium;
-            text-align: left;
-            font-family: Inter;
-            font-weight: 500;
-            line-height: 20px;
-            font-stretch: normal;
-            text-decoration: none;
-          }
-          .component-frame15066 {
-            width: 70vw;
-            height: 30vh;
-            display: flex;
-            position: relative;
-            align-items: flex-start;
-            flex-shrink: 0;
-           border-none;
-            background-color: inherit;
-
           }
           .component-text16 {
             top: 21px;
@@ -474,11 +317,6 @@ const postComponent = (props: { rootClassName: any }) => {
             line-height: 24px;
             font-stretch: normal;
             text-decoration: none;
-          }
-          .component-root-class-name {
-            top: 138px;
-            left: 340px;
-            position: absolute;
           }
         `}
       </style>

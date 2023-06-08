@@ -35,15 +35,11 @@ const postComponent = (props: { rootClassName: any }) => {
     personalThoughts: string;
     time: string;
   }) => {
-    console.log(getCurrentDate());
-    //Object.assign(e, { time: getCurrentDate() });
     e.time = getCurrentDate();
     e.id = UUID(8, 8);
     console.log(e);
     increase(e);
     apiPostData(e);
-    console.log(usePostStore.getState());
-    //跳转到/home/explore页
     router.push('/home');
   };
   const title = Form.useWatch('title', form);

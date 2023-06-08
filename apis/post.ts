@@ -17,15 +17,10 @@ export const apiPostData = async (data: any) => {
     });
     const result = response.data;
     console.log(result);
-    if (result.code === 10000) {
-      return result.data;
+    if (response.code === 0) {
+      toast.success('Submit Success');
+      return 'success';
     } else {
-      if (+result.code === 401) {
-        deleteCookie('token');
-        deleteCookie('address');
-        // window.location.href = '/';
-        throw new Error('401');
-      }
       toast.error(`${result.message}`, { id: `${result.message}` });
       return '';
     }

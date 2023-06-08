@@ -221,7 +221,7 @@ const Profile: React.FC = () => {
       }
     } catch (error) {
       console.log(error);
-      router.replace('/');
+      // router.replace('/');
     }
   };
   //  初始进行用户个人信息的获取
@@ -239,160 +239,138 @@ const Profile: React.FC = () => {
     }
   }, []);
   return (
-    <div
-      style={{
-        backgroundColor: 'black',
-        width: '100%',
-        height: '100%',
-        paddingBottom: '40vh'
-      }}
-      className="ml-[1.7vw] mt-[calc(100px+3.8rem)]"
-    >
+    <div className="h-full w-full pt-[68px]">
       {/*Profile字样*/}
-      <div className="ml-[1.6vw] text-[28px]">Profile</div>
-      {/*头像部分*/}
-      <div className="mt-[17px] flex flex-col items-center">
-        <div className="mb-[14px] mr-[36.3vw] text-[16px]">Avatar</div>
-        <div className=" mr-[20vw] flex items-center">
-          <div
-            className="rounded-full"
-            style={{
-              width: '64px',
-              height: '64px',
-              borderColor: 'white'
-            }}
-          >
-            <div className="relative">
-              <div className=" h-[66px] w-[66px] rounded-full ">
-                <Image
-                  alt=""
-                  width="66"
-                  height="66"
-                  className="h-[100%] w-[100%] rounded-full"
-                  src={uploadUrl}
-                  // src={defaultAvatar}
-                ></Image>
-              </div>
-              <div className="flex flex-col items-center space-y-8 px-16 pt-9">
-                <Dialog
-                  open={showCrop}
-                  handler={(e) => setShowCrop(e)}
-                  className="bg-[#191A27]"
-                >
-                  <DialogHeader
-                    title="Please choose your avatar"
-                    showClose={true}
-                    onClose={setShowCrop}
+      <div className="ml-[40px] mt-[38px] text-[28px]">Profile</div>
+      <div className="mx-auto w-[402px] items-start text-left">
+        {/*头像部分*/}
+        <div className="mt-[17px]">
+          <div className="mb-[14px] w-full text-left text-[16px]">Avatar</div>
+          <div className="flex items-center">
+            <div className="h-[64px] w-[64px] rounded-full">
+              <div className="">
+                <div className="m-0 h-[64px] w-[64px] rounded-full p-0">
+                  <Image
+                    alt=""
+                    width="64"
+                    height="64"
+                    className="h-[100%] w-[100%] rounded-full"
+                    src={uploadUrl}
                   />
-                  <ImgCrop
-                    className="m-auto my-4 flex h-[400px] w-[400px] items-center justify-center"
-                    imgsrc={uploadUrl}
-                    onCrop={setCropper}
-                    aspect={aspect}
-                  />
-                  <Button
-                    className="mx-auto mb-[54px] w-[130px]"
-                    color="primary"
-                    onClick={handleUpload}
+                </div>
+                <div className="flex flex-col items-center space-y-8 px-16 pt-9">
+                  <Dialog
+                    open={showCrop}
+                    handler={(e) => setShowCrop(e)}
+                    className="bg-[#191A27]"
                   >
-                    Confrim
-                  </Button>
-                </Dialog>
-              </div>
-              {/*hover层*/}
-              <div className="absolute right-[-3.1px] top-[0.5px] flex h-[67px] w-[70px] rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50">
-                {/*上传图片*/}
+                    <DialogHeader
+                      title="Please choose your avatar"
+                      showClose={true}
+                      onClose={setShowCrop}
+                    />
+                    <ImgCrop
+                      className="m-auto my-4 flex h-[400px] w-[400px] items-center justify-center"
+                      imgsrc={uploadUrl}
+                      onCrop={setCropper}
+                      aspect={aspect}
+                    />
+                    <Button
+                      className="mx-auto mb-[54px] w-[130px]"
+                      color="primary"
+                      onClick={handleUpload}
+                    >
+                      Confrim
+                    </Button>
+                  </Dialog>
+                </div>
+                {/*hover层*/}
                 <div
-                  className="relative right-[-25px] top-[19px] cursor-pointer"
+                  className="absolute left-0 top-[0.5px] flex h-[64px] w-[64px] cursor-pointer items-center justify-center rounded-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50"
                   onClick={() => {
                     inputRef.current?.click();
                   }}
                 >
+                  {/*上传图片*/}
                   <Upload />
+                  <input
+                    ref={inputRef}
+                    type="file"
+                    accept=".jpg, .gif, .png"
+                    // size={5242880}
+                    className="hidden"
+                    style={{ borderColor: 'white', borderWidth: '1px' }}
+                    onChange={handleCrop}
+                  />
                 </div>
-                <input
-                  ref={inputRef}
-                  type="file"
-                  accept=".jpg, .gif, .png"
-                  // size={5242880}
-                  className="hidden"
-                  style={{ borderColor: 'white', borderWidth: '1px' }}
-                  onChange={handleCrop}
-                />
               </div>
             </div>
+            <span className="ml-[14px] h-[64px] text-[14px] text-[#A1A1A9]">
+              Support PNG, JPG, GIF, 64 × 64
+              <br />
+              recommended,max size 5M
+            </span>
           </div>
-          <span
-            className="text-[#A1A1A9]"
-            style={{
-              color: 'white',
-              marginLeft: '14px'
-            }}
-          >
-            Support PNG、JPG、GIF,64×64
-            <br />
-            recommended,max size 5M
-          </span>
         </div>
-      </div>
-      {/*UserName部分*/}
-      <div className="mr-[19vw] flex flex-col items-center">
-        <div className="mr-[233px] mt-[38px] text-[16px]">UserName</div>
-        {/*输入框部分*/}
-        <input
-          type="text"
-          value={userName}
-          className="mr-[-93px] mt-[14px] h-[37px] w-[401px] rounded-[6px] border-[1px] bg-black focus:outline-none"
-          style={{ borderColor: '#1d1d1d', textIndent: '12px' }}
-          onChange={(e) => setUserName(e.target.value)}
+        {/*UserName部分*/}
+        <div className="flex flex-col items-start">
+          <div className="mt-[38px] text-[16px]">User Name</div>
+          {/*输入框部分*/}
+          <input
+            type="text"
+            value={userName}
+            className="mt-[14px] h-[37px] w-[401px] rounded-[6px] border-[1px] bg-black focus:outline-none"
+            style={{ borderColor: '#1d1d1d', textIndent: '12px' }}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
+        {/*推特部分*/}
+        <Modalprop
+          ModalMaxWidth={350}
+          BodyMaxWidth={300}
+          cancelButtonMarginRight="0"
+          isModalOpen={isModalOpen}
+          handleOk={handleOk}
+          handleCancel={handleCancel}
+          locate="twitter"
         />
-      </div>
-      {/*推特部分*/}
-      <Modalprop
-        ModalMaxWidth={350}
-        BodyMaxWidth={300}
-        cancelButtonMarginRight="0"
-        isModalOpen={isModalOpen}
-        handleOk={handleOk}
-        handleCancel={handleCancel}
-        locate="twitter"
-      />
-      <div className="relative mr-[19vw] flex flex-col items-center">
-        <div className="mr-[260px] mt-[38px] text-[16px]">Twitter</div>
-        {/*绑定框部分*/}
-        <div
-          className="item-center mr-[-93px] mt-[14px] flex h-[37px] w-[401px] justify-between rounded-[6px] border-[1px] bg-black"
-          style={{ borderColor: '#1d1d1d' }}
-        >
-          <div className="flex-raw item-center ml-[12px] mt-[4px] flex justify-center">
-            {/*{!isConnectTwitter ? <Twitter /> : <Upload />}*/}
-            <Twitter />
-            <div className="ml-[8px] mt-[1.2px]">
-              {!isConnectTwitter ? (
-                'Twitter'
-              ) : (
-                <a
-                  href={`https://twitter.com/${twitterName}`}
-                >{`https://twitter.com/${twitterName}`}</a>
-              )}
-            </div>
-          </div>
-          <span
-            className="mr-[12px] mt-[5.2px] cursor-pointer"
-            style={{ color: '#6E62EE' }}
-            onClick={handleTwitterConnect}
+        <div className="relative flex flex-col items-start">
+          <div className="mt-[38px] text-[16px]">Twitter</div>
+          {/*绑定框部分*/}
+          <div
+            className="item-center mr-[-93px] mt-[14px] flex h-[37px] w-[401px] justify-between rounded-[6px] border-[1px] bg-black"
+            style={{ borderColor: '#1d1d1d' }}
           >
-            {!isConnectTwitter ? 'Connect' : 'Disconnect'}
-          </span>
+            <div className="flex-raw item-center ml-[12px] mt-[4px] flex justify-center">
+              {/*{!isConnectTwitter ? <Twitter /> : <Upload />}*/}
+              <Twitter />
+              <div className="ml-[8px] mt-[1.2px]">
+                {!isConnectTwitter ? (
+                  'Twitter'
+                ) : (
+                  <a
+                    href={`https://twitter.com/${twitterName}`}
+                  >{`https://twitter.com/${twitterName}`}</a>
+                )}
+              </div>
+            </div>
+            <span
+              className="mr-[12px] mt-[5.2px] cursor-pointer"
+              style={{ color: '#6E62EE' }}
+              onClick={handleTwitterConnect}
+            >
+              {!isConnectTwitter ? 'Connect' : 'Disconnect'}
+            </span>
+          </div>
+          {/*Submit*/}
+          <Button
+            color="secondary"
+            className="mx-auto mt-[58px] h-[48px] w-[176px] rounded-full text-[14px] "
+            onClick={handleUploadAll}
+          >
+            Submit
+          </Button>
         </div>
-        {/*Submit*/}
-        <Button
-          color="secondary"
-          className="ml-[6.2vw] mt-[3.5vw] h-[2.5vw] w-[9vw] rounded-full text-[14px] "
-          onClick={handleUploadAll}
-        >
-          Submit
-        </Button>
       </div>
     </div>
   );

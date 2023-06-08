@@ -8,6 +8,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useSiderStore, useUserStore } from '@/store';
 import toast from '../toast/toast';
 import { LogoIconTop } from '../icons';
+import { SideData } from '../icons/sideData';
+import { SideExplore } from '../icons/sideExplore';
 
 const SideMenu = (props: any) => {
   const router = useRouter();
@@ -92,7 +94,11 @@ const SideMenu = (props: any) => {
               <Link href="/home/">
                 <div className="side-menu-frame1013">
                   <span>
-                    <AppstoreOutlined />
+                    <AppstoreOutlined
+                      style={{
+                        fontSize: '125%'
+                      }}
+                    />
                   </span>
                   <span className="side-menu-text">
                     <span style={{ fontFamily: 'Poppins', fontWeight: '500' }}>
@@ -123,7 +129,11 @@ const SideMenu = (props: any) => {
               >
                 <Link href="/home/dataV">
                   <div className="side-menu-frame1021">
-                    <RiseOutlined />
+                    <RiseOutlined
+                      style={{
+                        fontSize: '125%'
+                      }}
+                    />
                     <span className="side-menu-text2">
                       <span
                         style={{ fontFamily: 'Poppins', fontWeight: '500' }}

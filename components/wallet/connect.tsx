@@ -39,6 +39,7 @@ import { useRouter } from 'next/navigation';
 import Toast from '@/components/toast/toast';
 import { useUserStore } from '@/store';
 import { apiUserInfo } from '@/apis/user';
+import './index.css';
 interface ConnectProps extends HTMLAttributes<HTMLElement> {
   className?: ClassName;
   onData?: (type: number, data: any) => void;
@@ -337,7 +338,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             color="primary"
             className={`w-[240px] whitespace-nowrap px-10 py-2 text-[16px] font-medium ${
               currentAddress
-                ? 'border-black bg-[#1A1A1A]'
+                ? 'border-[1px] border-solid border-black bg-[#1A1A1A]'
                 : 'hover:border-[#6E62EE]'
             }`}
             style={{ fontFamily: 'Poppins' }}
@@ -356,10 +357,12 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
                 menu={{ items }}
                 placement="bottom"
                 overlayStyle={{
-                  paddingTop: '14px',
-                  width: '240px',
-                  height: '136px'
+                  marginTop: '14px',
+                  //paddingTop: '14px',
+                  width: '240px'
+                  //height: '136px'
                 }}
+                overlayClassName="overlay-drop"
                 dropdownRender={(menu) => (
                   <div>
                     {React.cloneElement(menu as React.ReactElement, {

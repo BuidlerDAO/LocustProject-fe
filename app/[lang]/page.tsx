@@ -21,7 +21,6 @@ import { useUserStore } from '@/store';
 import { addReward, approveTokens } from '@/utils/callContract';
 import { setCookie } from '@/utils/cookie';
 
-import { apiUserInfo } from '@/apis/user';
 import { apiGetCampaignInfo, apiPostCampaign } from '@/apis/Campaign';
 
 const Index = memo((props: any) => {
@@ -36,13 +35,16 @@ const Index = memo((props: any) => {
   const onClickSuccess = async () => {
     const { id, contractAddress, tokenAddress, requiredPledgedAmount, hashId } =
       await apiGetCampaignInfo();
+    console.log(requiredPledgedAmount);
+    // const amount = ethers.BigNumber.from(requiredPledgedAmount)
+    // console.log(amount);
     await approveTokens(
       tokenAddress,
       // '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 先拉代币合约允许质押
       contractAddress,
       // '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 目标质押合约(奖金池合约)
-      // requiredPledgedAmount
-      0.001 //  允许最大质押数
+      requiredPledgedAmount
+      // 0.001 //  允许最大质押数
     )
       .then(async () => {
         const campaignIdHash = `0x${hashId}`;
@@ -55,8 +57,8 @@ const Index = memo((props: any) => {
               tokenType: 1,
               // tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
               tokenAddress,
-              // amount: requiredPledgedAmount
-              amount: 0.001
+              amount: requiredPledgedAmount
+              // amount: 0.001
             }
           ],
           true

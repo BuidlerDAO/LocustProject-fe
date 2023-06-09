@@ -240,7 +240,6 @@ const Profile: React.FC = () => {
     if (oauthToken !== null && !isConnectTwitter) {
       updateTwitterInfo();
       // getUserInfo();
-      // router.replace('/home/profile')
     }
     getUserInfo().then(() => {
       if (localStorage.getItem('name') && localStorage.getItem('avatarUrl')) {

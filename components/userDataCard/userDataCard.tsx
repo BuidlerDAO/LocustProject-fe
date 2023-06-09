@@ -6,6 +6,7 @@ import { apiGetPostData } from '@/apis/post';
 import toast from '../toast/toast';
 import { claimReward } from '@/utils/callContract';
 import Toast from '../toast/toast';
+import { apiGetCampaignInfo } from '@/apis/Campaign';
 const UserDataCard = () => {
   const [countPoints, setCountPoints] = React.useState<number>(0);
   const [Awarded, setAwarded] = React.useState<string>('0');
@@ -55,20 +56,24 @@ const UserDataCard = () => {
       });
   };
   const handleClaimOnclick = async () => {
-    const campaignId = 'aaaaaa';
-    const campaignIdHash = `0x${campaignId}`;
+    const { id, contractAddress, tokenAddress, requiredPledgedAmount, hashId } =
+      await apiGetCampaignInfo();
+    const campaignIdHash = `0x${hashId}`;
     const nonce = '';
     const signature = '';
     await claimReward(
-      '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
+      contractAddress,
+      // '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
       campaignIdHash,
       [
         {
           tokenType: 1,
-          tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
+          tokenAddress,
+          // tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
           amount: 0.001
         }
       ],
+      //  缺少接口
       nonce,
       signature
     )

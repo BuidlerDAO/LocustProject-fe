@@ -19,7 +19,7 @@ import { getCurrentTime } from '@/utils/time';
 
 import { useUserStore } from '@/store';
 import { addReward, approveTokens } from '@/utils/callContract';
-import { getCookie } from '@/utils/cookie';
+import { setCookie } from '@/utils/cookie';
 
 import { apiUserInfo } from '@/apis/user';
 import { apiGetCampaignInfo, apiPostCampaign } from '@/apis/Campaign';
@@ -34,15 +34,8 @@ const Index = memo((props: any) => {
   };
   //  报名函数
   const onClickSuccess = async () => {
-    const {
-      id,
-      contractAddress,
-      tokenAddress,
-      requiredPledgedAmount,
-      totalPledgeAmount,
-      hashId
-    } = await apiGetCampaignInfo();
-    const AddAmount = Number(requiredPledgedAmount);
+    const { id, contractAddress, tokenAddress, requiredPledgedAmount, hashId } =
+      await apiGetCampaignInfo();
     await approveTokens(
       tokenAddress,
       // '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 先拉代币合约允许质押
@@ -62,7 +55,7 @@ const Index = memo((props: any) => {
               tokenType: 1,
               // tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
               tokenAddress,
-              // amount: AddAmount
+              // amount: requiredPledgedAmount
               amount: 0.001
             }
           ],

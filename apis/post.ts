@@ -77,7 +77,7 @@ export const apiGetPostData = async (url: string) => {
 export const apiDeletePostData = async (id: number) => {
   try {
     console.log(id);
-    const res = await request(`/api/admin/post/?postID=${id}`, {
+    const res = await request(`/api/post/?id=${id}`, {
       method: 'DELETE'
       //body: { : id }
     });

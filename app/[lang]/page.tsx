@@ -22,7 +22,7 @@ import { addReward, approveTokens } from '@/utils/callContract';
 import { getCookie } from '@/utils/cookie';
 
 import { apiUserInfo } from '@/apis/user';
-import { apiGetCampaignId } from '@/apis/Campaign';
+import { apiGetCampaignInfo } from '@/apis/Campaign';
 
 const Index = memo((props: any) => {
   const {
@@ -49,19 +49,28 @@ const Index = memo((props: any) => {
       0.001 //  允许最大质押数
     )
       .then(async () => {
-        const campaignId: string = await apiGetCampaignId();
-        const campaignIdHash = `0x${campaignId}`;
+        const {
+          contractAddress,
+          tokenAddress,
+          requiredPledgedAmount,
+          totalPledgeAmount,
+          hashId,
+          confirmed
+        } = await apiGetCampaignInfo();
+        const campaignIdHash = `0x${hashId}`;
         await addReward(
-          '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
+          // '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
+          contractAddress,
           campaignIdHash,
           [
             {
               tokenType: 1,
-              tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
-              amount: 0.001
+              // tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
+              tokenAddress,
+              amount: requiredPledgedAmount
             }
           ],
-          true
+          confirmed
         )
           .then(() => {
             setIsSignUp(true);

@@ -22,7 +22,7 @@ import { addReward, approveTokens } from '@/utils/callContract';
 import { getCookie } from '@/utils/cookie';
 
 import { apiUserInfo } from '@/apis/user';
-import { apiGetCampaignInfo } from '@/apis/Campaign';
+import { apiGetCampaignInfo, apiPostCampaign } from '@/apis/Campaign';
 
 const Index = memo((props: any) => {
   const {
@@ -73,6 +73,7 @@ const Index = memo((props: any) => {
           confirmed
         )
           .then(() => {
+            // apiPostCampaign(campaignIdHash)
             setIsSignUp(true);
           })
           .catch((e) => {

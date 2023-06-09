@@ -343,7 +343,7 @@ const TableUserOverview = () => {
           numUnsuccessfulArticles: item.invalidPostCount,
           numValidArticles: item.validPostCount,
           bonus: item.bonus,
-          totalPrizePool: item.campaign.campaignBonus
+          totalPrizePool: item.campaign.totalPledgedAmount
         };
       });
       setData(newData);

@@ -35,7 +35,7 @@ import { deleteCookie, getCookie } from '@/utils/cookie';
 import { Dropdown, MenuProps, Space } from 'antd';
 import Link from 'next/link';
 import DownOutlined from '@/components/icons/downOutLined';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Toast from '@/components/toast/toast';
 import { useUserStore } from '@/store';
 import { apiUserInfo } from '@/apis/user';
@@ -157,6 +157,12 @@ export interface WalletProps extends ComponentProps<'div'> {
 
 const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
   ({ className, ...rest }, ref) => {
+    const path = usePathname();
+    const hasAuth =
+      path === '/zh-CN/home/participate' ||
+      path === '/zh-CN/home/profile' ||
+      path === '/en/home/participate' ||
+      path === '/en/home/profile';
     const router = useRouter();
     const {
       setIsAdmin,
@@ -213,7 +219,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       deleteCookie('address');
       setCurrentAddress('');
       setIsLogin(false);
-      router.replace('/');
+      hasAuth ? router.replace('/home') : null;
     };
     // 登录
     const handleLogin = async () => {

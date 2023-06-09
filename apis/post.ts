@@ -21,7 +21,7 @@ export const apiPostData = async (data: any) => {
       toast.success('Submit Success');
       return 'success';
     } else {
-      toast.error(`${result.message}`, { id: `${result.message}` });
+      toast.error(`${response.message}`, { id: `${response.message}` });
       return '';
     }
   } catch (error) {

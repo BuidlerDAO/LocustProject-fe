@@ -367,11 +367,7 @@ const SideMenu = (props: any) => {
             flex-shrink: 0;
             border-radius: 44px;
             justify-content: center;
-            background-image: linear-gradient(
-              180deg,
-              rgba(110, 98, 238, 1) 2%,
-              rgba(63, 61, 250, 1) 100%
-            );
+            background: linear-gradient(180deg, #6e62ee -67.27%, #3f3dfa 100%);
           }
           .side-menu-frame10211:hover {
             background: linear-gradient(180deg, #8377ff -67.27%, #504ef0 100%);

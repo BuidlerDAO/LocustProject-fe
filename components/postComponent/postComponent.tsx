@@ -28,23 +28,23 @@ const postComponent = (props: { rootClassName: any }) => {
     return `${year}-${formattedMonth}-${formattedDay}`;
   }
   const onFinish = (e: {
-    id: string;
+    campaignId: string;
     title: string;
     link: string;
-    originalText: string;
-    personalThoughts: string;
+    content: string;
+    thought: string;
     time: string;
   }) => {
     e.time = getCurrentDate();
-    e.id = UUID(8, 8);
+    e.campaignId = UUID(8, 8);
     increase(e);
     apiPostData(e);
     router.push('/home');
   };
   const title = Form.useWatch('title', form);
   const link = Form.useWatch('link', form);
-  const originalText = Form.useWatch('originalText', form);
-  const personalThoughts = Form.useWatch('personalThoughts', form);
+  const content = Form.useWatch('content', form);
+  const thought = Form.useWatch('thought', form);
   //当title,time,material1,material2不为空时，isNull改变状态为false
   useEffect(() => {
     //console.log(title, link, OriginalText, PersonalThoughts);
@@ -53,16 +53,16 @@ const postComponent = (props: { rootClassName: any }) => {
       title !== '' &&
       link !== undefined &&
       link !== '' &&
-      originalText !== undefined &&
-      originalText !== '' &&
-      personalThoughts !== undefined &&
-      personalThoughts !== ''
+      content !== undefined &&
+      content !== '' &&
+      thought !== undefined &&
+      thought !== ''
     ) {
       setIsNull(false);
     } else {
       setIsNull(true);
     }
-  }, [title, link, originalText, personalThoughts]);
+  }, [title, link, content, thought]);
   return (
     <>
       <Form
@@ -163,7 +163,7 @@ const postComponent = (props: { rootClassName: any }) => {
               <span>Original Summary</span>
             </span>
             <Form.Item
-              name="originalText"
+              name="content"
               rules={[
                 {
                   required: true,
@@ -200,7 +200,7 @@ const postComponent = (props: { rootClassName: any }) => {
               <span>Personal Thoughts</span>
             </span>
             <Form.Item
-              name="personalThoughts"
+              name="thought"
               rules={[
                 { required: true, message: 'Please Enter Personal Thoughts' }
               ]}
@@ -253,7 +253,7 @@ const postComponent = (props: { rootClassName: any }) => {
           }
           
           .component-container {
-            left: 1vw;
+            
             top: 2vh;
             width: 73vw;
             height: 110vh;

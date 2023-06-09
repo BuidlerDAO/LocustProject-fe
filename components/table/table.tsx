@@ -71,7 +71,7 @@ const Table2 = () => {
         return {
           userName: item.Username,
           walletAddress: item.contractAddress,
-          numContentSubmitted: item.v,
+          numContentSubmitted: item.validArticleCount,
           numDeletedContent: item.DeletedCount,
           bonusesReceived: item.BonusReceived
         };

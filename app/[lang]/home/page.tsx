@@ -36,7 +36,7 @@ const App = () => {
   };
 
   return (
-    <div className="ml-[41px] mr-16 mt-[100px]">
+    <div className="ml-[19px] mr-16 mt-[100px]">
       <List
         itemLayout="vertical"
         size="large"

@@ -28,7 +28,7 @@ const postComponent = (props: { rootClassName: any }) => {
     return `${year}-${formattedMonth}-${formattedDay}`;
   }
   const onFinish = (e: {
-    campaignId: string;
+    campaignId: number;
     title: string;
     link: string;
     content: string;
@@ -36,8 +36,8 @@ const postComponent = (props: { rootClassName: any }) => {
     time: string;
   }) => {
     e.time = getCurrentDate();
-    e.campaignId = UUID(8, 8);
-    increase(e);
+    e.campaignId = 0;
+    //increase(e);
     apiPostData(e);
     router.push('/home');
   };

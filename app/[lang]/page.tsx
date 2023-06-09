@@ -65,7 +65,7 @@ const Index = memo((props: any) => {
         )
           .then(() => {
             apiPostCampaign(id);
-            // setIsSignUp(true);
+            setIsSignUp(true);
           })
           .catch((e) => {
             setIsSignUp(false);

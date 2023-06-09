@@ -12,7 +12,7 @@ import { UUID } from '@/utils/uuid';
 
 const { TextArea } = Input;
 
-const postComponent = (props: { rootClassName: any }) => {
+const postComponent = () => {
   const router = useRouter();
   const [form] = Form.useForm();
   const [isNull, setIsNull] = useState(true);
@@ -71,7 +71,7 @@ const postComponent = (props: { rootClassName: any }) => {
         onFinish={onFinish}
         form={form}
       >
-        <div className={`component-container ${props.rootClassName} `}>
+        <div className={`component-container  `}>
           <div className="component-frame15062">
             <ConfigProvider
               theme={{
@@ -223,109 +223,13 @@ const postComponent = (props: { rootClassName: any }) => {
                     className="absolute left-0 top-0 flex  items-start rounded-lg border-none text-white hover:border-solid"
                   />
                 </ConfigProvider>
-                {/* <span className="component-text16">
-                <span>please enter Personal thoughts</span>
-              </span> */}
               </div>
             </Form.Item>
           </div>
         </div>
       </Form>
-      <style jsx>
-        {`
-          .frame1171274791-frame1171274791 {
-            top: 100vh;
-            left: 28vw;
-            display: flex;
-            padding: 12px 64px;
-            position: absolute;
-            gap: 8px;
-            height: auto;
-            display: flex;
-            align-items: flex-start;
-            border-radius: 44px;
-            background-image: linear-gradient(
-              180deg,
-              rgba(110, 98, 238, 1) 2%,
-              rgba(63, 61, 250, 1) 100%
-            );
-            cursor: pointer;
-          }
-          
-          .component-container {
-            
-            top: 2vh;
-            width: 73vw;
-            height: 110vh;
-            display: flex;
-            position: relative;
-            align-items: flex-start;
-            background-color: var(--dl-color-gray-black);
-          }
-          .component-frame15062 {
-            top: 0px;
-            left: 0px;
-            width: 73vw;
-            height: 7vh;
-            display: flex;
-            position: absolute;
-            align-items: flex-start;
-            flex-shrink: 0;
-            border-none;
-            background-color: inherit;
-          }
-          .component-text {
-            top: 21px;
-            left: 20px;
-            color: rgba(255, 255, 255, 0.4000000059604645);
-            height: auto;
-            position: absolute;
-            font-size: 16px;
-            font-style: Regular;
-            text-align: left;
-            font-family: Inter;
-            font-weight: 400;
-            line-height: 24px;
-            font-stretch: normal;
-            text-decoration: none;
-          }      
-          .component-frame15065 {
-            top: 100vh;
-            gap: 8px;
-            left: 28vw;
-            display: flex;
-            padding: 12px 64px;
-            position: absolute;
-            align-items: flex-center;
-            border-color: rgba(41, 40, 47, 1);
-            border-style: solid;
-            border-width: 2px;
-            border-radius: 44px;
-            background-color: var(--dl-color-maincolors-backgrounddark);
-          }
-          .component-text16 {
-            top: 21px;
-            left: 20px;
-            color: rgba(255, 255, 255, 0.4000000059604645);
-            height: auto;
-            position: absolute;
-            font-size: 16px;
-            font-style: Regular;
-            text-align: left;
-            font-family: Inter;
-            font-weight: 400;
-            line-height: 24px;
-            font-stretch: normal;
-            text-decoration: none;
-          }
-        `}
-      </style>
     </>
   );
-};
-
-postComponent.defaultProps = {
-  rootClassName: ''
 };
 
 export default postComponent;

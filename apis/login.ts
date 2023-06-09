@@ -39,8 +39,10 @@ export const apiLogin = async (
 
   if (res.code === 0) {
     // 这里直接塞localStorage。不需要在业务塞了
-    setCookie('token', res.data.token);
-    setCookie('address', address);
+    if (res.data.token !== '' && address !== '') {
+      setCookie('token', res.data.token);
+      setCookie('address', address);
+    }
     Toast.success(`Login success`);
     return res.data;
   } else {

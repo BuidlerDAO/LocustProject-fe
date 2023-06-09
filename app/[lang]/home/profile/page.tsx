@@ -93,9 +93,12 @@ const Profile: React.FC = () => {
     try {
       const UserRes = await apiUserInfo();
       // console.log('UserRes-->',UserRes);
-      if (userName !== '' && uploadUrl !== '') {
+      if (userName.trim() !== '' && uploadUrl !== '') {
         //  单单修改用户信息不传推特
-        if (UserRes.username === userName && UserRes.avatar === uploadUrl) {
+        if (
+          UserRes.username === userName.trim() &&
+          UserRes.avatar === uploadUrl
+        ) {
           Toast.error("Don't upload the same info");
           return;
         }
@@ -103,7 +106,7 @@ const Profile: React.FC = () => {
 
         const res = await apiPutUserInfo({
           avatar: uploadUrl,
-          name: userName
+          name: userName.trim()
         });
         if (res) {
           Toast.success('Modify message success!');
@@ -125,23 +128,8 @@ const Profile: React.FC = () => {
   //  推特登录 点击之后跳转至 Twitter 拿到授权,此时的 url 带有 oauthToken,verifier 参数,再执行页面的 useEffect 判断
   const handleTwitterConnect = async () => {
     if (!isConnectTwitter) {
-      // if (userName !== '' && uploadUrl !== '') {
-      //   const UserRes = await apiUserInfo();
-      //   if (UserRes.username !== userName || UserRes.avatar !== uploadUrl) {
-      //     //  单单修改用户信息不传推特
-      //     const res = await apiPutUserInfo({
-      //       avatar: uploadUrl,
-      //       name: userName
-      //     });
-      //     if (res) {
-      //       Toast.success('Modify message success!');
-      //       setUsername(res.username);
-      //       setAvatar(res.avatar);
-      //     }
-      //   }
-      // }
-      if (userName !== '' && uploadUrl !== '') {
-        localStorage.setItem('name', userName);
+      if (userName.trim() !== '' && uploadUrl !== '') {
+        localStorage.setItem('name', userName.trim());
         localStorage.setItem('avatarUrl', uploadUrl);
       }
       const res = await apiTwitterToken(
@@ -180,7 +168,7 @@ const Profile: React.FC = () => {
     if (isConnectTwitter) {
       const res = await apiPutUserInfo({
         avatar: uploadUrl,
-        name: userName,
+        name: userName.trim(),
         twitter: {
           oauthToken: '',
           oauthTokenSecret: '',
@@ -346,7 +334,7 @@ const Profile: React.FC = () => {
           {/*输入框部分*/}
           <input
             type="text"
-            value={userName}
+            value={userName.trim()}
             className="mt-[14px] h-[37px] w-[401px] rounded-[6px] border-[1px] bg-black focus:outline-none"
             style={{ borderColor: '#1d1d1d', textIndent: '12px' }}
             onChange={(e) => setUserName(e.target.value)}

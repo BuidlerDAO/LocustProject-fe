@@ -7,7 +7,7 @@ import { ConfigProvider } from 'antd';
 const HomeLayout: FC<{ children: ReactNode }> = (props) => {
   return (
     <div>
-      <main className="ml-[41px] mt-[100px] flex">
+      <main className="ml-[41px] mt-[100px] flex w-full bg-black">
         <ConfigProvider
           theme={{
             token: {

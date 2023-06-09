@@ -86,7 +86,7 @@ const postComponent = (props: { rootClassName: any }) => {
                   type="text"
                   placeholder="+ Enter the article"
                   style={{
-                    width: '70vw',
+                    width: '73vw',
                     height: '7vh'
                   }}
                   // showCount
@@ -96,7 +96,7 @@ const postComponent = (props: { rootClassName: any }) => {
               </Form.Item>
             </ConfigProvider>
           </div>
-          <div className="absolute left-0 top-[10vh] flex h-[7vh] w-[70vw] shrink-0 items-start bg-inherit">
+          <div className="absolute left-0 top-[10vh] flex h-[7vh] w-[73vw] shrink-0 items-start bg-inherit">
             <ConfigProvider
               theme={{
                 token: { colorBgContainer: '#0f0f0f' }
@@ -112,7 +112,7 @@ const postComponent = (props: { rootClassName: any }) => {
                   type="text"
                   placeholder="Please enter the original link"
                   style={{
-                    width: '70vw',
+                    width: '73vw',
                     height: '7vh',
                     outline: 'none'
                   }}
@@ -155,7 +155,7 @@ const postComponent = (props: { rootClassName: any }) => {
               )}
             </div>
           </Form.Item>
-          <div className="absolute left-0 top-[20vh] flex w-[70vw] flex-col items-start gap-[18px]">
+          <div className="absolute left-0 top-[20vh] flex w-[73vw] flex-col items-start gap-[18px]">
             <span
               style={{ fontFamily: 'Inter', fontStyle: 'Medium' }}
               className="h-auto text-left text-xl font-medium leading-5 text-white no-underline"
@@ -171,7 +171,7 @@ const postComponent = (props: { rootClassName: any }) => {
                 }
               ]}
             >
-              <div className="relative flex h-[30vh] w-[70vw] shrink-0 items-start bg-inherit">
+              <div className="relative flex h-[30vh] w-[73vw] shrink-0 items-start bg-inherit">
                 <ConfigProvider
                   theme={{
                     token: { colorBgContainer: '#0f0f0f' }
@@ -182,7 +182,7 @@ const postComponent = (props: { rootClassName: any }) => {
                     maxLength={5000}
                     placeholder="Please enter the core content of the original text"
                     style={{
-                      width: '70vw',
+                      width: '73vw',
                       height: '30vh',
                       resize: 'none'
                     }}
@@ -192,7 +192,7 @@ const postComponent = (props: { rootClassName: any }) => {
               </div>
             </Form.Item>
           </div>
-          <div className="absolute bottom-[10vh] left-0 top-[58vh] flex w-[70vw] flex-col items-start gap-[18px]">
+          <div className="absolute bottom-[10vh] left-0 top-[58vh] flex w-[73vw] flex-col items-start gap-[18px]">
             <span
               style={{ fontFamily: 'Inter', fontStyle: 'Medium' }}
               className="h-auto text-left text-xl font-medium leading-5 text-white no-underline"
@@ -205,7 +205,7 @@ const postComponent = (props: { rootClassName: any }) => {
                 { required: true, message: 'Please Enter Personal Thoughts' }
               ]}
             >
-              <div className="relative flex h-[30vh] w-[70vw] shrink-0 items-start bg-inherit">
+              <div className="relative flex h-[30vh] w-[73vw] shrink-0 items-start bg-inherit">
                 <ConfigProvider
                   theme={{
                     token: { colorBgContainer: '#0f0f0f' }
@@ -216,7 +216,7 @@ const postComponent = (props: { rootClassName: any }) => {
                     maxLength={5000}
                     showCount
                     style={{
-                      width: '70vw',
+                      width: '73vw',
                       height: '30vh',
                       resize: 'none'
                     }}
@@ -265,7 +265,7 @@ const postComponent = (props: { rootClassName: any }) => {
           .component-frame15062 {
             top: 0px;
             left: 0px;
-            width: 70vw;
+            width: 73vw;
             height: 7vh;
             display: flex;
             position: absolute;

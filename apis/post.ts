@@ -120,18 +120,15 @@ export const apiGetSearchData = async (data: string) => {
  * @params url,offset,limit,title
  * @api https://test-locust-api.buidlerdao.xyz/api/admin/campaign
  * */
-export const apiGetMonthData = async (data: {
-  offset?: number;
-  limit?: number;
-  title?: string;
+export const apiGetCampaign = async (data: {
+  campaignId?: number;
+  includeRealBonus?: boolean;
 }) => {
   try {
-    const res = await request(
-      `/api/admin/campaign?offset=${data.offset}&limit=${data.limit}&title=${data.title}`,
-      {
-        method: 'GET'
-      }
-    );
+    //当campaignId为空时,则不传campaignId
+    const res = await request(`/api/campaign/participant`, {
+      method: 'GET'
+    });
     if (res.code === 0) {
       return res.data;
     } else {

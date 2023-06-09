@@ -39,6 +39,7 @@ import { useRouter } from 'next/navigation';
 import Toast from '@/components/toast/toast';
 import { useUserStore } from '@/store';
 import { apiUserInfo } from '@/apis/user';
+import { ethers } from 'ethers';
 interface ConnectProps extends HTMLAttributes<HTMLElement> {
   className?: ClassName;
   onData?: (type: number, data: any) => void;
@@ -159,6 +160,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
     const router = useRouter();
     const { isSignUp, setIsLogin, setIsAdmin } = useUserStore();
     // State / Props
+    const [updateState, setUpdateState] = useState(0);
     // 以太坊网络地址 & 是否链接
     const { address, isConnected } = useAccount();
     const { disconnect } = useDisconnect();
@@ -309,6 +311,20 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       border: '1px solid rgba(255, 255, 255, 0.16)',
       borderRadius: '12px'
     };
+    // function forceUpdate(){
+    //   this.forceUpdate()
+    // }
+    const handleAccountChange = (...args: any[]) => {
+      const accounts = args[0];
+      if (accounts.length === 0) {
+        console.log('Please connect to metamask');
+      } else if (accounts[0] !== getCookie('address')) {
+        Toast.success('Account changed! Please verify account on metamask!');
+        setTimeout(() => {
+          setUpdateState(updateState + 1);
+        }, 2500);
+      }
+    };
     //  执行登录
     useEffect(() => {
       console.log('isSuccess', isSuccess);
@@ -334,6 +350,13 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
           });
       }
     }, [address]);
+    //  切换账户
+    useEffect(() => {
+      window.ethereum.addListener('accountsChanged', handleAccountChange);
+      return () => {
+        window.ethereum.removeListener('accountsChanged', handleAccountChange);
+      };
+    }, []);
     // Render
     return (
       <div {...rest} ref={ref} className={className}>
@@ -470,4 +493,4 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
 
 WalletConnect.displayName = 'WalletConnect';
 
-export default memo(WalletConnect);
+export default WalletConnect;

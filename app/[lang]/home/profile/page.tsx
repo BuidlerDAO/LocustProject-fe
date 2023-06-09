@@ -5,7 +5,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Upload from '@/components/icons/upload';
 import { Button } from '@/components/button';
-import request from '@/utils/request';
 import { apiPutUserInfo, apiTwitterToken, apiUserInfo } from '@/apis/user';
 import { useUserStore } from '@/store';
 import Modalprop from '@/components/modal/modal';
@@ -28,6 +27,7 @@ const Profile: React.FC = () => {
     isLogin
   } = useUserStore();
   const router = useRouter();
+  const name = localStorage.getItem('name');
   //  页面重定向到个人页面时路径中带有 Twitter 返回的 oauth_token,oauth_verifier 去进行个人信息的修改
   const oauthToken = useSearchParams()?.get('oauth_token') as string;
   const verifier = useSearchParams()?.get('oauth_verifier') as string;
@@ -96,7 +96,8 @@ const Profile: React.FC = () => {
           Toast.error("Don't upload the same info");
           return;
         }
-        console.log(uploadUrl);
+        // console.log(uploadUrl);
+
         const res = await apiPutUserInfo({
           avatar: uploadUrl,
           name: userName
@@ -121,20 +122,24 @@ const Profile: React.FC = () => {
   //  推特登录 点击之后跳转至 Twitter 拿到授权,此时的 url 带有 oauthToken,verifier 参数,再执行页面的 useEffect 判断
   const handleTwitterConnect = async () => {
     if (!isConnectTwitter) {
+      // if (userName !== '' && uploadUrl !== '') {
+      //   const UserRes = await apiUserInfo();
+      //   if (UserRes.username !== userName || UserRes.avatar !== uploadUrl) {
+      //     //  单单修改用户信息不传推特
+      //     const res = await apiPutUserInfo({
+      //       avatar: uploadUrl,
+      //       name: userName
+      //     });
+      //     if (res) {
+      //       Toast.success('Modify message success!');
+      //       setUsername(res.username);
+      //       setAvatar(res.avatar);
+      //     }
+      //   }
+      // }
       if (userName !== '' && uploadUrl !== '') {
-        const UserRes = await apiUserInfo();
-        if (UserRes.username !== userName || UserRes.avatar !== uploadUrl) {
-          //  单单修改用户信息不传推特
-          const res = await apiPutUserInfo({
-            avatar: uploadUrl,
-            name: userName
-          });
-          if (res) {
-            Toast.success('Modify message success!');
-            setUsername(res.username);
-            setAvatar(res.avatar);
-          }
-        }
+        localStorage.setItem('name', userName);
+        localStorage.setItem('avatarUrl', uploadUrl);
       }
       const res = await apiTwitterToken(
         'http://localhost:3000/zh-CN/home/profile'
@@ -226,17 +231,27 @@ const Profile: React.FC = () => {
   };
   //  初始进行用户个人信息的获取
   useEffect(() => {
-    getUserInfo();
-  }, []);
-  //  页面重定向回来的执行函数
-  useEffect(() => {
-    // console.log(isConnectTwitter);
     if (oauthToken !== null && !isConnectTwitter) {
-      // console.log(1111);
       updateTwitterInfo();
-      getUserInfo();
+      // getUserInfo();
       // router.replace('/home/profile')
     }
+    getUserInfo().then(() => {
+      if (localStorage.getItem('name') && localStorage.getItem('avatarUrl')) {
+        const name = localStorage.getItem('name');
+        const avatarUrl = localStorage.getItem('avatarUrl');
+        if (typeof name === 'string' && typeof avatarUrl === 'string') {
+          setUserName(name);
+          setUsername(name);
+          // console.log(userName);
+          setUploadUrl(avatarUrl);
+          setAvatar(avatarUrl);
+          // console.log(uploadUrl);
+          localStorage.removeItem('name');
+          localStorage.removeItem('avatarUrl');
+        }
+      }
+    });
   }, []);
   return (
     <div className="h-full w-full pt-[68px]">

@@ -22,19 +22,10 @@ import { addReward, approveTokens } from '@/utils/callContract';
 import { getCookie } from '@/utils/cookie';
 
 import { apiUserInfo } from '@/apis/user';
-import { apiGetCampaignId } from '@/apis/Campaign';
+import { apiGetCampaignInfo, apiPostCampaign } from '@/apis/Campaign';
 
 const Index = memo((props: any) => {
-  const {
-    setIsAdmin,
-    isSignUp,
-    isLogin,
-    setUsername,
-    setAvatar,
-    setTwitter,
-    setIsLogin,
-    setIsSignUp
-  } = useUserStore();
+  const { isSignUp, isLogin, setIsSignUp } = useUserStore();
   const [month, daysLeft] = getCurrentTime();
   const onClickError = () => {
     Toast.error('You have already signed up and cannot click', {
@@ -43,28 +34,43 @@ const Index = memo((props: any) => {
   };
   //  报名函数
   const onClickSuccess = async () => {
+    const {
+      id,
+      contractAddress,
+      tokenAddress,
+      requiredPledgedAmount,
+      totalPledgeAmount,
+      hashId
+    } = await apiGetCampaignInfo();
+    const AddAmount = Number(requiredPledgedAmount);
     await approveTokens(
-      '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 先拉代币合约允许质押
-      '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 目标质押合约(奖金池合约)
+      tokenAddress,
+      // '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 先拉代币合约允许质押
+      contractAddress,
+      // '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 目标质押合约(奖金池合约)
+      // requiredPledgedAmount
       0.001 //  允许最大质押数
     )
       .then(async () => {
-        const campaignId: string = await apiGetCampaignId();
-        const campaignIdHash = `0x${campaignId}`;
+        const campaignIdHash = `0x${hashId}`;
         await addReward(
-          '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
+          // '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
+          contractAddress,
           campaignIdHash,
           [
             {
               tokenType: 1,
-              tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
+              // tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
+              tokenAddress,
+              // amount: AddAmount
               amount: 0.001
             }
           ],
           true
         )
           .then(() => {
-            setIsSignUp(true);
+            apiPostCampaign(id);
+            // setIsSignUp(true);
           })
           .catch((e) => {
             setIsSignUp(false);
@@ -132,17 +138,19 @@ const Index = memo((props: any) => {
     setIsModalOpen(false);
   };
   //  已登录状况下先获取用户信息
-  useEffect(() => {
-    if (getCookie('token') && getCookie('address')) {
-      apiUserInfo().then((res) => {
-        setUsername(res.username);
-        setAvatar(res.avatar);
-        setTwitter(res.twitter);
-        setIsLogin(true);
-        setIsAdmin(res.isAdmin);
-      });
-    }
-  }, []);
+  {
+    /*useEffect(() => {*/
+  }
+  //   if (getCookie('token') && getCookie('address')) {
+  //     apiUserInfo().then((res) => {
+  //       setUsername(res.username);
+  //       setAvatar(res.avatar);
+  //       setTwitter(res.twitter);
+  //       setIsLogin(true);
+  //       setIsAdmin(res.isAdmin);
+  //     });
+  //   }
+  // }, []);
   return (
     <>
       <div

@@ -24,7 +24,8 @@ const Profile: React.FC = () => {
     setAvatar,
     isConnectTwitter,
     setIsConnectTwitter,
-    isLogin
+    setIsLogin,
+    setIsAdmin
   } = useUserStore();
   const router = useRouter();
   const name = localStorage.getItem('name');
@@ -224,6 +225,8 @@ const Profile: React.FC = () => {
         setIsConnectTwitter(true);
         console.log(isConnectTwitter);
       }
+      setIsLogin(true);
+      setIsAdmin(res.isAdmin);
     } catch (error) {
       console.log(error);
       // router.replace('/');

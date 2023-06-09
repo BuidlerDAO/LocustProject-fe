@@ -39,7 +39,7 @@ import { useRouter } from 'next/navigation';
 import Toast from '@/components/toast/toast';
 import { useUserStore } from '@/store';
 import { apiUserInfo } from '@/apis/user';
-import { ethers } from 'ethers';
+import { apiGetCampaignInfo } from '@/apis/Campaign';
 interface ConnectProps extends HTMLAttributes<HTMLElement> {
   className?: ClassName;
   onData?: (type: number, data: any) => void;
@@ -164,7 +164,8 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       setUsername,
       setAvatar,
       setTwitter,
-      setIsLogin
+      setIsLogin,
+      setIsSignUp
     } = useUserStore();
     // State / Props
     const [updateState, setUpdateState] = useState(0);
@@ -341,6 +342,13 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
     }, [isSuccess]);
     //  自己设置 token & address 无法通过这层验证
     useEffect(() => {
+      apiGetCampaignInfo().then((res) => {
+        if (res.participants.includes(getCookie('address'))) {
+          setIsSignUp(true);
+        } else {
+          setIsSignUp(false);
+        }
+      });
       if (isConnected && !getCookie('token') && address) {
         handleSign();
       }

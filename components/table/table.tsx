@@ -218,24 +218,27 @@ const Table1 = () => {
     }
   ];
   const getData = async () => {
-    Promise.all([apiGetPostData('/api/admin/data')]).then((values: any) => {
-      //console.log(values);
-      //console.log(values[0].Items);
-      const newData = values[0].Items.map((item: any) => {
-        //console.log(item);
-        return {
-          month: item.Title,
-          enrollment: item.Enrollment,
-          numContentSubmitted: item.ContentCount,
-          numValidContent: item.ContentValidCount,
-          numCompletedTasks: item.CompletedCount,
-          numIncomplete: item.UncompletedCount,
-          totalPrizePool: item.Prize
-        };
-      });
-      setData(newData);
-      //console.log(newData);
-    });
+    Promise.all([apiGetPostData('/api/campaign/participant')]).then(
+      (values: any) => {
+        console.log(values);
+        //console.log(values[0].Items);
+
+        const newData = values[0].Items.map((item: any) => {
+          //console.log(item);
+          return {
+            month: item.Title,
+            enrollment: item.Enrollment,
+            numContentSubmitted: item.ContentCount,
+            numValidContent: item.ContentValidCount,
+            numCompletedTasks: item.CompletedCount,
+            numIncomplete: item.UncompletedCount,
+            totalPrizePool: item.Prize
+          };
+        });
+        setData(newData);
+        //console.log(newData);
+      }
+    );
   };
 
   useEffect(() => {

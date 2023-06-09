@@ -25,16 +25,7 @@ import { apiUserInfo } from '@/apis/user';
 import { apiGetCampaignInfo, apiPostCampaign } from '@/apis/Campaign';
 
 const Index = memo((props: any) => {
-  const {
-    setIsAdmin,
-    isSignUp,
-    isLogin,
-    setUsername,
-    setAvatar,
-    setTwitter,
-    setIsLogin,
-    setIsSignUp
-  } = useUserStore();
+  const { isSignUp, isLogin, setIsSignUp } = useUserStore();
   const [month, daysLeft] = getCurrentTime();
   const onClickError = () => {
     Toast.error('You have already signed up and cannot click', {
@@ -54,8 +45,7 @@ const Index = memo((props: any) => {
           tokenAddress,
           requiredPledgedAmount,
           totalPledgeAmount,
-          hashId,
-          confirmed
+          hashId
         } = await apiGetCampaignInfo();
         const campaignIdHash = `0x${hashId}`;
         await addReward(
@@ -70,7 +60,7 @@ const Index = memo((props: any) => {
               amount: requiredPledgedAmount
             }
           ],
-          confirmed
+          true
         )
           .then(() => {
             // apiPostCampaign(campaignIdHash)
@@ -142,17 +132,19 @@ const Index = memo((props: any) => {
     setIsModalOpen(false);
   };
   //  已登录状况下先获取用户信息
-  useEffect(() => {
-    if (getCookie('token') && getCookie('address')) {
-      apiUserInfo().then((res) => {
-        setUsername(res.username);
-        setAvatar(res.avatar);
-        setTwitter(res.twitter);
-        setIsLogin(true);
-        setIsAdmin(res.isAdmin);
-      });
-    }
-  }, []);
+  {
+    /*useEffect(() => {*/
+  }
+  //   if (getCookie('token') && getCookie('address')) {
+  //     apiUserInfo().then((res) => {
+  //       setUsername(res.username);
+  //       setAvatar(res.avatar);
+  //       setTwitter(res.twitter);
+  //       setIsLogin(true);
+  //       setIsAdmin(res.isAdmin);
+  //     });
+  //   }
+  // }, []);
   return (
     <>
       <div

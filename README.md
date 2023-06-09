@@ -1,5 +1,7 @@
 # Nextjs Web3 Starter
 
+[![Production Deployment](https://github.com/BuidlerDAO/LocustProject-fe/actions/workflows/main.yml/badge.svg)](https://github.com/BuidlerDAO/LocustProject-fe/actions/workflows/main.yml)
+
 > This is a starter for nextjs with turbopack. Consider both Web3 project and Nodejs + Prisma backend. You can use the pure nextjs front-end, or you can write the front-end and back-end together to make a small full-stack boy.
 
 **English** | [中文](./README.zh-CN.md)

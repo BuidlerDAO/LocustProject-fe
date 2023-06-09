@@ -15,7 +15,7 @@ import { on } from 'events';
 
 const Navbar = () => {
   const path = usePathname();
-  const flag = path == '/zh-CN' || path == '/en';
+  const flag = path === '/zh-CN' || path === '/en';
   const { isSignUp, setIsLogin } = useUserStore();
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
 

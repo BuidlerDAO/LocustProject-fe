@@ -1,33 +1,15 @@
 'use client';
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // import PropTypes from 'prop-types';
-import {
-  DeleteOutlined,
-  DownOutlined,
-  EllipsisOutlined,
-  LinkOutlined,
-  UpOutlined
-} from '@ant-design/icons';
-import {
-  Collapse,
-  ConfigProvider,
-  Divider,
-  Dropdown,
-  MenuProps,
-  Modal,
-  Tooltip,
-  Typography
-} from 'antd';
+import { DeleteOutlined, EllipsisOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
 import { Post } from '@/store/PostStore';
 import { usePostStore } from '@/store';
-import { on } from 'events';
-import { Colors } from '../../types/components/theme';
 import './index.css';
 import Modalprop from '../modal/modal';
 import { LinkIcon, TimeIcon } from '../icons';
 import TextMore from '../textMore';
-import toast from '../toast/toast';
 import Image from 'next/image';
 import { apiDeletePostData } from '@/apis/post';
 

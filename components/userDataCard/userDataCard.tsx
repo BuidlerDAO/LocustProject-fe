@@ -13,12 +13,15 @@ const UserDataCard = () => {
   const [Pending, setPending] = React.useState<string>('0');
 
   const getCountPoints = async () => {
-    Promise.all([apiGetPostData('/api/user/post/count')])
+    Promise.all([apiGetPostData('/api/campaign/my-bonus')])
       .then((values: any) => {
-        //console.log(values);
-        const newData = values[0].count * 2;
-        setCountPoints(newData);
+        console.log(values);
+        //const newData = values[0].count * 2;
+        //setCountPoints(newData);
         // console.log(newData);
+        setCountPoints(values[0].claimedBonus);
+        setAwarded(values[0].totalBonus);
+        setPending(values[0].pendingBonus);
       })
       .catch((err) => {
         toast.error('Failed to get data', {
@@ -27,34 +30,7 @@ const UserDataCard = () => {
         console.log(err);
       });
   };
-  const getAwarded = async () => {
-    Promise.all([apiGetPostData('/api/user/bonus/total')])
-      .then((values: any) => {
-        // console.log(values);
-        setAwarded(values[0]);
-        //console.log(values.awarded);
-      })
-      .catch((err) => {
-        toast.error('Failed to get data', {
-          duration: 4000
-        });
-        console.log(err);
-      });
-  };
-  const getPending = async () => {
-    Promise.all([apiGetPostData('/api/user/bonus/unclaimed')])
-      .then((values: any) => {
-        // console.log(values);
-        setPending(values[0]);
-        // console.log(values.pending);
-      })
-      .catch((err) => {
-        toast.error('Failed to get data', {
-          duration: 4000
-        });
-        console.log(err);
-      });
-  };
+
   const handleClaimOnclick = async () => {
     const { id, contractAddress, tokenAddress, requiredPledgedAmount, hashId } =
       await apiGetCampaignInfo();
@@ -86,8 +62,8 @@ const UserDataCard = () => {
   };
   React.useEffect(() => {
     getCountPoints();
-    getAwarded();
-    getPending();
+    // getAwarded();
+    // getPending();
   }, []);
   return (
     <div

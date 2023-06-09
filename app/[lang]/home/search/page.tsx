@@ -18,7 +18,7 @@ export default function Post() {
     console.log(searchValue);
   }, []);
   return (
-    <div className="mt-[100px] flex flex-col">
+    <div className="ml-[41px] mt-[100px] flex flex-col">
       <Block data={searchValue} />
     </div>
   );

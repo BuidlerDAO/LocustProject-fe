@@ -1,0 +1,141 @@
+.component2-container {
+  height: 174px;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.component2-text {
+  margin-top: 0px;
+  margin-left: 0px;
+  color: rgba(255, 255, 255, 1);
+  height: auto;
+  font-size: 28px;
+  font-style: Medium;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.component2-frame {
+  flex-direction: column;
+  margin-top: 16px;
+  margin-left: 0px;
+  width: 52vw;
+  height: 112px;
+  display: flex;
+  overflow: hidden;
+
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 16px;
+  background-image: linear-gradient(
+    142deg,
+    rgba(255, 255, 255, 0.07999999821186066) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.component2-text02 {
+  margin-top: 24px;
+  margin-left: 24px;
+  color: rgba(116, 116, 116, 1);
+  height: auto;
+  font-size: 14px;
+  font-style: Medium;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 500;
+  line-height: 20px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.component2-text04 {
+  margin-top: 15px;
+  margin-left: 24px;
+  color: rgba(255, 255, 255, 1);
+  height: auto;
+  font-size: 17px;
+  font-style: Medium;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 500;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+  width: 35vw;
+}
+.component2-frame1 {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  margin-top: 22px;
+  margin-left: 48vw;
+  position: absolute;
+}
+.component2-frame2 {
+  margin-top: 16px;
+  margin-left: 42px;
+  width: 19vw;
+  height: 112px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: static;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 16px;
+  background-image: linear-gradient(
+    142deg,
+    rgba(255, 255, 255, 0.07999999821186066) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.component2-text06 {
+  margin-top: 24px;
+  margin-left: 24px;
+  color: rgba(116, 116, 116, 1);
+  height: auto;
+  font-size: 14px;
+  font-style: Medium;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 500;
+  line-height: 20px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.component2-text08 {
+  margin-top: 9px;
+  margin-left: 24px;
+  color: rgba(255, 255, 255, 1);
+  height: auto;
+  text-align: left;
+  line-height: 36px;
+  font-size: 24px;
+  font-style: normal;
+  font-family: Inter;
+  font-weight: 600;
+}
+.component2-currency-circle-dollar {
+  margin-top: 22px;
+  margin-left: 16vw;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+}
+.component2-root-class-name {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+}
+.component2-root-class-name1 {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+}

@@ -12,7 +12,7 @@ import { UUID } from '@/utils/uuid';
 
 const { TextArea } = Input;
 
-const postComponent = (props: { rootClassName: any }) => {
+const postComponent = () => {
   const router = useRouter();
   const [form] = Form.useForm();
   const [isNull, setIsNull] = useState(true);
@@ -28,23 +28,23 @@ const postComponent = (props: { rootClassName: any }) => {
     return `${year}-${formattedMonth}-${formattedDay}`;
   }
   const onFinish = (e: {
-    id: string;
+    campaignId: number;
     title: string;
     link: string;
-    originalText: string;
-    personalThoughts: string;
+    content: string;
+    thought: string;
     time: string;
   }) => {
     e.time = getCurrentDate();
-    e.id = UUID(8, 8);
-    increase(e);
+    e.campaignId = 0;
+    //increase(e);
     apiPostData(e);
     router.push('/home');
   };
   const title = Form.useWatch('title', form);
   const link = Form.useWatch('link', form);
-  const originalText = Form.useWatch('originalText', form);
-  const personalThoughts = Form.useWatch('personalThoughts', form);
+  const content = Form.useWatch('content', form);
+  const thought = Form.useWatch('thought', form);
   //当title,time,material1,material2不为空时，isNull改变状态为false
   useEffect(() => {
     //console.log(title, link, OriginalText, PersonalThoughts);
@@ -53,16 +53,16 @@ const postComponent = (props: { rootClassName: any }) => {
       title !== '' &&
       link !== undefined &&
       link !== '' &&
-      originalText !== undefined &&
-      originalText !== '' &&
-      personalThoughts !== undefined &&
-      personalThoughts !== ''
+      content !== undefined &&
+      content !== '' &&
+      thought !== undefined &&
+      thought !== ''
     ) {
       setIsNull(false);
     } else {
       setIsNull(true);
     }
-  }, [title, link, originalText, personalThoughts]);
+  }, [title, link, content, thought]);
   return (
     <>
       <Form
@@ -71,7 +71,7 @@ const postComponent = (props: { rootClassName: any }) => {
         onFinish={onFinish}
         form={form}
       >
-        <div className={`component-container ${props.rootClassName} `}>
+        <div className={`component-container  `}>
           <div className="component-frame15062">
             <ConfigProvider
               theme={{
@@ -86,7 +86,7 @@ const postComponent = (props: { rootClassName: any }) => {
                   type="text"
                   placeholder="+ Enter the article"
                   style={{
-                    width: '70vw',
+                    width: '73vw',
                     height: '7vh'
                   }}
                   // showCount
@@ -96,7 +96,7 @@ const postComponent = (props: { rootClassName: any }) => {
               </Form.Item>
             </ConfigProvider>
           </div>
-          <div className="absolute left-0 top-[10vh] flex h-[7vh] w-[70vw] shrink-0 items-start bg-inherit">
+          <div className="absolute left-0 top-[10vh] flex h-[7vh] w-[73vw] shrink-0 items-start bg-inherit">
             <ConfigProvider
               theme={{
                 token: { colorBgContainer: '#0f0f0f' }
@@ -112,7 +112,7 @@ const postComponent = (props: { rootClassName: any }) => {
                   type="text"
                   placeholder="Please enter the original link"
                   style={{
-                    width: '70vw',
+                    width: '73vw',
                     height: '7vh',
                     outline: 'none'
                   }}
@@ -155,7 +155,7 @@ const postComponent = (props: { rootClassName: any }) => {
               )}
             </div>
           </Form.Item>
-          <div className="absolute left-0 top-[20vh] flex w-[70vw] flex-col items-start gap-[18px]">
+          <div className="absolute left-0 top-[20vh] flex w-[73vw] flex-col items-start gap-[18px]">
             <span
               style={{ fontFamily: 'Inter', fontStyle: 'Medium' }}
               className="h-auto text-left text-xl font-medium leading-5 text-white no-underline"
@@ -163,7 +163,7 @@ const postComponent = (props: { rootClassName: any }) => {
               <span>Original Summary</span>
             </span>
             <Form.Item
-              name="originalText"
+              name="content"
               rules={[
                 {
                   required: true,
@@ -171,7 +171,7 @@ const postComponent = (props: { rootClassName: any }) => {
                 }
               ]}
             >
-              <div className="relative flex h-[30vh] w-[70vw] shrink-0 items-start bg-inherit">
+              <div className="relative flex h-[30vh] w-[73vw] shrink-0 items-start bg-inherit">
                 <ConfigProvider
                   theme={{
                     token: { colorBgContainer: '#0f0f0f' }
@@ -182,7 +182,7 @@ const postComponent = (props: { rootClassName: any }) => {
                     maxLength={5000}
                     placeholder="Please enter the core content of the original text"
                     style={{
-                      width: '70vw',
+                      width: '73vw',
                       height: '30vh',
                       resize: 'none'
                     }}
@@ -192,7 +192,7 @@ const postComponent = (props: { rootClassName: any }) => {
               </div>
             </Form.Item>
           </div>
-          <div className="absolute bottom-[10vh] left-0 top-[58vh] flex w-[70vw] flex-col items-start gap-[18px]">
+          <div className="absolute bottom-[10vh] left-0 top-[58vh] flex w-[73vw] flex-col items-start gap-[18px]">
             <span
               style={{ fontFamily: 'Inter', fontStyle: 'Medium' }}
               className="h-auto text-left text-xl font-medium leading-5 text-white no-underline"
@@ -200,12 +200,12 @@ const postComponent = (props: { rootClassName: any }) => {
               <span>Personal Thoughts</span>
             </span>
             <Form.Item
-              name="personalThoughts"
+              name="thought"
               rules={[
                 { required: true, message: 'Please Enter Personal Thoughts' }
               ]}
             >
-              <div className="relative flex h-[30vh] w-[70vw] shrink-0 items-start bg-inherit">
+              <div className="relative flex h-[30vh] w-[73vw] shrink-0 items-start bg-inherit">
                 <ConfigProvider
                   theme={{
                     token: { colorBgContainer: '#0f0f0f' }
@@ -216,116 +216,20 @@ const postComponent = (props: { rootClassName: any }) => {
                     maxLength={5000}
                     showCount
                     style={{
-                      width: '70vw',
+                      width: '73vw',
                       height: '30vh',
                       resize: 'none'
                     }}
                     className="absolute left-0 top-0 flex  items-start rounded-lg border-none text-white hover:border-solid"
                   />
                 </ConfigProvider>
-                {/* <span className="component-text16">
-                <span>please enter Personal thoughts</span>
-              </span> */}
               </div>
             </Form.Item>
           </div>
         </div>
       </Form>
-      <style jsx>
-        {`
-          .frame1171274791-frame1171274791 {
-            top: 100vh;
-            left: 28vw;
-            display: flex;
-            padding: 12px 64px;
-            position: absolute;
-            gap: 8px;
-            height: auto;
-            display: flex;
-            align-items: flex-start;
-            border-radius: 44px;
-            background-image: linear-gradient(
-              180deg,
-              rgba(110, 98, 238, 1) 2%,
-              rgba(63, 61, 250, 1) 100%
-            );
-            cursor: pointer;
-          }
-          
-          .component-container {
-            left: 1vw;
-            top: 2vh;
-            width: 73vw;
-            height: 110vh;
-            display: flex;
-            position: relative;
-            align-items: flex-start;
-            background-color: var(--dl-color-gray-black);
-          }
-          .component-frame15062 {
-            top: 0px;
-            left: 0px;
-            width: 70vw;
-            height: 7vh;
-            display: flex;
-            position: absolute;
-            align-items: flex-start;
-            flex-shrink: 0;
-            border-none;
-            background-color: inherit;
-          }
-          .component-text {
-            top: 21px;
-            left: 20px;
-            color: rgba(255, 255, 255, 0.4000000059604645);
-            height: auto;
-            position: absolute;
-            font-size: 16px;
-            font-style: Regular;
-            text-align: left;
-            font-family: Inter;
-            font-weight: 400;
-            line-height: 24px;
-            font-stretch: normal;
-            text-decoration: none;
-          }      
-          .component-frame15065 {
-            top: 100vh;
-            gap: 8px;
-            left: 28vw;
-            display: flex;
-            padding: 12px 64px;
-            position: absolute;
-            align-items: flex-center;
-            border-color: rgba(41, 40, 47, 1);
-            border-style: solid;
-            border-width: 2px;
-            border-radius: 44px;
-            background-color: var(--dl-color-maincolors-backgrounddark);
-          }
-          .component-text16 {
-            top: 21px;
-            left: 20px;
-            color: rgba(255, 255, 255, 0.4000000059604645);
-            height: auto;
-            position: absolute;
-            font-size: 16px;
-            font-style: Regular;
-            text-align: left;
-            font-family: Inter;
-            font-weight: 400;
-            line-height: 24px;
-            font-stretch: normal;
-            text-decoration: none;
-          }
-        `}
-      </style>
     </>
   );
-};
-
-postComponent.defaultProps = {
-  rootClassName: ''
 };
 
 export default postComponent;

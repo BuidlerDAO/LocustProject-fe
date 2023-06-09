@@ -15,7 +15,7 @@ import { getCookie } from '@/utils/cookie';
 import { Dialog, DialogHeader } from '@/components/dialog';
 import { upload } from '@/utils/aws';
 import { useRouter, useSearchParams } from 'next/navigation';
-
+import { Spin } from 'antd';
 const Profile: React.FC = () => {
   const {
     username,
@@ -37,6 +37,8 @@ const Profile: React.FC = () => {
   const [twitterName, setTwitterName] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  //  loading 态
+  const [loading, setLoading] = useState<boolean>(true);
   // 头像上传以及裁剪层
   const [uploadUrl, setUploadUrl] = useState<string>(avatar);
   const [showCrop, setShowCrop] = useState<boolean>(false);
@@ -211,6 +213,7 @@ const Profile: React.FC = () => {
       if (res.avatar !== '') {
         setUploadUrl(res.avatar);
         setAvatar(res.avatar);
+        setLoading(false);
       }
       if (res.username !== '') {
         setUsername(res.username);
@@ -270,13 +273,19 @@ const Profile: React.FC = () => {
             <div className="h-[64px] w-[64px] rounded-full">
               <div className="relative">
                 <div className="m-0 h-[64px] w-[64px] rounded-full p-0">
-                  <Image
-                    alt=""
-                    width="64"
-                    height="64"
-                    className="h-[100%] w-[100%] rounded-full"
-                    src={uploadUrl}
-                  />
+                  {loading ? (
+                    <div className="ml-[6px] mt-[10px]">
+                      <Spin size="large" />
+                    </div>
+                  ) : (
+                    <Image
+                      alt=""
+                      width="64"
+                      height="64"
+                      className="h-[100%] w-[100%] rounded-full"
+                      src={uploadUrl}
+                    />
+                  )}
                 </div>
                 <div className="flex flex-col items-center space-y-8 px-16 pt-9">
                   <Dialog

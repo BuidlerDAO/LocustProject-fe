@@ -116,9 +116,9 @@ export const apiGetSearchData = async (data: string) => {
 };
 
 /**
- * @description 获取某月数据
- * @params url,offset,limit,title
- * @api https://test-locust-api.buidlerdao.xyz/api/admin/campaign
+ * @description 获取活动数据
+ * @params campaignId,includeRealBonus
+ * @api https://test-locust-api.buidlerdao.xyz/api/campaign/participant
  * */
 export const apiGetCampaign = async (data: {
   campaignId?: number;

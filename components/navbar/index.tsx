@@ -10,8 +10,6 @@ import { useSearchStore, useUserStore } from '@/store';
 import { useState } from 'react';
 import './index.css';
 import { apiGetPostData, apiGetSearchData } from '@/apis/post';
-import { Post } from '@/store/PostStore';
-import { on } from 'events';
 
 const Navbar = () => {
   const path = usePathname();
@@ -25,7 +23,7 @@ const Navbar = () => {
     const res = await apiGetSearchData(query);
     const items = res.items;
     const result = items.map((item: any, idx: any) => {
-      const category = `${query}${idx}`;
+      const category = `${item.title}`;
       const newData = {
         id: item.id,
         title: item.title,

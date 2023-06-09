@@ -35,6 +35,7 @@ const Index = memo((props: any) => {
   //  报名函数
   const onClickSuccess = async () => {
     const {
+      id,
       contractAddress,
       tokenAddress,
       requiredPledgedAmount,
@@ -68,8 +69,8 @@ const Index = memo((props: any) => {
           true
         )
           .then(() => {
-            // apiPostCampaign(campaignIdHash)
-            setIsSignUp(true);
+            apiPostCampaign(id);
+            // setIsSignUp(true);
           })
           .catch((e) => {
             setIsSignUp(false);

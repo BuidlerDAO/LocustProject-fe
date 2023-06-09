@@ -140,9 +140,9 @@ export const apiGetCampaign = async (data: {
   }
 };
 
-export const apiGetMonthList = async () => {
+export const apiGetCurrentCampaign = async () => {
   try {
-    const res = await request(`/api/admin/campaigns`, {
+    const res = await request(`/api/current-campaigns`, {
       method: 'GET'
     });
     if (res.code === 0) {

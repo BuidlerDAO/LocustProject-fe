@@ -12,11 +12,11 @@ const dataV = () => {
   const router = useRouter();
   const { isAdmin } = useUserStore();
   //进行判断，如果是则显示，否则跳转到首页/home
-  useEffect(() => {
-    if (!isAdmin) {
-      router.push('/');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!isAdmin) {
+  //     router.push('/');
+  //   }
+  // }, []);
   return (
     <>
       <div className="ml-[1vw] mt-[2vh] flex flex-col pb-[10vh]">

@@ -70,8 +70,8 @@ const Table2 = () => {
         //console.log(item);
         return {
           userName: item.Username,
-          walletAddress: item.Address,
-          numContentSubmitted: item.ContentCount,
+          walletAddress: item.contractAddress,
+          numContentSubmitted: item.v,
           numDeletedContent: item.DeletedCount,
           bonusesReceived: item.BonusReceived
         };
@@ -220,7 +220,7 @@ const Table1 = () => {
     }
   ];
   const getData = async () => {
-    Promise.all([apiGetPostData('/api/campaign/participant')]).then(
+    Promise.all([apiGetPostData('/api/campaign/detail')]).then(
       (values: any) => {
         console.log(values);
         //console.log(values[0].Items);
@@ -228,13 +228,13 @@ const Table1 = () => {
         const newData = values[0].Items.map((item: any) => {
           //console.log(item);
           return {
-            month: item.Title,
-            enrollment: item.Enrollment,
-            numContentSubmitted: item.ContentCount,
-            numValidContent: item.ContentValidCount,
+            month: item.month,
+            enrollment: item.participantsCount,
+            numContentSubmitted: item.articleCount,
+            numValidContent: item.validArticleCount,
             numCompletedTasks: item.CompletedCount,
             numIncomplete: item.UncompletedCount,
-            totalPrizePool: item.Prize
+            totalPrizePool: item.totalPledgedAmount
           };
         });
         setData(newData);

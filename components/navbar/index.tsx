@@ -130,7 +130,7 @@ const Navbar = () => {
                 </ConfigProvider>
                 {/*Sign up for Locust*/}
                 {isSignUp ? (
-                  <div className="ml-[24vw]"></div>
+                  <div className="ml-[25.2vw]"></div>
                 ) : (
                   <div className="ml-[15.4vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
                     <Link

@@ -36,8 +36,8 @@ const dataV = () => {
           <Table1 />
           <Table2 />
         </div>
-        <div className="relative ml-[25vw]  mt-[60px] flex shrink-0 cursor-pointer items-center gap-1 rounded-lg">
-          <div className="side-menu-frame-dataV mt-[80px]">
+        <div className="relative ml-[25vw]  mt-[80px] flex shrink-0 cursor-pointer items-center gap-1 rounded-lg">
+          <div className="side-menu-frame-dataV">
             <span
               className="h-auto text-left text-sm font-medium leading-6 text-white no-underline"
               style={{ fontFamily: 'Inter' }}

@@ -15,7 +15,7 @@ const HomeLayout: FC<{ children: ReactNode }> = (props) => {
           }
         }}
       >
-        <main className="mt-[100px] flex">
+        <main className="mb-[24px] mt-[100px] flex">
           <Suspense>{props.children}</Suspense>
         </main>
       </ConfigProvider>

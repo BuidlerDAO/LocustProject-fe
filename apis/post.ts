@@ -77,7 +77,7 @@ export const apiGetPostData = async (url: string) => {
 export const apiDeletePostData = async (id: number) => {
   try {
     console.log(id);
-    const res = await request(`/api/admin/post/?postID=${id}`, {
+    const res = await request(`/api/post/?id=${id}`, {
       method: 'DELETE'
       //body: { : id }
     });
@@ -140,9 +140,9 @@ export const apiGetCampaign = async (data: {
   }
 };
 
-export const apiGetMonthList = async () => {
+export const apiGetCurrentCampaign = async () => {
   try {
-    const res = await request(`/api/admin/campaigns`, {
+    const res = await request(`/api/current-campaigns`, {
       method: 'GET'
     });
     if (res.code === 0) {

@@ -5,7 +5,11 @@ import './index.css';
 import { DownloadOutlined } from '@ant-design/icons';
 import { ConfigProvider, Select, Table, Typography } from 'antd';
 import { getFullMonth } from '@/utils/time';
-import { apiGetCampaign, apiGetMonthList, apiGetPostData } from '@/apis/post';
+import {
+  apiGetCampaign,
+  apiGetCurrentCampaign,
+  apiGetPostData
+} from '@/apis/post';
 import { get } from 'http';
 import { set } from 'nprogress';
 type AlignType = 'left' | 'center' | 'right';
@@ -61,13 +65,13 @@ const Table2 = () => {
   //为getdata传入参数
   const getData = () => {
     Promise.all([apiGetCampaign({})]).then((values: any) => {
-      console.log(values[0].Items);
+      //console.log(values[0].Items);
       const newData = values[0].Items.map((item: any) => {
         //console.log(item);
         return {
           userName: item.Username,
-          walletAddress: item.Address,
-          numContentSubmitted: item.ContentCount,
+          walletAddress: item.contractAddress,
+          numContentSubmitted: item.validArticleCount,
           numDeletedContent: item.DeletedCount,
           bonusesReceived: item.BonusReceived
         };
@@ -216,25 +220,21 @@ const Table1 = () => {
     }
   ];
   const getData = async () => {
-    Promise.all([apiGetPostData('/api/campaign/participant')]).then(
+    Promise.all([apiGetPostData('/api/campaign/detail')]).then(
       (values: any) => {
-        console.log(values);
-        //console.log(values[0].Items);
-
-        const newData = values[0].Items.map((item: any) => {
-          //console.log(item);
+        const newData = values[0].items.map((item: any) => {
+          // console.log(item);
           return {
-            month: item.Title,
-            enrollment: item.Enrollment,
-            numContentSubmitted: item.ContentCount,
-            numValidContent: item.ContentValidCount,
-            numCompletedTasks: item.CompletedCount,
-            numIncomplete: item.UncompletedCount,
-            totalPrizePool: item.Prize
+            month: item.month,
+            enrollment: item.participantsCount,
+            numContentSubmitted: item.postCount,
+            numValidContent: item.validPostCount,
+            numCompletedTasks: item.validParticipantsCount,
+            numIncomplete: item.invalidParticipantsCount,
+            totalPrizePool: item.totalPledgedAmount
           };
         });
         setData(newData);
-        //console.log(newData);
       }
     );
   };
@@ -332,14 +332,14 @@ const TableUserOverview = () => {
     Promise.all([apiGetCampaign({})]).then((values: any) => {
       console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
-        //console.log(item);
+        console.log(item);
         return {
-          month: item.title,
-          numArticlesSubmitted: item.posts,
-          numUnsuccessfulArticles: item.unSuccessfulPosts,
-          numValidArticles: item.validPosts,
+          month: item.campaign.month,
+          numArticlesSubmitted: item.postCount,
+          numUnsuccessfulArticles: item.invalidPostCount,
+          numValidArticles: item.validPostCount,
           bonus: item.bonus,
-          totalPrizePool: item.prize
+          totalPrizePool: item.campaign.totalPledgedAmount
         };
       });
       setData(newData);
@@ -447,7 +447,7 @@ const UserArticle = () => {
     }
   ];
   const getData = async () => {
-    Promise.all([apiGetPostData('/api/post/user')]).then((values: any) => {
+    Promise.all([apiGetPostData('/api/post-digest')]).then((values: any) => {
       //console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
         // console.log(item);

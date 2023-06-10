@@ -19,9 +19,7 @@ import { getCurrentTime } from '@/utils/time';
 
 import { useUserStore } from '@/store';
 import { addReward, approveTokens } from '@/utils/callContract';
-import { setCookie } from '@/utils/cookie';
 
-import { apiUserInfo } from '@/apis/user';
 import { apiGetCampaignInfo, apiPostCampaign } from '@/apis/Campaign';
 
 const Index = memo((props: any) => {
@@ -36,13 +34,16 @@ const Index = memo((props: any) => {
   const onClickSuccess = async () => {
     const { id, contractAddress, tokenAddress, requiredPledgedAmount, hashId } =
       await apiGetCampaignInfo();
+    console.log(requiredPledgedAmount);
+    // const amount = ethers.BigNumber.from(requiredPledgedAmount)
+    // console.log(amount);
     await approveTokens(
       tokenAddress,
       // '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 先拉代币合约允许质押
       contractAddress,
       // '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 目标质押合约(奖金池合约)
-      // requiredPledgedAmount
-      0.001 //  允许最大质押数
+      requiredPledgedAmount
+      // 0.001 //  允许最大质押数
     )
       .then(async () => {
         const campaignIdHash = `0x${hashId}`;
@@ -55,15 +56,15 @@ const Index = memo((props: any) => {
               tokenType: 1,
               // tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
               tokenAddress,
-              // amount: requiredPledgedAmount
-              amount: 0.001
+              amount: requiredPledgedAmount
+              // amount: 0.001
             }
           ],
           true
         )
           .then(() => {
             apiPostCampaign(id);
-            // setIsSignUp(true);
+            setIsSignUp(true);
           })
           .catch((e) => {
             setIsSignUp(false);
@@ -130,20 +131,6 @@ const Index = memo((props: any) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  //  已登录状况下先获取用户信息
-  {
-    /*useEffect(() => {*/
-  }
-  //   if (getCookie('token') && getCookie('address')) {
-  //     apiUserInfo().then((res) => {
-  //       setUsername(res.username);
-  //       setAvatar(res.avatar);
-  //       setTwitter(res.twitter);
-  //       setIsLogin(true);
-  //       setIsAdmin(res.isAdmin);
-  //     });
-  //   }
-  // }, []);
   return (
     <>
       <div
@@ -159,7 +146,7 @@ const Index = memo((props: any) => {
         />
         <div className="relative bottom-[108px] mt-[100px] flex h-[200rem] w-full flex-col items-center bg-black">
           <div className="absolute top-[16.69rem] flex h-[54.06rem] w-[90rem] flex-col items-center self-center font-medium">
-            <Image src={bg} alt="" />
+            <Image src={bg} alt="" priority={false} />
             <span className="relative mt-[35.13rem] h-[3.19rem] max-w-[89.25rem] overflow-hidden text-ellipsis whitespace-pre text-left text-[2.13rem] leading-[3.19rem] text-white">
               Event Rules
             </span>
@@ -204,11 +191,13 @@ const Index = memo((props: any) => {
           </span>
           <Image
             className="absolute right-[9.13rem] top-[11.31rem] h-[32.31rem] w-[68.44rem]"
+            priority={false}
             src={img}
             alt=""
           />
           <Image
-            className="relative top-48 h-[33.75rem] w-[72.44rem]"
+            className="relative right-[10px] top-52 h-[33.75rem] w-[72.44rem]"
+            priority={false}
             src={decorate}
             alt=""
           />

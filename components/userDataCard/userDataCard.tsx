@@ -46,7 +46,7 @@ const UserDataCard = () => {
           tokenType: 1,
           tokenAddress,
           // tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
-          amount: 0.001
+          amount: requiredPledgedAmount
         }
       ],
       //  缺少接口

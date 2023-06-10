@@ -19,7 +19,6 @@ import { getCurrentTime } from '@/utils/time';
 
 import { useUserStore } from '@/store';
 import { addReward, approveTokens } from '@/utils/callContract';
-import { setCookie } from '@/utils/cookie';
 
 import { apiGetCampaignInfo, apiPostCampaign } from '@/apis/Campaign';
 
@@ -132,20 +131,6 @@ const Index = memo((props: any) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  //  已登录状况下先获取用户信息
-  {
-    /*useEffect(() => {*/
-  }
-  //   if (getCookie('token') && getCookie('address')) {
-  //     apiUserInfo().then((res) => {
-  //       setUsername(res.username);
-  //       setAvatar(res.avatar);
-  //       setTwitter(res.twitter);
-  //       setIsLogin(true);
-  //       setIsAdmin(res.isAdmin);
-  //     });
-  //   }
-  // }, []);
   return (
     <>
       <div
@@ -161,7 +146,7 @@ const Index = memo((props: any) => {
         />
         <div className="relative bottom-[108px] mt-[100px] flex h-[200rem] w-full flex-col items-center bg-black">
           <div className="absolute top-[16.69rem] flex h-[54.06rem] w-[90rem] flex-col items-center self-center font-medium">
-            <Image src={bg} alt="" />
+            <Image src={bg} alt="" priority={false} />
             <span className="relative mt-[35.13rem] h-[3.19rem] max-w-[89.25rem] overflow-hidden text-ellipsis whitespace-pre text-left text-[2.13rem] leading-[3.19rem] text-white">
               Event Rules
             </span>
@@ -206,11 +191,13 @@ const Index = memo((props: any) => {
           </span>
           <Image
             className="absolute right-[9.13rem] top-[11.31rem] h-[32.31rem] w-[68.44rem]"
+            priority={false}
             src={img}
             alt=""
           />
           <Image
-            className="relative top-48 h-[33.75rem] w-[72.44rem]"
+            className="relative right-[10px] top-52 h-[33.75rem] w-[72.44rem]"
+            priority={false}
             src={decorate}
             alt=""
           />

@@ -4,6 +4,7 @@ import { CopyOutlined, DollarCircleOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
 import toast from '../toast/toast';
 import { getCookie } from '@/utils/cookie';
+import './index.css';
 
 const DataCard = () => {
   const [address, setAddress] = React.useState(''); // replace with the value you want to copy

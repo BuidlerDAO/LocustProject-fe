@@ -12,11 +12,11 @@ const dataV = () => {
   const router = useRouter();
   const { isAdmin } = useUserStore();
   //进行判断，如果是则显示，否则跳转到首页/home
-  useEffect(() => {
-    if (!isAdmin) {
-      router.push('/');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!isAdmin) {
+  //     router.push('/');
+  //   }
+  // }, []);
   return (
     <>
       <div className="ml-[1vw] mt-[2vh] flex flex-col pb-[10vh]">
@@ -36,8 +36,8 @@ const dataV = () => {
           <Table1 />
           <Table2 />
         </div>
-        <div className="relative ml-[25vw] mt-[2vh] flex shrink-0 cursor-pointer items-center gap-1 rounded-lg py-1 pl-0 pr-2">
-          <div className="side-menu-frame10211">
+        <div className="relative ml-[25vw]  mt-[80px] flex shrink-0 cursor-pointer items-center gap-1 rounded-lg">
+          <div className="side-menu-frame-dataV">
             <span
               className="h-auto text-left text-sm font-medium leading-6 text-white no-underline"
               style={{ fontFamily: 'Inter' }}
@@ -49,9 +49,10 @@ const dataV = () => {
       </div>
       <style jsx>
         {`
-          .side-menu-frame10211 {
+          .side-menu-frame-dataV {
             gap: 8px;
             top: 0px;
+            width: auto;
             left: 20px;
             height: 52px;
             display: flex;
@@ -67,7 +68,7 @@ const dataV = () => {
               rgba(63, 61, 250, 1) 100%
             );
           }
-          .side-menu-frame10211:hover {
+          .side-menu-frame-dataV:hover {
             background: linear-gradient(180deg, #8377ff -67.27%, #504ef0 100%);
           }
         `}

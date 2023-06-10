@@ -65,7 +65,7 @@ const Table2 = () => {
   //为getdata传入参数
   const getData = () => {
     Promise.all([apiGetCampaign({})]).then((values: any) => {
-      console.log(values[0].Items);
+      //console.log(values[0].Items);
       const newData = values[0].Items.map((item: any) => {
         //console.log(item);
         return {
@@ -222,23 +222,19 @@ const Table1 = () => {
   const getData = async () => {
     Promise.all([apiGetPostData('/api/campaign/detail')]).then(
       (values: any) => {
-        console.log(values);
-        //console.log(values[0].Items);
-
-        const newData = values[0].Items.map((item: any) => {
-          //console.log(item);
+        const newData = values[0].items.map((item: any) => {
+          // console.log(item);
           return {
             month: item.month,
             enrollment: item.participantsCount,
-            numContentSubmitted: item.articleCount,
-            numValidContent: item.validArticleCount,
-            numCompletedTasks: item.CompletedCount,
-            numIncomplete: item.UncompletedCount,
+            numContentSubmitted: item.postCount,
+            numValidContent: item.validPostCount,
+            numCompletedTasks: item.validParticipantsCount,
+            numIncomplete: item.invalidParticipantsCount,
             totalPrizePool: item.totalPledgedAmount
           };
         });
         setData(newData);
-        //console.log(newData);
       }
     );
   };
@@ -336,7 +332,7 @@ const TableUserOverview = () => {
     Promise.all([apiGetCampaign({})]).then((values: any) => {
       console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
-        //console.log(item);
+        console.log(item);
         return {
           month: item.campaign.month,
           numArticlesSubmitted: item.postCount,

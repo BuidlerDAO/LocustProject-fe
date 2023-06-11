@@ -226,6 +226,7 @@ video {
 
 .dark {
   color-scheme: dark;
+  background-color: black;
 }
 
 label {

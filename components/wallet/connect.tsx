@@ -325,9 +325,6 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       border: '1px solid rgba(255, 255, 255, 0.16)',
       borderRadius: '12px'
     };
-    // function forceUpdate(){
-    //   this.forceUpdate()
-    // }
     const handleAccountChange = (...args: any[]) => {
       const accounts = args[0];
       if (accounts.length === 0) {
@@ -339,22 +336,29 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         }, 2500);
       }
     };
+    const setSignUp = () => {
+      apiGetCampaignInfo().then((res) => {
+        console.log(res);
+        if (res.participants.includes(getCookie('address'))) {
+          setIsSignUp(true);
+          console.log(isSignUp);
+        } else {
+          setIsSignUp(false);
+          console.log(isSignUp);
+        }
+      });
+    };
     //  执行登录
     useEffect(() => {
       console.log('isSuccess', isSuccess);
       if (isSuccess) {
-        handleLogin();
+        handleLogin().then(() => {
+          setSignUp();
+        });
       }
     }, [isSuccess]);
     //  自己设置 token & address 无法通过这层验证
     useEffect(() => {
-      apiGetCampaignInfo().then((res) => {
-        if (res.participants.includes(getCookie('address'))) {
-          setIsSignUp(true);
-        } else {
-          setIsSignUp(false);
-        }
-      });
       if (isConnected && !getCookie('token') && address) {
         handleSign();
       }
@@ -367,6 +371,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             setTwitter(res.twitter);
             setIsLogin(true);
             setIsAdmin(res.isAdmin);
+            setSignUp();
           })
           .catch((error) => {
             console.log(error);

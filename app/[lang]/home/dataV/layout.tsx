@@ -12,13 +12,10 @@ const HomeLayout: FC<{ children: ReactNode }> = (props) => {
           token: {
             colorBgContainer: '#000000',
             colorText: 'white'
-            //colorTextDescription: 'white',
-            // colorTextPlaceholder: '#6f6f6f',
-            // colorPrimaryHover: '#575757'
           }
         }}
       >
-        <main className="mt-[100px] flex">
+        <main className="mb-[24px] mt-[100px] flex">
           <Suspense>{props.children}</Suspense>
         </main>
       </ConfigProvider>

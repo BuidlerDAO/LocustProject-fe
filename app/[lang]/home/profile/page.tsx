@@ -15,7 +15,7 @@ import { getCookie } from '@/utils/cookie';
 import { Dialog, DialogHeader } from '@/components/dialog';
 import { upload } from '@/utils/aws';
 import { useRouter, useSearchParams } from 'next/navigation';
-
+import { Spin } from 'antd';
 const Profile: React.FC = () => {
   const {
     username,
@@ -24,7 +24,8 @@ const Profile: React.FC = () => {
     setAvatar,
     isConnectTwitter,
     setIsConnectTwitter,
-    isLogin
+    setIsLogin,
+    setIsAdmin
   } = useUserStore();
   const router = useRouter();
 
@@ -37,6 +38,8 @@ const Profile: React.FC = () => {
   const [twitterName, setTwitterName] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  //  loading 态
+  const [loading, setLoading] = useState<boolean>(true);
   // 头像上传以及裁剪层
   const [uploadUrl, setUploadUrl] = useState<string>(avatar);
   const [showCrop, setShowCrop] = useState<boolean>(false);
@@ -92,9 +95,12 @@ const Profile: React.FC = () => {
     try {
       const UserRes = await apiUserInfo();
       // console.log('UserRes-->',UserRes);
-      if (userName !== '' && uploadUrl !== '') {
+      if (userName.trim() !== '' && uploadUrl !== '') {
         //  单单修改用户信息不传推特
-        if (UserRes.username === userName && UserRes.avatar === uploadUrl) {
+        if (
+          UserRes.username === userName.trim() &&
+          UserRes.avatar === uploadUrl
+        ) {
           Toast.error("Don't upload the same info");
           return;
         }
@@ -102,7 +108,7 @@ const Profile: React.FC = () => {
 
         const res = await apiPutUserInfo({
           avatar: uploadUrl,
-          name: userName
+          name: userName.trim()
         });
         if (res) {
           Toast.success('Modify message success!');
@@ -124,23 +130,8 @@ const Profile: React.FC = () => {
   //  推特登录 点击之后跳转至 Twitter 拿到授权,此时的 url 带有 oauthToken,verifier 参数,再执行页面的 useEffect 判断
   const handleTwitterConnect = async () => {
     if (!isConnectTwitter) {
-      // if (userName !== '' && uploadUrl !== '') {
-      //   const UserRes = await apiUserInfo();
-      //   if (UserRes.username !== userName || UserRes.avatar !== uploadUrl) {
-      //     //  单单修改用户信息不传推特
-      //     const res = await apiPutUserInfo({
-      //       avatar: uploadUrl,
-      //       name: userName
-      //     });
-      //     if (res) {
-      //       Toast.success('Modify message success!');
-      //       setUsername(res.username);
-      //       setAvatar(res.avatar);
-      //     }
-      //   }
-      // }
-      if (userName !== '' && uploadUrl !== '') {
-        localStorage.setItem('name', userName);
+      if (userName.trim() !== '' && uploadUrl !== '') {
+        localStorage.setItem('name', userName.trim());
         localStorage.setItem('avatarUrl', uploadUrl);
       }
       const res = await apiTwitterToken(
@@ -179,7 +170,7 @@ const Profile: React.FC = () => {
     if (isConnectTwitter) {
       const res = await apiPutUserInfo({
         avatar: uploadUrl,
-        name: userName,
+        name: userName.trim(),
         twitter: {
           oauthToken: '',
           oauthTokenSecret: '',
@@ -212,6 +203,7 @@ const Profile: React.FC = () => {
       if (res.avatar !== '') {
         setUploadUrl(res.avatar);
         setAvatar(res.avatar);
+        setLoading(false);
       }
       if (res.username !== '') {
         setUsername(res.username);
@@ -226,6 +218,8 @@ const Profile: React.FC = () => {
         setIsConnectTwitter(true);
         console.log(isConnectTwitter);
       }
+      setIsLogin(true);
+      setIsAdmin(res.isAdmin);
     } catch (error) {
       console.log(error);
       // router.replace('/');
@@ -236,7 +230,6 @@ const Profile: React.FC = () => {
     if (oauthToken !== null && !isConnectTwitter) {
       updateTwitterInfo();
       // getUserInfo();
-      // router.replace('/home/profile')
     }
     getUserInfo().then(() => {
       if (localStorage.getItem('name') && localStorage.getItem('avatarUrl')) {
@@ -269,13 +262,19 @@ const Profile: React.FC = () => {
             <div className="h-[64px] w-[64px] rounded-full">
               <div className="relative">
                 <div className="m-0 h-[64px] w-[64px] rounded-full p-0">
-                  <Image
-                    alt=""
-                    width="64"
-                    height="64"
-                    className="h-[100%] w-[100%] rounded-full"
-                    src={uploadUrl}
-                  />
+                  {loading ? (
+                    <div className="ml-[6px] mt-[10px]">
+                      <Spin size="large" />
+                    </div>
+                  ) : (
+                    <Image
+                      alt=""
+                      width="64"
+                      height="64"
+                      className="h-[100%] w-[100%] rounded-full"
+                      src={uploadUrl}
+                    />
+                  )}
                 </div>
                 <div className="flex flex-col items-center space-y-8 px-16 pt-9">
                   <Dialog
@@ -337,7 +336,7 @@ const Profile: React.FC = () => {
           {/*输入框部分*/}
           <input
             type="text"
-            value={userName}
+            value={userName.trim()}
             className="mt-[14px] h-[37px] w-[401px] rounded-[6px] border-[1px] bg-black focus:outline-none"
             style={{ borderColor: '#1d1d1d', textIndent: '12px' }}
             onChange={(e) => setUserName(e.target.value)}

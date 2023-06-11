@@ -6,18 +6,22 @@ import { apiGetPostData } from '@/apis/post';
 import toast from '../toast/toast';
 import { claimReward } from '@/utils/callContract';
 import Toast from '../toast/toast';
+import { apiGetCampaignInfo } from '@/apis/Campaign';
 const UserDataCard = () => {
   const [countPoints, setCountPoints] = React.useState<number>(0);
   const [Awarded, setAwarded] = React.useState<string>('0');
   const [Pending, setPending] = React.useState<string>('0');
 
   const getCountPoints = async () => {
-    Promise.all([apiGetPostData('/api/user/post/count')])
+    Promise.all([apiGetPostData('/api/campaign/my-bonus')])
       .then((values: any) => {
-        //console.log(values);
-        const newData = values[0].count * 2;
-        setCountPoints(newData);
+        console.log(values);
+        //const newData = values[0].count * 2;
+        //setCountPoints(newData);
         // console.log(newData);
+        setCountPoints(values[0].claimedBonus);
+        setAwarded(values[0].totalBonus);
+        setPending(values[0].pendingBonus);
       })
       .catch((err) => {
         toast.error('Failed to get data', {
@@ -26,49 +30,26 @@ const UserDataCard = () => {
         console.log(err);
       });
   };
-  const getAwarded = async () => {
-    Promise.all([apiGetPostData('/api/user/bonus/total')])
-      .then((values: any) => {
-        // console.log(values);
-        setAwarded(values[0]);
-        //console.log(values.awarded);
-      })
-      .catch((err) => {
-        toast.error('Failed to get data', {
-          duration: 4000
-        });
-        console.log(err);
-      });
-  };
-  const getPending = async () => {
-    Promise.all([apiGetPostData('/api/user/bonus/unclaimed')])
-      .then((values: any) => {
-        // console.log(values);
-        setPending(values[0]);
-        // console.log(values.pending);
-      })
-      .catch((err) => {
-        toast.error('Failed to get data', {
-          duration: 4000
-        });
-        console.log(err);
-      });
-  };
+
   const handleClaimOnclick = async () => {
-    const campaignId = 'aaaaaa';
-    const campaignIdHash = `0x${campaignId}`;
+    const { id, contractAddress, tokenAddress, requiredPledgedAmount, hashId } =
+      await apiGetCampaignInfo();
+    const campaignIdHash = `0x${hashId}`;
     const nonce = '';
     const signature = '';
     await claimReward(
-      '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
+      contractAddress,
+      // '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
       campaignIdHash,
       [
         {
           tokenType: 1,
-          tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
-          amount: 0.001
+          tokenAddress,
+          // tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
+          amount: requiredPledgedAmount
         }
       ],
+      //  缺少接口
       nonce,
       signature
     )
@@ -81,8 +62,8 @@ const UserDataCard = () => {
   };
   React.useEffect(() => {
     getCountPoints();
-    getAwarded();
-    getPending();
+    // getAwarded();
+    // getPending();
   }, []);
   return (
     <div

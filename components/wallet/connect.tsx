@@ -35,11 +35,11 @@ import { deleteCookie, getCookie } from '@/utils/cookie';
 import { Dropdown, MenuProps, Space } from 'antd';
 import Link from 'next/link';
 import DownOutlined from '@/components/icons/downOutLined';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Toast from '@/components/toast/toast';
 import { useUserStore } from '@/store';
 import { apiUserInfo } from '@/apis/user';
-import { ethers } from 'ethers';
+import { apiGetCampaignInfo } from '@/apis/Campaign';
 interface ConnectProps extends HTMLAttributes<HTMLElement> {
   className?: ClassName;
   onData?: (type: number, data: any) => void;
@@ -157,8 +157,22 @@ export interface WalletProps extends ComponentProps<'div'> {
 
 const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
   ({ className, ...rest }, ref) => {
+    const path = usePathname();
+    const hasAuth =
+      path === '/zh-CN/home/participate' ||
+      path === '/zh-CN/home/profile' ||
+      path === '/en/home/participate' ||
+      path === '/en/home/profile';
     const router = useRouter();
-    const { isSignUp, setIsLogin, setIsAdmin } = useUserStore();
+    const {
+      setIsAdmin,
+      isSignUp,
+      setUsername,
+      setAvatar,
+      setTwitter,
+      setIsLogin,
+      setIsSignUp
+    } = useUserStore();
     // State / Props
     const [updateState, setUpdateState] = useState(0);
     // 以太坊网络地址 & 是否链接
@@ -205,7 +219,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       deleteCookie('address');
       setCurrentAddress('');
       setIsLogin(false);
-      router.replace('/');
+      hasAuth ? router.replace('/home') : null;
     };
     // 登录
     const handleLogin = async () => {
@@ -311,9 +325,6 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       border: '1px solid rgba(255, 255, 255, 0.16)',
       borderRadius: '12px'
     };
-    // function forceUpdate(){
-    //   this.forceUpdate()
-    // }
     const handleAccountChange = (...args: any[]) => {
       const accounts = args[0];
       if (accounts.length === 0) {
@@ -325,11 +336,25 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         }, 2500);
       }
     };
+    const setSignUp = () => {
+      apiGetCampaignInfo().then((res) => {
+        console.log(res);
+        if (res.participants.includes(getCookie('address'))) {
+          setIsSignUp(true);
+          console.log(isSignUp);
+        } else {
+          setIsSignUp(false);
+          console.log(isSignUp);
+        }
+      });
+    };
     //  执行登录
     useEffect(() => {
       console.log('isSuccess', isSuccess);
       if (isSuccess) {
-        handleLogin();
+        handleLogin().then(() => {
+          setSignUp();
+        });
       }
     }, [isSuccess]);
     //  自己设置 token & address 无法通过这层验证
@@ -341,8 +366,12 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         apiUserInfo()
           .then((res) => {
             setCurrentAddress(getCookie('address') || '');
+            setUsername(res.username);
+            setAvatar(res.avatar);
+            setTwitter(res.twitter);
             setIsLogin(true);
             setIsAdmin(res.isAdmin);
+            setSignUp();
           })
           .catch((error) => {
             console.log(error);

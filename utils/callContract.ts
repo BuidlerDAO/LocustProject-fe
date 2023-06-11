@@ -1,12 +1,12 @@
 import { abi, erc20TokenContractAbi } from '@/apis/abi';
 import Toast from '@/components/toast/toast';
-import { ethers } from 'ethers';
+import { BigNumber, ethers } from 'ethers';
 import { switchWeb3ChainId } from '@/utils/web3';
 
 async function approveTokens(
   tokenAddress: string,
   targetSpenderAddress: string,
-  approveAmount: number
+  approveAmount: string
 ) {
   // try {
   // 连接到以太坊
@@ -23,7 +23,8 @@ async function approveTokens(
     erc20TokenContractAbi,
     signer
   );
-  const amount = ethers.utils.parseUnits(approveAmount.toString(), 18);
+  const amount = ethers.BigNumber.from(`0x${approveAmount}`);
+  // const amount = `0x${ethers.BigNumber.from(approveAmount)}`
   // 发起调用
   const tx = await contract.approve(targetSpenderAddress, amount);
   // 等待交易被矿工打包到区块中，并获取交易回执
@@ -40,7 +41,7 @@ async function approveTokens(
 async function addReward(
   contractAddress: string,
   campaignIdHash: string,
-  tokens: Array<{ tokenType: number; tokenAddress: string; amount: number }>,
+  tokens: Array<{ tokenType: number; tokenAddress: string; amount: string }>,
   createIfNotExists: boolean
 ) {
   // try {
@@ -56,7 +57,7 @@ async function addReward(
   const contract = new ethers.Contract(contractAddress, abi, signer);
   // 格式化输入参数
   const formattedTokens = tokens.map((token) => {
-    const tokenAmount = ethers.utils.parseUnits(token.amount.toString(), 18);
+    const tokenAmount = ethers.BigNumber.from(`0x${token.amount}`);
     return {
       tokenType: ethers.BigNumber.from(token.tokenType), // 0 is native token, 1 is ERC20, 2 is ERC721
       tokenAddress: token.tokenAddress,

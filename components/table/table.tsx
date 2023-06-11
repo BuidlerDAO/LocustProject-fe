@@ -5,7 +5,11 @@ import './index.css';
 import { DownloadOutlined } from '@ant-design/icons';
 import { ConfigProvider, Select, Table, Typography } from 'antd';
 import { getFullMonth } from '@/utils/time';
-import { apiGetMonthData, apiGetMonthList, apiGetPostData } from '@/apis/post';
+import {
+  apiGetCampaign,
+  apiGetCurrentCampaign,
+  apiGetPostData
+} from '@/apis/post';
 import { get } from 'http';
 import { set } from 'nprogress';
 type AlignType = 'left' | 'center' | 'right';
@@ -59,47 +63,45 @@ const Table2 = () => {
     }
   ];
   //为getdata传入参数
-  const getData = (value: string) => {
-    Promise.all([apiGetMonthData({ limit: 20, offset: 0, title: value })]).then(
-      (values: any) => {
-        console.log(values[0].Items);
-        const newData = values[0].Items.map((item: any) => {
-          //console.log(item);
-          return {
-            userName: item.Username,
-            walletAddress: item.Address,
-            numContentSubmitted: item.ContentCount,
-            numDeletedContent: item.DeletedCount,
-            bonusesReceived: item.BonusReceived
-          };
-        });
-        setData(newData);
-        console.log(newData);
-      }
-    );
-  };
-  const getMonthList = async () => {
-    Promise.all([apiGetMonthList()]).then((values: any) => {
-      console.log(values[0].Items);
+  const getData = () => {
+    Promise.all([apiGetCampaign({})]).then((values: any) => {
+      //console.log(values[0].Items);
       const newData = values[0].Items.map((item: any) => {
-        console.log(item);
+        //console.log(item);
         return {
-          value: item,
-          label: item
+          userName: item.Username,
+          walletAddress: item.contractAddress,
+          numContentSubmitted: item.validArticleCount,
+          numDeletedContent: item.DeletedCount,
+          bonusesReceived: item.BonusReceived
         };
       });
+      setData(newData);
       console.log(newData);
-      setMonthOptions(newData);
     });
   };
+  // const getMonthList = async () => {
+  //   Promise.all([apiGetMonthList()]).then((values: any) => {
+  //     console.log(values[0].Items);
+  //     const newData = values[0].Items.map((item: any) => {
+  //       console.log(item);
+  //       return {
+  //         value: item,
+  //         label: item
+  //       };
+  //     });
+  //     console.log(newData);
+  //     setMonthOptions(newData);
+  //   });
+  // };
 
   useEffect(() => {
-    getMonthList();
+    getData();
     console.log(monthOptions);
   }, []);
   const handleChange = (value: string) => {
     //console.log(`selected ${value}`);
-    getData(value);
+    getData();
   };
   const onDownload = () => {
     // console.log('download');
@@ -218,24 +220,23 @@ const Table1 = () => {
     }
   ];
   const getData = async () => {
-    Promise.all([apiGetPostData('/api/admin/data')]).then((values: any) => {
-      //console.log(values);
-      //console.log(values[0].Items);
-      const newData = values[0].Items.map((item: any) => {
-        //console.log(item);
-        return {
-          month: item.Title,
-          enrollment: item.Enrollment,
-          numContentSubmitted: item.ContentCount,
-          numValidContent: item.ContentValidCount,
-          numCompletedTasks: item.CompletedCount,
-          numIncomplete: item.UncompletedCount,
-          totalPrizePool: item.Prize
-        };
-      });
-      setData(newData);
-      //console.log(newData);
-    });
+    Promise.all([apiGetPostData('/api/campaign/detail')]).then(
+      (values: any) => {
+        const newData = values[0].items.map((item: any) => {
+          // console.log(item);
+          return {
+            month: item.month,
+            enrollment: item.participantsCount,
+            numContentSubmitted: item.postCount,
+            numValidContent: item.validPostCount,
+            numCompletedTasks: item.validParticipantsCount,
+            numIncomplete: item.invalidParticipantsCount,
+            totalPrizePool: item.totalPledgedAmount
+          };
+        });
+        setData(newData);
+      }
+    );
   };
 
   useEffect(() => {
@@ -328,24 +329,22 @@ const TableUserOverview = () => {
     }
   ];
   const getData = async () => {
-    Promise.all([apiGetPostData('/api/user/campaign/count')]).then(
-      (values: any) => {
-        console.log(values[0].items);
-        const newData = values[0].items.map((item: any) => {
-          //console.log(item);
-          return {
-            month: item.title,
-            numArticlesSubmitted: item.posts,
-            numUnsuccessfulArticles: item.unSuccessfulPosts,
-            numValidArticles: item.validPosts,
-            bonus: item.bonus,
-            totalPrizePool: item.prize
-          };
-        });
-        setData(newData);
-        console.log(newData);
-      }
-    );
+    Promise.all([apiGetCampaign({})]).then((values: any) => {
+      console.log(values[0].items);
+      const newData = values[0].items.map((item: any) => {
+        console.log(item);
+        return {
+          month: item.campaign.month,
+          numArticlesSubmitted: item.postCount,
+          numUnsuccessfulArticles: item.invalidPostCount,
+          numValidArticles: item.validPostCount,
+          bonus: item.bonus,
+          totalPrizePool: item.campaign.totalPledgedAmount
+        };
+      });
+      setData(newData);
+      console.log(newData);
+    });
   };
 
   useEffect(() => {
@@ -448,7 +447,7 @@ const UserArticle = () => {
     }
   ];
   const getData = async () => {
-    Promise.all([apiGetPostData('/api/post/user')]).then((values: any) => {
+    Promise.all([apiGetPostData('/api/post-digest')]).then((values: any) => {
       //console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
         // console.log(item);

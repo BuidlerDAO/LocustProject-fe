@@ -46,3 +46,7 @@
 .cropper-face {
   border-radius: 50%;
 }
+
+.ant-spin-dot-item {
+  background-color: white !important;
+}

@@ -28,6 +28,7 @@ const Profile: React.FC = () => {
     setIsAdmin
   } = useUserStore();
   const router = useRouter();
+
   const name = localStorage.getItem('name');
   //  页面重定向到个人页面时路径中带有 Twitter 返回的 oauth_token,oauth_verifier 去进行个人信息的修改
   const oauthToken = useSearchParams()?.get('oauth_token') as string;
@@ -42,6 +43,7 @@ const Profile: React.FC = () => {
   // 头像上传以及裁剪层
   const [uploadUrl, setUploadUrl] = useState<string>(avatar);
   const [showCrop, setShowCrop] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [cropper, setCropper] = useState<any>();
   const [aspect, setAspect] = useState<number>(1 / 1);
   //  头像裁剪加验证

@@ -111,7 +111,6 @@ const Table2 = () => {
   };
   return (
     <>
-      <Spin spinning={Loading} tip="Loading..." size="large" />
       <div className="mt-4">
         <div className="flex justify-between">
           <div className="mb-4">
@@ -165,6 +164,7 @@ const Table2 = () => {
           }}
         >
           <Table
+            loading={Loading}
             columns={columns2}
             dataSource={data}
             pagination={{
@@ -179,6 +179,7 @@ const Table2 = () => {
 };
 const Table1 = () => {
   const [data, setData] = useState<any>([]);
+  const [Loading, setLoading] = useState(true);
   const columns1: ColumnItem[] = [
     {
       title: 'Month',
@@ -239,6 +240,7 @@ const Table1 = () => {
           };
         });
         setData(newData);
+        setLoading(false);
       }
     );
   };
@@ -279,6 +281,7 @@ const Table1 = () => {
           }}
         >
           <Table
+            loading={Loading}
             columns={columns1}
             dataSource={data}
             pagination={{
@@ -365,7 +368,6 @@ const TableUserOverview = () => {
   };
   return (
     <>
-      <Spin spinning={Loading} tip="loading..." size="large" />
       <div className="ml-[3vw] w-[70vw]">
         <div className="mt-[38px] flex justify-between">
           <div className="mb-[24px]">
@@ -392,6 +394,7 @@ const TableUserOverview = () => {
           }}
         >
           <Table
+            loading={Loading}
             columns={columns}
             dataSource={data}
             pagination={{
@@ -471,7 +474,6 @@ const UserArticle = () => {
   };
   return (
     <>
-      <Spin spinning={Loading} tip="loading..." size="large" />
       <div className="ml-[3vw] w-[70vw]">
         <div className="mt-[10px] flex justify-between">
           <div className="mb-[24px]">
@@ -498,6 +500,7 @@ const UserArticle = () => {
           }}
         >
           <Table
+            loading={Loading}
             columns={columns}
             dataSource={data}
             pagination={{

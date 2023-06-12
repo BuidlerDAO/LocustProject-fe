@@ -111,7 +111,7 @@ const Block = (props: { data: Post }) => {
               <span>Original Summary</span>
             </span>
             <span className="block-text08">
-              <TextMore text={props.data.originalText} maxLines={2} />
+              <TextMore text={props.data.originalText} maxLines={6} />
             </span>
           </div>
           <div className="block-line18" />
@@ -121,7 +121,7 @@ const Block = (props: { data: Post }) => {
             </span>
             <div className="block-group1">
               <span className="block-text12">
-                <TextMore text={props.data.personalThoughts} maxLines={4} />
+                <TextMore text={props.data.personalThoughts} maxLines={8} />
               </span>
             </div>
           </div>

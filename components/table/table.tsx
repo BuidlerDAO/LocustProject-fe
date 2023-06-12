@@ -111,70 +111,69 @@ const Table2 = () => {
   };
   return (
     <>
-      <Spin spinning={Loading} tip="Loading...">
-        <div className="mt-4">
-          <div className="flex justify-between">
-            <div className="mb-4">
-              Schedule
-              <DownloadOutlined
-                className="ml-6 cursor-pointer"
-                onClick={onDownload}
-              />
-            </div>
-            <div className="flex items-center justify-center">
-              <div className="mr-[25px] font-medium text-white">2023</div>
-              <ConfigProvider
-                theme={{
-                  token: {
-                    colorBgElevated: 'black',
-                    colorText: '#ffffff',
-                    colorIconHover: '#ffffff',
-                    colorIcon: '#ffffff'
-                  }
-                }}
-              >
-                <Select
-                  defaultValue="June"
-                  style={{
-                    width: 80,
-                    borderRadius: '8px',
-                    border: '1px solid #29282f',
-                    color: 'white',
-                    outlineColor: '#29282f',
-                    marginRight: '10px'
-                  }}
-                  bordered={false}
-                  onChange={handleChange}
-                  options={monthOptions}
-                />
-              </ConfigProvider>
-            </div>
-          </div>
-          <ConfigProvider
-            theme={{
-              token: {
-                colorBgContainer: '#0f0f0f',
-                colorText: '#ffffff',
-                colorBgTextActive: '#ffffff',
-                colorTextPlaceholder: '#ffffff',
-                colorTextHeading: ' #747474',
-                colorBorderSecondary: '#26262675',
-                colorSplit: '#26262675',
-                colorBorder: '#29282F'
-              }
-            }}
-          >
-            <Table
-              columns={columns2}
-              dataSource={data}
-              pagination={{
-                position: ['bottomCenter'],
-                pageSize: 4
-              }}
+      <Spin spinning={Loading} tip="Loading..." size="large" />
+      <div className="mt-4">
+        <div className="flex justify-between">
+          <div className="mb-4">
+            Schedule
+            <DownloadOutlined
+              className="ml-6 cursor-pointer"
+              onClick={onDownload}
             />
-          </ConfigProvider>
+          </div>
+          <div className="flex items-center justify-center">
+            <div className="mr-[25px] font-medium text-white">2023</div>
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorBgElevated: 'black',
+                  colorText: '#ffffff',
+                  colorIconHover: '#ffffff',
+                  colorIcon: '#ffffff'
+                }
+              }}
+            >
+              <Select
+                defaultValue="June"
+                style={{
+                  width: 80,
+                  borderRadius: '8px',
+                  border: '1px solid #29282f',
+                  color: 'white',
+                  outlineColor: '#29282f',
+                  marginRight: '10px'
+                }}
+                bordered={false}
+                onChange={handleChange}
+                options={monthOptions}
+              />
+            </ConfigProvider>
+          </div>
         </div>
-      </Spin>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorBgContainer: '#0f0f0f',
+              colorText: '#ffffff',
+              colorBgTextActive: '#ffffff',
+              colorTextPlaceholder: '#ffffff',
+              colorTextHeading: ' #747474',
+              colorBorderSecondary: '#26262675',
+              colorSplit: '#26262675',
+              colorBorder: '#29282F'
+            }
+          }}
+        >
+          <Table
+            columns={columns2}
+            dataSource={data}
+            pagination={{
+              position: ['bottomCenter'],
+              pageSize: 4
+            }}
+          />
+        </ConfigProvider>
+      </div>
     </>
   );
 };
@@ -294,6 +293,7 @@ const Table1 = () => {
 };
 const TableUserOverview = () => {
   const [data, setData] = useState<any[]>([]);
+  const [Loading, setLoading] = useState<boolean>(true);
   //columns含有Month、Number of articles submitted、Number of unsuccessful articles、Number of valid articles、Bonus、Total Prize Pool
   const columns: ColumnItem[] = [
     {
@@ -337,7 +337,7 @@ const TableUserOverview = () => {
     Promise.all([apiGetCampaign({})]).then((values: any) => {
       console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
-        console.log(item);
+        //console.log(item);
         return {
           month: item.campaign.month,
           numArticlesSubmitted: item.postCount,
@@ -348,7 +348,8 @@ const TableUserOverview = () => {
         };
       });
       setData(newData);
-      console.log(newData);
+      //console.log(newData);
+      setLoading(false);
     });
   };
 
@@ -356,24 +357,6 @@ const TableUserOverview = () => {
     getData();
   }, []);
 
-  const data1: readonly any[] | undefined = [
-    {
-      month: '2021-01',
-      numArticlesSubmitted: 10,
-      numUnsuccessfulArticles: 2,
-      numValidArticles: 8,
-      bonus: 100,
-      totalPrizePool: 1000
-    },
-    {
-      month: '2021-02',
-      numArticlesSubmitted: 10,
-      numUnsuccessfulArticles: 2,
-      numValidArticles: 8,
-      bonus: 100,
-      totalPrizePool: 1000
-    }
-  ];
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
@@ -382,6 +365,7 @@ const TableUserOverview = () => {
   };
   return (
     <>
+      <Spin spinning={Loading} tip="loading..." size="large" />
       <div className="ml-[3vw] w-[70vw]">
         <div className="mt-[38px] flex justify-between">
           <div className="mb-[24px]">
@@ -421,6 +405,7 @@ const TableUserOverview = () => {
 };
 const UserArticle = () => {
   const [data, setData] = useState<any[]>([]);
+  const [Loading, setLoading] = useState<boolean>(true);
   //columns中有Article Title、Submit Time、Status
   interface CustomColumnItem extends ColumnItem {
     render?: (text: string) => string | React.JSX.Element;
@@ -469,6 +454,7 @@ const UserArticle = () => {
         };
       });
       setData(newData);
+      setLoading(false);
       //console.log(newData);
     });
   };
@@ -485,6 +471,7 @@ const UserArticle = () => {
   };
   return (
     <>
+      <Spin spinning={Loading} tip="loading..." size="large" />
       <div className="ml-[3vw] w-[70vw]">
         <div className="mt-[10px] flex justify-between">
           <div className="mb-[24px]">

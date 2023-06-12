@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 'use client';
-import { Avatar, Button, Collapse, List, Space, Tooltip } from 'antd';
+import { Avatar, Button, Collapse, List, Space, Spin, Tooltip } from 'antd';
 import React, { useEffect, useState } from 'react';
 import Block from '@/components/blockCard/blockCard';
 import { apiGetPostList } from '@/apis/post';
@@ -9,6 +9,7 @@ import { usePostStore } from '@/store';
 
 const App = () => {
   const { setPosts, posts } = usePostStore();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getData();
@@ -30,13 +31,15 @@ const App = () => {
           }))
         );
         setPosts(newData);
-        console.log(newData);
+        setLoading(false);
+        //console.log(newData);
       }
     );
   };
 
   return (
     <div className="ml-[19px] mr-16 mt-[100px]">
+      <Spin spinning={loading} tip="Loading..."></Spin>
       <List
         itemLayout="vertical"
         size="large"

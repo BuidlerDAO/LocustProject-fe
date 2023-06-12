@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import './index.css';
 import { DownloadOutlined } from '@ant-design/icons';
-import { ConfigProvider, Select, Table, Typography } from 'antd';
+import { ConfigProvider, Select, Spin, Table, Typography } from 'antd';
 import { getFullMonth } from '@/utils/time';
 import {
   apiGetCampaign,
@@ -24,6 +24,8 @@ interface ColumnItem {
 const Table2 = () => {
   const [monthOptions, setMonthOptions] = useState<any>([]);
   const [data, setData] = useState([]);
+  const [Loading, setLoading] = useState(true);
+
   const columns2: ColumnItem[] = [
     {
       align: 'center',
@@ -77,7 +79,8 @@ const Table2 = () => {
         };
       });
       setData(newData);
-      console.log(newData);
+      // console.log(newData);
+      setLoading(false);
     });
   };
   // const getMonthList = async () => {
@@ -108,68 +111,70 @@ const Table2 = () => {
   };
   return (
     <>
-      <div className="mt-4">
-        <div className="flex justify-between">
-          <div className="mb-4">
-            Schedule
-            <DownloadOutlined
-              className="ml-6 cursor-pointer"
-              onClick={onDownload}
-            />
-          </div>
-          <div className="flex items-center justify-center">
-            <div className="mr-[25px] font-medium text-white">2023</div>
-            <ConfigProvider
-              theme={{
-                token: {
-                  colorBgElevated: 'black',
-                  colorText: '#ffffff',
-                  colorIconHover: '#ffffff',
-                  colorIcon: '#ffffff'
-                }
-              }}
-            >
-              <Select
-                defaultValue="June"
-                style={{
-                  width: 80,
-                  borderRadius: '8px',
-                  border: '1px solid #29282f',
-                  color: 'white',
-                  outlineColor: '#29282f',
-                  marginRight: '10px'
-                }}
-                bordered={false}
-                onChange={handleChange}
-                options={monthOptions}
+      <Spin spinning={Loading} tip="Loading...">
+        <div className="mt-4">
+          <div className="flex justify-between">
+            <div className="mb-4">
+              Schedule
+              <DownloadOutlined
+                className="ml-6 cursor-pointer"
+                onClick={onDownload}
               />
-            </ConfigProvider>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="mr-[25px] font-medium text-white">2023</div>
+              <ConfigProvider
+                theme={{
+                  token: {
+                    colorBgElevated: 'black',
+                    colorText: '#ffffff',
+                    colorIconHover: '#ffffff',
+                    colorIcon: '#ffffff'
+                  }
+                }}
+              >
+                <Select
+                  defaultValue="June"
+                  style={{
+                    width: 80,
+                    borderRadius: '8px',
+                    border: '1px solid #29282f',
+                    color: 'white',
+                    outlineColor: '#29282f',
+                    marginRight: '10px'
+                  }}
+                  bordered={false}
+                  onChange={handleChange}
+                  options={monthOptions}
+                />
+              </ConfigProvider>
+            </div>
           </div>
-        </div>
-        <ConfigProvider
-          theme={{
-            token: {
-              colorBgContainer: '#0f0f0f',
-              colorText: '#ffffff',
-              colorBgTextActive: '#ffffff',
-              colorTextPlaceholder: '#ffffff',
-              colorTextHeading: ' #747474',
-              colorBorderSecondary: '#26262675',
-              colorSplit: '#26262675',
-              colorBorder: '#29282F'
-            }
-          }}
-        >
-          <Table
-            columns={columns2}
-            dataSource={data}
-            pagination={{
-              position: ['bottomCenter'],
-              pageSize: 4
+          <ConfigProvider
+            theme={{
+              token: {
+                colorBgContainer: '#0f0f0f',
+                colorText: '#ffffff',
+                colorBgTextActive: '#ffffff',
+                colorTextPlaceholder: '#ffffff',
+                colorTextHeading: ' #747474',
+                colorBorderSecondary: '#26262675',
+                colorSplit: '#26262675',
+                colorBorder: '#29282F'
+              }
             }}
-          />
-        </ConfigProvider>
-      </div>
+          >
+            <Table
+              columns={columns2}
+              dataSource={data}
+              pagination={{
+                position: ['bottomCenter'],
+                pageSize: 4
+              }}
+            />
+          </ConfigProvider>
+        </div>
+      </Spin>
     </>
   );
 };

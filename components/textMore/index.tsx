@@ -27,21 +27,24 @@ export const TextMore: FC<Props> = ({ text, maxLines }) => {
   };
 
   const calculateMaxHeight = () => {
+    const lineHeight = 30;
+
     if (isExpanded) {
       return `${getContentHeight()}px`;
     } else {
-      return `${maxLines * 1.9}em`;
+      return `${maxLines * lineHeight}px`;
     }
   };
 
   useEffect(() => {
+    const lineHeight = 30;
     if (isExpanded) {
       const contentHeight = getContentHeight();
       if (contentHeight) {
         contentRef.current!.style.maxHeight = `${contentHeight}px`;
       }
     } else {
-      contentRef.current!.style.maxHeight = `${maxLines * 1.9}em`;
+      contentRef.current!.style.maxHeight = `${maxLines * lineHeight}px`;
     }
   }, [isExpanded]);
 
@@ -53,7 +56,7 @@ export const TextMore: FC<Props> = ({ text, maxLines }) => {
       >
         <p
           ref={contentRef}
-          className={isExpanded || !isTextOverflowed() ? '' : 'line-clamp-2'}
+          className={isExpanded || !isTextOverflowed() ? '' : `line-clamp-2`}
         >
           {text}
         </p>

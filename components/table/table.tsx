@@ -10,7 +10,6 @@ import {
   apiGetCurrentCampaign,
   apiGetPostData
 } from '@/apis/post';
-import { get } from 'http';
 
 type AlignType = 'left' | 'center' | 'right';
 
@@ -65,17 +64,17 @@ const Table2 = () => {
     }
   ];
   //为getdata传入参数
-  const getData = (value: any) => {
+  const getData = (value: any = '') => {
     Promise.all([apiGetCampaign({ campaignId: value })]).then((values: any) => {
       console.log(values.items);
       const newData = values.items.map((item: any) => {
         //console.log(item);
         return {
-          userName: item.user,
-          walletAddress: item.contractAddress,
-          numContentSubmitted: item.validArticleCount,
-          numDeletedContent: item.DeletedCount,
-          bonusesReceived: item.BonusReceived
+          // userName: item.user,
+          // walletAddress: item.contractAddress,
+          // numContentSubmitted: item.validArticleCount,
+          // numDeletedContent: item.DeletedCount,
+          // bonusesReceived: item.BonusReceived
         };
       });
       setData(newData);
@@ -90,10 +89,11 @@ const Table2 = () => {
           // console.log(item);
           return {
             value: item.month,
-            label: item.month
+            label: item.id
           };
         });
         setMonthOptions(newData);
+        getData(newData[0].label);
       }
     );
   };
@@ -102,7 +102,10 @@ const Table2 = () => {
     getMonthList();
   }, []);
   const handleChange = (value: string) => {
-    getData(value);
+    //在mothOptions中找到value对应的label
+    const findMonth = monthOptions.find((item: any) => item.value === value);
+    console.log(findMonth);
+    getData(findMonth.label);
   };
   const onDownload = () => {
     // console.log('download');
@@ -131,9 +134,9 @@ const Table2 = () => {
               }}
             >
               <Select
-                defaultValue="June"
+                defaultValue="2023-06"
                 style={{
-                  width: 80,
+                  width: 120,
                   borderRadius: '8px',
                   border: '1px solid #29282f',
                   color: 'white',
@@ -141,6 +144,7 @@ const Table2 = () => {
                   marginRight: '10px'
                 }}
                 bordered={false}
+                labelInValue={true}
                 onChange={(value) => handleChange(value)}
                 options={monthOptions}
               />

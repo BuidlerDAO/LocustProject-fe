@@ -89,11 +89,12 @@ const Table2 = () => {
           // console.log(item);
           return {
             value: item.month,
-            label: item.id
+            label: item.month,
+            id: item.id
           };
         });
         setMonthOptions(newData);
-        getData(newData[0].label);
+        getData(newData[0].id);
       }
     );
   };
@@ -105,7 +106,7 @@ const Table2 = () => {
     //在mothOptions中找到value对应的label
     const findMonth = monthOptions.find((item: any) => item.value === value);
     console.log(findMonth);
-    getData(findMonth.label);
+    getData(findMonth.id);
   };
   const onDownload = () => {
     // console.log('download');

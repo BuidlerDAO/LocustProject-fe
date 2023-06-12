@@ -66,15 +66,15 @@ const Table2 = () => {
   //为getdata传入参数
   const getData = (value: any = '') => {
     Promise.all([apiGetCampaign({ campaignId: value })]).then((values: any) => {
-      console.log(values.items);
-      const newData = values.items.map((item: any) => {
+      console.log(values[0].items);
+      const newData = values[0].items.map((item: any) => {
         //console.log(item);
         return {
-          // userName: item.user,
-          // walletAddress: item.contractAddress,
-          // numContentSubmitted: item.validArticleCount,
-          // numDeletedContent: item.DeletedCount,
-          // bonusesReceived: item.BonusReceived
+          userName: item.user.name,
+          walletAddress: item.user.address,
+          numContentSubmitted: item.validPostCount,
+          numDeletedContent: item.invalidPostCount,
+          bonusesReceived: item.bonus
         };
       });
       setData(newData);

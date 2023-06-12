@@ -67,11 +67,18 @@ const Table2 = () => {
   //为getdata传入参数
   const getData = () => {
     Promise.all([apiGetCampaign({})]).then((values: any) => {
-      //console.log(values[0].Items);
-      const newData = values[0].Items.map((item: any) => {
+      console.log(values.items);
+      const monthList = values.items.map((item: any) => {
+        return {
+          value: item.campaign.month,
+          label: item.campaign.month
+        };
+      });
+      setMonthOptions(monthList);
+      const newData = values.items.map((item: any) => {
         //console.log(item);
         return {
-          userName: item.Username,
+          userName: item.user,
           walletAddress: item.contractAddress,
           numContentSubmitted: item.validArticleCount,
           numDeletedContent: item.DeletedCount,

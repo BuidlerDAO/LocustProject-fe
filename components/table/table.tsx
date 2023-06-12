@@ -74,7 +74,8 @@ const Table2 = () => {
           walletAddress: item.user.address,
           numContentSubmitted: item.validPostCount,
           numDeletedContent: item.invalidPostCount,
-          bonusesReceived: item.bonus
+          bonusesReceived: item.bonus,
+          registrationTime: item.createdAt
         };
       });
       setData(newData);
@@ -123,7 +124,6 @@ const Table2 = () => {
             />
           </div>
           <div className="flex items-center justify-center">
-            <div className="mr-[25px] font-medium text-white">2023</div>
             <ConfigProvider
               theme={{
                 token: {
@@ -137,7 +137,7 @@ const Table2 = () => {
               <Select
                 defaultValue="2023-06"
                 style={{
-                  width: 120,
+                  width: 100,
                   borderRadius: '8px',
                   border: '1px solid #29282f',
                   color: 'white',

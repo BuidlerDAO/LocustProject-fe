@@ -9,7 +9,7 @@ import { usePostStore } from '@/store';
 
 const App = () => {
   const { setPosts, posts } = usePostStore();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getData();
@@ -32,19 +32,18 @@ const App = () => {
         );
         setPosts(newData);
         setLoading(false);
-        //console.log(newData);
       }
     );
   };
 
   return (
     <div className="ml-[19px] mr-16 mt-[100px]">
-      <Spin spinning={loading} tip="Loading..."></Spin>
       <List
         itemLayout="vertical"
         size="large"
         style={{ color: 'white' }}
         dataSource={posts}
+        loading={loading}
         renderItem={(item) => (
           <List.Item title={item.title}>
             <Block data={item} />

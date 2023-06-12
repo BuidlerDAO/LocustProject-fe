@@ -126,9 +126,12 @@ export const apiGetCampaign = async (data: {
 }) => {
   try {
     //当campaignId为空时,则不传campaignId
-    const res = await request(`/api/campaign/participant`, {
-      method: 'GET'
-    });
+    const res = await request(
+      `/api/campaign/participant?campaignId=${data.campaignId}`,
+      {
+        method: 'GET'
+      }
+    );
     if (res.code === 0) {
       return res.data;
     } else {
@@ -143,6 +146,22 @@ export const apiGetCampaign = async (data: {
 export const apiGetCurrentCampaign = async () => {
   try {
     const res = await request(`/api/current-campaigns`, {
+      method: 'GET'
+    });
+    if (res.code === 0) {
+      return res.data;
+    } else {
+      toast.error(`${res.message}`, { id: `${res.message}` });
+      return '';
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const apiGetMonthList = async (data: string) => {
+  try {
+    const res = await request(`/api/post/search/?title=${data}`, {
       method: 'GET'
     });
     if (res.code === 0) {

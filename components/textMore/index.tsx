@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 
 interface Props {
   text: string;
@@ -7,8 +7,8 @@ interface Props {
 
 export const TextMore: FC<Props> = ({ text, maxLines }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const contentRef = useRef<HTMLParagraphElement>(null);
 
-  //console.log(text);
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
   };
@@ -23,17 +23,30 @@ export const TextMore: FC<Props> = ({ text, maxLines }) => {
   };
 
   const getContentHeight = () => {
-    const content = document.getElementById('text-content');
-    return content?.scrollHeight;
+    return contentRef.current?.scrollHeight;
   };
 
   const calculateMaxHeight = () => {
+    const lineHeight = 30;
+
     if (isExpanded) {
       return `${getContentHeight()}px`;
     } else {
-      return `${maxLines * 1.9}em`;
+      return `${maxLines * lineHeight}px`;
     }
   };
+
+  useEffect(() => {
+    const lineHeight = 30;
+    if (isExpanded) {
+      const contentHeight = getContentHeight();
+      if (contentHeight) {
+        contentRef.current!.style.maxHeight = `${contentHeight}px`;
+      }
+    } else {
+      contentRef.current!.style.maxHeight = `${maxLines * lineHeight}px`;
+    }
+  }, [isExpanded]);
 
   return (
     <div>
@@ -42,8 +55,8 @@ export const TextMore: FC<Props> = ({ text, maxLines }) => {
         style={{ maxHeight: calculateMaxHeight() }}
       >
         <p
-          id="text-content"
-          className={isExpanded || !isTextOverflowed() ? '' : 'line-clamp-2'}
+          ref={contentRef}
+          className={isExpanded || !isTextOverflowed() ? '' : `line-clamp-2`}
         >
           {text}
         </p>

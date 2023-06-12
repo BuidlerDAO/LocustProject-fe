@@ -3,15 +3,14 @@ import React, { useEffect, useState } from 'react';
 
 import './index.css';
 import { DownloadOutlined } from '@ant-design/icons';
-import { ConfigProvider, Select, Table, Typography } from 'antd';
+import { ConfigProvider, Select, Spin, Table, Typography } from 'antd';
 import { getFullMonth } from '@/utils/time';
 import {
   apiGetCampaign,
   apiGetCurrentCampaign,
   apiGetPostData
 } from '@/apis/post';
-import { get } from 'http';
-import { set } from 'nprogress';
+
 type AlignType = 'left' | 'center' | 'right';
 
 const { Text } = Typography;
@@ -24,6 +23,8 @@ interface ColumnItem {
 const Table2 = () => {
   const [monthOptions, setMonthOptions] = useState<any>([]);
   const [data, setData] = useState([]);
+  const [Loading, setLoading] = useState(true);
+
   const columns2: ColumnItem[] = [
     {
       align: 'center',
@@ -63,45 +64,50 @@ const Table2 = () => {
     }
   ];
   //为getdata传入参数
-  const getData = () => {
-    Promise.all([apiGetCampaign({})]).then((values: any) => {
-      //console.log(values[0].Items);
-      const newData = values[0].Items.map((item: any) => {
+  const getData = (value: any = '') => {
+    Promise.all([apiGetCampaign({ campaignId: value })]).then((values: any) => {
+      console.log(values[0].items);
+      const newData = values[0].items.map((item: any) => {
         //console.log(item);
         return {
-          userName: item.Username,
-          walletAddress: item.contractAddress,
-          numContentSubmitted: item.validArticleCount,
-          numDeletedContent: item.DeletedCount,
-          bonusesReceived: item.BonusReceived
+          userName: item.user.name,
+          walletAddress: item.user.address,
+          numContentSubmitted: item.validPostCount,
+          numDeletedContent: item.invalidPostCount,
+          bonusesReceived: item.bonus,
+          registrationTime: item.createdAt
         };
       });
       setData(newData);
-      console.log(newData);
+      // console.log(newData);
+      setLoading(false);
     });
   };
-  // const getMonthList = async () => {
-  //   Promise.all([apiGetMonthList()]).then((values: any) => {
-  //     console.log(values[0].Items);
-  //     const newData = values[0].Items.map((item: any) => {
-  //       console.log(item);
-  //       return {
-  //         value: item,
-  //         label: item
-  //       };
-  //     });
-  //     console.log(newData);
-  //     setMonthOptions(newData);
-  //   });
-  // };
+  const getMonthList = async () => {
+    Promise.all([apiGetPostData('/api/campaign/detail')]).then(
+      (values: any) => {
+        const newData = values[0].items.map((item: any) => {
+          // console.log(item);
+          return {
+            value: item.month,
+            label: item.month,
+            id: item.id
+          };
+        });
+        setMonthOptions(newData);
+        getData(newData[0].id);
+      }
+    );
+  };
 
   useEffect(() => {
-    getData();
-    console.log(monthOptions);
+    getMonthList();
   }, []);
   const handleChange = (value: string) => {
-    //console.log(`selected ${value}`);
-    getData();
+    //在mothOptions中找到value对应的label
+    const findMonth = monthOptions.find((item: any) => item.value === value);
+    console.log(findMonth);
+    getData(findMonth.id);
   };
   const onDownload = () => {
     // console.log('download');
@@ -118,7 +124,6 @@ const Table2 = () => {
             />
           </div>
           <div className="flex items-center justify-center">
-            <div className="mr-[25px] font-medium text-white">2023</div>
             <ConfigProvider
               theme={{
                 token: {
@@ -130,9 +135,9 @@ const Table2 = () => {
               }}
             >
               <Select
-                defaultValue="June"
+                defaultValue="2023-06"
                 style={{
-                  width: 80,
+                  width: 100,
                   borderRadius: '8px',
                   border: '1px solid #29282f',
                   color: 'white',
@@ -140,7 +145,8 @@ const Table2 = () => {
                   marginRight: '10px'
                 }}
                 bordered={false}
-                onChange={handleChange}
+                labelInValue={true}
+                onChange={(value) => handleChange(value)}
                 options={monthOptions}
               />
             </ConfigProvider>
@@ -161,6 +167,7 @@ const Table2 = () => {
           }}
         >
           <Table
+            loading={Loading}
             columns={columns2}
             dataSource={data}
             pagination={{
@@ -175,6 +182,7 @@ const Table2 = () => {
 };
 const Table1 = () => {
   const [data, setData] = useState<any>([]);
+  const [Loading, setLoading] = useState(true);
   const columns1: ColumnItem[] = [
     {
       title: 'Month',
@@ -235,6 +243,7 @@ const Table1 = () => {
           };
         });
         setData(newData);
+        setLoading(false);
       }
     );
   };
@@ -275,6 +284,7 @@ const Table1 = () => {
           }}
         >
           <Table
+            loading={Loading}
             columns={columns1}
             dataSource={data}
             pagination={{
@@ -289,6 +299,7 @@ const Table1 = () => {
 };
 const TableUserOverview = () => {
   const [data, setData] = useState<any[]>([]);
+  const [Loading, setLoading] = useState<boolean>(true);
   //columns含有Month、Number of articles submitted、Number of unsuccessful articles、Number of valid articles、Bonus、Total Prize Pool
   const columns: ColumnItem[] = [
     {
@@ -332,7 +343,7 @@ const TableUserOverview = () => {
     Promise.all([apiGetCampaign({})]).then((values: any) => {
       console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
-        console.log(item);
+        //console.log(item);
         return {
           month: item.campaign.month,
           numArticlesSubmitted: item.postCount,
@@ -343,7 +354,8 @@ const TableUserOverview = () => {
         };
       });
       setData(newData);
-      console.log(newData);
+      //console.log(newData);
+      setLoading(false);
     });
   };
 
@@ -351,24 +363,6 @@ const TableUserOverview = () => {
     getData();
   }, []);
 
-  const data1: readonly any[] | undefined = [
-    {
-      month: '2021-01',
-      numArticlesSubmitted: 10,
-      numUnsuccessfulArticles: 2,
-      numValidArticles: 8,
-      bonus: 100,
-      totalPrizePool: 1000
-    },
-    {
-      month: '2021-02',
-      numArticlesSubmitted: 10,
-      numUnsuccessfulArticles: 2,
-      numValidArticles: 8,
-      bonus: 100,
-      totalPrizePool: 1000
-    }
-  ];
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
@@ -403,6 +397,7 @@ const TableUserOverview = () => {
           }}
         >
           <Table
+            loading={Loading}
             columns={columns}
             dataSource={data}
             pagination={{
@@ -416,6 +411,7 @@ const TableUserOverview = () => {
 };
 const UserArticle = () => {
   const [data, setData] = useState<any[]>([]);
+  const [Loading, setLoading] = useState<boolean>(true);
   //columns中有Article Title、Submit Time、Status
   interface CustomColumnItem extends ColumnItem {
     render?: (text: string) => string | React.JSX.Element;
@@ -464,6 +460,7 @@ const UserArticle = () => {
         };
       });
       setData(newData);
+      setLoading(false);
       //console.log(newData);
     });
   };
@@ -506,6 +503,7 @@ const UserArticle = () => {
           }}
         >
           <Table
+            loading={Loading}
             columns={columns}
             dataSource={data}
             pagination={{

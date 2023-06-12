@@ -19,7 +19,7 @@ const HomeLayout: FC<{ children: ReactNode }> = (props) => {
       >
         <main className="flex min-h-screen bg-black">
           <SideMenu />
-          <Suspense fallback={<Loading />}>{props.children}</Suspense>
+          <Suspense>{props.children}</Suspense>
         </main>
       </ConfigProvider>
     </div>

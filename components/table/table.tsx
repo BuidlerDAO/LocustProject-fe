@@ -11,7 +11,7 @@ import {
   apiGetPostData
 } from '@/apis/post';
 import { get } from 'http';
-import { set } from 'nprogress';
+
 type AlignType = 'left' | 'center' | 'right';
 
 const { Text } = Typography;
@@ -65,16 +65,9 @@ const Table2 = () => {
     }
   ];
   //为getdata传入参数
-  const getData = () => {
-    Promise.all([apiGetCampaign({})]).then((values: any) => {
+  const getData = (value: any) => {
+    Promise.all([apiGetCampaign({ campaignId: value })]).then((values: any) => {
       console.log(values.items);
-      const monthList = values.items.map((item: any) => {
-        return {
-          value: item.campaign.month,
-          label: item.campaign.month
-        };
-      });
-      setMonthOptions(monthList);
       const newData = values.items.map((item: any) => {
         //console.log(item);
         return {
@@ -90,28 +83,26 @@ const Table2 = () => {
       setLoading(false);
     });
   };
-  // const getMonthList = async () => {
-  //   Promise.all([apiGetMonthList()]).then((values: any) => {
-  //     console.log(values[0].Items);
-  //     const newData = values[0].Items.map((item: any) => {
-  //       console.log(item);
-  //       return {
-  //         value: item,
-  //         label: item
-  //       };
-  //     });
-  //     console.log(newData);
-  //     setMonthOptions(newData);
-  //   });
-  // };
+  const getMonthList = async () => {
+    Promise.all([apiGetPostData('/api/campaign/detail')]).then(
+      (values: any) => {
+        const newData = values[0].items.map((item: any) => {
+          // console.log(item);
+          return {
+            value: item.month,
+            label: item.month
+          };
+        });
+        setMonthOptions(newData);
+      }
+    );
+  };
 
   useEffect(() => {
-    getData();
-    console.log(monthOptions);
+    getMonthList();
   }, []);
   const handleChange = (value: string) => {
-    //console.log(`selected ${value}`);
-    getData();
+    getData(value);
   };
   const onDownload = () => {
     // console.log('download');
@@ -150,7 +141,7 @@ const Table2 = () => {
                   marginRight: '10px'
                 }}
                 bordered={false}
-                onChange={handleChange}
+                onChange={(value) => handleChange(value)}
                 options={monthOptions}
               />
             </ConfigProvider>

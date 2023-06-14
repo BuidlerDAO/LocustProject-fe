@@ -1,5 +1,4 @@
 'use client';
-import Navbar from '@/components/navbar';
 import { ReactNode, Suspense } from 'react';
 import type { FC } from 'react';
 import { ConfigProvider } from 'antd';
@@ -13,7 +12,6 @@ const HomeLayout: FC<{ children: ReactNode }> = (props) => {
             token: {
               colorBgContainer: '#000000',
               colorText: 'white',
-              //colorTextDescription: 'white',
               colorTextPlaceholder: '#FFFFFF66',
               colorPrimaryHover: '#FFFFFF4D'
             }

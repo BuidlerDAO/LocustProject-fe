@@ -65,7 +65,7 @@ async function addReward(
       amount: tokenAmount
     };
   });
-  const formatMaxTokens = ethers.BigNumber.from(`0x${maxTokenAmounts}`);
+  const formatMaxTokens = [ethers.BigNumber.from(`0x${maxTokenAmounts}`)];
   // 发起调用
   const tx = await contract.addToken(
     campaignIdHash,

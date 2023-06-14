@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 'use client';
-import { Avatar, Button, Collapse, List, Space, Tooltip } from 'antd';
+import { Avatar, Button, Collapse, List, Space, Spin, Tooltip } from 'antd';
 import React, { useEffect, useState } from 'react';
 import Block from '@/components/blockCard/blockCard';
 import { apiGetPostList } from '@/apis/post';
@@ -9,6 +9,7 @@ import { usePostStore } from '@/store';
 
 const App = () => {
   const { setPosts, posts } = usePostStore();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getData();
@@ -30,7 +31,7 @@ const App = () => {
           }))
         );
         setPosts(newData);
-        console.log(newData);
+        setLoading(false);
       }
     );
   };
@@ -42,6 +43,7 @@ const App = () => {
         size="large"
         style={{ color: 'white' }}
         dataSource={posts}
+        loading={loading}
         renderItem={(item) => (
           <List.Item title={item.title}>
             <Block data={item} />

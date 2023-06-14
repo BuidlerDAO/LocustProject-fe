@@ -42,6 +42,7 @@ async function addReward(
   contractAddress: string,
   campaignIdHash: string,
   tokens: Array<{ tokenType: number; tokenAddress: string; amount: string }>,
+  maxTokenAmounts: string,
   createIfNotExists: boolean
 ) {
   // try {
@@ -64,10 +65,12 @@ async function addReward(
       amount: tokenAmount
     };
   });
+  const formatMaxTokens = [ethers.BigNumber.from(`0x${maxTokenAmounts}`)];
   // 发起调用
-  const tx = await contract.addReward(
+  const tx = await contract.addToken(
     campaignIdHash,
     formattedTokens,
+    formatMaxTokens,
     createIfNotExists,
     {
       gasLimit: ethers.utils.hexlify(1000000) // 100万 gas
@@ -103,7 +106,7 @@ async function claimReward(
     // 创建合约实例
     const contract = new ethers.Contract(contractAddress, abi, signer);
     // 发起调用
-    const tx = await contract.batchClaimReward(
+    const tx = await contract.claimToken(
       campaignIdHash,
       tokens,
       nonce,

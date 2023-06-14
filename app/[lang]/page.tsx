@@ -60,6 +60,7 @@ const Index = memo((props: any) => {
               // amount: 0.001
             }
           ],
+          requiredPledgedAmount,
           true
         )
           .then(() => {

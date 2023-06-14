@@ -67,7 +67,7 @@ async function addReward(
   });
   const formatMaxTokens = ethers.BigNumber.from(`0x${maxTokenAmounts}`);
   // 发起调用
-  const tx = await contract.addReward(
+  const tx = await contract.addToken(
     campaignIdHash,
     formattedTokens,
     formatMaxTokens,
@@ -106,7 +106,7 @@ async function claimReward(
     // 创建合约实例
     const contract = new ethers.Contract(contractAddress, abi, signer);
     // 发起调用
-    const tx = await contract.batchClaimReward(
+    const tx = await contract.claimToken(
       campaignIdHash,
       tokens,
       nonce,

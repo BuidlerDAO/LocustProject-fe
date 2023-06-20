@@ -94,36 +94,31 @@ async function claimReward(
   nonce: string,
   signature: string
 ) {
-  try {
-    // 连接到以太坊
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    provider.getNetwork().then(async (network) => {
-      if (network.chainId != 80001) {
-        await switchWeb3ChainId('80001');
-      }
-    });
-    const signer = provider.getSigner();
-    // 创建合约实例
-    const contract = new ethers.Contract(contractAddress, abi, signer);
-    // 发起调用
-    const tx = await contract.claimToken(
-      campaignIdHash,
-      tokens,
-      nonce,
-      signature,
-      {
-        gasLimit: ethers.utils.hexlify(1000000) // 100万 gas
-      }
-    );
-    // 等待交易被矿工打包到区块中，并获取交易回执
-    const receipt = await tx.wait();
-    console.log('claimReward Transaction successful with hash: ', tx.hash);
-    console.log('claimReward Transaction receipt: ', receipt);
-    Toast.success('claimReward successful!');
-  } catch (err) {
-    Toast.error('claimReward Error!');
-    console.error('claimReward Error: ', err);
-  }
+  // 连接到以太坊
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  provider.getNetwork().then(async (network) => {
+    if (network.chainId != 80001) {
+      await switchWeb3ChainId('80001');
+    }
+  });
+  const signer = provider.getSigner();
+  // 创建合约实例
+  const contract = new ethers.Contract(contractAddress, abi, signer);
+  // 发起调用
+  const tx = await contract.claimToken(
+    campaignIdHash,
+    tokens,
+    nonce,
+    signature,
+    {
+      gasLimit: ethers.utils.hexlify(1000000) // 100万 gas
+    }
+  );
+  // 等待交易被矿工打包到区块中，并获取交易回执
+  const receipt = await tx.wait();
+  console.log('claimReward Transaction successful with hash: ', tx.hash);
+  console.log('claimReward Transaction receipt: ', receipt);
+  Toast.success('claimReward successful!');
 }
 
 export { approveTokens, addReward, claimReward };

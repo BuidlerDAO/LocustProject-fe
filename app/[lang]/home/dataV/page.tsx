@@ -1,8 +1,5 @@
 'use client';
 import React, { useEffect } from 'react';
-import { Card, ConfigProvider, Dropdown, MenuProps, Space, Table } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-// import { Table2 } from '@/components/table/table';
 import { Table1, Table2 } from '@/components/table/table';
 import DataCard from '@/components/dataCard/dataCard';
 import { useUserStore } from '@/store';
@@ -12,15 +9,14 @@ const dataV = () => {
   const router = useRouter();
   const { isAdmin } = useUserStore();
   //进行判断，如果是则显示，否则跳转到首页/home
-  // useEffect(() => {
-  //   if (!isAdmin) {
-  //     router.push('/');
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!isAdmin) {
+      router.push('/');
+    }
+  }, []);
   return (
     <>
       <div className="ml-[1vw] mt-[2vh] flex flex-col pb-[10vh]">
-        {/* <Table columns={columns} dataSource={data} /> */}
         <DataCard />
         <div>
           <div

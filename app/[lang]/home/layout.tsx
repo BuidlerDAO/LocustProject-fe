@@ -8,7 +8,7 @@ import SideMenu from '@/components/siderMenu/siderMenu';
 
 const HomeLayout: FC<{ children: ReactNode }> = (props) => {
   return (
-    <div>
+    <div className="min-h-screen">
       <ConfigProvider
         theme={{
           token: {
@@ -17,7 +17,7 @@ const HomeLayout: FC<{ children: ReactNode }> = (props) => {
           }
         }}
       >
-        <main className="flex bg-black">
+        <main className="flex min-h-screen bg-black">
           <SideMenu />
           <Suspense>{props.children}</Suspense>
         </main>

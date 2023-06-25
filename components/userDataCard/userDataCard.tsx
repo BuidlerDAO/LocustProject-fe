@@ -6,7 +6,7 @@ import { apiGetPostData } from '@/apis/post';
 import toast from '../toast/toast';
 import { claimReward } from '@/utils/callContract';
 import Toast from '../toast/toast';
-import { apiGetCampaignInfo } from '@/apis/Campaign';
+import { apiGetCampaignInfo, apiPostClaim } from '@/apis/Campaign';
 const UserDataCard = () => {
   const [countPoints, setCountPoints] = React.useState<number>(0);
   const [Awarded, setAwarded] = React.useState<string>('0');
@@ -34,9 +34,10 @@ const UserDataCard = () => {
   const handleClaimOnclick = async () => {
     const { id, contractAddress, tokenAddress, requiredPledgedAmount, hashId } =
       await apiGetCampaignInfo();
+    const data = await apiPostClaim();
+    const { nonce, signature } = data.items[0];
+    console.log(nonce, signature);
     const campaignIdHash = `0x${hashId}`;
-    const nonce = '';
-    const signature = '';
     await claimReward(
       contractAddress,
       // '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
@@ -49,7 +50,6 @@ const UserDataCard = () => {
           amount: requiredPledgedAmount
         }
       ],
-      //  缺少接口
       nonce,
       signature
     )
@@ -57,6 +57,7 @@ const UserDataCard = () => {
         Toast.success('claimReward successful!');
       })
       .catch((e) => {
+        Toast.error('claimReward Error!');
         console.log('claimReward Error', e);
       });
   };

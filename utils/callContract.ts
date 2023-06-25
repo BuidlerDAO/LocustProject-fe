@@ -45,7 +45,6 @@ async function addReward(
   maxTokenAmounts: string,
   createIfNotExists: boolean
 ) {
-  // try {
   // 连接到以太坊
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   provider.getNetwork().then(async (network) => {
@@ -81,11 +80,6 @@ async function addReward(
   console.log('addReward Transaction successful with hash: ', tx.hash);
   console.log('addReward Transaction receipt: ', receipt);
   Toast.success('addReward successful!');
-  // }
-  // catch (err) {
-  //   Toast.error('addReward Error!')
-  //   console.error('addReward Error: ', err);
-  // }
 }
 async function claimReward(
   contractAddress: string,
@@ -104,16 +98,27 @@ async function claimReward(
   const signer = provider.getSigner();
   // 创建合约实例
   const contract = new ethers.Contract(contractAddress, abi, signer);
-  // 发起调用
-  const tx = await contract.claimToken(
-    campaignIdHash,
-    tokens,
-    nonce,
-    signature,
+  const formattedTokens = tokens.map((token) => {
+    const tokenAmount = ethers.BigNumber.from(`0x${token.amount}`);
+    return {
+      tokenType: ethers.BigNumber.from(token.tokenType), // 0 is native token, 1 is ERC20, 2 is ERC721
+      tokenAddress: token.tokenAddress,
+      amount: tokenAmount
+    };
+  });
+
+  const params = [
     {
-      gasLimit: ethers.utils.hexlify(1000000) // 100万 gas
+      campaignId: campaignIdHash,
+      tokens: formattedTokens,
+      nonce: ethers.BigNumber.from(`0x${nonce}`),
+      signature: `0x${signature}`
     }
-  );
+  ];
+  // 发起调用
+  const tx = await contract.batchClaimToken(params, {
+    gasLimit: ethers.utils.hexlify(1000000) // 100万 gas
+  });
   // 等待交易被矿工打包到区块中，并获取交易回执
   const receipt = await tx.wait();
   console.log('claimReward Transaction successful with hash: ', tx.hash);

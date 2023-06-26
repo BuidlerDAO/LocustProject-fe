@@ -1,8 +1,6 @@
 import toast from '@/components/toast/toast';
 import axios from 'axios';
 import request from '@/utils/request';
-import { deleteCookie } from '@/utils/cookie';
-import { url } from 'inspector';
 axios.defaults.baseURL = 'https://test-locust-api.buidlerdao.xyz';
 /**
  * @description post post data
@@ -16,7 +14,7 @@ export const apiPostData = async (data: any) => {
       body: { ...data }
     });
     const result = response.data;
-    console.log(result);
+    //console.log(result);
     if (response.code === 0) {
       toast.success('Submit Success');
       return 'success';
@@ -25,7 +23,7 @@ export const apiPostData = async (data: any) => {
       return '';
     }
   } catch (error) {
-    console.error(error);
+    toast.error(`${error}`, { id: `${error}` });
   }
 };
 /**
@@ -65,7 +63,7 @@ export const apiGetPostData = async (url: string) => {
       return '';
     }
   } catch (error) {
-    console.error(error);
+    toast.error(`${error}`, { id: `${error}` });
   }
 };
 
@@ -76,7 +74,6 @@ export const apiGetPostData = async (url: string) => {
  * */
 export const apiDeletePostData = async (id: number) => {
   try {
-    console.log(id);
     const res = await request(`/api/post/?id=${id}`, {
       method: 'DELETE'
       //body: { : id }
@@ -90,7 +87,6 @@ export const apiDeletePostData = async (id: number) => {
     }
   } catch (error) {
     toast.error(`${error}`, { id: `${error}` });
-    console.error(error);
   }
 };
 
@@ -111,7 +107,7 @@ export const apiGetSearchData = async (data: string) => {
       return '';
     }
   } catch (error) {
-    console.error(error);
+    toast.error(`${error}`, { id: `${error}` });
   }
 };
 
@@ -139,7 +135,7 @@ export const apiGetCampaign = async (data: {
       return '';
     }
   } catch (error) {
-    console.error(error);
+    toast.error(`${error}`, { id: `${error}` });
   }
 };
 
@@ -160,7 +156,7 @@ export const apiGetCurrentCampaign = async () => {
       return '';
     }
   } catch (error) {
-    console.error(error);
+    toast.error(`${error}`, { id: `${error}` });
   }
 };
 

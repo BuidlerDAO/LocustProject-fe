@@ -13,7 +13,7 @@ import Toast from '@/components/toast/toast';
 import { blobToFile, dataURLtoBlob } from '@/utils/helpers';
 import { getCookie } from '@/utils/cookie';
 import { Dialog, DialogHeader } from '@/components/dialog';
-import { upload } from '@/utils/aws';
+import { upload } from '@/utils/upload';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Spin } from 'antd';
 const Profile: React.FC = () => {

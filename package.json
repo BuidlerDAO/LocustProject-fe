@@ -23,8 +23,6 @@
   ],
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
-    "@aws-sdk/client-s3": "^3.338.0",
-    "@aws-sdk/signature-v4-crt": "^3.342.0",
     "@floating-ui/react": "^0.23.0",
     "@formatjs/intl-localematcher": "^0.2.32",
     "@metamask/jazzicon": "^2.0.0",
@@ -32,6 +30,7 @@
     "antd": "^5.4.7",
     "axios": "^1.4.0",
     "cropperjs": "^1.5.13",
+    "crypto-js": "^4.1.1",
     "deepmerge": "^4.3.1",
     "ethers": "^5.7.2",
     "framer-motion": "^10.12.8",

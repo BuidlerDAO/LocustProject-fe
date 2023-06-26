@@ -4,7 +4,7 @@
  * @param {Number} radix 随机字符的长度选择
  * @return {String} uuid
  */
-export const UUID = (len: number, radix: number) => {
+export const UUID = (len?: number, radix?: number) => {
   const chars =
     '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
   const uuid: string[] = [];

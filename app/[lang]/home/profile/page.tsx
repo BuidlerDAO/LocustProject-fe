@@ -11,9 +11,9 @@ import Modalprop from '@/components/modal/modal';
 import ImgCrop from '@/components/imgCrop';
 import Toast from '@/components/toast/toast';
 import { blobToFile, dataURLtoBlob } from '@/utils/helpers';
-import { getCookie } from '@/utils/cookie';
+import { deleteCookie, getCookie, setCookie } from '@/utils/cookie';
 import { Dialog, DialogHeader } from '@/components/dialog';
-import { upload } from '@/utils/aws';
+import { upload } from '@/utils/upload';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Spin } from 'antd';
 const Profile: React.FC = () => {
@@ -29,7 +29,7 @@ const Profile: React.FC = () => {
   } = useUserStore();
   const router = useRouter();
 
-  const name = localStorage.getItem('name');
+  const name = getCookie('name');
   //  页面重定向到个人页面时路径中带有 Twitter 返回的 oauth_token,oauth_verifier 去进行个人信息的修改
   const oauthToken = useSearchParams()?.get('oauth_token') as string;
   const verifier = useSearchParams()?.get('oauth_verifier') as string;
@@ -131,8 +131,10 @@ const Profile: React.FC = () => {
   const handleTwitterConnect = async () => {
     if (!isConnectTwitter) {
       if (userName.trim() !== '' && uploadUrl !== '') {
-        localStorage.setItem('name', userName.trim());
-        localStorage.setItem('avatarUrl', uploadUrl);
+        // localStorage.setItem('name', userName.trim());
+        // localStorage.setItem('avatarUrl', uploadUrl);
+        setCookie('name', userName.trim());
+        setCookie('avatarUrl', uploadUrl);
       }
       const res = await apiTwitterToken(
         'http://localhost:3000/zh-CN/home/profile'
@@ -232,9 +234,9 @@ const Profile: React.FC = () => {
       // getUserInfo();
     }
     getUserInfo().then(() => {
-      if (localStorage.getItem('name') && localStorage.getItem('avatarUrl')) {
-        const name = localStorage.getItem('name');
-        const avatarUrl = localStorage.getItem('avatarUrl');
+      if (getCookie('name') && getCookie('avatarUrl')) {
+        const name = getCookie('name');
+        const avatarUrl = getCookie('avatarUrl');
         if (typeof name === 'string' && typeof avatarUrl === 'string') {
           setUserName(name);
           setUsername(name);
@@ -242,8 +244,8 @@ const Profile: React.FC = () => {
           setUploadUrl(avatarUrl);
           setAvatar(avatarUrl);
           // console.log(uploadUrl);
-          localStorage.removeItem('name');
-          localStorage.removeItem('avatarUrl');
+          deleteCookie('name');
+          deleteCookie('avatarUrl');
         }
       }
     });

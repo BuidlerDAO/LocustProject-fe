@@ -1,5 +1,4 @@
 'use client';
-import Navbar from '@/components/navbar';
 import { ReactNode, Suspense } from 'react';
 import type { FC } from 'react';
 import { ConfigProvider } from 'antd';

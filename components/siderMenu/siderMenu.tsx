@@ -111,43 +111,40 @@ const SideMenu = (props: any) => {
                 }}
               />
             </div>
-            {/* data view 按钮,根据isAdmin判断有无 */}
-            {isAdmin ? (
-              <div
-                className="side-menu-frame"
-                onClick={() => {
-                  setIsExplore(false);
-                  setIsDataView(true);
-                  setIsPost(false);
-                }}
-                style={{
-                  color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
-                }}
-              >
-                <Link href="/home/dataV">
-                  <div className="side-menu-frame1021">
-                    <RiseOutlined
-                      style={{
-                        fontSize: '125%'
-                      }}
-                    />
-                    <span className="side-menu-text2">
-                      <span
-                        style={{ fontFamily: 'Poppins', fontWeight: '500' }}
-                      >
-                        Data View
-                      </span>
+            <div
+              className="side-menu-frame"
+              onClick={() => {
+                setIsExplore(false);
+                setIsDataView(true);
+                setIsPost(false);
+              }}
+              style={{
+                color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+              }}
+            >
+              <Link href="/home/dataV">
+                <div className="side-menu-frame1021">
+                  <RiseOutlined
+                    style={{
+                      fontSize: '125%'
+                    }}
+                  />
+                  <span className="side-menu-text2">
+                    <span style={{ fontFamily: 'Poppins', fontWeight: '500' }}>
+                      Data View
                     </span>
-                  </div>
-                </Link>
-                <div
-                  className="side-menu-rectangle1"
-                  style={{
-                    backgroundColor: isDataView ? 'rgba(109, 98, 238, 1)' : ''
-                  }}
-                />
-              </div>
-            ) : null}
+                  </span>
+                </div>
+              </Link>
+              <div
+                className="side-menu-rectangle1"
+                style={{
+                  backgroundColor: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                }}
+              />
+            </div>
+            {/* data view 按钮,根据isAdmin判断有无 */}
+            {isAdmin ? <div>结束并新建</div> : null}
           </div>
           {/* <Link href="/home/post"> */}
           {/* post按钮，封装了onjudge函数  */}

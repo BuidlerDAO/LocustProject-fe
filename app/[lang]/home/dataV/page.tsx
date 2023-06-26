@@ -4,6 +4,7 @@ import { Table1, Table2 } from '@/components/table/table';
 import DataCard from '@/components/dataCard/dataCard';
 import { useUserStore } from '@/store';
 import { useRouter } from 'next/navigation';
+import { apiConfirmCampaign } from '@/apis/post';
 
 const dataV = () => {
   const router = useRouter();
@@ -11,14 +12,16 @@ const dataV = () => {
 
   //奖金确认判断
   const onConfirmBonus = () => {
-    //
+    Promise.all([apiConfirmCampaign()]).then((values: any) => {
+      console.log(values);
+    });
   };
   //进行判断，如果是则显示，否则跳转到首页/home
   useEffect(() => {
     if (!isAdmin) {
       router.push('/');
     }
-  }, [isAdmin]);
+  }, [isAdmin, router]);
   return (
     <>
       <div className="ml-[1vw] mt-[2vh] flex flex-col pb-[10vh]">

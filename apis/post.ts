@@ -49,7 +49,7 @@ export const apiGetPostList = async (data: {
 };
 
 /**
- * @description 获取post数据，可更改路径
+ * @description 获取数据，可更改路径
  * @params url,data
  * @api https://test-locust-api.buidlerdao.xyz/api/post
  * */
@@ -143,6 +143,11 @@ export const apiGetCampaign = async (data: {
   }
 };
 
+/**
+ * @description 获取活动数据
+ * @params campaignId,includeRealBonus
+ * @api https://test-locust-api.buidlerdao.xyz/api/campaign/participant
+ * */
 export const apiGetCurrentCampaign = async () => {
   try {
     const res = await request(`/api/current-campaigns`, {
@@ -159,6 +164,11 @@ export const apiGetCurrentCampaign = async () => {
   }
 };
 
+/**
+ * @description 获取月份列表数据
+ * @params data
+ * @api https://test-locust-api.buidlerdao.xyz/api/campaign/search
+ * */
 export const apiGetMonthList = async (data: string) => {
   try {
     const res = await request(`/api/post/search/?title=${data}`, {
@@ -171,6 +181,27 @@ export const apiGetMonthList = async (data: string) => {
       return '';
     }
   } catch (error) {
-    console.error(error);
+    toast.error(`${error}`, { id: `${error}` });
+  }
+};
+
+/**
+ * @description 管理员确认发放奖励
+ * @api https://test-locust-api.buidlerdao.xyz/api/campaign/confirm
+ * */
+export const apiConfirmCampaign = async () => {
+  try {
+    const res = await request('/api/campaign/confirm', {
+      method: 'POST'
+    });
+    if (res.code === 0) {
+      toast.success('Confirm Success');
+      return 'success';
+    } else {
+      toast.error(`${res.message}`, { id: `${res.message}` });
+      return '';
+    }
+  } catch (error) {
+    toast.error(`${error}`, { id: `${error}` });
   }
 };

@@ -8,12 +8,17 @@ import { useRouter } from 'next/navigation';
 const dataV = () => {
   const router = useRouter();
   const { isAdmin } = useUserStore();
+
+  //奖金确认判断
+  const onConfirmBonus = () => {
+    //
+  };
   //进行判断，如果是则显示，否则跳转到首页/home
   useEffect(() => {
     if (!isAdmin) {
       router.push('/');
     }
-  }, []);
+  }, [isAdmin]);
   return (
     <>
       <div className="ml-[1vw] mt-[2vh] flex flex-col pb-[10vh]">
@@ -38,7 +43,7 @@ const dataV = () => {
               className="h-auto text-left text-sm font-medium leading-6 text-white no-underline"
               style={{ fontFamily: 'Inter' }}
             >
-              <span>Bonus Confirmation</span>
+              <span onClick={onConfirmBonus}>Bonus Confirmation</span>
             </span>
           </div>
         </div>

@@ -18,23 +18,44 @@ export const getCookie = (name: string): string | undefined => {
 /**
  * delete client cookie
  * @param {String} name cookie name
+ * @param {String} path cookie path
+ * @param {String} domain cookie domain
  */
-export const deleteCookie = (name: string) => {
+export const deleteCookie = (name: string, path = '/', domain = '') => {
   const date = new Date();
   date.setTime(date.getTime() - 10000);
-  document.cookie = name + '=; expire=' + date.toString();
+
+  let cookie = `${name}=; expires=${date.toUTCString()}; path=${path}`;
+  if (domain) {
+    cookie += `; domain=${domain}`;
+  }
+
+  document.cookie = cookie;
 };
 
 /**
  * set client cookie
  * @param {String} name cookie name
  * @param {String} value cookie value
+ * @param {String} path cookie path
+ * @param {String} domain cookie domain
  */
-
-export const setCookie = (name: string, value: string) => {
-  const Days = 30;
+export const setCookie = (
+  name: string,
+  value: string,
+  path = '/',
+  domain = '',
+  days = 30
+) => {
   const exp = new Date();
-  exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-  const encodedValue = encodeURIComponent(value);
-  document.cookie = name + '=' + encodedValue + ';expires=' + exp.toString();
+  exp.setTime(exp.getTime() + days * 24 * 60 * 60 * 1000);
+
+  let cookie = `${name}=${encodeURIComponent(
+    value
+  )}; expires=${exp.toUTCString()}; path=${path}`;
+  if (domain) {
+    cookie += `; domain=${domain}`;
+  }
+
+  document.cookie = cookie;
 };

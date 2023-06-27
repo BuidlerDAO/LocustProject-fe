@@ -185,10 +185,11 @@ export const apiGetMonthList = async (data: string) => {
  * @description 管理员确认发放奖励
  * @api https://test-locust-api.buidlerdao.xyz/api/campaign/confirm
  * */
-export const apiConfirmCampaign = async () => {
+export const apiConfirmCampaign = async (id: number) => {
   try {
     const res = await request('/api/campaign/confirm', {
-      method: 'POST'
+      method: 'POST',
+      body: { id: id }
     });
     if (res.code === 0) {
       toast.success('Confirm Success');

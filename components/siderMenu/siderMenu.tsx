@@ -24,6 +24,7 @@ const SideMenu = (props: any) => {
     setIsPost
   } = useSiderStore();
   const { isAdmin, isLogin, isSignUp } = useUserStore();
+  console.log(isAdmin);
   const pathname = usePathname();
   const flag = pathname == '/zh-CN' || pathname == '/en';
   const onJudge = () => {
@@ -70,11 +71,12 @@ const SideMenu = (props: any) => {
         {/* logo部分 */}
         <div className="width-[18rem] ml-[30px] flex h-[100px] items-center justify-center">
           <div
-            className={`mr-[-5px] mt-[-18px]
+            className={`mr-[-5px] mt-[-18px] h-[36px] cursor-pointer
                             ${!flag && 'mr-[6px] mt-[0.2px]'}
             } `}
+            onClick={() => window.location.reload()}
           >
-            {flag ? <LogoIconTop /> : <Logo />}
+            <LogoIconTop />
           </div>
         </div>
         <div className="side-menu-frame1171274769 ">
@@ -174,7 +176,7 @@ const SideMenu = (props: any) => {
               </span>
             </div>
           </div>
-          {isAdmin ? (
+          {/* {isAdmin ? (
             <div
               className="side-menu-btn"
               onClick={() => {
@@ -196,7 +198,7 @@ const SideMenu = (props: any) => {
             </div>
           ) : (
             ''
-          )}
+          )} */}
           {/* </Link> */}
         </div>
       </div>

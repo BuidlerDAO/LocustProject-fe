@@ -5,15 +5,19 @@ import DataCard from '@/components/dataCard/dataCard';
 import { useUserStore } from '@/store';
 import { useRouter } from 'next/navigation';
 import { apiConfirmCampaign } from '@/apis/post';
+import { apiFinishCampaign, apiGetCampaignInfo } from '@/apis/Campaign';
 
 const dataV = () => {
   const router = useRouter();
   const { isAdmin } = useUserStore();
 
   //奖金确认判断
-  const onConfirmBonus = () => {
-    Promise.all([apiConfirmCampaign()]).then((values: any) => {
-      console.log(values);
+  const onConfirmBonus = async () => {
+    const res = await apiGetCampaignInfo();
+    apiFinishCampaign(res.id).then(() => {
+      Promise.all([apiConfirmCampaign(res.id)]).then((values: any) => {
+        console.log(values);
+      });
     });
   };
   //进行判断，如果是则显示，否则跳转到首页/home

@@ -10,6 +10,7 @@ import toast from '../toast/toast';
 import { LogoIconTop } from '../icons';
 import { SideData } from '../icons/sideData';
 import { SideExplore } from '../icons/sideExplore';
+import { apiFinishCampaign } from '@/apis/Campaign';
 import './index.css';
 
 const SideMenu = (props: any) => {
@@ -173,6 +174,29 @@ const SideMenu = (props: any) => {
               </span>
             </div>
           </div>
+          {isAdmin ? (
+            <div
+              className="side-menu-btn"
+              onClick={() => {
+                console.log();
+              }}
+            >
+              <div
+                className="side-menu-frame10211"
+                onClick={() => {
+                  console.log();
+                }}
+              >
+                <span className="side-menu-text4">
+                  <span style={{ fontFamily: 'Poppins', fontWeight: '500' }}>
+                    结束并创建
+                  </span>
+                </span>
+              </div>
+            </div>
+          ) : (
+            ''
+          )}
           {/* </Link> */}
         </div>
       </div>

@@ -341,7 +341,7 @@ const TableUserOverview = () => {
   ];
   const getData = async () => {
     Promise.all([apiGetCampaign({})]).then((values: any) => {
-      console.log(values[0].items);
+      //console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
         //console.log(item);
         return {

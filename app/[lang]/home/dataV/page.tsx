@@ -4,16 +4,24 @@ import { Table1, Table2 } from '@/components/table/table';
 import DataCard from '@/components/dataCard/dataCard';
 import { useUserStore } from '@/store';
 import { useRouter } from 'next/navigation';
+import { apiConfirmCampaign } from '@/apis/post';
 
 const dataV = () => {
   const router = useRouter();
   const { isAdmin } = useUserStore();
+
+  //奖金确认判断
+  const onConfirmBonus = () => {
+    Promise.all([apiConfirmCampaign()]).then((values: any) => {
+      console.log(values);
+    });
+  };
   //进行判断，如果是则显示，否则跳转到首页/home
-  useEffect(() => {
-    if (!isAdmin) {
-      router.push('/');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!isAdmin) {
+  //     router.push('/');
+  //   }
+  // }, [isAdmin, router]);
   return (
     <>
       <div className="ml-[1vw] mt-[2vh] flex flex-col pb-[10vh]">
@@ -33,7 +41,7 @@ const dataV = () => {
           <Table2 />
         </div>
         <div className="relative ml-[25vw]  mt-[80px] flex shrink-0 cursor-pointer items-center gap-1 rounded-lg">
-          <div className="side-menu-frame-dataV">
+          <div className="side-menu-frame-dataV" onClick={onConfirmBonus}>
             <span
               className="h-auto text-left text-sm font-medium leading-6 text-white no-underline"
               style={{ fontFamily: 'Inter' }}

@@ -1,8 +1,6 @@
 import toast from '@/components/toast/toast';
 import axios from 'axios';
 import request from '@/utils/request';
-import { deleteCookie } from '@/utils/cookie';
-import { url } from 'inspector';
 axios.defaults.baseURL = 'https://test-locust-api.buidlerdao.xyz';
 /**
  * @description post post data
@@ -16,7 +14,7 @@ export const apiPostData = async (data: any) => {
       body: { ...data }
     });
     const result = response.data;
-    console.log(result);
+    //console.log(result);
     if (response.code === 0) {
       toast.success('Submit Success');
       return 'success';
@@ -25,7 +23,7 @@ export const apiPostData = async (data: any) => {
       return '';
     }
   } catch (error) {
-    console.error(error);
+    toast.error(`${error}`, { id: `${error}` });
   }
 };
 /**
@@ -49,7 +47,7 @@ export const apiGetPostList = async (data: {
 };
 
 /**
- * @description 获取post数据，可更改路径
+ * @description 获取数据，可更改路径
  * @params url,data
  * @api https://test-locust-api.buidlerdao.xyz/api/post
  * */
@@ -65,7 +63,7 @@ export const apiGetPostData = async (url: string) => {
       return '';
     }
   } catch (error) {
-    console.error(error);
+    toast.error(`${error}`, { id: `${error}` });
   }
 };
 
@@ -76,7 +74,6 @@ export const apiGetPostData = async (url: string) => {
  * */
 export const apiDeletePostData = async (id: number) => {
   try {
-    console.log(id);
     const res = await request(`/api/post/?id=${id}`, {
       method: 'DELETE'
       //body: { : id }
@@ -90,7 +87,6 @@ export const apiDeletePostData = async (id: number) => {
     }
   } catch (error) {
     toast.error(`${error}`, { id: `${error}` });
-    console.error(error);
   }
 };
 
@@ -111,7 +107,7 @@ export const apiGetSearchData = async (data: string) => {
       return '';
     }
   } catch (error) {
-    console.error(error);
+    toast.error(`${error}`, { id: `${error}` });
   }
 };
 
@@ -139,10 +135,15 @@ export const apiGetCampaign = async (data: {
       return '';
     }
   } catch (error) {
-    console.error(error);
+    toast.error(`${error}`, { id: `${error}` });
   }
 };
 
+/**
+ * @description 获取活动数据
+ * @params campaignId,includeRealBonus
+ * @api https://test-locust-api.buidlerdao.xyz/api/campaign/participant
+ * */
 export const apiGetCurrentCampaign = async () => {
   try {
     const res = await request(`/api/current-campaigns`, {
@@ -155,10 +156,15 @@ export const apiGetCurrentCampaign = async () => {
       return '';
     }
   } catch (error) {
-    console.error(error);
+    toast.error(`${error}`, { id: `${error}` });
   }
 };
 
+/**
+ * @description 获取月份列表数据
+ * @params data
+ * @api https://test-locust-api.buidlerdao.xyz/api/campaign/search
+ * */
 export const apiGetMonthList = async (data: string) => {
   try {
     const res = await request(`/api/post/search/?title=${data}`, {
@@ -171,6 +177,27 @@ export const apiGetMonthList = async (data: string) => {
       return '';
     }
   } catch (error) {
-    console.error(error);
+    toast.error(`${error}`, { id: `${error}` });
+  }
+};
+
+/**
+ * @description 管理员确认发放奖励
+ * @api https://test-locust-api.buidlerdao.xyz/api/campaign/confirm
+ * */
+export const apiConfirmCampaign = async () => {
+  try {
+    const res = await request('/api/campaign/confirm', {
+      method: 'POST'
+    });
+    if (res.code === 0) {
+      toast.success('Confirm Success');
+      return 'success';
+    } else {
+      toast.error(`${res.message}`, { id: `${res.message}` });
+      return '';
+    }
+  } catch (error) {
+    toast.error(`${error}`, { id: `${error}` });
   }
 };

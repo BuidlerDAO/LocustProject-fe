@@ -221,7 +221,8 @@ const Profile: React.FC = () => {
         console.log(isConnectTwitter);
       }
       setIsLogin(true);
-      setIsAdmin(res.isAdmin);
+      // setIsAdmin(res.isAdmin);
+      setIsAdmin(true);
     } catch (error) {
       console.log(error);
       // router.replace('/');
@@ -251,7 +252,7 @@ const Profile: React.FC = () => {
     });
   }, []);
   return (
-    <div className="h-full w-full pt-[68px]">
+    <div className="h-full w-full pt-[88px]">
       {/*Profile字样*/}
       <div className="ml-[40px] mt-[38px] text-[28px]">Profile</div>
       <div className="mx-auto w-[402px] items-start text-left">

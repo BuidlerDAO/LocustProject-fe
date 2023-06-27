@@ -31,3 +31,16 @@ export const apiPostClaim = async () => {
     return res.data;
   }
 };
+
+export const apiFinishCampaign = async (campaignId: number) => {
+  const res: any = await request(`/api/campaign/end`, {
+    method: 'POST',
+    body: {
+      campaignId
+    }
+  });
+  if (res.code === 0) {
+    Toast.success(`End the campaign successfully`);
+    return res.data;
+  }
+};

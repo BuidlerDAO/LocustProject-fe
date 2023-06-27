@@ -36,7 +36,7 @@ export const apiFinishCampaign = async (campaignId: number) => {
   const res: any = await request(`/api/campaign/end`, {
     method: 'POST',
     body: {
-      campaignId
+      id: campaignId
     }
   });
   if (res.code === 0) {

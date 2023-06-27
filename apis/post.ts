@@ -142,7 +142,7 @@ export const apiGetCampaign = async (data: {
 /**
  * @description 获取活动数据
  * @params campaignId,includeRealBonus
- * @api https://test-locust-api.buidlerdao.xyz/api/campaign/participant
+ * @api
  * */
 export const apiGetCurrentCampaign = async () => {
   try {

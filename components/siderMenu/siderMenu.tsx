@@ -146,8 +146,38 @@ const SideMenu = (props: any) => {
                 }}
               />
             </div>
+            <div
+              className="side-menu-frame"
+              onClick={() => {
+                setIsExplore(false);
+                setIsDataView(true);
+                setIsPost(false);
+              }}
+              style={{
+                color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+              }}
+            >
+              <Link
+                href="/home/participate"
+                style={{
+                  color: 'white',
+                  fontFamily: 'Poppins',
+                  fontWeight: '500',
+                  fontSize: '16px',
+                  lineHeight: '21px'
+                }}
+                className="ml-[32px] font-medium"
+              >
+                Event Participation
+              </Link>
+              <div
+                className="side-menu-rectangle1"
+                style={{
+                  backgroundColor: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                }}
+              />
+            </div>
             {/* data view 按钮,根据isAdmin判断有无 */}
-            {isAdmin ? <div>结束并新建</div> : null}
           </div>
           {/* <Link href="/home/post"> */}
           {/* post按钮，封装了onjudge函数  */}

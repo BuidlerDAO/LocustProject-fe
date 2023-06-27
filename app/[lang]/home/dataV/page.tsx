@@ -41,12 +41,12 @@ const dataV = () => {
           <Table2 />
         </div>
         <div className="relative ml-[25vw]  mt-[80px] flex shrink-0 cursor-pointer items-center gap-1 rounded-lg">
-          <div className="side-menu-frame-dataV">
+          <div className="side-menu-frame-dataV" onClick={onConfirmBonus}>
             <span
               className="h-auto text-left text-sm font-medium leading-6 text-white no-underline"
               style={{ fontFamily: 'Inter' }}
             >
-              <span onClick={onConfirmBonus}>Bonus Confirmation</span>
+              <span>Bonus Confirmation</span>
             </span>
           </div>
         </div>

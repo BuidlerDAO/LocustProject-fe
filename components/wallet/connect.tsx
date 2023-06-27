@@ -381,10 +381,15 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
     }, [address]);
     //  切换账户
     useEffect(() => {
-      window.ethereum.addListener('accountsChanged', handleAccountChange);
-      return () => {
-        window.ethereum.removeListener('accountsChanged', handleAccountChange);
-      };
+      if (window.ethereum) {
+        window.ethereum.addListener('accountsChanged', handleAccountChange);
+        return () => {
+          window.ethereum.removeListener(
+            'accountsChanged',
+            handleAccountChange
+          );
+        };
+      }
     }, []);
     // Render
     return (

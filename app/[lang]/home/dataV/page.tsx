@@ -17,11 +17,11 @@ const dataV = () => {
     });
   };
   //进行判断，如果是则显示，否则跳转到首页/home
-  useEffect(() => {
-    if (!isAdmin) {
-      router.push('/');
-    }
-  }, [isAdmin, router]);
+  // useEffect(() => {
+  //   if (!isAdmin) {
+  //     router.push('/');
+  //   }
+  // }, [isAdmin, router]);
   return (
     <>
       <div className="ml-[1vw] mt-[2vh] flex flex-col pb-[10vh]">

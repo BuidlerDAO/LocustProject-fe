@@ -146,7 +146,7 @@ const SideMenu = (props: any) => {
                 }}
               />
             </div>
-            <div
+            {/* <div
               className="side-menu-frame"
               onClick={() => {
                 setIsExplore(false);
@@ -176,7 +176,7 @@ const SideMenu = (props: any) => {
                   backgroundColor: isDataView ? 'rgba(109, 98, 238, 1)' : ''
                 }}
               />
-            </div>
+            </div> */}
             {/* data view 按钮,根据isAdmin判断有无 */}
           </div>
           {/* <Link href="/home/post"> */}

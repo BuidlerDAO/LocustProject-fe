@@ -10,6 +10,7 @@ export const apiGetCampaignInfo = async () => {
     return '';
   }
 };
+
 export const apiPostCampaign = async (campaignId: number) => {
   const res: any = await request(`/api/campaign/participant`, {
     method: 'POST',

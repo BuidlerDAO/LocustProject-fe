@@ -71,8 +71,15 @@ export const switchWeb3ChainId = async (chainId: string) => {
             method: 'wallet_addEthereumChain',
             params: [
               {
-                chainId: '80001',
-                chainName: 'Mumbai Testnet'
+                chainId: '0x13881',
+                chainName: 'Mumbai Testnet',
+                nativeCurrency: {
+                  name: 'MATIC',
+                  symbol: 'MATIC', // 代币符号
+                  decimals: 18 // 代币精度
+                },
+                rpcUrls: ['https://rpc-mumbai.maticvigil.com'], // 你需要提供一个或者多个有效的 RPC URLs
+                blockExplorerUrls: ['https://explorer-mumbai.maticvigil.com/'] // 可选的区块链浏览器 URL
               }
             ]
           })
@@ -80,7 +87,6 @@ export const switchWeb3ChainId = async (chainId: string) => {
             console.log(error);
           });
       }
-
       window.ethereum.request({
         method: 'wallet_switchEthereumChain',
         params: [

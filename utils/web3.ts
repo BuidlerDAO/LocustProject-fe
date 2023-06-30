@@ -86,6 +86,20 @@ const networkConfigs: NetworkConfigs = {
     },
     rpcUrls: ['https://rpc-mumbai.maticvigil.com'], // 你需要提供一个或者多个有效的 RPC URLs
     blockExplorerUrls: ['https://explorer-mumbai.maticvigil.com/'] // 可选的区块链浏览器 URL
+  },
+  '137': {
+    chainId: '0x89',
+    chainName: 'Polygon Mainnet',
+    nativeCurrency: {
+      name: 'MATIC',
+      symbol: 'MATIC', // 代币符号
+      decimals: 18 // 代币精度
+    },
+    rpcUrls: [
+      'https://polygon.llamarpc.com',
+      'https://polygon-bor.publicnode.com'
+    ], // 你需要提供一个或者多个有效的 RPC URLs
+    blockExplorerUrls: ['https://polygonscan.com/'] // 可选的区块链浏览器 URL
   }
   // other network configs...
 };

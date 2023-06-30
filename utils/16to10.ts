@@ -21,3 +21,18 @@ export const convertHexToDecimalWithScale = (
   const scale = BigInt(10) ** BigInt(decimal);
   return (value / scale).toString();
 };
+
+/**
+ * @description 将十六进制数字转化为十进制数字，并除以 10 的 decimal 次方
+ * @param numStr - 10 进制数字，以字符串形式输入
+ * @param decimal - 10 的次方数
+ * @return 返回一个十进制的字符串
+ */
+export const convertStringToDecimalWithScale = (
+  numStr: string,
+  decimal: number
+): string => {
+  const value = BigInt(numStr);
+  const scale = BigInt(10) ** BigInt(decimal);
+  return (value / scale).toString();
+};

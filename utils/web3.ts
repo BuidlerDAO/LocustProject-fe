@@ -57,6 +57,53 @@ export const getWeb3SignMessage = async (msg: string) => {
   }
 };
 
+interface NetworkConfig {
+  chainId: string;
+  chainName: string;
+  nativeCurrency: {
+    name: string;
+    symbol: string;
+    decimals: number;
+  };
+  rpcUrls: string[];
+  blockExplorerUrls: string[];
+}
+
+// 定义一个索引签名
+interface NetworkConfigs {
+  [key: string]: NetworkConfig;
+}
+
+// 定义常用的网络配置
+const networkConfigs: NetworkConfigs = {
+  '80001': {
+    chainId: '0x13881',
+    chainName: 'Mumbai Testnet',
+    nativeCurrency: {
+      name: 'MATIC',
+      symbol: 'MATIC', // 代币符号
+      decimals: 18 // 代币精度
+    },
+    rpcUrls: ['https://rpc-mumbai.maticvigil.com'], // 你需要提供一个或者多个有效的 RPC URLs
+    blockExplorerUrls: ['https://explorer-mumbai.maticvigil.com/'] // 可选的区块链浏览器 URL
+  },
+  '137': {
+    chainId: '0x89',
+    chainName: 'Polygon Mainnet',
+    nativeCurrency: {
+      name: 'MATIC',
+      symbol: 'MATIC', // 代币符号
+      decimals: 18 // 代币精度
+    },
+    rpcUrls: [
+      'https://polygon.llamarpc.com',
+      'https://polygon-bor.publicnode.com'
+    ], // 你需要提供一个或者多个有效的 RPC URLs
+    blockExplorerUrls: ['https://polygonscan.com/'] // 可选的区块链浏览器 URL
+  }
+  // other network configs...
+};
+
 /**
  * @description 切换网络
  * @params chainId
@@ -64,39 +111,24 @@ export const getWeb3SignMessage = async (msg: string) => {
 export const switchWeb3ChainId = async (chainId: string) => {
   if (window.ethereum) {
     try {
-      const id = window.ethereum.networkVersion;
-      if (id !== '80001') {
-        window.ethereum
-          .request({
-            method: 'wallet_addEthereumChain',
-            params: [
-              {
-                chainId: '0x13881',
-                chainName: 'Mumbai Testnet',
-                nativeCurrency: {
-                  name: 'MATIC',
-                  symbol: 'MATIC', // 代币符号
-                  decimals: 18 // 代币精度
-                },
-                rpcUrls: ['https://rpc-mumbai.maticvigil.com'], // 你需要提供一个或者多个有效的 RPC URLs
-                blockExplorerUrls: ['https://explorer-mumbai.maticvigil.com/'] // 可选的区块链浏览器 URL
-              }
-            ]
-          })
-          .catch((error: any) => {
-            console.log(error);
-          });
+      const currentChainId = window.ethereum.networkVersion;
+
+      // 如果当前不在目标网络，先添加网络
+      if (currentChainId !== chainId) {
+        await window.ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [networkConfigs[chainId]]
+        });
       }
-      window.ethereum.request({
+
+      // 切换网络
+      await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [
-          {
-            chainId: `${chainId}`
-          }
-        ]
+        params: [{ chainId: `0x${parseInt(chainId, 10).toString(16)}` }]
       });
-    } catch (error) {
-      console.log(error);
+    } catch (switchError) {
+      // 此处可以添加更详细的错误处理
+      console.log(switchError);
     }
   }
 };

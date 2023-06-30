@@ -1,8 +1,4 @@
-/* eslint-disable no-console */
-import create from 'zustand';
-import axios, { AxiosResponse } from 'axios';
-import { persist } from 'zustand/middleware';
-import { apiGetPostList, apiPostData } from '@/apis/post';
+import { create } from 'zustand';
 
 export type Post = {
   id: number;
@@ -21,7 +17,6 @@ interface PostStore {
   increase: (post: Post) => void;
   decrease: (id: string) => void;
   updatePost: (id: string, post: Partial<Post>) => void;
-  fetchPostsFromBackend: () => Promise<void>;
 }
 
 const usePostStore = create<PostStore>((set, get) => ({
@@ -39,15 +34,7 @@ const usePostStore = create<PostStore>((set, get) => ({
       posts: posts.map((p: { id: string }) =>
         p.id === id ? { ...p, ...post } : p
       )
-    })),
-  fetchPostsFromBackend: async () => {
-    try {
-      // const response: AxiosResponse<Post[]> = await apiGetPostList({});
-      // set({ posts: response.data });
-    } catch (error) {
-      console.error(error);
-    }
-  }
+    }))
 }));
 
 export const {

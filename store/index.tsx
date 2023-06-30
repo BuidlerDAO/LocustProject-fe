@@ -1,4 +1,4 @@
-import { create, SetState } from 'zustand';
+import { create, StateCreator } from 'zustand';
 import usePostStore from './PostStore';
 import { persist } from 'zustand/middleware';
 // type PostStore = {
@@ -22,7 +22,7 @@ import { persist } from 'zustand/middleware';
 //   decrease: (title: string) => void;
 // };
 
-// const usePostStore1 = create<PostStore>((set: SetState<PostStore>) => ({
+// const usePostStore1 = create<PostStore>((set: StateCreator<PostStore>) => ({
 //   // 数据
 //   posts: {
 //     0: {
@@ -115,7 +115,7 @@ type SiderStore = {
   setIsPost: (isPost: boolean) => void;
 };
 
-const useSiderStore = create<SiderStore>((set: SetState<SiderStore>) => ({
+const useSiderStore = create<SiderStore>((set: StateCreator<SiderStore>) => ({
   isExplore: false,
   isDataView: false,
   isPost: false,
@@ -201,21 +201,23 @@ type SearchStore = {
   setSearchValue: (searchValue: Post) => void;
 };
 
-const useSearchStore = create<SearchStore>((set: SetState<SearchStore>) => ({
-  searchValue: {
-    id: 0,
-    title: '',
-    link: '',
-    originalText: '',
-    personalThoughts: '',
-    time: '',
-    username: '',
-    avatar: ''
-  },
-  setSearchValue: (searchValue: Post) =>
-    set(() => ({
-      searchValue: searchValue
-    }))
-}));
+const useSearchStore = create<SearchStore>(
+  (set: StateCreator<SearchStore>) => ({
+    searchValue: {
+      id: 0,
+      title: '',
+      link: '',
+      originalText: '',
+      personalThoughts: '',
+      time: '',
+      username: '',
+      avatar: ''
+    },
+    setSearchValue: (searchValue: Post) =>
+      set(() => ({
+        searchValue: searchValue
+      }))
+  })
+);
 
 export { usePostStore, useSiderStore, useUserStore, useSearchStore };

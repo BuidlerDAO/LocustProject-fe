@@ -6,10 +6,14 @@ import { useUserStore } from '@/store';
 import { useRouter } from 'next/navigation';
 import { apiConfirmCampaign } from '@/apis/post';
 import { apiFinishCampaign, apiGetCampaignInfo } from '@/apis/Campaign';
-import { getBalance } from '@/utils/callContract';
+import { getBalance, getERC20TokenInfo } from '@/utils/callContract';
 import { ethers } from 'ethers';
 import { switchWeb3ChainId } from '@/utils/web3';
 import toast from '@/components/toast/toast';
+import {
+  convertHexToDecimalWithScale,
+  convertStringToDecimalWithScale
+} from '@/utils/16to10';
 
 const DataV = () => {
   //奖金确认判断
@@ -59,7 +63,8 @@ const DataV = () => {
         tokenAddress,
         contractAddress
       );
-      setBalance(balanceNum);
+      const { symbol, decimals } = await getERC20TokenInfo(tokenAddress);
+      setBalance(convertStringToDecimalWithScale(balanceNum, decimals));
     } catch (error) {
       console.log(error);
     }

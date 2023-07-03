@@ -14,7 +14,7 @@ import { blobToFile, dataURLtoBlob } from '@/utils/helpers';
 import { deleteCookie, getCookie, setCookie } from '@/utils/cookie';
 import { Dialog, DialogHeader } from '@/components/dialog';
 import { upload } from '@/utils/upload';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { Spin } from 'antd';
 const Profile: React.FC = () => {
   const {
@@ -27,9 +27,9 @@ const Profile: React.FC = () => {
     setIsLogin,
     setIsAdmin
   } = useUserStore();
-  const router = useRouter();
-
-  const name = getCookie('name');
+  const pathname = usePathname() as string;
+  const flag = pathname.includes('zh-CN') ? 'zh-CN' : 'en';
+  // const name = decodeURI(getCookie('name') as string);
   //  页面重定向到个人页面时路径中带有 Twitter 返回的 oauth_token,oauth_verifier 去进行个人信息的修改
   const oauthToken = useSearchParams()?.get('oauth_token') as string;
   const verifier = useSearchParams()?.get('oauth_verifier') as string;
@@ -137,7 +137,8 @@ const Profile: React.FC = () => {
         setCookie('avatarUrl', uploadUrl);
       }
       const res = await apiTwitterToken(
-        'http://localhost:3000/zh-CN/home/profile'
+        // 'http://localhost:3000/zh-CN/home/profile'
+        `https://insight-x.vercel.app/${flag}/home/profile`
       );
       window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
       // updateTwitterInfo();
@@ -148,7 +149,8 @@ const Profile: React.FC = () => {
   //  PUT 更新推特方法
   const updateTwitterInfo = async () => {
     const TwitterToken = await apiTwitterToken(
-      'http://localhost:3000/zh-CN/home/profile'
+      // 'http://localhost:3000/zh-CN/home/profile'
+      `https://insight-x.vercel.app/${flag}/home/profile`
     );
     const res = await apiPutUserInfo({
       twitter: {
@@ -235,8 +237,8 @@ const Profile: React.FC = () => {
     }
     getUserInfo().then(() => {
       if (getCookie('name') && getCookie('avatarUrl')) {
-        const name = getCookie('name');
-        const avatarUrl = getCookie('avatarUrl');
+        const name = decodeURIComponent(getCookie('name') as string);
+        const avatarUrl = decodeURIComponent(getCookie('avatarUrl') as string);
         if (typeof name === 'string' && typeof avatarUrl === 'string') {
           setUserName(name);
           setUsername(name);

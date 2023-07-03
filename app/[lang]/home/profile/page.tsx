@@ -115,6 +115,9 @@ const Profile: React.FC = () => {
           // console.log(res);
           setUsername(res.username);
           setAvatar(res.avatar);
+          //  删除临时存储的信息
+          deleteCookie('name');
+          deleteCookie('avatarUrl');
           //  测试是否成功更新数据
           // const testInfo = await apiUserInfo();
           // console.log(testInfo);
@@ -137,8 +140,8 @@ const Profile: React.FC = () => {
         setCookie('avatarUrl', uploadUrl);
       }
       const res = await apiTwitterToken(
-        // 'http://localhost:3000/zh-CN/home/profile'
-        `https://insight-x.vercel.app/${flag}/home/profile`
+        'http://localhost:3000/zh-CN/home/profile'
+        // `https://insight-x.vercel.app/${flag}/home/profile`
       );
       window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
       // updateTwitterInfo();
@@ -149,8 +152,8 @@ const Profile: React.FC = () => {
   //  PUT 更新推特方法
   const updateTwitterInfo = async () => {
     const TwitterToken = await apiTwitterToken(
-      // 'http://localhost:3000/zh-CN/home/profile'
-      `https://insight-x.vercel.app/${flag}/home/profile`
+      'http://localhost:3000/zh-CN/home/profile'
+      // `https://insight-x.vercel.app/${flag}/home/profile`
     );
     const res = await apiPutUserInfo({
       twitter: {
@@ -236,19 +239,17 @@ const Profile: React.FC = () => {
       // getUserInfo();
     }
     getUserInfo().then(() => {
+      console.log('getUserInfo执行了');
       if (getCookie('name') && getCookie('avatarUrl')) {
         const name = decodeURIComponent(getCookie('name') as string);
         const avatarUrl = decodeURIComponent(getCookie('avatarUrl') as string);
-        if (typeof name === 'string' && typeof avatarUrl === 'string') {
-          setUserName(name);
-          setUsername(name);
-          // console.log(userName);
-          setUploadUrl(avatarUrl);
-          setAvatar(avatarUrl);
-          // console.log(uploadUrl);
-          deleteCookie('name');
-          deleteCookie('avatarUrl');
-        }
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaa');
+        setUsername(name);
+        setUserName(name);
+        // console.log(userName);
+        setAvatar(avatarUrl);
+        setUploadUrl(avatarUrl);
+        // console.log(uploadUrl);
       }
     });
   }, []);

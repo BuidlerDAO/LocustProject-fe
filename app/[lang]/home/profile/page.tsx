@@ -140,8 +140,8 @@ const Profile: React.FC = () => {
         setCookie('avatarUrl', uploadUrl);
       }
       const res = await apiTwitterToken(
-        'http://localhost:3000/zh-CN/home/profile'
-        // `https://insight-x.vercel.app/${flag}/home/profile`
+        // 'http://localhost:3000/zh-CN/home/profile'
+        `https://insight-x.vercel.app/${flag}/home/profile`
       );
       window.location.href = `https://api.twitter.com/oauth/authorize?oauth_token=${res.oauthToken}`;
       // updateTwitterInfo();
@@ -152,8 +152,8 @@ const Profile: React.FC = () => {
   //  PUT 更新推特方法
   const updateTwitterInfo = async () => {
     const TwitterToken = await apiTwitterToken(
-      'http://localhost:3000/zh-CN/home/profile'
-      // `https://insight-x.vercel.app/${flag}/home/profile`
+      // 'http://localhost:3000/zh-CN/home/profile'
+      `https://insight-x.vercel.app/${flag}/home/profile`
     );
     const res = await apiPutUserInfo({
       twitter: {

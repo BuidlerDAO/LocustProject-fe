@@ -126,7 +126,7 @@ const Navbar = () => {
                         return null;
                       }}
                       bordered={false}
-                      className="ml-[5px] flex h-[52px] w-fit items-center rounded-full"
+                      className="flex h-[52px] w-fit items-center rounded-full"
                       style={{ fontFamily: 'Poppins', fontWeight: '400' }}
                     />
                   </AutoComplete>

@@ -18,3 +18,12 @@
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 12px;
 }
+div
+  > .ant-select-single.ant-select-customize-input
+  .ant-select-selector
+  .ant-select-selection-search {
+  position: absolute;
+  /* width: -moz-fit-content;
+  width: fit-content; */
+  width: auto;
+}

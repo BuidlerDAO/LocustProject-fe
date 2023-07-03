@@ -24,6 +24,7 @@ const SideMenu = (props: any) => {
     setIsPost
   } = useSiderStore();
   const { isAdmin, isLogin, isSignUp } = useUserStore();
+  console.log(isAdmin);
   const pathname = usePathname();
   const flag = pathname == '/zh-CN' || pathname == '/en';
   const onJudge = () => {
@@ -70,11 +71,12 @@ const SideMenu = (props: any) => {
         {/* logo部分 */}
         <div className="width-[18rem] ml-[30px] flex h-[100px] items-center justify-center">
           <div
-            className={`mr-[-5px] mt-[-18px]
+            className={`mr-[-5px] mt-[-18px] h-[36px] cursor-pointer
                             ${!flag && 'mr-[6px] mt-[0.2px]'}
             } `}
+            onClick={() => window.location.reload()}
           >
-            {flag ? <LogoIconTop /> : <Logo />}
+            <LogoIconTop />
           </div>
         </div>
         <div className="side-menu-frame1171274769 ">
@@ -144,8 +146,38 @@ const SideMenu = (props: any) => {
                 }}
               />
             </div>
+            {/* <div
+              className="side-menu-frame"
+              onClick={() => {
+                setIsExplore(false);
+                setIsDataView(true);
+                setIsPost(false);
+              }}
+              style={{
+                color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+              }}
+            >
+              <Link
+                href="/home/participate"
+                style={{
+                  color: 'white',
+                  fontFamily: 'Poppins',
+                  fontWeight: '500',
+                  fontSize: '16px',
+                  lineHeight: '21px'
+                }}
+                className="ml-[32px] font-medium"
+              >
+                Event Participation
+              </Link>
+              <div
+                className="side-menu-rectangle1"
+                style={{
+                  backgroundColor: isDataView ? 'rgba(109, 98, 238, 1)' : ''
+                }}
+              />
+            </div> */}
             {/* data view 按钮,根据isAdmin判断有无 */}
-            {isAdmin ? <div>结束并新建</div> : null}
           </div>
           {/* <Link href="/home/post"> */}
           {/* post按钮，封装了onjudge函数  */}
@@ -174,7 +206,7 @@ const SideMenu = (props: any) => {
               </span>
             </div>
           </div>
-          {isAdmin ? (
+          {/* {isAdmin ? (
             <div
               className="side-menu-btn"
               onClick={() => {
@@ -196,7 +228,7 @@ const SideMenu = (props: any) => {
             </div>
           ) : (
             ''
-          )}
+          )} */}
           {/* </Link> */}
         </div>
       </div>

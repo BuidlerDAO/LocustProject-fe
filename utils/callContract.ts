@@ -1,4 +1,4 @@
-import { abi, erc20TokenContractAbi } from '@/apis/abi';
+import { adminABI, erc20TokenContractAbi } from '@/apis/abi';
 import Toast from '@/components/toast/toast';
 import { BigNumber, ethers } from 'ethers';
 import { switchWeb3ChainId } from '@/utils/web3';
@@ -54,7 +54,7 @@ async function addReward(
   });
   const signer = provider.getSigner();
   // 创建合约实例
-  const contract = new ethers.Contract(contractAddress, abi, signer);
+  const contract = new ethers.Contract(contractAddress, adminABI, signer);
   // 格式化输入参数
   const formattedTokens = tokens.map((token) => {
     const tokenAmount = ethers.BigNumber.from(`0x${token.amount}`);
@@ -81,6 +81,7 @@ async function addReward(
   console.log('addReward Transaction receipt: ', receipt);
   Toast.success('addReward successful!');
 }
+
 async function claimReward(
   contractAddress: string,
   campaignIdHash: string,
@@ -97,7 +98,7 @@ async function claimReward(
   });
   const signer = provider.getSigner();
   // 创建合约实例
-  const contract = new ethers.Contract(contractAddress, abi, signer);
+  const contract = new ethers.Contract(contractAddress, adminABI, signer);
   const formattedTokens = tokens.map((token) => {
     const tokenAmount = ethers.BigNumber.from(`0x${token.amount}`);
     return {
@@ -126,4 +127,22 @@ async function claimReward(
   Toast.success('claimReward successful!');
 }
 
-export { approveTokens, addReward, claimReward };
+async function getBalance(
+  provider: ethers.providers.Web3Provider,
+  contractAddress: string,
+  address: string
+) {
+  const signer = provider.getSigner();
+  // 创建合约实例
+  const contract = new ethers.Contract(
+    contractAddress,
+    erc20TokenContractAbi,
+    signer
+  );
+  const balance = await contract.balanceOf(contractAddress);
+
+  console.log(`The balance of address ${address} is: `, balance.toString());
+  return balance.toString();
+}
+
+export { approveTokens, addReward, claimReward, getBalance };

@@ -35,6 +35,7 @@ const Index = memo((props: any) => {
     const { id, contractAddress, tokenAddress, requiredPledgedAmount, hashId } =
       await apiGetCampaignInfo();
     console.log(requiredPledgedAmount);
+
     // const amount = ethers.BigNumber.from(requiredPledgedAmount)
     // console.log(amount);
     await approveTokens(
@@ -83,6 +84,8 @@ const Index = memo((props: any) => {
   };
   //一个判断函数：判断是否已经报名
   const onJudge = () => {
+    // apiPostCampaign(1);
+    // return;
     if (isLogin) {
       if (isSignUp) {
         onClickError();

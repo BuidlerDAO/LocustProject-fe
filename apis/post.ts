@@ -114,7 +114,7 @@ export const apiGetSearchData = async (data: string) => {
 /**
  * @description 获取活动数据
  * @params campaignId,includeRealBonus
- * @api https://test-locust-api.buidlerdao.xyz/api/campaign/participant
+ * @api
  * */
 export const apiGetCampaign = async (data: {
   campaignId?: number;
@@ -123,7 +123,7 @@ export const apiGetCampaign = async (data: {
   try {
     //当campaignId为空时,则不传campaignId
     const res = await request(
-      `/api/campaign/participant?campaignId=${data.campaignId}`,
+      `/api/campaign/participant?campaignId=${data.campaignId}&includeRealBonus=${data.includeRealBonus}`,
       {
         method: 'GET'
       }
@@ -142,7 +142,7 @@ export const apiGetCampaign = async (data: {
 /**
  * @description 获取活动数据
  * @params campaignId,includeRealBonus
- * @api https://test-locust-api.buidlerdao.xyz/api/campaign/participant
+ * @api
  * */
 export const apiGetCurrentCampaign = async () => {
   try {
@@ -185,10 +185,11 @@ export const apiGetMonthList = async (data: string) => {
  * @description 管理员确认发放奖励
  * @api https://test-locust-api.buidlerdao.xyz/api/campaign/confirm
  * */
-export const apiConfirmCampaign = async () => {
+export const apiConfirmCampaign = async (id: number) => {
   try {
     const res = await request('/api/campaign/confirm', {
-      method: 'POST'
+      method: 'POST',
+      body: { id: id }
     });
     if (res.code === 0) {
       toast.success('Confirm Success');

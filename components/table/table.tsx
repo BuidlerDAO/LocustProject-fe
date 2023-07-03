@@ -65,7 +65,9 @@ const Table2 = () => {
   ];
   //为getdata传入参数
   const getData = (value: any = '') => {
-    Promise.all([apiGetCampaign({ campaignId: value })]).then((values: any) => {
+    Promise.all([
+      apiGetCampaign({ campaignId: value, includeRealBonus: true })
+    ]).then((values: any) => {
       console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
         //console.log(item);
@@ -297,6 +299,7 @@ const Table1 = () => {
     </>
   );
 };
+
 const TableUserOverview = () => {
   const [data, setData] = useState<any[]>([]);
   const [Loading, setLoading] = useState<boolean>(true);
@@ -339,8 +342,10 @@ const TableUserOverview = () => {
       align: 'center'
     }
   ];
-  const getData = async () => {
-    Promise.all([apiGetCampaign({})]).then((values: any) => {
+  const getData = async (value: any = '') => {
+    Promise.all([
+      apiGetCampaign({ campaignId: value, includeRealBonus: true })
+    ]).then((values: any) => {
       //console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
         //console.log(item);

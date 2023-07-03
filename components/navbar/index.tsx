@@ -69,7 +69,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`absolute z-50 float-right flex h-[80px] flex-wrap items-center bg-[#04070B]
+        className={`absolute z-50 float-right flex h-[100px] flex-wrap items-center bg-[#04070B]
       ${!flag && 'left-[18rem] border-b-[1px] border-b-lineGrey'} ${
           flag && 'w-full'
         }`}
@@ -77,9 +77,12 @@ const Navbar = () => {
         <div className="sticky inset-0 z-10 flex h-full  max-w-full items-center px-8 py-2 lg:px-10 lg:py-4">
           <div className="text-blue-gray-900 dark:text-blue-gray-100 flex w-full items-center">
             {/*logo*/}
-            <div className="width-[18rem] absolute  left-[4vw] top-[35px] h-[100px]">
+            <div className="absolute left-[40px] top-[32px]">
               {flag ? (
-                <div className="z-100 flex items-center">
+                <div
+                  className="z-100 flex h-[36px] cursor-pointer items-center"
+                  onClick={() => window.location.reload()}
+                >
                   <LogoIconTop />
                 </div>
               ) : null}
@@ -87,7 +90,7 @@ const Navbar = () => {
             {/*搜索框 & sign up 是否出现 */}
             {flag ? (
               <>
-                <div className="ml-[10vw] flex h-[52px] w-[50vw]"></div>
+                <div className="ml-[10vw] flex h-[36px] w-[50vw]"></div>
               </>
             ) : (
               <>
@@ -123,7 +126,7 @@ const Navbar = () => {
                         return null;
                       }}
                       bordered={false}
-                      className="ml-[5px] flex h-[52px] w-fit items-center rounded-full"
+                      className="flex h-[52px] w-fit items-center rounded-full"
                       style={{ fontFamily: 'Poppins', fontWeight: '400' }}
                     />
                   </AutoComplete>

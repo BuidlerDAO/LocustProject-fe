@@ -1,13 +1,18 @@
-import React, { use, useEffect } from 'react';
+import React, { HTMLAttributes, useEffect, useState } from 'react';
 
 import { CopyOutlined, DollarCircleOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
 import toast from '../toast/toast';
 import { getCookie } from '@/utils/cookie';
 import './index.css';
+import { apiGetCampaignInfo } from '@/apis/Campaign';
 
-const DataCard = () => {
-  const [address, setAddress] = React.useState(''); // replace with the value you want to copy
+interface DataCardProps extends HTMLAttributes<HTMLElement> {
+  address: string;
+  balance: string;
+}
+
+const DataCard = ({ address, balance }: DataCardProps) => {
   const onCopy = () => {
     const value = address;
     navigator.clipboard
@@ -19,15 +24,7 @@ const DataCard = () => {
       )
       .catch((err) => console.error('failed to copy', err));
   };
-  //从cookie中获取用户的地址
-  useEffect(() => {
-    const onAddress: string | undefined = getCookie('address');
-    setAddress(onAddress || '');
-  }, [setAddress]);
 
-  useEffect(() => {
-    console.log('address', address);
-  }, [address]);
   return (
     <>
       <div className={`component2-container `}>
@@ -51,7 +48,7 @@ const DataCard = () => {
               <span>Balance:</span>
             </span>
             <span className="component2-text08 H2">
-              <span>$300</span>
+              <span>${balance}</span>
             </span>
             <span className="component2-currency-circle-dollar">
               <DollarCircleOutlined style={{ fontSize: '150%' }} />

@@ -6,6 +6,7 @@ import toast from '../toast/toast';
 import { getCookie } from '@/utils/cookie';
 import './index.css';
 import { apiGetCampaignInfo } from '@/apis/Campaign';
+import { CopyIcon } from '../icons/copyIcon';
 
 interface DataCardProps extends HTMLAttributes<HTMLElement> {
   address: string;
@@ -34,7 +35,7 @@ const DataCard = ({ address, balance }: DataCardProps) => {
         <div className="flex">
           <div className="component2-frame">
             <span className="component2-frame1">
-              <CopyOutlined style={{ fontSize: '150%' }} onClick={onCopy} />
+              <CopyIcon style={{ fontSize: '150%' }} onClick={onCopy} />
             </span>
             <span className="component2-text02">
               <span>Address</span>

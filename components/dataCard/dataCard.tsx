@@ -35,7 +35,10 @@ const DataCard = ({ address, balance }: DataCardProps) => {
         <div className="flex">
           <div className="component2-frame">
             <span className="component2-frame1">
-              <CopyIcon style={{ fontSize: '150%' }} onClick={onCopy} />
+              <CopyIcon
+                style={{ fontSize: '150%', cursor: 'pointer' }}
+                onClick={onCopy}
+              />
             </span>
             <span className="component2-text02">
               <span>Address</span>

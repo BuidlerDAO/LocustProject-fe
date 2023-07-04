@@ -23,6 +23,22 @@ const Navbar = () => {
     const res = await apiGetSearchData(query);
     const items = res.items;
     const result = items.map((item: any, idx: any) => {
+      if (!item) {
+        return {
+          value: 'Not Found',
+          label: (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between'
+              }}
+            >
+              <span>Not Found</span>
+              {/* <span>results</span> */}
+            </div>
+          )
+        };
+      }
       const category = `${item.title}`;
       const newData = {
         id: item.id,
@@ -70,9 +86,9 @@ const Navbar = () => {
     <>
       <div
         className={`absolute z-50 float-right flex h-[100px] flex-wrap items-center bg-[#04070B]
-      ${!flag && 'left-[18rem] border-b-[1px] border-b-lineGrey'} ${
-          flag && 'w-full'
-        }`}
+      ${
+        !flag && 'custom-width left-[18rem] border-b-[1px] border-b-lineGrey'
+      } ${flag && 'w-full'}`}
       >
         <div className="sticky inset-0 z-10 flex h-full  max-w-full items-center px-8 py-2 lg:px-10 lg:py-4">
           <div className="text-blue-gray-900 dark:text-blue-gray-100 flex w-full items-center">
@@ -135,7 +151,7 @@ const Navbar = () => {
                 {isSignUp ? (
                   <div className="ml-[25.2vw]"></div>
                 ) : (
-                  <div className="ml-[15.4vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
+                  <div className="ml-[19.4vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
                     <Link
                       href="/"
                       className="relative right-[3.7vw]"

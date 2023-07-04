@@ -27,3 +27,6 @@ div
   width: fit-content; */
   width: auto;
 }
+.custom-width {
+  width: calc(100% - 18rem);
+}

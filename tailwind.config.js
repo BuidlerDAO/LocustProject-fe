@@ -24,7 +24,8 @@ module.exports = withTV({
         GreyWord: '#747474',
         textGrey: 'rgba(116, 116, 116, 1)',
         lineGrey: '#262626',
-        moreBtnGrey: '#645C5C'
+        moreBtnGrey: '#645C5C',
+        buttonColor: 'linear-gradient(180deg, #6E62EE 2.08%, #3F3DFA 100%)'
       }
     }
   },

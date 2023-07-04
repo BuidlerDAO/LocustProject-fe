@@ -85,11 +85,11 @@ const DataV = () => {
           <Table2 />
         </div>
         <div
-          className="h-13 mx-auto mt-6 flex w-44 cursor-pointer items-center justify-center rounded-full bg-gradient-to-b from-purple-400 to-indigo-500 p-3 transition-all duration-200 ease-in-out hover:from-purple-500 hover:to-indigo-600"
+          className="mx-auto mt-6 flex cursor-pointer items-center justify-center rounded-[44px] bg-purple3 bg-gradient-to-b p-3 px-[64px] py-[12px] transition-all duration-200 ease-in-out hover:from-purple-500 hover:to-indigo-600"
           onClick={onConfirmBonus}
         >
           <span
-            className="h-auto text-left text-sm font-medium leading-6 text-white no-underline"
+            className="h-auto rounded-[44px] text-left text-sm font-medium leading-6 text-white no-underline "
             style={{ fontFamily: 'Inter' }}
           >
             <span>Bonus Confirmation</span>

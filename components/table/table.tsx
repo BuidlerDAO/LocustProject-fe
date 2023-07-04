@@ -68,7 +68,7 @@ const Table2 = () => {
     Promise.all([
       apiGetCampaign({ campaignId: value, includeRealBonus: true })
     ]).then((values: any) => {
-      console.log(values[0].items);
+      //console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
         //console.log(item);
         return {
@@ -125,7 +125,7 @@ const Table2 = () => {
               onClick={onDownload}
             />
           </div>
-          <div className="flex items-center justify-center">
+          <div className="mt-[-20px] flex items-center justify-center">
             <ConfigProvider
               theme={{
                 token: {
@@ -144,7 +144,7 @@ const Table2 = () => {
                   border: '1px solid #29282f',
                   color: 'white',
                   outlineColor: '#29282f',
-                  marginRight: '10px'
+                  marginRight: '12px'
                 }}
                 bordered={false}
                 labelInValue={true}

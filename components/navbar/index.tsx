@@ -151,7 +151,7 @@ const Navbar = () => {
                 {isSignUp ? (
                   <div className="ml-[25.2vw]"></div>
                 ) : (
-                  <div className="ml-[15.4vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
+                  <div className="ml-[19.4vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
                     <Link
                       href="/"
                       className="relative right-[3.7vw]"

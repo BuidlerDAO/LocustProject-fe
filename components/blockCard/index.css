@@ -123,6 +123,7 @@
   width: 18px;
   height: 18px;
   position: absolute;
+  cursor: pointer;
 }
 .block-frame6 {
   gap: 8px;

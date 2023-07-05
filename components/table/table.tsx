@@ -10,6 +10,7 @@ import {
   apiGetCurrentCampaign,
   apiGetPostData
 } from '@/apis/post';
+import { convertHexToDecimal } from '@/utils/16to10';
 
 type AlignType = 'left' | 'center' | 'right';
 
@@ -88,12 +89,12 @@ const Table2 = () => {
   const getMonthList = async () => {
     Promise.all([apiGetPostData('/api/campaign/detail')]).then(
       (values: any) => {
-        const newData = values[0].items.map((item: any) => {
-          // console.log(item);
+        const months = new Set(values[0].items.map((item: any) => item.month));
+        const newData = Array.from(months).map((month) => {
           return {
-            value: item.month,
-            label: item.month,
-            id: item.id
+            label: month,
+            value: month,
+            id: values[0].items.find((item: any) => item.month === month).id
           };
         });
         setMonthOptions(newData);
@@ -185,7 +186,10 @@ const Table2 = () => {
 const Table1 = () => {
   const [data, setData] = useState<any>([]);
   const [Loading, setLoading] = useState(true);
-  const columns1: ColumnItem[] = [
+  interface CustomColumnItem extends ColumnItem {
+    render?: (text: string) => string | React.JSX.Element;
+  }
+  const columns1: CustomColumnItem[] = [
     {
       title: 'Month',
       dataIndex: 'month',
@@ -226,7 +230,9 @@ const Table1 = () => {
       title: 'Total prize pool',
       dataIndex: 'totalPrizePool',
       key: 'totalPrizePool',
-      align: 'center'
+      align: 'center',
+      //用convertHexToDecimal把数据转换为10进制
+      render: (text: string) => convertHexToDecimal(text)
     }
   ];
   const getData = async () => {
@@ -304,6 +310,7 @@ const TableUserOverview = () => {
   const [data, setData] = useState<any[]>([]);
   const [Loading, setLoading] = useState<boolean>(true);
   //columns含有Month、Number of articles submitted、Number of unsuccessful articles、Number of valid articles、Bonus、Total Prize Pool
+
   const columns: ColumnItem[] = [
     {
       title: 'Month',

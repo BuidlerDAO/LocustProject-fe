@@ -107,10 +107,13 @@ const Table2 = () => {
   useEffect(() => {
     getMonthList();
   }, []);
-  const handleChange = (value: string) => {
+  const handleChange = (value: any) => {
     //在mothOptions中找到value对应的label
-    const findMonth = monthOptions.find((item: any) => item.value === value);
-    console.log(findMonth);
+    // console.log(value, monthOptions);
+    const findMonth = monthOptions.find(
+      (item: any) => item.value === value.value
+    );
+    //console.log(findMonth);
     getData(findMonth.id);
   };
   const onDownload = () => {
@@ -240,7 +243,7 @@ const Table1 = () => {
     Promise.all([apiGetPostData('/api/campaign/detail')]).then(
       (values: any) => {
         const newData = values[0].items.map((item: any) => {
-          // console.log(item);
+          console.log(item);
           return {
             month: item.month,
             enrollment: item.participantsCount,

@@ -98,6 +98,7 @@ const Table2 = () => {
           };
         });
         setMonthOptions(newData);
+        console.log(newData);
         getData(newData[0].id);
       }
     );

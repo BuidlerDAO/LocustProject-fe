@@ -67,7 +67,7 @@ const Table2 = () => {
   //为getdata传入参数
   const getData = (value: any = '') => {
     Promise.all([
-      apiGetCampaign({ campaignId: value, includeRealBonus: false })
+      apiGetCampaign({ campaignId: value, includeRealBonus: true })
     ]).then((values: any) => {
       //console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
@@ -89,32 +89,25 @@ const Table2 = () => {
   const getMonthList = async () => {
     Promise.all([apiGetPostData('/api/campaign/detail')]).then(
       (values: any) => {
-        const months = new Set(values[0].items.map((item: any) => item.month));
-        const newData = Array.from(months).map((month) => {
+        const newData = values[0].items.map((item: any) => {
+          console.log(item);
           return {
-            label: month,
-            value: month,
-            id: values[0].items.find((item: any) => item.month === month).id
+            value: item.id,
+            label: item.month
           };
         });
         setMonthOptions(newData);
-        console.log(newData);
-        getData(newData[0].id);
+        getData(newData[0].value);
       }
     );
   };
-
   useEffect(() => {
     getMonthList();
   }, []);
-  const handleChange = (value: any) => {
+  const handleChange = (value: { value: string; label: string }) => {
     //在mothOptions中找到value对应的label
-    // console.log(value, monthOptions);
-    const findMonth = monthOptions.find(
-      (item: any) => item.value === value.value
-    );
-    //console.log(findMonth);
-    getData(findMonth.id);
+    setLoading(true);
+    getData(value.value);
   };
   const onDownload = () => {
     // console.log('download');
@@ -153,7 +146,7 @@ const Table2 = () => {
                 }}
                 bordered={false}
                 labelInValue={true}
-                onChange={(value) => handleChange(value)}
+                onChange={(value: any) => handleChange(value)}
                 options={monthOptions}
               />
             </ConfigProvider>

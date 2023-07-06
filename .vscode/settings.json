@@ -20,5 +20,6 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "i18next.i18nPaths": "/Users/vadxq/git/nextjs-web3-starter/i18n,/Users/vadxq/git/nextjs-web3-starter/i18n/locales",
-  "compile-hero.disable-compile-files-on-did-save-code": true
+  "compile-hero.disable-compile-files-on-did-save-code": true,
+  "commentTranslate.targetLanguage": "en"
 }

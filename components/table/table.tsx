@@ -67,7 +67,7 @@ const Table2 = () => {
   //为getdata传入参数
   const getData = (value: any = '') => {
     Promise.all([
-      apiGetCampaign({ campaignId: value, includeRealBonus: true })
+      apiGetCampaign({ campaignId: value, includeRealBonus: false })
     ]).then((values: any) => {
       //console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {

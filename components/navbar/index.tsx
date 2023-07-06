@@ -117,7 +117,7 @@ const Navbar = () => {
                       backgroundColor: '#1f1f1f',
                       borderColor: 'rgba(255, 255, 255, 0.16)'
                     }}
-                    className="flex h-[52px] w-[30vw] rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+                    className="flex h-[52px] w-[35vw] rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
                   >
                     <Input
                       size="large"
@@ -136,7 +136,7 @@ const Navbar = () => {
                 {isSignUp ? (
                   <div className="ml-[25.2vw]"></div>
                 ) : (
-                  <div className="ml-[19.4vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
+                  <div className="ml-[14.4vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
                     <Link
                       href="/"
                       className="relative right-[3.7vw]"

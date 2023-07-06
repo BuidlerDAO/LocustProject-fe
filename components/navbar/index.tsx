@@ -23,22 +23,6 @@ const Navbar = () => {
     const res = await apiGetSearchData(query);
     const items = res.items;
     const result = items.map((item: any, idx: any) => {
-      if (!item) {
-        return {
-          value: 'Not Found',
-          label: (
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between'
-              }}
-            >
-              <span>Not Found</span>
-              {/* <span>results</span> */}
-            </div>
-          )
-        };
-      }
       const category = `${item.title}`;
       const newData = {
         id: item.id,
@@ -124,6 +108,7 @@ const Navbar = () => {
                   }}
                 >
                   <AutoComplete
+                    notFoundContent="Not Found"
                     options={options}
                     onSelect={onSelect}
                     onSearch={handleSearch}

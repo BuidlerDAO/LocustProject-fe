@@ -167,6 +167,8 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
     const {
       setIsAdmin,
       isSignUp,
+      isParticipant,
+      setIsParticipant,
       setUsername,
       setAvatar,
       setTwitter,
@@ -315,7 +317,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       }
     ];
     //  是否报名来渲染参与活动页面
-    const items: MenuProps['items'] = isSignUp
+    const items: MenuProps['items'] = isParticipant
       ? showItems
       : showItems.filter((item: any) => item.key === '1' || item.key === '3');
     // 下拉框样式
@@ -371,6 +373,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             setTwitter(res.twitter);
             setIsLogin(true);
             setIsAdmin(res.isAdmin);
+            setIsParticipant(res.isParticipant);
             setSignUp();
           })
           .catch((error) => {

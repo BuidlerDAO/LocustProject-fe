@@ -2,6 +2,15 @@ import { adminABI, erc20TokenContractAbi } from '@/apis/abi';
 import Toast from '@/components/toast/toast';
 import { BigNumber, ethers } from 'ethers';
 import { switchWeb3ChainId } from '@/utils/web3';
+import { setCookie } from './cookie';
+import { apiPostClaimed } from '@/apis/Campaign';
+
+function remove0x(str: string): string {
+  if (str.startsWith('0x')) {
+    return str.slice(2);
+  }
+  return str;
+}
 
 async function approveTokens(
   tokenAddress: string,
@@ -127,15 +136,20 @@ async function claimRewards(contractAddress: string, rewards: Reward[]) {
   const contract = new ethers.Contract(contractAddress, adminABI, signer);
 
   // 发起批量调用
-  const tx = await contract.batchClaimToken(params, {
-    gasLimit: ethers.utils.hexlify(1000000) // 100万 gas
-  });
+  try {
+    const tx = await contract.batchClaimToken(params, {
+      gasLimit: ethers.utils.hexlify(1000000) // 100万 gas
+    });
 
-  // 等待交易被矿工打包到区块中，并获取交易回执
-  const receipt = await tx.wait();
-  console.log('claimReward Transaction successful with hash: ', tx.hash);
-  console.log('claimReward Transaction receipt: ', receipt);
-  Toast.success('claimReward successful!');
+    // 等待交易被矿工打包到区块中，并获取交易回执
+    const receipt = await tx.wait();
+    console.log('claimReward Transaction successful with hash: ', tx.hash);
+    console.log('claimReward Transaction receipt: ', receipt);
+    Toast.success('claimReward successful!');
+    await apiPostClaimed(remove0x(String(tx.hash)));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function claimReward(
@@ -200,6 +214,9 @@ async function getERC20TokenInfo(tokenAddress: string) {
   );
   const symbol = (await contract.symbol()) as string;
   const decimals = (await contract.decimals()) as number;
+
+  setCookie('tokenSymbol', symbol);
+  setCookie('tokenDecimals', decimals.toString());
 
   return { symbol, decimals };
 }

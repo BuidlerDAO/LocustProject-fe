@@ -10,7 +10,12 @@ import {
   apiGetCurrentCampaign,
   apiGetPostData
 } from '@/apis/post';
-import { convertHexToDecimal } from '@/utils/16to10';
+import {
+  convertHexToDecimal,
+  convertHexToDecimalWithScale,
+  convertStringToDecimalWithScale
+} from '@/utils/16to10';
+import { getCookie } from '@/utils/cookie';
 
 type AlignType = 'left' | 'center' | 'right';
 
@@ -20,8 +25,13 @@ interface ColumnItem {
   dataIndex: string;
   key: string;
   align?: AlignType;
+  render?: (text: string) => string | React.JSX.Element;
 }
+
 const Table2 = () => {
+  const isTest =
+    window.location.hostname.includes('vercel') ||
+    window.location.hostname.includes('localhost');
   const [monthOptions, setMonthOptions] = useState<any>([]);
   const [data, setData] = useState([]);
   const [Loading, setLoading] = useState(true);
@@ -55,7 +65,9 @@ const Table2 = () => {
       align: 'center',
       title: 'Bonuses Received',
       dataIndex: 'bonusesReceived',
-      key: 'bonusesReceived'
+      key: 'bonusesReceived',
+      render: (text: string) =>
+        convertHexToDecimalWithScale(text, isTest ? 18 : 6)
     },
     {
       align: 'center',
@@ -69,9 +81,7 @@ const Table2 = () => {
     Promise.all([
       apiGetCampaign({ campaignId: value, includeRealBonus: true })
     ]).then((values: any) => {
-      //console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
-        //console.log(item);
         return {
           userName: item.user.name,
           walletAddress: item.user.address,
@@ -180,7 +190,11 @@ const Table2 = () => {
     </>
   );
 };
+
 const Table1 = () => {
+  const isTest =
+    window.location.hostname.includes('vercel') ||
+    window.location.hostname.includes('localhost');
   const [data, setData] = useState<any>([]);
   const [Loading, setLoading] = useState(true);
   interface CustomColumnItem extends ColumnItem {
@@ -229,12 +243,15 @@ const Table1 = () => {
       key: 'totalPrizePool',
       align: 'center',
       //用convertHexToDecimal把数据转换为10进制
-      render: (text: string) => convertHexToDecimal(text)
+      render: (text: string) =>
+        convertHexToDecimalWithScale(text, isTest ? 18 : 6)
     }
   ];
   const getData = async () => {
     Promise.all([apiGetPostData('/api/campaign/detail')]).then(
       (values: any) => {
+        // 如果是 usdt 的话精度是 6
+
         const newData = values[0].items.map((item: any) => {
           console.log(item);
           return {
@@ -306,8 +323,7 @@ const Table1 = () => {
 const TableUserOverview = () => {
   const [data, setData] = useState<any[]>([]);
   const [Loading, setLoading] = useState<boolean>(true);
-  //columns含有Month、Number of articles submitted、Number of unsuccessful articles、Number of valid articles、Bonus、Total Prize Pool
-
+  const tokenDecimals = getCookie('tokenDecimals') ?? '6';
   const columns: ColumnItem[] = [
     {
       title: 'Month',
@@ -337,13 +353,17 @@ const TableUserOverview = () => {
       title: 'Bonus',
       dataIndex: 'bonus',
       key: 'bonus',
-      align: 'center'
+      align: 'center',
+      render: (text: string) =>
+        convertHexToDecimalWithScale(text, Number.parseInt(tokenDecimals))
     },
     {
       title: 'Total Prize Pool',
       dataIndex: 'totalPrizePool',
       key: 'totalPrizePool',
-      align: 'center'
+      align: 'center',
+      render: (text: string) =>
+        convertHexToDecimalWithScale(text, Number.parseInt(tokenDecimals))
     }
   ];
   const getData = async (value: any = '') => {
@@ -456,9 +476,9 @@ const UserArticle = () => {
       //console.log(values[0].items);
       const newData = values[0].items.map((item: any) => {
         // console.log(item);
-        if (item.status === 0) {
+        if (item.status === 1) {
           item.status = 'Normal';
-        } else if (item.status === 1) {
+        } else if (item.status === 0) {
           item.status = 'Audit does not pass';
         }
         return {

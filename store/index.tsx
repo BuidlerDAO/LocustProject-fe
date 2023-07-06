@@ -155,6 +155,7 @@ const useUserStore = create<any>(
   persist(
     (set) => ({
       isAdmin: false,
+      isParticipant: false,
       isLogin: false,
       isSignUp: false,
       isConnectTwitter: false,
@@ -164,6 +165,10 @@ const useUserStore = create<any>(
       setIsAdmin: (isAdmin: boolean) =>
         set(() => ({
           isAdmin: isAdmin
+        })),
+      setIsParticipant: (isParticipant: boolean) =>
+        set(() => ({
+          isParticipant: isParticipant
         })),
       setIsLogin: (isLogin: boolean) =>
         set(() => ({

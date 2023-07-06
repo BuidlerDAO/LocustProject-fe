@@ -23,12 +23,26 @@ export const apiPostCampaign = async (campaignId: number) => {
     return res.data;
   }
 };
+
 export const apiPostClaim = async () => {
   const res = await request('/api/campaign/bonus-claim', {
     method: 'POST'
   });
   if (res.code === 0) {
     Toast.success('apiPostClaim success');
+    return res.data;
+  }
+};
+
+export const apiPostClaimed = async (transactionHash: string) => {
+  const res = await request('/api/campaign/bonus-claimed', {
+    method: 'POST',
+    body: {
+      transactionHash: transactionHash
+    }
+  });
+  if (res.code === 0) {
+    // Toast.success('apiPostClaim success');
     return res.data;
   }
 };

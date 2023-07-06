@@ -10,6 +10,7 @@ import {
   apiGetCurrentCampaign,
   apiGetPostData
 } from '@/apis/post';
+import { convertHexToDecimal } from '@/utils/16to10';
 
 type AlignType = 'left' | 'center' | 'right';
 
@@ -89,27 +90,24 @@ const Table2 = () => {
     Promise.all([apiGetPostData('/api/campaign/detail')]).then(
       (values: any) => {
         const newData = values[0].items.map((item: any) => {
-          // console.log(item);
+          console.log(item);
           return {
-            value: item.month,
-            label: item.month,
-            id: item.id
+            value: item.id,
+            label: item.month
           };
         });
         setMonthOptions(newData);
-        getData(newData[0].id);
+        getData(newData[0].value);
       }
     );
   };
-
   useEffect(() => {
     getMonthList();
   }, []);
-  const handleChange = (value: string) => {
+  const handleChange = (value: { value: string; label: string }) => {
     //在mothOptions中找到value对应的label
-    const findMonth = monthOptions.find((item: any) => item.value === value);
-    console.log(findMonth);
-    getData(findMonth.id);
+    setLoading(true);
+    getData(value.value);
   };
   const onDownload = () => {
     // console.log('download');
@@ -148,7 +146,7 @@ const Table2 = () => {
                 }}
                 bordered={false}
                 labelInValue={true}
-                onChange={(value) => handleChange(value)}
+                onChange={(value: any) => handleChange(value)}
                 options={monthOptions}
               />
             </ConfigProvider>
@@ -185,7 +183,10 @@ const Table2 = () => {
 const Table1 = () => {
   const [data, setData] = useState<any>([]);
   const [Loading, setLoading] = useState(true);
-  const columns1: ColumnItem[] = [
+  interface CustomColumnItem extends ColumnItem {
+    render?: (text: string) => string | React.JSX.Element;
+  }
+  const columns1: CustomColumnItem[] = [
     {
       title: 'Month',
       dataIndex: 'month',
@@ -226,14 +227,16 @@ const Table1 = () => {
       title: 'Total prize pool',
       dataIndex: 'totalPrizePool',
       key: 'totalPrizePool',
-      align: 'center'
+      align: 'center',
+      //用convertHexToDecimal把数据转换为10进制
+      render: (text: string) => convertHexToDecimal(text)
     }
   ];
   const getData = async () => {
     Promise.all([apiGetPostData('/api/campaign/detail')]).then(
       (values: any) => {
         const newData = values[0].items.map((item: any) => {
-          // console.log(item);
+          console.log(item);
           return {
             month: item.month,
             enrollment: item.participantsCount,
@@ -304,6 +307,7 @@ const TableUserOverview = () => {
   const [data, setData] = useState<any[]>([]);
   const [Loading, setLoading] = useState<boolean>(true);
   //columns含有Month、Number of articles submitted、Number of unsuccessful articles、Number of valid articles、Bonus、Total Prize Pool
+
   const columns: ColumnItem[] = [
     {
       title: 'Month',

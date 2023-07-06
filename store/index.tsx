@@ -218,4 +218,18 @@ const useSearchStore = create<SearchStore>((set: SetState<SearchStore>) => ({
     }))
 }));
 
-export { usePostStore, useSiderStore, useUserStore, useSearchStore };
+const useFormStore = create<any>((set: SetState<any>) => ({
+  formCampaign: '',
+  setFormCampaign: (formCampaign: any) =>
+    set(() => ({
+      formCampaign: formCampaign
+    }))
+}));
+
+export {
+  usePostStore,
+  useSiderStore,
+  useUserStore,
+  useSearchStore,
+  useFormStore
+};

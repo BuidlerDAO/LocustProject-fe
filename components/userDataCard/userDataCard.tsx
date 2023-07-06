@@ -18,6 +18,7 @@ import {
 } from '@/utils/16to10';
 import { ethers } from 'ethers';
 import { erc20TokenContractAbi } from '@/apis/abi';
+import { DollarOutlineIcon } from '../icons/dollarOutlineIcon';
 const UserDataCard = () => {
   // 合约相关数据
   const [id, setId] = useState(null);
@@ -180,7 +181,7 @@ const UserDataCard = () => {
           </span>
         </span>
         <span className=" absolute right-[2vw] top-[22px] h-6 w-6">
-          <DollarCircleOutlined style={{ fontSize: '125%', color: 'black' }} />
+          <DollarOutlineIcon style={{ fontSize: '125%', color: 'black' }} />
         </span>
       </div>
       {/* Points Earned */}
@@ -206,7 +207,7 @@ const UserDataCard = () => {
           </span>
         </span>
         <span className="absolute right-[2vw] top-[22px] h-6 w-6">
-          <DollarCircleOutlined style={{ fontSize: '125%', color: 'black' }} />
+          <DollarOutlineIcon style={{ fontSize: '125%', color: 'black' }} />
         </span>
         <div className="absolute right-[2vw] top-14 flex w-[81px] items-start gap-2 rounded-[44px] bg-[linear-gradient(_180deg,rgba(110,98,238,1)_2%,rgba(63,61,250,1)_100%_)] px-6 py-2">
           <span className="text component3-text12 h-auto text-left text-xs font-medium leading-3 text-white no-underline">

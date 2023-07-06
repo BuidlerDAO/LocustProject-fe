@@ -7,6 +7,7 @@ import { getCookie } from '@/utils/cookie';
 import './index.css';
 import { apiGetCampaignInfo } from '@/apis/Campaign';
 import { CopyIcon } from '../icons/copyIcon';
+import { DollarOutlineIcon } from '../icons/dollarOutlineIcon';
 
 interface DataCardProps extends HTMLAttributes<HTMLElement> {
   address: string;
@@ -55,7 +56,7 @@ const DataCard = ({ address, balance }: DataCardProps) => {
               <span>${balance}</span>
             </span>
             <span className="component2-currency-circle-dollar">
-              <DollarCircleOutlined style={{ fontSize: '150%' }} />
+              <DollarOutlineIcon style={{ fontSize: '150%' }} />
             </span>
           </div>
         </div>

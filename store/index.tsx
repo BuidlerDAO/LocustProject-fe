@@ -154,7 +154,7 @@ const useSiderStore = create<SiderStore>((set: SetState<SiderStore>) => ({
 const useUserStore = create<any>(
   persist(
     (set) => ({
-      isAdmin: false,
+      isAdmin: true,
       isLogin: false,
       isSignUp: false,
       isConnectTwitter: false,

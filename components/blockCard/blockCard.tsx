@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { DeleteOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import { Post } from '@/store/PostStore';
-import { usePostStore } from '@/store';
+import { usePostStore, useUserStore } from '@/store';
 import './index.css';
 import Modalprop from '../modal/modal';
 import { LinkIcon, TimeIcon } from '../icons';
@@ -15,7 +15,7 @@ import { apiDeletePostData } from '@/apis/post';
 
 const Block = (props: { data: Post }) => {
   const decrease = usePostStore((state: any) => state.decrease);
-  const isAdmin = usePostStore((state: any) => state.isAdmin);
+  const isAdmin = useUserStore((state: any) => state.isAdmin);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 

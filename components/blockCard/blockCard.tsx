@@ -15,6 +15,7 @@ import { apiDeletePostData } from '@/apis/post';
 
 const Block = (props: { data: Post }) => {
   const decrease = usePostStore((state: any) => state.decrease);
+  const isAdmin = usePostStore((state: any) => state.isAdmin);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -101,7 +102,10 @@ const Block = (props: { data: Post }) => {
         <Tooltip title={text} placement="bottom">
           <span className="block-frame5">
             <span className="text-white">
-              <EllipsisOutlined />
+              <EllipsisOutlined
+                //当用户不是管理员时，不显示删除按钮
+                style={{ display: isAdmin ? 'block' : 'none' }}
+              />
             </span>
           </span>
         </Tooltip>

@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import '@/styles/font.css';
 import { DollarCircleOutlined } from '@ant-design/icons';
 import { DollarIcon } from '../icons';
-import { apiGetPostData } from '@/apis/post';
+import { apiGetCampaign, apiGetPostData } from '@/apis/post';
 import toast from '../toast/toast';
-import { claimReward } from '@/utils/callContract';
+import {
+  claimReward,
+  claimRewards,
+  getERC20TokenInfo,
+  Reward
+} from '@/utils/callContract';
 import Toast from '../toast/toast';
 import { apiGetCampaignInfo, apiPostClaim } from '@/apis/Campaign';
 import {
@@ -55,23 +60,6 @@ const UserDataCard = () => {
       });
   };
 
-  async function getERC20TokenInfo(tokenAddress: string) {
-    // 连接到测试网
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-
-    // 创建合约实例
-    const contract = new ethers.Contract(
-      tokenAddress,
-      erc20TokenContractAbi,
-      signer
-    );
-    const symbol = (await contract.symbol()) as string;
-    const decimals = (await contract.decimals()) as number;
-
-    return { symbol, decimals };
-  }
-
   const getCampaignInfo = async () => {
     try {
       const {
@@ -85,6 +73,11 @@ const UserDataCard = () => {
       setContractAddress(contractAddress);
       setTokenAddress(tokenAddress);
       setRequiredPledgedAmount(requiredPledgedAmount);
+
+      // const historyData = await apiGetCampaign({
+      //   campaignId: number,
+      //   includeRealBonus: false
+      // });
       setHashId(hashId);
       return {
         id,
@@ -101,52 +94,68 @@ const UserDataCard = () => {
 
   const handleClaimOnclick = async () => {
     const data = await apiPostClaim();
-
     if (requiredPledgedAmount == 0) {
       toast.warning('You have no bonus to claim');
       return;
     }
-    const { nonce, signature } = data.items[0];
-    const campaignIdHash = `0x${hashId}`;
+    console.log(data);
+    // const { campaignId, tokens, receiverAddress, nonce, signature } =
+    //   data.items[0];
 
-    if (contractAddress != null && tokenAddress != null) {
-      // '0x8140b5163d0352Bbdda5aBF474Bf18cD1899Ce98', // 奖金池合约
-      // tokenAddress: '0xaD693A7f67f59e70BE8e6CE201aF1541BFb821f2', // 代币合约
-      // console.log(
-      //   contractAddress,
-      //   campaignIdHash,
-      //   [
-      //     {
-      //       tokenType: 1,
-      //       tokenAddress,
+    const rewards: Reward[] = data.items.map(
+      (item: {
+        campaignId: any;
+        tokens: any[];
+        nonce: any;
+        signature: any;
+      }) => {
+        // 你可能需要根据实际数据结构进行一些调整
+        return {
+          campaignIdHash: item.campaignId,
+          tokens: item.tokens.map(
+            (token: {
+              tokenType: any;
+              tokenAddress: any;
+              tokenAmount: any;
+            }) => {
+              return {
+                tokenType: token.tokenType,
+                tokenAddress: token.tokenAddress,
+                tokenAmount: token.tokenAmount
+              };
+            }
+          ),
+          nonce: item.nonce,
+          signature: item.signature
+        };
+      }
+    );
+    console.log(rewards.length);
 
-      //       amount: requiredPledgedAmount
-      //     }
-      //   ],
-      //   nonce,
-      //   signature
-      // );
-      await claimReward(
-        contractAddress,
-        campaignIdHash,
-        [
-          {
-            tokenType: 1,
-            tokenAddress,
-
-            amount: requiredPledgedAmount
-          }
-        ],
-        nonce,
-        signature
-      )
+    if (contractAddress != null && tokenAddress != null && rewards.length > 0) {
+      await claimRewards(contractAddress, rewards)
         .then(() => {
-          Toast.success('claimReward successful!');
+          Toast.success('refresh data...');
+          getCountPoints();
         })
-        .catch((e) => {
+        .catch((e: any) => {
           Toast.error('claimReward Error!');
           console.log('claimReward Error', e);
         });
+      // await claimReward(
+      //   contractAddress,
+      //   `0x${campaignId}`,
+      //   tokens,
+      //   nonce,
+      //   signature
+      // )
+      //   .then(() => {
+      //     Toast.success('claimReward successful!');
+      //   })
+      //   .catch((e: any) => {
+      //     Toast.error('claimReward Error!');
+      //     console.log('claimReward Error', e);
+      //   });
     } else {
       const tip = `id=${id}, contractAddress=${contractAddress}, tokenAddress=${tokenAddress}, requiredPledgedAmount=${requiredPledgedAmount}, hashId=${hashId}`;
       toast.warning(tip);
@@ -194,7 +203,7 @@ const UserDataCard = () => {
         </span>
         <span className="absolute left-6 top-14 h-auto text-left leading-9 text-[rgba(28,28,28,1)]">
           <span className="text-2xl font-semibold">
-            {Awarded ? Awarded + ` ${tokenSymbol}` : '0'}
+            {Pending ? Pending + ` ${tokenSymbol}` : '0'}
           </span>
         </span>
         <span className="absolute right-[2vw] top-[22px] h-6 w-6">

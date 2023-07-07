@@ -93,7 +93,12 @@ const Block = (props: { data: Post }) => {
               <LinkIcon />
             </span>
             <div className="block-text06">
-              <a href={props.data.link} style={{ color: 'inherit' }}>
+              <a
+                href={props.data.link}
+                style={{ color: 'inherit' }}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {props.data.link}
               </a>
             </div>

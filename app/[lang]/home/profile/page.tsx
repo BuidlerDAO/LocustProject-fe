@@ -25,7 +25,8 @@ const Profile: React.FC = () => {
     isConnectTwitter,
     setIsConnectTwitter,
     setIsLogin,
-    setIsAdmin
+    setIsAdmin,
+    setIsParticipant
   } = useUserStore();
   const pathname = usePathname() as string;
   const flag = pathname.includes('zh-CN') ? 'zh-CN' : 'en';
@@ -226,8 +227,8 @@ const Profile: React.FC = () => {
         console.log(isConnectTwitter);
       }
       setIsLogin(true);
-      // setIsAdmin(res.isAdmin);
-      setIsAdmin(true);
+      setIsAdmin(res.isAdmin);
+      setIsParticipant(res.setIsParticipant);
     } catch (error) {
       console.log(error);
       // router.replace('/');

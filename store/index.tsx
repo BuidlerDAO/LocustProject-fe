@@ -154,6 +154,7 @@ const useSiderStore = create<SiderStore>((set: SetState<SiderStore>) => ({
 const useUserStore = create<any>(
   persist(
     (set) => ({
+
       isAdmin: false,
       isParticipant: false,
       isLogin: false,

@@ -228,7 +228,7 @@ const Profile: React.FC = () => {
       }
       setIsLogin(true);
       setIsAdmin(res.isAdmin);
-      setIsParticipant(res.setIsParticipant);
+      setIsParticipant(res.isParticipant);
     } catch (error) {
       console.log(error);
       // router.replace('/');

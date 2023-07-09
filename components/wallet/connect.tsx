@@ -173,10 +173,12 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       setAvatar,
       setTwitter,
       setIsLogin,
-      setIsSignUp
+      setIsSignUp,
+      resetState
     } = useUserStore();
     // State / Props
     const [updateState, setUpdateState] = useState(0);
+    const [loginState, setLoginState] = useState(false);
     // 以太坊网络地址 & 是否链接
     const { address, isConnected } = useAccount();
     const { disconnect } = useDisconnect();
@@ -220,7 +222,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       deleteCookie('token');
       deleteCookie('address');
       setCurrentAddress('');
-      setIsLogin(false);
+      resetState();
       hasAuth ? router.replace('/home') : null;
     };
     // 登录
@@ -233,6 +235,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         );
         if (res.token) {
           setCurrentAddress(address || '');
+          setLoginState(true);
           setIsLogin(true);
         } else {
           Toast.error('Something Error!');
@@ -381,7 +384,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             router.replace('/');
           });
       }
-    }, [address]);
+    }, [address, loginState]);
     //  切换账户
     useEffect(() => {
       if (window.ethereum) {

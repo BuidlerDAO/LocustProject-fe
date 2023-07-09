@@ -154,7 +154,6 @@ const useSiderStore = create<SiderStore>((set: SetState<SiderStore>) => ({
 const useUserStore = create<any>(
   persist(
     (set) => ({
-
       isAdmin: false,
       isParticipant: false,
       isLogin: false,
@@ -194,6 +193,18 @@ const useUserStore = create<any>(
       setTwitter: (twitter: string) =>
         set(() => ({
           twitter: twitter
+        })),
+      resetState: () =>
+        set((state: any) => ({
+          ...state,
+          isAdmin: false,
+          isParticipant: false,
+          isLogin: false,
+          isSignUp: false,
+          isConnectTwitter: false,
+          username: '',
+          twitter: '',
+          avatar: ''
         }))
     }),
     {

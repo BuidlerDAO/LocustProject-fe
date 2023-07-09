@@ -30,7 +30,8 @@ div
 .custom-width {
   width: calc(100% - 18rem);
 }
-div > .ant-select-dropdown.ant-select-dropdown-placement-bottomLeft {
+body > div > .ant-select-dropdown.ant-select-dropdown-placement-bottomLeft {
+  position: absolute;
   top: 75px;
   background-color: #1f1f1f;
 }

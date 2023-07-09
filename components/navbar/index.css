@@ -31,13 +31,13 @@ div
   width: calc(100% - 18rem);
 }
 div > .ant-select-dropdown.ant-select-dropdown-placement-bottomLeft {
-  margin-top: 55px;
+  top: 75px;
   background-color: #1f1f1f;
 }
 div
   > .ant-select-dropdown
   > div
-  > .rc-virtual-list-holder-inner
+  .rc-virtual-list-holder-inner
   .ant-select-item-option-content
   > a {
   color: #fff;

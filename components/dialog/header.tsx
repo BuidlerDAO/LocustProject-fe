@@ -37,7 +37,6 @@ export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
                 fontSize={20}
                 className="cursor-pointer"
                 onClick={(e: any) => {
-                  e.stopPropagation();
                   onClose(false);
                 }}
               />

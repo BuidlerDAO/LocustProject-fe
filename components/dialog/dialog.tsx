@@ -134,6 +134,10 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(
     // 5. Create an instance of AnimatePresence because of the types issue with the children
     const NewAnimatePresence: FC<NewAnimatePresenceProps> = AnimatePresence;
 
+    const handleDialogClick = (e: any) => {
+      e.stopPropagation();
+    };
+
     return (
       <FloatingPortal>
         <NewAnimatePresence>
@@ -155,6 +159,7 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(
                   animate={open ? 'mount' : 'unmount'}
                   variants={backdropAnimation}
                   transition={{ duration: 0.2 }}
+                  onClick={handleDialogClick}
                 >
                   <motion.div
                     {...getFloatingProps({

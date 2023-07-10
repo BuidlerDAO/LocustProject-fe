@@ -36,7 +36,9 @@ export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
                 color="rgba(255,255,255,0.6)"
                 fontSize={20}
                 className="cursor-pointer"
-                onClick={() => onClose(false)}
+                onClick={(e: any) => {
+                  onClose(false);
+                }}
               />
             </motion.div>
           </div>

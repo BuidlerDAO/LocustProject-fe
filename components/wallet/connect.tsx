@@ -506,9 +506,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
             <div className="z-[1]">
               <Dialog
                 open={dialogOpen}
-                handler={(e) => {
-                  setDialogOpen(e);
-                }}
+                handler={(e) => setDialogOpen(e)}
                 size="sm"
               >
                 <DialogHeader

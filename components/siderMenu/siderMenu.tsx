@@ -24,11 +24,11 @@ const SideMenu = (props: any) => {
     setIsPost
   } = useSiderStore();
   const { isAdmin, isLogin, isSignUp } = useUserStore();
-  console.log(isAdmin);
+  //console.log(isAdmin);
   const pathname = usePathname();
   const flag = pathname == '/zh-CN' || pathname == '/en';
   const onJudge = () => {
-    console.log('click');
+    //console.log('click');
     if (!isLogin) {
       toast.error('Please login first');
       return;

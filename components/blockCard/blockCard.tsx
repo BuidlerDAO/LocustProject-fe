@@ -48,7 +48,7 @@ const Block = (props: { data: Post }) => {
     </button>
   );
   useEffect(() => {
-    console.log(props.data.avatar);
+    console.log(useUserStore.getState());
   }, []);
   return (
     <>

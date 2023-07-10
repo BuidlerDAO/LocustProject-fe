@@ -30,3 +30,16 @@ div
 .custom-width {
   width: calc(100% - 18rem);
 }
+body > div > .ant-select-dropdown.ant-select-dropdown-placement-bottomLeft {
+  position: absolute;
+  top: 80px !important;
+  background-color: #1f1f1f;
+}
+div
+  > .ant-select-dropdown
+  > div
+  .rc-virtual-list-holder-inner
+  .ant-select-item-option-content
+  > a {
+  color: #fff;
+}

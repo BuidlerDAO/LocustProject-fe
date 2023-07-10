@@ -108,7 +108,7 @@ const Navbar = () => {
                   }}
                 >
                   <AutoComplete
-                    notFoundContent="Not Found"
+                    // notFoundContent="Not Found"
                     options={options}
                     onSelect={onSelect}
                     onSearch={handleSearch}

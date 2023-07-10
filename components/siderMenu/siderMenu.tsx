@@ -24,11 +24,11 @@ const SideMenu = (props: any) => {
     setIsPost
   } = useSiderStore();
   const { isAdmin, isLogin, isSignUp } = useUserStore();
-  console.log(isAdmin);
+  //console.log(isAdmin);
   const pathname = usePathname();
   const flag = pathname == '/zh-CN' || pathname == '/en';
   const onJudge = () => {
-    console.log('click');
+    //console.log('click');
     if (!isLogin) {
       toast.error('Please login first');
       return;
@@ -74,7 +74,7 @@ const SideMenu = (props: any) => {
             className={`mr-[-5px] mt-[-18px] h-[36px] cursor-pointer
                             ${!flag && 'mr-[6px] mt-[0.2px]'}
             } `}
-            onClick={() => window.location.reload()}
+            onClick={() => router.push('/home')}
           >
             <LogoIconTop />
           </div>
@@ -115,6 +115,8 @@ const SideMenu = (props: any) => {
               />
             </div>
             <div
+              // data view 按钮,根据isAdmin判断有无
+
               className="side-menu-frame"
               onClick={() => {
                 setIsExplore(false);
@@ -122,6 +124,7 @@ const SideMenu = (props: any) => {
                 setIsPost(false);
               }}
               style={{
+                display: isAdmin ? 'block' : 'none',
                 color: isDataView ? 'rgba(109, 98, 238, 1)' : ''
               }}
             >

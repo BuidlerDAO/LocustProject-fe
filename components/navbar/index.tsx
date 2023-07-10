@@ -10,8 +10,10 @@ import { useSearchStore, useUserStore } from '@/store';
 import { useState } from 'react';
 import './index.css';
 import { apiGetPostData, apiGetSearchData } from '@/apis/post';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
+  const router = useRouter();
   const path = usePathname();
   const flag = path === '/zh-CN' || path === '/en';
   const { isSignUp, setIsLogin } = useUserStore();
@@ -81,7 +83,7 @@ const Navbar = () => {
               {flag ? (
                 <div
                   className="z-100 flex h-[36px] cursor-pointer items-center"
-                  onClick={() => window.location.reload()}
+                  onClick={() => router.push('/home')}
                 >
                   <LogoIconTop />
                 </div>
@@ -108,7 +110,7 @@ const Navbar = () => {
                   }}
                 >
                   <AutoComplete
-                    notFoundContent="Not Found"
+                    // notFoundContent="Not Found"
                     options={options}
                     onSelect={onSelect}
                     onSearch={handleSearch}

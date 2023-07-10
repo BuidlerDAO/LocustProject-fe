@@ -74,7 +74,7 @@ const SideMenu = (props: any) => {
             className={`mr-[-5px] mt-[-18px] h-[36px] cursor-pointer
                             ${!flag && 'mr-[6px] mt-[0.2px]'}
             } `}
-            onClick={() => window.location.reload()}
+            onClick={() => router.push('/home')}
           >
             <LogoIconTop />
           </div>

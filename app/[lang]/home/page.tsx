@@ -27,7 +27,8 @@ const App = () => {
             personalThoughts: item.thought,
             time: item.createdAt,
             avatar: item.creator.avatar,
-            username: item.creator.name
+            username: item.creator.name,
+            twitter: item.creator.twitter
           }))
         );
         setPosts(newData);

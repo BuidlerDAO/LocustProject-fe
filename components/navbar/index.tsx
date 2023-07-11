@@ -7,7 +7,7 @@ import { AutoComplete, ConfigProvider, Input, SelectProps } from 'antd';
 import { SearchIcon } from '@/components/icons/search';
 import Link from 'next/link';
 import { useSearchStore, useUserStore } from '@/store';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './index.css';
 import { apiGetPostData, apiGetSearchData } from '@/apis/post';
 import { useRouter } from 'next/navigation';
@@ -21,12 +21,13 @@ const Navbar = () => {
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
 
   //使用zustand创建optionsStore,实现实时更新options
-  const optionStore = useSearchStore((state) => state.options);
+  //const options = useSearchStore((state) => state.searchValue.options);
+  //const setOptions = useSearchStore((state) => state.setOptions);
 
   const setSearchValue = useSearchStore((state) => state.setSearchValue);
   const searchResult = async (query: string) => {
     const res = await apiGetSearchData(query);
-    console.log(res);
+    //console.log(res);
     const items = res.items;
     const result = items.map((item: any, idx: any) => {
       const category = `${item.title}`;
@@ -38,7 +39,8 @@ const Navbar = () => {
         personalThoughts: item.thought,
         time: item.createdAt,
         avatar: item.creator.avatar,
-        username: item.creator.name
+        username: item.creator.name,
+        twitter: item.creator.twitter
       };
       return {
         value: category,
@@ -65,13 +67,14 @@ const Navbar = () => {
 
   const handleSearch = async (value: string) => {
     //当value为空时，设置options为空
-    if (!value) {
-      setOptions([]);
-      return;
-    }
+    // if (!value) {
+    //   setOptions([]);
+    //   return;
+    // }
     const result = value ? await searchResult(value) : [];
     console.log(result);
     setOptions(result);
+    console.log(options);
   };
 
   const onSelect = (value: string) => {

@@ -82,90 +82,87 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`absolute z-50 float-right flex h-[100px] flex-wrap items-center bg-[#04070B]
-      ${
-        !flag &&
-        'custom-width left-[18rem] w-[1209.13px] border-b-[1px] border-b-lineGrey'
-      } ${flag && 'w-[1519.2px]'}`}
+        className={`absolute right-0 top-0 z-50 float-right flex h-[100px] flex-wrap items-center bg-[#04070B] px-8 py-2 lg:px-10 lg:py-4 ${
+          !flag && 'custom-width left-[18rem] border-b-[1px] border-b-lineGrey'
+        } ${flag && 'left-0 w-full'}`}
       >
-        <div className="sticky inset-0 z-10 flex h-full  max-w-full items-center px-8 py-2 lg:px-10 lg:py-4">
-          <div className="text-blue-gray-900 dark:text-blue-gray-100 flex w-full items-center">
-            {/*logo*/}
-            <div className="absolute left-[40px] top-[32px]">
-              {flag ? (
-                <div
-                  className="z-100 flex h-[36px] cursor-pointer items-center"
-                  onClick={() => router.push('/home')}
-                >
-                  <LogoIconTop />
-                </div>
-              ) : null}
-            </div>
-            {/*搜索框 & sign up 是否出现 */}
+        <div className="text-blue-gray-900 dark:text-blue-gray-100 flex w-full items-center">
+          {/*logo*/}
+          <div className="absolute left-[40px] top-[32px]">
             {flag ? (
-              <>
-                <div className="ml-[10vw] flex h-[36px] w-[50vw]"></div>
-              </>
-            ) : (
-              <>
-                {/*搜索框*/}
-                <ConfigProvider
-                  theme={{
-                    token: {
-                      colorBgElevated: 'black',
-                      colorText: '#ffffff',
-                      colorIconHover: '#ffffff',
-                      colorIcon: '#ffffff',
-                      colorTextPlaceholder: '#FFFFFF66',
-                      colorPrimary: '#ffffff'
-                    }
+              <div
+                className="z-100 flex h-[36px] cursor-pointer items-center"
+                onClick={() => router.push('/home')}
+              >
+                <LogoIconTop />
+              </div>
+            ) : null}
+          </div>
+          {/*搜索框 & sign up 是否出现 */}
+          {flag ? (
+            <>
+              <div className="ml-[10vw] flex h-[36px] grow"></div>
+            </>
+          ) : (
+            <div className="flex w-full justify-between">
+              {/*搜索框*/}
+              <ConfigProvider
+                theme={{
+                  token: {
+                    colorBgElevated: 'black',
+                    colorText: '#ffffff',
+                    colorIconHover: '#ffffff',
+                    colorIcon: '#ffffff',
+                    colorTextPlaceholder: '#FFFFFF66',
+                    colorPrimary: '#ffffff'
+                  }
+                }}
+              >
+                <AutoComplete
+                  options={options}
+                  onSelect={onSelect}
+                  onSearch={handleSearch}
+                  popupClassName="ant-auto-complete-dropdown"
+                  style={{
+                    backgroundColor: '#1f1f1f',
+                    borderColor: 'rgba(255, 255, 255, 0.16)'
                   }}
+                  className="flex h-[52px] w-full min-w-[300px] max-w-md rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
                 >
-                  <AutoComplete
-                    options={options}
-                    onSelect={onSelect}
-                    onSearch={handleSearch}
-                    popupClassName="ant-auto-complete-dropdown"
-                    style={{
-                      backgroundColor: '#1f1f1f',
-                      borderColor: 'rgba(255, 255, 255, 0.16)'
+                  <Input
+                    size="large"
+                    placeholder="Search"
+                    prefix={<SearchIcon />}
+                    onPressEnter={() => {
+                      return null;
                     }}
-                    className="flex h-[52px] w-[35vw] rounded-full border-[1px] border-solid bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+                    bordered={false}
+                    className="flex h-[52px] w-fit items-center rounded-full"
+                    style={{ fontFamily: 'Poppins', fontWeight: '400' }}
+                  />
+                </AutoComplete>
+              </ConfigProvider>
+              {/*Sign up for Locust*/}
+              {isSignUp ? (
+                <div className="m-auto grow"></div>
+              ) : (
+                <div className="relative right-[3.7vw] my-auto ml-auto whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
+                  <Link
+                    href="/"
+                    style={{ fontFamily: 'Poppins', fontWeight: '500' }}
                   >
-                    <Input
-                      size="large"
-                      placeholder="Search"
-                      prefix={<SearchIcon />}
-                      onPressEnter={() => {
-                        return null;
-                      }}
-                      bordered={false}
-                      className="flex h-[52px] w-fit items-center rounded-full"
-                      style={{ fontFamily: 'Poppins', fontWeight: '400' }}
-                    />
-                  </AutoComplete>
-                </ConfigProvider>
-                {/*Sign up for Locust*/}
-                {isSignUp ? (
-                  <div className="ml-[25.2vw]"></div>
-                ) : (
-                  <div className="ml-[14.4vw] flex whitespace-nowrap font-medium text-white hover:text-[#6E62EE]">
-                    <Link
-                      href="/"
-                      className="relative right-[3.7vw]"
-                      style={{ fontFamily: 'Poppins', fontWeight: '500' }}
-                    >
-                      Sign Up for Locust
-                    </Link>
-                  </div>
-                )}
-              </>
-            )}
-            {/*WalletConnect*/}
-            <div className={`${flag ? 'ml-[19vw]' : ''} flex items-center`}>
-              {/*<Wallet />*/}
-              <WalletConnect />
+                    Sign Up for Locust
+                  </Link>
+                </div>
+              )}
             </div>
+          )}
+          {/*WalletConnect*/}
+          <div
+            className={`${flag ? 'ml-[19vw]' : ''} flex items-center self-end`}
+          >
+            {/*<Wallet />*/}
+            <WalletConnect />
           </div>
         </div>
       </div>

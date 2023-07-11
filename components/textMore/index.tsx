@@ -56,7 +56,7 @@ export const TextMore: FC<Props> = ({ text, maxLines }) => {
       >
         <p
           ref={contentRef}
-          className={isExpanded || !isTextOverflowed() ? '' : `line-clamp-2`}
+          className={isExpanded || !isTextOverflowed() ? '' : `line-clamp-4`}
         >
           {text}
         </p>

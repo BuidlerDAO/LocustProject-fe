@@ -27,6 +27,7 @@ const Navbar = () => {
   const searchResult = async (query: string) => {
     const res = await apiGetSearchData(query);
     const items = res.items;
+    console.log(items);
     const result = items.map((item: any, idx: any) => {
       const category = `${item.title}`;
       const newData = {

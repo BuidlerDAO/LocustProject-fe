@@ -48,9 +48,6 @@ const Block = (props: { data: Post }) => {
       <span>Delete</span>
     </button>
   );
-  useEffect(() => {
-    console.log(useUserStore.getState());
-  }, []);
   return (
     <>
       <div className={`block-block `}>
@@ -123,7 +120,7 @@ const Block = (props: { data: Post }) => {
               <span>Original Summary</span>
             </span>
             <span className="block-text08">
-              <TextMore text={props.data.originalText} maxLines={6} />
+              <TextMore text={props.data.originalText} maxLines={4} />
             </span>
           </div>
           <div className="block-line18" />
@@ -133,7 +130,7 @@ const Block = (props: { data: Post }) => {
             </span>
             <div className="block-group1">
               <span className="block-text12">
-                <TextMore text={props.data.personalThoughts} maxLines={8} />
+                <TextMore text={props.data.personalThoughts} maxLines={6} />
               </span>
             </div>
           </div>

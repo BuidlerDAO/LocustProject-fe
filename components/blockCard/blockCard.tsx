@@ -77,7 +77,15 @@ const Block = (props: { data: Post }) => {
           </div>
           <div className="block-frame2">
             <div className="block-user-circle">
-              <Link href={`https://twitter.com/${props.data.twitter}`}>
+              <Link
+                //当twitter为undefined时，不跳转，并toast提示
+                href={
+                  props.data.twitter
+                    ? `https://twitter.com/${props.data.twitter}`
+                    : '#'
+                }
+                target="_blank"
+              >
                 <Image
                   src={props.data.avatar}
                   width={24}

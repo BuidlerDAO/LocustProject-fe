@@ -20,7 +20,9 @@ const Navbar = () => {
   const { isSignUp, setIsLogin } = useUserStore();
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
 
-  //const { setSearchValue, searchValue } = useSearchStore();
+  //使用zustand创建optionsStore,实现实时更新options
+  const optionStore = useSearchStore((state) => state.options);
+
   const setSearchValue = useSearchStore((state) => state.setSearchValue);
   const searchResult = async (query: string) => {
     const res = await apiGetSearchData(query);
@@ -68,6 +70,7 @@ const Navbar = () => {
       return;
     }
     const result = value ? await searchResult(value) : [];
+    console.log(result);
     setOptions(result);
   };
 

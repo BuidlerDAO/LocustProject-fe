@@ -10,12 +10,12 @@ const participate = () => {
   const isSignUp = useUserStore((state: any) => state.isSignUp);
   React.useEffect(() => {
     if (!isSignUp) {
-      window.location.href = '/home';
+      //window.location.href = '/home';
     }
   }, []);
   return (
     <>
-      <div className="mt-[100px] flex w-full flex-col bg-black">
+      <div className="ml-[288px] mt-[100px] flex w-full flex-col bg-black">
         <UserDataCard />
         <div className="ml-[3vw] mt-[2.5vw] text-[28px] font-medium">
           Statistics

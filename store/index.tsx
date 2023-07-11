@@ -214,8 +214,9 @@ const useUserStore = create<any>(
 );
 
 type SearchStore = {
-  searchValue: Post;
+  searchValue: any;
   setSearchValue: (searchValue: Post) => void;
+  setOptions: (options: any) => void;
 };
 
 const useSearchStore = create<SearchStore>((set: SetState<SearchStore>) => ({
@@ -227,11 +228,20 @@ const useSearchStore = create<SearchStore>((set: SetState<SearchStore>) => ({
     personalThoughts: '',
     time: '',
     username: '',
-    avatar: ''
+    avatar: '',
+    twitter: '',
+    options: []
   },
-  setSearchValue: (searchValue: Post) =>
+  setSearchValue: (searchValue: any) =>
     set(() => ({
       searchValue: searchValue
+    })),
+  setOptions: (options: any) =>
+    set((state) => ({
+      searchValue: {
+        ...state.searchValue,
+        options: options
+      }
     }))
 }));
 

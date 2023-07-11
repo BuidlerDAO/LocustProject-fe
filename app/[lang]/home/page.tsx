@@ -27,7 +27,8 @@ const App = () => {
             personalThoughts: item.thought,
             time: item.createdAt,
             avatar: item.creator.avatar,
-            username: item.creator.name
+            username: item.creator.name,
+            twitter: item.creator.twitter
           }))
         );
         setPosts(newData);
@@ -37,7 +38,7 @@ const App = () => {
   };
 
   return (
-    <div className="mx-[19px] mt-[100px] w-full">
+    <div className="mx-[19px] ml-[288px] mt-[100px] w-full">
       <List
         itemLayout="vertical"
         size="large"

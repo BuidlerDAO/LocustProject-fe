@@ -19,6 +19,7 @@ import {
 import { ethers } from 'ethers';
 import { erc20TokenContractAbi } from '@/apis/abi';
 import { DollarOutlineIcon } from '../icons/dollarOutlineIcon';
+import { DollarOutlineIcon1 } from '../icons/DollarOutlineIcon1';
 const UserDataCard = () => {
   // 合约相关数据
   const [id, setId] = useState(null);
@@ -130,7 +131,7 @@ const UserDataCard = () => {
         };
       }
     );
-    console.log(rewards.length);
+    //console.log(rewards.length);
 
     if (contractAddress != null && tokenAddress != null && rewards.length > 0) {
       await claimRewards(contractAddress, rewards)
@@ -180,8 +181,11 @@ const UserDataCard = () => {
             {Awarded ? Awarded + ` ${tokenSymbol}` : '0'}
           </span>
         </span>
-        <span className=" absolute right-[2vw] top-[22px] h-6 w-6">
-          <DollarOutlineIcon style={{ fontSize: '125%', color: 'black' }} />
+        <span
+          className=" absolute right-[2vw] top-[22px] h-6 w-6"
+          style={{ color: 'black' }}
+        >
+          <DollarOutlineIcon1 style={{ fontSize: '125%', color: 'black' }} />
         </span>
       </div>
       {/* Points Earned */}
@@ -207,7 +211,7 @@ const UserDataCard = () => {
           </span>
         </span>
         <span className="absolute right-[2vw] top-[22px] h-6 w-6">
-          <DollarOutlineIcon style={{ fontSize: '125%', color: 'black' }} />
+          <DollarOutlineIcon1 style={{ fontSize: '125%', color: 'black' }} />
         </span>
         <div className="absolute right-[2vw] top-14 flex w-[81px] items-start gap-2 rounded-[44px] bg-[linear-gradient(_180deg,rgba(110,98,238,1)_2%,rgba(63,61,250,1)_100%_)] px-6 py-2">
           <span className="text component3-text12 h-auto text-left text-xs font-medium leading-3 text-white no-underline">

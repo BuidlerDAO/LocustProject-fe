@@ -1,13 +1,14 @@
 .side-menu-side-menu {
   width: 18rem;
   display: flex;
-  position: relative;
+  position: fixed;
   align-items: flex-start;
   flex-shrink: 0;
   background-color: #000000;
   border-right-width: 1px;
   border-right-style: solid;
   border-right-color: #262626;
+  height: 100%;
 }
 .side-menu-frame1171274769 {
   height: 100%;

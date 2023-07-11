@@ -12,6 +12,7 @@ import { LinkIcon, TimeIcon } from '../icons';
 import TextMore from '../textMore';
 import Image from 'next/image';
 import { apiDeletePostData } from '@/apis/post';
+import Link from 'next/link';
 
 const Block = (props: { data: Post }) => {
   const decrease = usePostStore((state: any) => state.decrease);
@@ -76,13 +77,15 @@ const Block = (props: { data: Post }) => {
           </div>
           <div className="block-frame2">
             <div className="block-user-circle">
-              <Image
-                src={props.data.avatar}
-                width={24}
-                height={24}
-                className="rounded-full"
-                alt="#"
-              />
+              <Link href={`https://twitter.com/${props.data.twitter}`}>
+                <Image
+                  src={props.data.avatar}
+                  width={24}
+                  height={24}
+                  className="rounded-full"
+                  alt="#"
+                />
+              </Link>
             </div>
             <span className="block-text04">
               <span>{props.data.username}</span>

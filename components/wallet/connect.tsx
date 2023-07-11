@@ -57,6 +57,7 @@ const MetaMaskConnect = ({
     onError: (e) => onData(0, e)
   });
   const { disconnect } = useDisconnect();
+  const router = useRouter();
   return (
     <Button
       color="primary"
@@ -66,6 +67,7 @@ const MetaMaskConnect = ({
         setTimeout(() => {
           connect();
         }, 4);
+        router.push('/home');
       }}
     >
       <div className="flex items-center">
@@ -94,6 +96,7 @@ const WalletConnectBtn = ({
     onError: (e) => onData(0, e)
   });
   const { disconnect } = useDisconnect();
+  const router = useRouter();
   return (
     <Button
       color="primary"
@@ -103,6 +106,7 @@ const WalletConnectBtn = ({
         setTimeout(() => {
           connect();
         }, 4);
+        router.push('/home');
       }}
     >
       <div className="flex items-center">
@@ -131,6 +135,7 @@ const CoinbaseConnect = ({
     onError: (e) => onData(0, e)
   });
   const { disconnect } = useDisconnect();
+  const router = useRouter();
   return (
     <Button
       color="primary"
@@ -140,6 +145,7 @@ const CoinbaseConnect = ({
         setTimeout(() => {
           connect();
         }, 4);
+        router.push('/home');
       }}
     >
       <div className="flex items-center">
@@ -219,6 +225,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
     // 退出登录 & 清空 state
     const handleDisconnect = async () => {
       disconnect();
+
       deleteCookie('token');
       deleteCookie('address');
       setCurrentAddress('');
@@ -245,6 +252,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
       } catch (error) {
         Toast.error('login error');
         disconnect();
+        router.push('/home');
       }
     };
     //  设置签名
@@ -260,6 +268,7 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
         });
       } catch (error) {
         disconnect();
+        router.push('/home');
       }
     };
     // 下拉框

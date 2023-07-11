@@ -72,7 +72,7 @@ const DataV = () => {
 
   return (
     <>
-      <div className="ml-4 mt-8 flex flex-col pb-40">
+      <div className="ml-[300px] mt-8 flex flex-col pb-40">
         <DataCard address={address} balance={balance} />
         <div>
           <div

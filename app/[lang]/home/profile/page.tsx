@@ -256,7 +256,7 @@ const Profile: React.FC = () => {
     });
   }, []);
   return (
-    <div className="h-full w-full pt-[88px]">
+    <div className="ml-[288px] h-full w-full pt-[88px]">
       {/*Profile字样*/}
       <div className="ml-[40px] mt-[38px] text-[28px]">Profile</div>
       <div className="mx-auto w-[402px] items-start text-left">

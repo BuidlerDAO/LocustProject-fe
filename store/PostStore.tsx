@@ -9,6 +9,7 @@ export type Post = {
   time: string;
   username: string;
   avatar: string;
+  twitter: string;
 };
 
 interface PostStore {

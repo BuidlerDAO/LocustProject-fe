@@ -180,7 +180,7 @@ const UserDataCard = () => {
             {Awarded ? Awarded + ` ${tokenSymbol}` : '0'}
           </span>
         </span>
-        <span className=" absolute right-[2vw] top-[22px] h-6 w-6">
+        <span className=" absolute right-[2vw] top-[22px] h-6 w-6 ">
           <DollarOutlineIcon style={{ fontSize: '125%', color: 'black' }} />
         </span>
       </div>

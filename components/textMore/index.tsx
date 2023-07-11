@@ -14,12 +14,9 @@ export const TextMore: FC<Props> = ({ text, maxLines }) => {
   };
 
   const isTextOverflowed = () => {
-    const lineHeight = parseInt(
-      getComputedStyle(document.documentElement).lineHeight,
-      10
-    );
-    const maxHeight = maxLines * lineHeight;
-    return text.length * 0.6 > maxHeight; // Adjust the threshold as needed
+    const fontSize = 14;
+    const width = contentRef.current?.offsetWidth ?? 500;
+    return (text.length * fontSize) / width > maxLines;
   };
 
   const getContentHeight = () => {
@@ -38,15 +35,17 @@ export const TextMore: FC<Props> = ({ text, maxLines }) => {
 
   useEffect(() => {
     const lineHeight = 30;
-    if (isExpanded) {
-      const contentHeight = getContentHeight();
-      if (contentHeight) {
-        contentRef.current!.style.maxHeight = `${contentHeight}px`;
+    if (contentRef.current) {
+      if (isExpanded) {
+        const contentHeight = getContentHeight();
+        if (contentHeight) {
+          contentRef.current.style.maxHeight = `${contentHeight}px`;
+        }
+      } else {
+        contentRef.current.style.maxHeight = `${maxLines * lineHeight}px`;
       }
-    } else {
-      contentRef.current!.style.maxHeight = `${maxLines * lineHeight}px`;
     }
-  }, [isExpanded]);
+  }, [isExpanded, maxLines]);
 
   return (
     <div>
@@ -56,7 +55,11 @@ export const TextMore: FC<Props> = ({ text, maxLines }) => {
       >
         <p
           ref={contentRef}
-          className={isExpanded || !isTextOverflowed() ? '' : `line-clamp-4`}
+          className={
+            isExpanded || !isTextOverflowed()
+              ? ''
+              : `line-clamp-${maxLines.toString()}`
+          }
         >
           {text}
         </p>

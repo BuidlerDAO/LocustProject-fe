@@ -11,6 +11,7 @@ import { useState } from 'react';
 import './index.css';
 import { apiGetPostData, apiGetSearchData } from '@/apis/post';
 import { useRouter } from 'next/navigation';
+import Loading from '../../app/[lang]/home/loading';
 
 const Navbar = () => {
   const router = useRouter();
@@ -23,6 +24,7 @@ const Navbar = () => {
   const setSearchValue = useSearchStore((state) => state.setSearchValue);
   const searchResult = async (query: string) => {
     const res = await apiGetSearchData(query);
+    console.log(res);
     const items = res.items;
     const result = items.map((item: any, idx: any) => {
       const category = `${item.title}`;
@@ -33,8 +35,8 @@ const Navbar = () => {
         originalText: item.body,
         personalThoughts: item.thought,
         time: item.createdAt,
-        avatar: item.avatar,
-        username: item.username
+        avatar: item.creator.avatar,
+        username: item.creator.name
       };
       return {
         value: category,
@@ -60,6 +62,11 @@ const Navbar = () => {
   };
 
   const handleSearch = async (value: string) => {
+    //当value为空时，设置options为空
+    if (!value) {
+      setOptions([]);
+      return;
+    }
     const result = value ? await searchResult(value) : [];
     setOptions(result);
   };
@@ -110,7 +117,6 @@ const Navbar = () => {
                   }}
                 >
                   <AutoComplete
-                    // notFoundContent="Not Found"
                     options={options}
                     onSelect={onSelect}
                     onSearch={handleSearch}

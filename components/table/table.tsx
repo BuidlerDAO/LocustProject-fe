@@ -158,6 +158,7 @@ const Table2 = () => {
                 labelInValue={true}
                 onChange={(value: any) => handleChange(value)}
                 options={monthOptions}
+                placement="topLeft"
               />
             </ConfigProvider>
           </div>

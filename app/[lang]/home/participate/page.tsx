@@ -10,7 +10,7 @@ const participate = () => {
   const isSignUp = useUserStore((state: any) => state.isSignUp);
   React.useEffect(() => {
     if (!isSignUp) {
-      window.location.href = '/home';
+      //window.location.href = '/home';
     }
   }, []);
   return (

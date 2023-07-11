@@ -26,7 +26,6 @@ const Navbar = () => {
   const setSearchValue = useSearchStore((state) => state.setSearchValue);
   const searchResult = async (query: string) => {
     const res = await apiGetSearchData(query);
-    //console.log(res);
     const items = res.items;
     const result = items.map((item: any, idx: any) => {
       const category = `${item.title}`;

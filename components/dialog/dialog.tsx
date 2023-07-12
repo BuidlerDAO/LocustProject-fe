@@ -1,6 +1,6 @@
 'use client';
 
-import { ComponentProps, FC, forwardRef } from 'react';
+import { ComponentProps, FC, forwardRef, useEffect, useRef } from 'react';
 
 // @floating-ui
 import {
@@ -133,11 +133,38 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(
 
     // 5. Create an instance of AnimatePresence because of the types issue with the children
     const NewAnimatePresence: FC<NewAnimatePresenceProps> = AnimatePresence;
-
+    let x: number | null = null;
+    let y: number | null = null;
     const handleDialogClick = (e: any) => {
       e.stopPropagation();
     };
-
+    function diabledScroll() {
+      x = window.scrollX;
+      y = window.scrollY;
+    }
+    function enabledScroll() {
+      x = null;
+      y = null;
+    }
+    const handleScroll = (e: any) => {
+      if (open) {
+        e.preventDefault();
+        if (x !== null && y !== null) {
+          window.scrollTo(x, y);
+        }
+      }
+    };
+    useEffect(() => {
+      window.addEventListener('scroll', handleScroll, { passive: false });
+      if (open) {
+        diabledScroll();
+      } else {
+        enabledScroll();
+      }
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, [open]);
     return (
       <FloatingPortal>
         <NewAnimatePresence>

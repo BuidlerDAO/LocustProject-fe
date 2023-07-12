@@ -29,7 +29,7 @@ const Navbar = () => {
     const res = await apiGetSearchData(query);
     const items = res.items;
     const result = items.map((item: any, idx: any) => {
-      const category = `${item.title}`;
+      const category = `${item.id}`;
       const newData = {
         id: item.id,
         title: item.title,
@@ -39,7 +39,7 @@ const Navbar = () => {
         time: item.createdAt,
         avatar: item.creator.avatar,
         username: item.creator.name,
-        twitter: item.creator.twitter
+        twitter: item.creator.twitterUsername
       };
       console.log(` Found ${query} on ${item.title}`);
       return {
@@ -82,7 +82,6 @@ const Navbar = () => {
     }
     setSearchQuery(value);
     const result = value ? await searchResult(value) : [];
-    console.log(result);
     setOptions(result);
   };
 

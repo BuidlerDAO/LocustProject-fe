@@ -69,7 +69,7 @@ const SideMenu = (props: any) => {
     <>
       <div className={`side-menu-side-menu ${props.rootClassName}`}>
         {/* logo部分 */}
-        <div className="width-[18rem] ml-[30px] flex h-[100px] items-center justify-center">
+        <div className="width-[288px] ml-[30px] flex h-[100px] items-center justify-center">
           <div
             className={`mr-[-5px] mt-[-18px] h-[36px] cursor-pointer
                             ${!flag && 'mr-[6px] mt-[0.2px]'}

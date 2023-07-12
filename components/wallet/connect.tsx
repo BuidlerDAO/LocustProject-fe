@@ -67,7 +67,6 @@ const MetaMaskConnect = ({
         setTimeout(() => {
           connect();
         }, 4);
-        router.push('/home');
       }}
     >
       <div className="flex items-center">

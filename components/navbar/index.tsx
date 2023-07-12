@@ -18,6 +18,7 @@ const Navbar = () => {
   const flag = path === '/zh-CN' || path === '/en';
   const { isSignUp, setIsLogin } = useUserStore();
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   //使用zustand创建optionsStore,实现实时更新options
   //const options = useSearchStore((state) => state.searchValue.options);
@@ -27,7 +28,6 @@ const Navbar = () => {
   const searchResult = async (query: string) => {
     const res = await apiGetSearchData(query);
     const items = res.items;
-    console.log(items);
     const result = items.map((item: any, idx: any) => {
       const category = `${item.id}`;
       const newData = {
@@ -41,10 +41,12 @@ const Navbar = () => {
         username: item.creator.name,
         twitter: item.creator.twitterUsername
       };
+      console.log(` Found ${query} on ${item.title}`);
       return {
+        id: `item-${item.id}-${idx}`,
         value: category,
         label: (
-          <Link href={`/home/search/`}>
+          <Link href={`/home/search/`} key={`item-${item.id}-${idx}`}>
             <div
               style={{
                 display: 'flex',
@@ -53,9 +55,8 @@ const Navbar = () => {
               onClick={() => setSearchValue(newData)}
             >
               <span>
-                Found {query} on {item.title}
+                Found ${query} on {item.title}
               </span>
-              {/* <span>results</span> */}
             </div>
           </Link>
         )
@@ -64,22 +65,26 @@ const Navbar = () => {
     return result;
   };
 
+  // useEffect if query is changed
+
+  // useEffect(() => {
+  //   if (searchQuery.trim() === '') {
+  //     setOptions([]);
+  //     return;
+  //   }
+  //   handleSearch(searchQuery);
+  // }, [searchQuery]);
+
   const handleSearch = async (value: string) => {
-    //当value为空时，设置options为空
-    if (!value) {
-      setOptions([]);
+    setOptions([]);
+    if (value.trim() === '') {
       return;
     }
+    setSearchQuery(value);
     const result = value ? await searchResult(value) : [];
-    //console.log(result);
     setOptions(result);
-    //console.log(options);
   };
 
-  const onSelect = (value: string) => {
-    //console.log('onSelect', value);
-    //const res = apiGetPostData('/api/post/search', value);
-  };
   return (
     <>
       <div
@@ -121,8 +126,9 @@ const Navbar = () => {
               >
                 <AutoComplete
                   options={options}
-                  onSelect={onSelect}
-                  onSearch={handleSearch}
+                  // onSelect={handleSearch}
+                  // onSearch={handleSearch}
+                  onChange={handleSearch}
                   popupClassName="ant-auto-complete-dropdown"
                   style={{
                     backgroundColor: '#1f1f1f',

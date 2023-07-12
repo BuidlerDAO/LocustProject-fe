@@ -28,7 +28,7 @@ const App = () => {
             time: item.createdAt,
             avatar: item.creator.avatar,
             username: item.creator.name,
-            twitter: item.creator.twitter
+            twitter: item.creator.twitterUsername
           }))
         );
         setPosts(newData);

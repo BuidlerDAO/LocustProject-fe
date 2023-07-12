@@ -29,7 +29,7 @@ const Navbar = () => {
     const items = res.items;
     console.log(items);
     const result = items.map((item: any, idx: any) => {
-      const category = `${item.title}`;
+      const category = `${item.id}`;
       const newData = {
         id: item.id,
         title: item.title,
@@ -66,14 +66,14 @@ const Navbar = () => {
 
   const handleSearch = async (value: string) => {
     //当value为空时，设置options为空
-    // if (!value) {
-    //   setOptions([]);
-    //   return;
-    // }
+    if (!value) {
+      setOptions([]);
+      return;
+    }
     const result = value ? await searchResult(value) : [];
-    console.log(result);
+    //console.log(result);
     setOptions(result);
-    console.log(options);
+    //console.log(options);
   };
 
   const onSelect = (value: string) => {

@@ -28,7 +28,7 @@
   flex-direction: column;
 }
 .side-menu-frame1029 {
-  width: 18rem;
+  width: 288px;
   height: 52px;
   display: flex;
   position: relative;
@@ -118,7 +118,7 @@
 }
 .side-menu-frame {
   gap: 4px;
-  width: 18rem;
+  width: 288px;
   height: 52px;
   display: flex;
   padding: 4px 8px 4px 0;
@@ -172,11 +172,11 @@
 .side-menu-frame10211 {
   gap: 8px;
   top: 0px;
-  left: 1.5rem;
-  width: 14.375rem;
+  left: 24px;
+  width: 230px;
   height: 52px;
   display: flex;
-  padding: 0.75rem 4rem;
+  padding: 12px 64px;
   position: absolute;
   align-items: center;
   flex-shrink: 0;
@@ -190,7 +190,7 @@
 .side-menu-text4 {
   color: rgba(255, 255, 255, 1);
   height: auto;
-  font-size: 1.125rem;
+  font-size: 18px;
   font-style: Medium;
   text-align: left;
   font-family: Poppins;

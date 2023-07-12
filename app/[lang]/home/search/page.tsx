@@ -12,7 +12,7 @@ export default function Post() {
   }
 
   useEffect(() => {
-    console.log(searchValue);
+    // console.log(searchValue);
     //当searchValue为空时，跳转到首页
     if (searchValue.avatar === '') {
       window.location.href = '/home';

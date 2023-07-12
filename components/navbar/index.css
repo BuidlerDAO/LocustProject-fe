@@ -28,7 +28,7 @@ div
   width: auto;
 }
 .custom-width {
-  width: calc(100% - 18rem);
+  width: calc(100% - 288px);
 }
 
 body > div > .ant-select-dropdown.ant-select-dropdown-placement-bottomLeft {

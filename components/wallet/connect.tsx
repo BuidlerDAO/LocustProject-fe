@@ -224,12 +224,11 @@ const WalletConnect = forwardRef<HTMLDivElement, WalletProps>(
     // 退出登录 & 清空 state
     const handleDisconnect = async () => {
       disconnect();
-
       deleteCookie('token');
       deleteCookie('address');
       setCurrentAddress('');
       resetState();
-      hasAuth ? router.replace('/home') : null;
+      router.push('/home');
     };
     // 登录
     const handleLogin = async () => {
